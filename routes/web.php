@@ -54,10 +54,19 @@ Route::middleware(['auth', 'role:user'])->group(function(){
         Route::get('/admin/sub-category', 'Sub_Category')->name('subcategory');
         Route::get('/admin/sub-add-category', 'Sub_Category_Add')->name('addsubcategory');
         Route::post('/admin/store-subcategory', 'Store_Subcategory')->name('storesubcategory');
+        Route::get('admin/edit-subcategory/{id}','Edit_SubCategory')->name('editsubcategory');
+        Route::post('admin/update-subcategory','SubCategory_Update')->name('updatesubcategory');
+        Route::get('admin/delete-subcategory/{id}','Delete_SubCategory')->name('deletesubcategory');
 
         // products
         Route::get('/admin/all-products', 'All_Products')->name('allproducts');
-        Route::get('/admin/add-product', 'Add_Product')->name('addproduct');
+        Route::get('/admin/add-products', 'Add_Products')->name('addproducts');
+        Route::post('/admin/store-product', 'Store_Products')->name('storeproduct');
+        Route::get('admin/edit-product-image/{id}', 'EditProductImage')->name('editproductimg');
+        Route::post('admin/update-product-image', 'UpdateProductImage')->name('updateproductimg');
+        Route::get('admin/edit-product/{id}', 'EditProduct')->name('editproduct');
+        Route::post('admin/update-product', 'UpdateProduct')->name('updateproduct');
+        Route::get('admin/delete-product/{id}', 'DeleteProduct')->name('deleteproduct');
         // order
         Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
 

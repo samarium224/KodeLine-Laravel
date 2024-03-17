@@ -26,8 +26,8 @@
                     <td>{{ $subcategory->category_name }}</td>
                     <td>{{ $subcategory->slug }}</td>
                     <td>
-                        <a href="{{ route('editcategory', $subcategory->id) }}" class="btn btn-info">edit</a>
-                        <a href="{{ route('deletecategory', $subcategory->id)}}" class="btn btn-warning">delete</a>
+                        <a href="{{ route('editsubcategory', $subcategory->id) }}" class="btn btn-info">edit</a>
+                        <a href="{{ route('deletesubcategory', $subcategory->id)}}" class="btn btn-warning">delete</a>
                     </td>
                 </tr>
             @endforeach

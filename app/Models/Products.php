@@ -18,6 +18,7 @@ class Products extends Model
         'product_subcategory_name',
         'product_subcategory_id',
         'product_img',
+        'quantity',
         'slug',
     ];
 }

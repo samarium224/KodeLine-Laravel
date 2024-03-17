@@ -21,22 +21,23 @@
             <p>Drafts</p>
             <p>Abandoned checkouts</p>
 
-            <h>Products</h5>
-                <p><a href="{{ route('addcategory') }}">Add Category</a></p>
-                <p><a href="{{ route('allcategory') }}">All Category</a></p>
-                <p><a href="">Collections</a></p>
-                <p><a href="">Inventory</a></p>
-                <p><a href="">Gift cards</a></p>
+            <h5><a href="{{ route('allproducts') }}"> Products </a></h5>
+            <p><a href="{{ route('addproducts') }}">Add Products</a></p>
+            <p><a href="{{ route('addcategory') }}">Add Category</a></p>
+            <p><a href="{{ route('allcategory') }}">All Category</a></p>
+            <p><a href="">Collections</a></p>
+            <p><a href="">Inventory</a></p>
+            <p><a href="">Gift cards</a></p>
 
-                <h5>Sub Categories</h5>
-                <p><a href="{{ route('subcategory') }}">All Sub Category</a></p>
-                <p><a href="{{ route('addsubcategory') }}">Add Sub Category</a></p>
+            <h5>Sub Categories</h5>
+            <p><a href="{{ route('subcategory') }}">All Sub Category</a></p>
+            <p><a href="{{ route('addsubcategory') }}">Add Sub Category</a></p>
 
-                <h5>Customers</h5>
-                <p><a href="">Segments</a></p>
+            <h5>Customers</h5>
+            <p><a href="">Segments</a></p>
 
-                <h5>Content</h5>
-                <p><a href="">Changeable contents</a></p>
+            <h5>Content</h5>
+            <p><a href="">Changeable contents</a></p>
         </div>
         <div class="col-9 py-5">
             @yield('content')

@@ -1,6 +1,6 @@
 @extends('admin.dashboard')
 
-@section('title', 'add-category')
+@section('page-title', 'add-category')
 
 @section('content')
     <div class="container">
