@@ -35,9 +35,9 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
                 <ItemDescription />
                 <Header title="You may also like" />
                 <Box my={5}></Box>
-                {/* <PreOrder items={preorderItems} /> */}
-                {/* <Testimonials /> */}
-                {/* <Footer /> */}
+                <PreOrder items={preorderItems} />
+                <Testimonials />
+                <Footer />
             </ThemeProvider>
         </div>
     );
