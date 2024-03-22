@@ -15,7 +15,7 @@ import PreOrder from "@/Global_Components/PreOrder/Index";
 import FooterTop from "@/Homepage_Components/FooterTop";
 import Slogan from "@/Global_Components/Slogan";
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({ auth }) {
     const preorderItems = [
         {
             itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
