@@ -1,4 +1,4 @@
-import { Box, Grid, useTheme } from "@mui/material";
+import { Box, Container, Grid, useTheme } from "@mui/material";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import BestSellingHeader from "./BestSellingHeader";
 import CustomButton from "@/Global_Components/CustomButton";
@@ -57,7 +57,7 @@ const BestSellingItems = () => {
         },
     ];
     return (
-        <>
+        <Container maxWidth="xl">
             <Box mx={theme.containerMarginWidth} mt={7.5} mb={20}>
                 <BestSellingHeader
                     title="Best Selling Items"
@@ -88,7 +88,7 @@ const BestSellingItems = () => {
                     />
                 </Box>
             </Box>
-        </>
+        </Container>
     );
 };
 

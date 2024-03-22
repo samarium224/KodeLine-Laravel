@@ -1,26 +1,29 @@
 import CustomButton from "@/Global_Components/CustomButton";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 
-const SliderComp = ({ image }) => {
+const SliderComp = () => {
     const theme = useTheme();
     return (
         <Box
             sx={{
+                mx: "auto",
                 backgroundImage: `url("./assets/Home Background.png")`,
-                backgroundPosition: "left bottom",
+                backgroundPosition: "center bottom",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                width: "100%",
-                height: "110vh",
+                width: { lg: "100%", xl: "1960px" },
+                height: { lg: "105vh", xl: "1040px" },
             }}
         >
             <Box
-                height="60%"
-                display="flex"
-                flexDirection="column"
-                justifyContent="flex-end"
-                ml={theme.containerMarginWidth - 8}
-                lineHeight="50px"
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "flex-end",
+                    lineHeight: "50px",
+                    height: "60%",
+                    mx: 15,
+                }}
             >
                 <Typography
                     variant="headline"

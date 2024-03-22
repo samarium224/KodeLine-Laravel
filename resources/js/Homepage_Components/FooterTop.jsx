@@ -1,5 +1,5 @@
 import CustomButton from "@/Global_Components/CustomButton";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 
 const FooterTop = () => {
     const theme = useTheme();
@@ -10,17 +10,18 @@ const FooterTop = () => {
                 backgroundPosition: "right bottom",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                width: "100%",
-                height: "100vh",
+                width: { lg: "100%", xl: "1960px" },
+                height: { lg: "100vh", xl: "1060px" },
+                mx: "auto",
             }}
         >
-            <Box mx={theme.containerMarginWidth} position="relative">
+            <Container maxWidth="xl" sx={{ position: "relative" }}>
                 <Typography
                     variant="headline"
                     sx={{
                         position: "absolute",
                         color: theme.palette.text.grey[500],
-                        top: "25vh",
+                        top: { lg: "25vh", xl: "250px" },
                         left: "37.5%",
                         fontWeight: "700",
                         width: "100%",
@@ -33,7 +34,7 @@ const FooterTop = () => {
                     sx={{
                         position: "absolute",
                         backgroundColor: theme.palette.text.white[100],
-                        top: "50vh",
+                        top: { lg: "50vh", xl: "475px" },
                         left: "37.5%",
                         fontSize: "1.5rem",
                         fontWeight: 400,
@@ -41,7 +42,7 @@ const FooterTop = () => {
                         py: 2,
                     }}
                 />
-            </Box>
+            </Container>
         </Box>
     );
 };

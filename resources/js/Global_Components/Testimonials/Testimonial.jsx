@@ -37,7 +37,7 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
     };
 
     return (
-        <Box position="relative" height="400px" mx={20}>
+        <Box position="relative" height="400px" mx={10}>
             <Box
                 position="absolute"
                 top="47.5%"

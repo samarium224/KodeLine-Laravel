@@ -1,5 +1,5 @@
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
-import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Container, Grid, Typography, useTheme } from "@mui/material";
 
 const ShopByCategorySection = ({ reverse = false }) => {
     const theme = useTheme();
@@ -31,12 +31,14 @@ const ShopByCategorySection = ({ reverse = false }) => {
     ];
 
     return (
-        <Box
-            display="flex"
-            justifyContent="space-between"
-            mx={25}
-            mb={20}
-            flexDirection={reverse && "row-reverse"}
+        <Container
+            maxWidth="xl"
+            sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                mb: 20,
+                flexDirection: reverse && "row-reverse",
+            }}
         >
             <Box
                 width="47.5%"
@@ -104,7 +106,7 @@ const ShopByCategorySection = ({ reverse = false }) => {
                     ))}
                 </Grid>
             </Box>
-        </Box>
+        </Container>
     );
 };
 

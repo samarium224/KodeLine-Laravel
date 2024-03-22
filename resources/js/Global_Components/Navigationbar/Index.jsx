@@ -7,6 +7,7 @@ import {
     Button,
     IconButton,
     Box,
+    Container,
     useTheme,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -30,14 +31,14 @@ const Navigation = () => {
     };
 
     return (
-        <Box position="relative" maxWidth="1536px" mx="auto">
+        <Container maxWidth="xl" sx={{ position: "relative" }}>
             <AppBar
                 position="absolute"
                 sx={{
                     backgroundColor: "transparent",
                     boxShadow: "none",
-                    width: "90%",
-                    left: "5%",
+                    transform: "translateX(-50%)",
+                    left: "50%",
                     top: 10,
                 }}
             >
@@ -64,28 +65,21 @@ const Navigation = () => {
                             justifyContent: "center",
                         }}
                     >
-                        <CategoryMenu color={theme.palette.text.grey[500]} />
-                        <Button sx={navButtonStyle}>About us</Button>
-                        <Link href={route('collection')}>
+                        {/* <CategoryMenu color={theme.palette.text.grey[500]} /> */}
+                        <Link href={route("collection")}>
                             <Button sx={navButtonStyle}>Collection</Button>
                         </Link>
-                        <Link href={route('itemshowcase')}>
-                            <Button sx={navButtonStyle}>Item Showcase</Button>
+                        <Link href={route("itemshowcase")}>
+                            <Button sx={navButtonStyle}>About us</Button>
                         </Link>
                         <Button sx={navButtonStyle}>BLOG</Button>
-                        {!auth.user && (
-                            <>
-                                <Link href={route('login')} >
-                                    <Button sx={{ color: theme.palette.text.grey[500]}}>Log In</Button>
-                                </Link>
-                                <Link href={ route('register') }>
-                                    <Button sx={{ color: theme.palette.text.grey[500]}}>Register</Button>
-                                </Link>
-                            </>
-                        )}
-                        {auth.user && (
-                            <Link href={route('dashboard')} >
-                                <Button sx={{ color: theme.palette.text.grey[500]}}>My Account</Button>
+                        {auth.user ? (
+                            <Link href={route("dashboard")}>
+                                <Button sx={navButtonStyle}>My Account</Button>
+                            </Link>
+                        ) : (
+                            <Link href={route("login")}>
+                                <Button sx={navButtonStyle}>Log In</Button>
                             </Link>
                         )}
                     </Box>
@@ -102,11 +96,10 @@ const Navigation = () => {
                         >
                             <ShoppingCartIcon />
                         </IconButton>
-
                     </Box>
                 </Toolbar>
             </AppBar>
-        </Box>
+        </Container>
     );
 };
 
