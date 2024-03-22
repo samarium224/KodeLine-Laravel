@@ -27,7 +27,7 @@ const CategoryMenu = ({ color }) => {
                 onClick={handleMenuOpen}
                 sx={{ color: color }}
             >
-                Categories
+                Collections
             </Button>
             <Menu
                 id="category-menu"

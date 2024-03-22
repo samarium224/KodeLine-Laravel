@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 import {
     AppBar,
@@ -15,6 +15,7 @@ import CurrencyMenu from "./CurrencyMenu";
 
 const Navigation = () => {
     const theme = useTheme();
+    const { auth } = usePage().props;
     const [currency, setCurrency] = useState("USD");
 
     const handleCurrencyChange = (value) => {
@@ -63,10 +64,30 @@ const Navigation = () => {
                             justifyContent: "center",
                         }}
                     >
-                        <Button sx={navButtonStyle}>Home</Button>
-                        <Button sx={navButtonStyle}>Products</Button>
                         <CategoryMenu color={theme.palette.text.grey[500]} />
-                        <Button sx={navButtonStyle}>About</Button>
+                        <Button sx={navButtonStyle}>About us</Button>
+                        <Link href={route('collection')}>
+                            <Button sx={navButtonStyle}>Collection</Button>
+                        </Link>
+                        <Link href={route('itemshowcase')}>
+                            <Button sx={navButtonStyle}>Item Showcase</Button>
+                        </Link>
+                        <Button sx={navButtonStyle}>BLOG</Button>
+                        {!auth.user && (
+                            <>
+                                <Link href={route('login')} >
+                                    <Button sx={{ color: theme.palette.text.grey[500]}}>Log In</Button>
+                                </Link>
+                                <Link href={ route('register') }>
+                                    <Button sx={{ color: theme.palette.text.grey[500]}}>Register</Button>
+                                </Link>
+                            </>
+                        )}
+                        {auth.user && (
+                            <Link href={route('dashboard')} >
+                                <Button sx={{ color: theme.palette.text.grey[500]}}>My Account</Button>
+                            </Link>
+                        )}
                     </Box>
 
                     {/* Cart and Currency */}
@@ -81,10 +102,7 @@ const Navigation = () => {
                         >
                             <ShoppingCartIcon />
                         </IconButton>
-                        <Link href={route('login')} >
-                            <Button sx={{ color: theme.palette.text.grey[500]}}>Log In</Button>
-                        </Link>
-                        <Button sx={{ color: theme.palette.text.grey[500]}}>Register</Button>
+
                     </Box>
                 </Toolbar>
             </AppBar>
