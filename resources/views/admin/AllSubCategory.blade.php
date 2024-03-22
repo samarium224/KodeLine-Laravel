@@ -1,8 +1,11 @@
-@extends('admin.dashboard')
+@extends('admin.dashboardcore')
 
-@section('page-title', 'all-subcategory')
+@section('page-title', 'Dashboard | Category')
 
-@section('content')
+@section('page-heading', 'Category List')
+@section('page-active-heading', 'Category')
+
+@section('dashboard-content')
     @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session()->get('message') }}

@@ -1,8 +1,12 @@
-@extends('admin.dashboard')
+@extends('admin.dashboardcore')
 
+@section('page-title', 'Dashboard | Products')
+
+@section('page-heading', 'Edit Product Image')
+@section('page-active-heading', 'Products')
 @section('page-title', 'edit-subcategory')
 
-@section('content')
+@section('dashboard-content')
     <div class="container">
         <h1>Add New Category</h1>
         @if ($errors->any())

@@ -1,8 +1,11 @@
-@extends('admin.dashboard')
+@extends('admin.dashboardcore')
 
-@section('page-title', 'all-products')
+@section('page-title', 'Dashboard | Products')
 
-@section('content')
+@section('page-heading', 'Product List')
+@section('page-active-heading', 'Products')
+
+@section('dashboard-content')
     @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session()->get('message') }}
@@ -26,10 +29,11 @@
                 <tr>
                     <th scope="row">{{ $product->id }}</th>
                     <td>
-                        <img src="{{ '../'. $product->product_img}}" alt="" width="100px"><br>
-                        <a href="{{ route('editproductimg', $product->id) }}" class="btn btn-outline-success btn-sm mt-3">Change Image</a>
+                        <img src="{{ '../' . $product->product_img }}" alt="" width="100px"><br>
+                        <a href="{{ route('editproductimg', $product->id) }}"
+                            class="btn btn-outline-success btn-sm mt-3">Change Image</a>
                     </td>
-                    <td>{{ $product->product_name }}</td>
+                    <td><a href="{{ route('productdetails', $product->id) }}">{{ $product->product_name }}</a></td>
                     <td>{{ $product->product_category_name }}</td>
                     <td>{{ $product->product_subcategory_name }}</td>
                     <td>{{ $product->quantity }}</td>

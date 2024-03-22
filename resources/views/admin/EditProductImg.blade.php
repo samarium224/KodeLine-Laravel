@@ -1,10 +1,13 @@
-@extends('admin.dashboard')
+@extends('admin.dashboardcore')
 
-@section('page-title', 'edit-product-img')
+@section('page-title', 'Dashboard | Products')
 
-@section('content')
+@section('page-heading', 'Edit Product Image')
+@section('page-active-heading', 'Products')
+
+@section('dashboard-content')
     <div class="container">
-        <h1>Add New Product</h1>
+        <h1>Edit Product Image</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -33,7 +36,7 @@
                 <input type="file" id="product_img" name="product_img" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Add Product</button>
+            <button type="submit" class="btn btn-primary mt-3">Edit Product Image</button>
         </form>
     </div>
 @endsection

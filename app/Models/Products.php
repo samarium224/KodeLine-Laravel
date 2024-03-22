@@ -20,5 +20,11 @@ class Products extends Model
         'product_img',
         'quantity',
         'slug',
+        'ageRange',
+        'ageGroup',
+        'sizeGroup',
+        'colorGroup',
+        'quantityGroup',
+        'imageVariations'
     ];
 }

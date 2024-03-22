@@ -1,50 +1,140 @@
-<html>
+@extends('admin.dashboardcore')
 
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>@yield('page-title')</title>
+@section('page-title', 'Dashboard')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-</head>
+@section('page-heading', 'Dashboard')
+@section('page-active-heading', 'Dashboard')
 
-<body>
-    <div class="row container-fluid">
-        <div class="col-3 border rounded px-3">
-            <div class="display-5 my-3">
-                Admin page
+@section('dashboard-content')
+    <!-- Start Page Content -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card p-30">
+                <div class="media">
+                    <div class="media-left meida media-middle">
+                        <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
+                    </div>
+                    <div class="media-body media-text-right">
+                        <h2>568120</h2>
+                        <p class="m-b-0">Total Revenue</p>
+                    </div>
+                </div>
             </div>
-            <code>here have some links</code>
-            <h5>Order</h5>
-            <p>Drafts</p>
-            <p>Abandoned checkouts</p>
-
-            <h5><a href="{{ route('allproducts') }}"> Products </a></h5>
-            <p><a href="{{ route('addproducts') }}">Add Products</a></p>
-            <p><a href="{{ route('addcategory') }}">Add Category</a></p>
-            <p><a href="{{ route('allcategory') }}">All Category</a></p>
-            <p><a href="">Collections</a></p>
-            <p><a href="">Inventory</a></p>
-            <p><a href="">Gift cards</a></p>
-
-            <h5>Sub Categories</h5>
-            <p><a href="{{ route('subcategory') }}">All Sub Category</a></p>
-            <p><a href="{{ route('addsubcategory') }}">Add Sub Category</a></p>
-
-            <h5>Customers</h5>
-            <p><a href="">Segments</a></p>
-
-            <h5>Content</h5>
-            <p><a href="">Changeable contents</a></p>
         </div>
-        <div class="col-9 py-5">
-            @yield('content')
+        <div class="col-md-3">
+            <div class="card p-30">
+                <div class="media">
+                    <div class="media-left meida media-middle">
+                        <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                    </div>
+                    <div class="media-body media-text-right">
+                        <h2>1178</h2>
+                        <p class="m-b-0">Sales</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
+        <div class="col-md-3">
+            <div class="card p-30">
+                <div class="media">
+                    <div class="media-left meida media-middle">
+                        <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
+                    </div>
+                    <div class="media-body media-text-right">
+                        <h2>25</h2>
+                        <p class="m-b-0">Stores</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-30">
+                <div class="media">
+                    <div class="media-left meida media-middle">
+                        <span><i class="fa fa-user f-s-40 color-danger"></i></span>
+                    </div>
+                    <div class="media-body media-text-right">
+                        <h2>847</h2>
+                        <p class="m-b-0">Customer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-
-</html>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Recent Orders </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Product</th>
+                                    <th>quantity</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="img">
+                                            <a href=""><img width="50px"
+                                                    src="{{ asset('KidslineAssets/Boy\'s Clothing.png') }}"
+                                                    alt=""></a>
+                                        </div>
+                                    </td>
+                                    <td>John Abraham</td>
+                                    <td><span>iBook</span></td>
+                                    <td><span>456 pcs</span></td>
+                                    <td><span class="badge badge-success">Done</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="img">
+                                            <a href=""><img width="50px"
+                                                    src="{{ asset('KidslineAssets/Girls_6_9.png') }}" alt=""></a>
+                                        </div>
+                                    </td>
+                                    <td>John Abraham</td>
+                                    <td><span>iPhone</span></td>
+                                    <td><span>456 pcs</span></td>
+                                    <td><span class="badge badge-success">Done</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="img">
+                                            <a href=""><img width="50px"
+                                                    src="{{ asset('KidslineAssets/Savings.png') }}" alt=""></a>
+                                        </div>
+                                    </td>
+                                    <td>John Abraham</td>
+                                    <td><span>iMac</span></td>
+                                    <td><span>456 pcs</span></td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="img">
+                                            <a href=""><img width="50px"
+                                                    src="{{ asset('KidslineAssets/Boys_6_9.png') }}" alt=""></a>
+                                        </div>
+                                    </td>
+                                    <td>John Abraham</td>
+                                    <td><span>iBook</span></td>
+                                    <td><span>456 pcs</span></td>
+                                    <td><span class="badge badge-success">Done</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End PAge Content -->
+@endsection

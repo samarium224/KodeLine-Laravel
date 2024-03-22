@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('/exp', function(){
-    return Inertia::render('Experiment');
+    return view('test.test-dashboard');
 });
 
 Route::get('/dashboard', function () {
@@ -67,6 +67,7 @@ Route::middleware(['auth', 'role:user'])->group(function(){
         Route::get('admin/edit-product/{id}', 'EditProduct')->name('editproduct');
         Route::post('admin/update-product', 'UpdateProduct')->name('updateproduct');
         Route::get('admin/delete-product/{id}', 'DeleteProduct')->name('deleteproduct');
+        Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
         // order
         Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
 
