@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "@inertiajs/react";
+
 import {
     AppBar,
     Toolbar,
@@ -79,6 +81,10 @@ const Navigation = () => {
                         >
                             <ShoppingCartIcon />
                         </IconButton>
+                        <Link href={route('login')} >
+                            <Button sx={{ color: theme.palette.text.grey[500]}}>Log In</Button>
+                        </Link>
+                        <Button sx={{ color: theme.palette.text.grey[500]}}>Register</Button>
                     </Box>
                 </Toolbar>
             </AppBar>
