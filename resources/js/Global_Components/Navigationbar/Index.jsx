@@ -27,7 +27,7 @@ const Navigation = () => {
     };
 
     return (
-        <Box position="relative">
+        <Box position="relative" maxWidth="1536px" mx="auto">
             <AppBar
                 position="absolute"
                 sx={{
