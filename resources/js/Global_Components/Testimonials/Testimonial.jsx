@@ -20,7 +20,7 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
 
     const getStars = () => {
         return (
-            <Box textAlign="center" mb={2.5} s>
+            <Box textAlign="center" mb={2.5}>
                 {Array(fullStars)
                     .fill(0)
                     .map((_, index) => (
@@ -55,9 +55,13 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
                         fontWeight="500"
                         color={theme.palette.text.grey[500]}
                     >
-                        <Typography sx={quotationStyle}>“</Typography>
+                        <Typography component={"span"} sx={quotationStyle}>
+                            “
+                        </Typography>
                         {userCommentTitle}
-                        <Typography sx={quotationStyle}>”</Typography>
+                        <Typography component={"span"} sx={quotationStyle}>
+                            ”
+                        </Typography>
                     </Typography>
                 </Box>
                 <Typography

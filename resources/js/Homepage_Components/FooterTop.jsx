@@ -1,5 +1,5 @@
 import CustomButton from "@/Global_Components/CustomButton";
-import { Box, Container, Typography, useTheme } from "@mui/material";
+import { Box, Button, Container, Typography, useTheme } from "@mui/material";
 
 const FooterTop = () => {
     const theme = useTheme();
@@ -29,11 +29,11 @@ const FooterTop = () => {
                 >
                     Simplifying Choices <br /> Maximizing Convenience
                 </Typography>
-                <CustomButton
-                    text="SHOP NOW"
+                <Button
                     sx={{
                         position: "absolute",
                         backgroundColor: theme.palette.text.white[100],
+                        color: theme.palette.text.grey[500],
                         top: { lg: "50vh", xl: "475px" },
                         left: "37.5%",
                         fontSize: "1.5rem",
@@ -41,7 +41,9 @@ const FooterTop = () => {
                         px: 10,
                         py: 2,
                     }}
-                />
+                >
+                    SHOP NOW
+                </Button>
             </Container>
         </Box>
     );
