@@ -30,7 +30,6 @@ const theme = createTheme({
             },
         },
     },
-    containerMarginWidth: 20,
     typography: {
         headline: {
             fontFamily: "'Poppins', sans-serif",
@@ -39,8 +38,8 @@ const theme = createTheme({
         },
         title: {
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "2.5rem",
-            fontWeight: "800",
+            fontSize: "2.33rem",
+            fontWeight: "700",
         },
         secondaryTitle: {
             fontFamily: "'Poppins', sans-serif",
@@ -49,7 +48,7 @@ const theme = createTheme({
         },
         subtitle: {
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "1.5rem",
+            fontSize: "1.33rem",
             fontWeight: "500",
             lineHeight: "2rem",
         },

@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, Container, useTheme } from "@mui/material";
 import SignatureItemsHeader from "./SignatureItemsHeader";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 
@@ -32,7 +32,7 @@ const SignatureItems = () => {
         },
     ];
     return (
-        <>
+        <Container maxWidth="xl">
             <SignatureItemsHeader
                 title="Shop our must-have picks!"
                 categoryList={categories}
@@ -54,7 +54,7 @@ const SignatureItems = () => {
                     />
                 ))}
             </Box>
-        </>
+        </Container>
     );
 };
 
