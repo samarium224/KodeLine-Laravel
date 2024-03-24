@@ -1,36 +1,13 @@
+import React from 'react'; // Import React
 import { Box, useTheme } from "@mui/material";
 import SignatureItemsHeader from "./SignatureItemsHeader";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 
-const SignatureItems = () => {
+// Accept props in the component function
+const SignatureItems = ({ signatureItemsList }) => { // Accept signatureItemsList as a prop
     const theme = useTheme();
     let categories = ["Girls", "Boys", "Shoes"];
-    let signatureItemsList = [
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 40,
-            oldPrice: 50,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 22.5,
-            oldPrice: 30,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [4, 7],
-            currentPrice: 50,
-            oldPrice: 65,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [5, 8],
-            currentPrice: 32.5,
-            oldPrice: 40,
-        },
-    ];
+
     return (
         <>
             <SignatureItemsHeader
@@ -44,7 +21,7 @@ const SignatureItems = () => {
                 mt={5}
                 mb={20}
             >
-                {signatureItemsList.map((signatureItem, i) => (
+                {signatureItemsList && signatureItemsList.map((signatureItem, i) => (
                     <ItemCard
                         key={i}
                         itemTitle={signatureItem.itemTitle}

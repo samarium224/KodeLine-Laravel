@@ -15,7 +15,10 @@ import PreOrder from "@/Global_Components/PreOrder/Index";
 import FooterTop from "@/Homepage_Components/FooterTop";
 import Slogan from "@/Global_Components/Slogan";
 
+import { usePage } from '@inertiajs/react';
+
 export default function Welcome({ auth }) {
+    const { signatureItemsList } = usePage().props;
     const preorderItems = [
         {
             itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
@@ -46,7 +49,7 @@ export default function Welcome({ auth }) {
                     variant="subtitle"
                 />
                 <Services />
-                <SignatureItems />
+                <SignatureItems signatureItemsList={signatureItemsList} />
                 <ShopByCategory />
                 <BestSellingItems />
                 {/* <TopCategories /> */}

@@ -49,11 +49,13 @@ const Navigation = () => {
                         aria-label="logo"
                         sx={{ borderRadius: "0px" }}
                     >
+                        <Link href={route('home')}>
                         <img
                             src="./assets/Logo Final.png"
                             alt="Logo"
                             style={{ height: "40px" }}
-                        />
+                            />
+                        </Link>
                     </IconButton>
 
                     {/* Navigation Links */}
