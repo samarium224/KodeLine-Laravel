@@ -1,6 +1,4 @@
-import React, { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
-
 import {
     AppBar,
     Toolbar,
@@ -17,11 +15,11 @@ import CurrencyMenu from "./CurrencyMenu";
 const Navigation = () => {
     const theme = useTheme();
     const { auth } = usePage().props;
-    const [currency, setCurrency] = useState("USD");
+    // const [currency, setCurrency] = useState("USD");
 
-    const handleCurrencyChange = (value) => {
-        setCurrency(value);
-    };
+    // const handleCurrencyChange = (value) => {
+    //     setCurrency(value);
+    // };
 
     const navButtonStyle = {
         color: theme.palette.text.grey[500],
@@ -88,11 +86,12 @@ const Navigation = () => {
 
                     {/* Cart and Currency */}
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <CurrencyMenu
+                        {/* <CurrencyMenu
                             currency={currency}
                             onCurrencyChange={handleCurrencyChange}
                             color={theme.palette.text.grey[500]}
-                        />
+                        /> */}
+                        <Button sx={navButtonStyle}>Currency: $CAD</Button>
                         <IconButton
                             sx={{ color: theme.palette.text.grey[500] }}
                         >

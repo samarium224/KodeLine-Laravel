@@ -63,6 +63,7 @@ const Testimonials = () => {
                 <Slider {...settings}>
                     {TestimonialsData.map((testimonial, i) => (
                         <Testimonial
+                            key={i}
                             userRating={testimonial.userRating}
                             userCommentTitle={testimonial.userCommentTitle}
                             userCommentDesc={testimonial.userCommentDesc}

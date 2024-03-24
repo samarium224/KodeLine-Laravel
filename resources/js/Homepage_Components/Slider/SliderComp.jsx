@@ -1,15 +1,23 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 
-const SliderComp = () => {
+const SliderComp = ({
+    collectionID,
+    imgURL,
+    title,
+    subtitle,
+    reverseAlign = false,
+    backgroundPosition = "right bottom",
+}) => {
     const theme = useTheme();
+    console.log(reverseAlign);
 
     return (
         <Box backgroundColor={theme.palette.primary.main} width="100vw">
             <Box
                 sx={{
                     mx: "auto",
-                    backgroundImage: `url("./assets/Home Background_1960_700.png")`,
-                    backgroundPosition: "right bottom",
+                    backgroundImage: `url("${imgURL}")`,
+                    backgroundPosition: backgroundPosition,
                     backgroundSize: "contain",
                     backgroundRepeat: "no-repeat",
 
@@ -24,6 +32,8 @@ const SliderComp = () => {
                         justifyContent: "center",
                         lineHeight: "50px",
                         height: "100%",
+                        alignItems: reverseAlign && "flex-end",
+                        textAlign: reverseAlign && "right",
                         mx: { xs: 5, xl: 15 },
                     }}
                 >
@@ -36,7 +46,7 @@ const SliderComp = () => {
                             mb: { xl: 4, md: 1 },
                         }}
                     >
-                        Wrap Your Little Ones in Love
+                        {title}
                     </Typography>
                     <Typography
                         variant="subtitle"
@@ -49,8 +59,7 @@ const SliderComp = () => {
                             mb: { xl: 5, md: 3 },
                         }}
                     >
-                        Simplify parenting decisions with our thoughtfully
-                        curated kid's fashion
+                        {subtitle}
                     </Typography>
                     <Box>
                         <Button

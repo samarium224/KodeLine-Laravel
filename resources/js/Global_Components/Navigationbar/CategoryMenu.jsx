@@ -39,7 +39,7 @@ const CategoryMenu = ({ color }) => {
                 onClose={handleMenuClose}
             >
                 {Collections.map((collection, i) => (
-                    <Link href={route(`collection`)}>
+                    <Link href={route(`collection`)} key={i}>
                         <MenuItem onClick={handleMenuClose}>
                             {collection.collectionName}
                         </MenuItem>
