@@ -13,6 +13,7 @@ class Products extends Model
         'product_short_description',
         'product_long_description',
         'price',
+        'compare_price',
         'product_category_name',
         'product_category_id',
         'product_subcategory_name',

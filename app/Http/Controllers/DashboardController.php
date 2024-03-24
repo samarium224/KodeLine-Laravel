@@ -175,6 +175,7 @@ class DashboardController extends Controller
         $validatedData = $request->validate([
             'product_name' => 'required|string|max:255',
             'price' => 'required',
+            'compare_price' => 'required',
             'quantity' => 'required|integer',
             'product_short_description' => 'required|string',
             'product_long_description' => 'required|string',
@@ -231,6 +232,7 @@ class DashboardController extends Controller
         Products::insert([
             'product_name' => $validatedData['product_name'],
             'price' => $validatedData['price'],
+            'compare_price' => $validatedData['compare_price'],
             'quantity' => $validatedData['quantity'],
             'product_short_description' => $validatedData['product_short_description'],
             'product_long_description' => $validatedData['product_long_description'],

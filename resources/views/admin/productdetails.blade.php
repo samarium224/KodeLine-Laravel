@@ -20,7 +20,7 @@
     @endforeach
 
     <h3>Variations</h3>
-    @foreach ($product->ageRange as $index => $age)
+    @foreach ($product->sizeGroup as $index => $age)
         <div>
             <p><strong>Age Range:</strong> {{ $age }}</p>
             <p><strong>Age Group:</strong> {{ $product->ageGroup[$index] }}</p>
