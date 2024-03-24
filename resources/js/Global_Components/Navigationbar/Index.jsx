@@ -50,12 +50,12 @@ const Navigation = () => {
                         aria-label="logo"
                         sx={{ borderRadius: "0px" }}
                     >
-                        <Link href={route('home')}>
-                        <img
-                            src="./assets/Logo Final.png"
-                            alt="Logo"
-                            style={{ height: "30px" }}
-                        />
+                        <Link href={route("home")}>
+                            <img
+                                src="./assets/Logo Final.png"
+                                alt="Logo"
+                                style={{ height: "30px" }}
+                            />
                         </Link>
                     </IconButton>
 
@@ -69,12 +69,12 @@ const Navigation = () => {
                     >
                         {/* <CategoryMenu color={theme.palette.text.grey[500]} /> */}
                         <Link href={route("collection")}>
-                            <Button sx={navButtonStyle}>Collection</Button>
+                            <Button sx={navButtonStyle}>Home</Button>
                         </Link>
-                        <Link href={route("itemshowcase")}>
-                            <Button sx={navButtonStyle}>About us</Button>
-                        </Link>
-                        <Button sx={navButtonStyle}>BLOG</Button>
+
+                        <CategoryMenu color={theme.palette.text.grey[500]} />
+
+                        <Button sx={navButtonStyle}>About us</Button>
                         {auth.user ? (
                             <Link href={route("dashboard")}>
                                 <Button sx={navButtonStyle}>My Account</Button>

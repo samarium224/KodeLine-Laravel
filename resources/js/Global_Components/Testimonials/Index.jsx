@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { Box, Container, useTheme } from "@mui/material";
 import Testimonial from "./Testimonial";
 
+import { TestimonialsData } from "@/Global_data/TestimonialsData";
+
 const Testimonials = () => {
     const theme = useTheme();
     const settings = {
@@ -59,37 +61,13 @@ const Testimonials = () => {
         <Box width="100%" backgroundColor="#F1EDEC">
             <Container maxWidth="xl">
                 <Slider {...settings}>
-                    <Testimonial
-                        userRating={2.5}
-                        userCommentTitle="Amazing Dungas! Perfect fit and amazing service."
-                        userCommentDesc="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Soluta quos at in omnis possimus adipisci tempora, facere
-                    labore molestias fuga."
-                    />
-                    <Testimonial
-                        userRating={4.5}
-                        userCommentTitle="Amazing Dungas! Perfect fit"
-                        userCommentDesc="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Soluta quos at in omnis possimus adipisci tempora, facere
-                    labore molestias fuga."
-                    />
-                    <Testimonial
-                        userRating={3.5}
-                        userCommentTitle="Amazing Dungas! Perfect fit and amazing service."
-                        userCommentDesc="Perfect! I am so happy with them, super high quality but still lightweight. I’m so impressed with the eco-friendly packaging that they came in and how speedy the delivery was."
-                    />
-                    <Testimonial
-                        userRating={3}
-                        userCommentTitle="Amazing Dungas! Perfect fit and amazing service."
-                        userCommentDesc="Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Soluta quos at in omnis possimus adipisci tempora, facere
-                    labore molestias fuga."
-                    />
-                    <Testimonial
-                        userRating={5}
-                        userCommentTitle="Amazing Dungas! Perfect fit and amazing service."
-                        userCommentDesc="Perfect! I am so happy with them, super high quality but still lightweight. I’m so impressed with the eco-friendly packaging that they came in and how speedy the delivery was."
-                    />
+                    {TestimonialsData.map((testimonial, i) => (
+                        <Testimonial
+                            userRating={testimonial.userRating}
+                            userCommentTitle={testimonial.userCommentTitle}
+                            userCommentDesc={testimonial.userCommentDesc}
+                        />
+                    ))}
                 </Slider>
             </Container>
         </Box>

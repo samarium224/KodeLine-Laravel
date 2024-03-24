@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Container } from "@mui/material";
 import SignatureItemsHeader from "./SignatureItemsHeader";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
-import { categories, signatureItemsList } from "./data";
+import { collections, signatureItemsList } from "./data";
 import SignatureItemsSlider from "./SignatureItemsSlider";
 
 const SignatureItems = () => {
@@ -11,12 +11,13 @@ const SignatureItems = () => {
             <Box mb={15}>
                 <SignatureItemsHeader
                     title="Shop our must-have picks!"
-                    categoryList={categories}
+                    categoryList={collections}
                 />
                 <SignatureItemsSlider>
                     {signatureItemsList.map((signatureItem, i) => (
                         <ItemCard
                             key={i}
+                            itemImage={signatureItem.imgURL}
                             itemTitle={signatureItem.itemTitle}
                             ageRange={signatureItem.ageRange}
                             currentPrice={signatureItem.currentPrice}

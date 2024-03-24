@@ -9,7 +9,7 @@ const SliderComp = () => {
                 sx={{
                     mx: "auto",
                     backgroundImage: `url("./assets/Home Background_1960_700.png")`,
-                    backgroundPosition: "center bottom",
+                    backgroundPosition: "right bottom",
                     backgroundSize: "contain",
                     backgroundRepeat: "no-repeat",
 

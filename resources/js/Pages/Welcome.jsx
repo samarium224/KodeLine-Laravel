@@ -15,26 +15,12 @@ import PreOrder from "@/Global_Components/PreOrder/Index";
 import FooterTop from "@/Homepage_Components/FooterTop";
 import Slogan from "@/Global_Components/Slogan";
 
-import { usePage } from '@inertiajs/react';
+import { preorderItems } from "@/Global_data/PreorderItems";
+
+import { usePage } from "@inertiajs/react";
 
 export default function Welcome({ auth }) {
     const { signatureItemsList } = usePage().props;
-    const preorderItems = [
-        {
-            itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 37.5,
-            oldPrice: 50,
-            buttonText: "PRE ORDER",
-        },
-        {
-            itemTitle: "BOY's WINTER FASHION OUTFIT",
-            ageRange: [4, 7],
-            currentPrice: 37.5,
-            oldPrice: 50,
-            buttonText: "PRE ORDER",
-        },
-    ];
 
     return (
         <div style={{ overflow: "hidden" }}>

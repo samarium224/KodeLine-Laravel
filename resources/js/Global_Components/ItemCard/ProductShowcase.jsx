@@ -3,9 +3,8 @@ import { Box, Typography, useTheme } from "@mui/material";
 
 import CustomButton from "../CustomButton";
 
-const ProductShowcase = ({ sale, buttonText = "ADD TO CART" }) => {
+const ProductShowcase = ({ itemImage, sale, buttonText = "ADD TO CART" }) => {
     const theme = useTheme();
-    const randomImageUrl = `https://picsum.photos/400/800?random=${Math.random()}`;
 
     return (
         <Box
@@ -16,7 +15,9 @@ const ProductShowcase = ({ sale, buttonText = "ADD TO CART" }) => {
                 alignItems: "Center",
                 height: { lg: "360px", xl: "400px" },
                 width: { lg: "270px", xl: "300px" },
-                backgroundImage: `url(${randomImageUrl})`,
+                backgroundImage: `url(${
+                    itemImage ? itemImage : "./assets/blank.jpg"
+                })`,
                 backgroundSize: "100%",
                 backgroundPosition: "center",
                 position: "relative",
