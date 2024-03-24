@@ -5,12 +5,7 @@ import ItemDescriptionTexts from "./ItemDescriptionTexts";
 const ItemDescription = () => {
     const theme = useTheme();
     return (
-        <Box
-            display="flex"
-            mx={theme.containerMarginWidth}
-            my={20}
-            justifyContent="space-between"
-        >
+        <Box display="flex" mx={20} my={20} justifyContent="space-between">
             <ItemDescriptionImages />
             <ItemDescriptionTexts />
         </Box>

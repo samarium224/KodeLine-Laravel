@@ -32,7 +32,7 @@ const ShopByCategorySection = ({ reverse = false }) => {
 
     return (
         <Container
-            maxWidth="xl"
+            maxWidth="desktopMaxWidth"
             sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -41,7 +41,7 @@ const ShopByCategorySection = ({ reverse = false }) => {
             }}
         >
             <Box
-                width="47.5%"
+                width="48.75%"
                 textAlign="center"
                 display="flex"
                 flexDirection="column"
@@ -50,7 +50,7 @@ const ShopByCategorySection = ({ reverse = false }) => {
                 <Box
                     width="100%"
                     height="1000px"
-                    mb={4}
+                    mb={2.5}
                     sx={{
                         backgroundImage: "url('./assets/Boys_6_9.png')",
                         backgroundPosition: "center",
@@ -60,23 +60,15 @@ const ShopByCategorySection = ({ reverse = false }) => {
                 <Typography
                     variant="secondaryTitle"
                     color={theme.palette.text.grey[500]}
+                    textTransform="uppercase"
                     display="block"
                     mb={1}
                 >
-                    Boy's summer fashion outfit
-                </Typography>
-                <Typography
-                    variant="itemdescTitle"
-                    color={theme.palette.text.grey[500]}
-                    display="block"
-                    width="60%"
-                    textTransform="initial"
-                >
-                    Get free home delivery within Regina, Saskatchewan
+                    Boy's summer Collection
                 </Typography>
             </Box>
             <Box
-                width="47.5%"
+                width="48.75%"
                 height="100%"
                 display="flex"
                 flexDirection="column"

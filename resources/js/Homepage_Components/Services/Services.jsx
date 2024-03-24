@@ -1,11 +1,10 @@
-import { Box, Container, useTheme } from "@mui/material";
+import { Container } from "@mui/material";
 import ServiceComponent from "./ServiceComponent";
 
 const Services = () => {
-    const theme = useTheme();
     return (
         <Container
-            maxWidth="xl"
+            maxWidth="desktopMaxWidth"
             sx={{
                 mt: 10,
                 mb: 15,

@@ -13,7 +13,7 @@ const FooterBottom = () => {
 
     return (
         <Container
-            maxWidth="xl"
+            maxWidth="desktopMaxWidth"
             sx={{
                 display: "flex",
                 justifyContent: "space-around",

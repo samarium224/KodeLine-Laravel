@@ -33,7 +33,7 @@ const PreOrder = ({ items }) => {
                 mx: "auto",
             }}
         >
-            <Container maxWidth="xl" sx={{ position: "relative" }}>
+            <Container maxWidth="desktopMaxWidth" sx={{ position: "relative" }}>
                 <Typography
                     variant="headline"
                     sx={{
@@ -50,12 +50,13 @@ const PreOrder = ({ items }) => {
                 <Box
                     backgroundColor="white"
                     position="absolute"
-                    top="50px"
                     px={3.5}
                     py={6}
                     sx={{
                         maxWidth: { xl: "350px", lg: "325px" },
-                        right: { lg: 100, xl: 0 },
+                        right: { lg: 80, xl: -10 },
+                        top: { lg: "50px", xl: "50px" },
+                        scale: { md: "0.8", lg: "1" },
                     }}
                 >
                     <Slider {...settings}>
@@ -75,14 +76,13 @@ const PreOrder = ({ items }) => {
                     position="absolute"
                     sx={{
                         right: { lg: "50px", xl: "-50px" },
-                        top: { lg: "92.5vh", xl: "750px" },
+                        top: { lg: "92.5vh", xl: "800px" },
+                        "& img": {
+                            height: { xs: "0px", xl: "40px" },
+                        },
                     }}
                 >
-                    <img
-                        src="./assets/Logo Final.png"
-                        alt="Logo"
-                        style={{ height: "40px" }}
-                    />
+                    <img src="./assets/Logo Final.png" alt="Logo" />
                 </Box>
             </Container>
         </Box>

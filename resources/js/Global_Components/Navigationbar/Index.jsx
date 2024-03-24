@@ -53,7 +53,7 @@ const Navigation = () => {
                         <img
                             src="./assets/Logo Final.png"
                             alt="Logo"
-                            style={{ height: "40px" }}
+                            style={{ height: "30px" }}
                         />
                     </IconButton>
 

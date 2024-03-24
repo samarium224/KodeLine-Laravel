@@ -43,8 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'role:user'])->group(function(){
-    Route::controller(DashboardController::class)->group(function(){
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::controller(DashboardController::class)->group(function () {
         Route::get('/admin/dashboard', 'Index');
         // all category
         Route::get('/admin/all-category', 'All_Category')->name('allcategory');
@@ -57,9 +57,9 @@ Route::middleware(['auth', 'role:user'])->group(function(){
         Route::get('/admin/sub-category', 'Sub_Category')->name('subcategory');
         Route::get('/admin/sub-add-category', 'Sub_Category_Add')->name('addsubcategory');
         Route::post('/admin/store-subcategory', 'Store_Subcategory')->name('storesubcategory');
-        Route::get('admin/edit-subcategory/{id}','Edit_SubCategory')->name('editsubcategory');
-        Route::post('admin/update-subcategory','SubCategory_Update')->name('updatesubcategory');
-        Route::get('admin/delete-subcategory/{id}','Delete_SubCategory')->name('deletesubcategory');
+        Route::get('admin/edit-subcategory/{id}', 'Edit_SubCategory')->name('editsubcategory');
+        Route::post('admin/update-subcategory', 'SubCategory_Update')->name('updatesubcategory');
+        Route::get('admin/delete-subcategory/{id}', 'Delete_SubCategory')->name('deletesubcategory');
 
         // products
         Route::get('/admin/all-products', 'All_Products')->name('allproducts');
@@ -73,7 +73,6 @@ Route::middleware(['auth', 'role:user'])->group(function(){
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
         // order
         Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
-
     });
 });
 
