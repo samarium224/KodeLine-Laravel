@@ -1,32 +1,38 @@
-import CustomButton from "@/Global_Components/CustomButton";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 
-const SliderComp = ({ image }) => {
+const SliderComp = () => {
     const theme = useTheme();
+
     return (
         <Box
             sx={{
-                backgroundImage: `url("./assets/Home Background.png")`,
-                backgroundPosition: "left bottom",
+                mx: "auto",
+                backgroundImage: `url("./assets/Home Background_1960_700.png")`,
+                backgroundPosition: "center bottom",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                width: "100%",
-                height: "110vh",
+                width: { md: "100%", xl: "1960px" },
+                height: { md: `75vh`, xl: "700px" },
             }}
         >
             <Box
-                height="60%"
-                display="flex"
-                flexDirection="column"
-                justifyContent="flex-end"
-                ml={theme.containerMarginWidth - 8}
-                lineHeight="50px"
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    lineHeight: "50px",
+                    height: "100%",
+                    mx: { xs: 5, xl: 15 },
+                }}
             >
                 <Typography
                     variant="headline"
                     display="block"
                     color={theme.palette.text.grey[500]}
-                    mb={4}
+                    sx={{
+                        fontSize: { xl: "3rem", md: "2.25rem" },
+                        mb: { xl: 4, md: 1 },
+                    }}
                 >
                     Wrap Your Little Ones in Love
                 </Typography>
@@ -35,17 +41,29 @@ const SliderComp = ({ image }) => {
                     display="block"
                     color={theme.palette.text.grey[500]}
                     width="40%"
-                    mb={8}
+                    sx={{
+                        lineHeight: { xl: "1.8rem", md: "1.45rem" },
+                        fontSize: { xl: "1.25rem", md: "1.1rem" },
+                        mb: { xl: 5, md: 3 },
+                    }}
                 >
                     Simplify parenting decisions with our thoughtfully curated
                     kid's fashion
                 </Typography>
                 <Box>
-                    <CustomButton
-                        text="Shop now"
-                        primary={false}
-                        sx={{ px: 9, py: 2, fontSize: "1.33rem" }}
-                    />
+                    <Button
+                        sx={{
+                            color: theme.palette.text.grey[500],
+                            backgroundColor: theme.palette.text.white[100],
+                            fontWeight: "600",
+                            fontSize: { xl: "1.1rem", md: "0.9rem" },
+                            px: { xl: 8, md: 5 },
+                            py: { xl: 1.66, md: 1.2 },
+                            "&:hover": { backgroundColor: "#cdcdd0" },
+                        }}
+                    >
+                        Shop now
+                    </Button>
                 </Box>
             </Box>
         </Box>

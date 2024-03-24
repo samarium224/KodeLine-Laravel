@@ -28,7 +28,7 @@ const SliderComponent = () => {
             >
                 <Box
                     display="flex"
-                    gap={1}
+                    gap={0.25}
                     sx={{
                         "& > li": { width: "3px" },
                         "& > .slick-active div": { backgroundColor: "white" },
@@ -41,8 +41,8 @@ const SliderComponent = () => {
         customPaging: (i) => (
             <Box
                 sx={{
-                    width: 10,
-                    height: 10,
+                    width: 8,
+                    height: 8,
                     backgroundColor: "transparent",
                     border: "1px solid white",
                     borderRadius: "50%",

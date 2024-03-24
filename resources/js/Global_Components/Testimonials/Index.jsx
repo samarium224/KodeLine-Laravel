@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, useTheme } from "@mui/material";
+import { Box, Container, useTheme } from "@mui/material";
 import Testimonial from "./Testimonial";
 
 const Testimonials = () => {
@@ -57,7 +57,7 @@ const Testimonials = () => {
 
     return (
         <Box width="100%" backgroundColor="#F1EDEC">
-            <Box>
+            <Container maxWidth="xl">
                 <Slider {...settings}>
                     <Testimonial
                         userRating={2.5}
@@ -91,7 +91,7 @@ const Testimonials = () => {
                         userCommentDesc="Perfect! I am so happy with them, super high quality but still lightweight. I’m so impressed with the eco-friendly packaging that they came in and how speedy the delivery was."
                     />
                 </Slider>
-            </Box>
+            </Container>
         </Box>
     );
 };

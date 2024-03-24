@@ -4,7 +4,7 @@ const ServiceComponent = ({ text, subText }) => {
     const theme = useTheme();
     return (
         <Box
-            width="30%"
+            width="28.5%"
             textAlign="center"
             display="flex"
             flexDirection="column"

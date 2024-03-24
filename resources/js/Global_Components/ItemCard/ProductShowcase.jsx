@@ -14,14 +14,20 @@ const ProductShowcase = ({ sale, buttonText = "ADD TO CART" }) => {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "Center",
-                height: "400px",
-                width: "280px",
+                height: { lg: "360px", xl: "400px" },
+                width: { lg: "270px", xl: "300px" },
                 backgroundImage: `url(${randomImageUrl})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 position: "relative",
                 p: "20px",
                 mb: 2,
+                transition: "1s",
+                cursor: "pointer",
+                "&:hover .MuiButtonBase-root": {
+                    opacity: "100",
+                    mb: "0px",
+                },
             }}
         >
             <Box
@@ -58,10 +64,20 @@ const ProductShowcase = ({ sale, buttonText = "ADD TO CART" }) => {
             <CustomButton
                 text={buttonText}
                 sx={
-                    buttonText != "ADD TO CART" && {
-                        backgroundColor: theme.palette.primary.main,
-                        fontWeight: "500",
-                    }
+                    buttonText != "ADD TO CART"
+                        ? {
+                              backgroundColor: theme.palette.primary.main,
+                              fontWeight: "500",
+                              opacity: "0",
+                              transition: ".4s",
+                              mb: "-20px",
+                          }
+                        : {
+                              opacity: "0",
+                              cursor: "initial",
+                              transition: ".4s",
+                              mb: "-20px",
+                          }
                 }
             />
         </Box>

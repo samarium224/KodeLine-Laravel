@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 import { PrevArrow, NextArrow } from "./SliderArrows";
 
 const PreOrder = ({ items }) => {
@@ -28,18 +28,19 @@ const PreOrder = ({ items }) => {
                 backgroundPosition: "center top",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-                width: "100%",
-                height: "100vh",
+                width: { lg: "100%", xl: "1920px" },
+                height: { lg: "110vh", xl: "1000px" },
+                mx: "auto",
             }}
         >
-            <Box mx={theme.containerMarginWidth} position="relative">
+            <Container maxWidth="desktopMaxWidth" sx={{ position: "relative" }}>
                 <Typography
                     variant="headline"
                     sx={{
                         position: "absolute",
                         color: theme.palette.text.grey[500],
                         transform: "translate(-50%, -50%)",
-                        top: "55vh",
+                        top: { xs: "55vh", xl: "550px" },
                         left: "50%",
                         fontWeight: "700",
                     }}
@@ -49,11 +50,14 @@ const PreOrder = ({ items }) => {
                 <Box
                     backgroundColor="white"
                     position="absolute"
-                    width="350px"
-                    right="0"
-                    top="50px"
                     px={3.5}
-                    py={7.5}
+                    py={6}
+                    sx={{
+                        maxWidth: { xl: "350px", lg: "325px" },
+                        right: { lg: 80, xl: -10 },
+                        top: { lg: "50px", xl: "50px" },
+                        scale: { md: "0.8", lg: "1" },
+                    }}
                 >
                     <Slider {...settings}>
                         {items.map((item, i) => (
@@ -68,14 +72,19 @@ const PreOrder = ({ items }) => {
                         ))}
                     </Slider>
                 </Box>
-                <Box position="absolute" right="-50px" top="82.5vh">
-                    <img
-                        src="./assets/Logo Final.png"
-                        alt="Logo"
-                        style={{ height: "40px" }}
-                    />
+                <Box
+                    position="absolute"
+                    sx={{
+                        right: { lg: "50px", xl: "-50px" },
+                        top: { lg: "92.5vh", xl: "800px" },
+                        "& img": {
+                            height: { xs: "0px", xl: "40px" },
+                        },
+                    }}
+                >
+                    <img src="./assets/Logo Final.png" alt="Logo" />
                 </Box>
-            </Box>
+            </Container>
         </Box>
     );
 };

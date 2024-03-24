@@ -30,32 +30,31 @@ const theme = createTheme({
             },
         },
     },
-    containerMarginWidth: 20,
     typography: {
         headline: {
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "3.5rem",
-            fontWeight: "800",
+            fontSize: "3rem",
+            fontWeight: "700",
         },
         title: {
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "2.5rem",
-            fontWeight: "800",
+            fontSize: "2.33rem",
+            fontWeight: "700",
         },
         secondaryTitle: {
             fontFamily: "'Poppins', sans-serif",
-            fontWeight: "800",
-            fontSize: "2.25rem",
+            fontWeight: "600",
+            fontSize: "2rem",
         },
         subtitle: {
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "1.5rem",
+            fontSize: "1.25rem",
             fontWeight: "500",
-            lineHeight: "2rem",
+            lineHeight: "1.8rem",
         },
         itemdescTitle: {
             fontFamily: "'Poppins', sans-serif",
-            fontSize: "1.1rem",
+            fontSize: "1rem",
             fontWeight: "500",
             textTransform: "uppercase",
             lineHeight: "1.5rem",
@@ -66,14 +65,24 @@ const theme = createTheme({
             fontWeight: "400",
         },
     },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 600,
+            md: 900,
+            lg: 1200,
+            xl: 1536,
+            desktopMaxWidth: 1420,
+        },
+    },
     components: {
         MuiButton: {
             styleOverrides: {
                 root: {
                     fontFamily: "'Poppins', sans-serif",
                     boxShadow: "none",
-                    fontSize: "1rem",
-                    fontWeight: "500",
+                    fontSize: "0.85rem",
+                    fontWeight: "400",
                     borderRadius: "0px",
                 },
                 contained: {

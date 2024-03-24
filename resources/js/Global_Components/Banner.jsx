@@ -16,7 +16,7 @@ const Banner = ({ text, variant, sx = {} }) => {
                 width="60%"
                 variant={variant}
                 color={theme.palette.text.grey[500]}
-                py={6}
+                py={5}
                 sx={sx}
             >
                 {text}

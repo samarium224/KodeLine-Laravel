@@ -4,13 +4,13 @@ import FooterBottom from "./FooterBottom";
 const Footer = () => {
     const theme = useTheme();
     return (
-        <Box>
+        <Box my={5}>
             <Box
                 textAlign="center"
                 display="flex"
                 flexDirection="column"
                 alignItems="center"
-                my={15}
+                my={10}
             >
                 <Typography
                     fontSize="2.75rem"
@@ -26,7 +26,7 @@ const Footer = () => {
                 <Typography
                     variant="itemdescSubtitle"
                     display="block"
-                    color="primary"
+                    color={theme.palette.text.grey[500]}
                     width="400px"
                     mb={4}
                 >

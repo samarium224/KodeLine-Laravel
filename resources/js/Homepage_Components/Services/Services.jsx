@@ -1,15 +1,16 @@
-import { Box, useTheme } from "@mui/material";
+import { Container } from "@mui/material";
 import ServiceComponent from "./ServiceComponent";
 
 const Services = () => {
-    const theme = useTheme();
     return (
-        <Box
-            mt={10}
-            mb={15}
-            mx={theme.containerMarginWidth}
-            display="flex"
-            justifyContent="space-between"
+        <Container
+            maxWidth="desktopMaxWidth"
+            sx={{
+                mt: 10,
+                mb: 15,
+                display: "flex",
+                justifyContent: "space-between",
+            }}
         >
             <ServiceComponent
                 text="Curated Selection"
@@ -21,9 +22,9 @@ const Services = () => {
             />
             <ServiceComponent
                 text="Secure Transaction"
-                subText="Registered Saskatchewan business ensures risk-free payments for peace of mind."
+                subText="Registered Saskatchewan business ensures risk-free payments."
             />
-        </Box>
+        </Container>
     );
 };
 

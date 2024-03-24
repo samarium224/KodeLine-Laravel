@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 
 const FooterBottom = () => {
     const theme = useTheme();
@@ -12,10 +12,12 @@ const FooterBottom = () => {
     const accountOptions = ["Login"];
 
     return (
-        <Box
-            display="flex"
-            justifyContent="space-around"
-            mx={theme.containerMarginWidth}
+        <Container
+            maxWidth="desktopMaxWidth"
+            sx={{
+                display: "flex",
+                justifyContent: "space-around",
+            }}
         >
             <Box>
                 <Typography
@@ -113,7 +115,7 @@ const FooterBottom = () => {
                     </Typography>
                 ))}
             </Box>
-        </Box>
+        </Container>
     );
 };
 export default FooterBottom;
