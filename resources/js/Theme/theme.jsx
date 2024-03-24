@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
     palette: {
         primary: {
-            main: "#EAD1BB",
+            main: "#EED8C3",
         },
         text: {
             grey: {
@@ -73,6 +73,7 @@ const theme = createTheme({
             lg: 1200,
             xl: 1536,
             desktopMaxWidth: 1420,
+            maxAllowableWidth: 1960,
         },
     },
     components: {
