@@ -59,7 +59,7 @@ const PriceFilter = ({ onPriceRangeChange }) => {
                     },
                 }}
             >
-                <Box px={5} py={3.5} width="250px">
+                <Box px={5} pt={3.5} width="250px">
                     <Slider
                         value={priceRange}
                         valueLabelDisplay="on"
