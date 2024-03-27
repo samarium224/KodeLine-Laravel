@@ -2,22 +2,19 @@ import { Box } from "@mui/material";
 import ShopByCategorySection from "./CategorySection";
 import Header from "@/Global_Components/Header";
 
+import { CollectionItemList } from "./data";
+
 const ShopByCategory = () => {
-    const CatrgoryItemList = [
-        { category: "Boy's", categoryImage: "imageURL", items: {} },
-        { category: "Boy's", categoryImage: "imageURL", items: {} },
-        { category: "Boy's", categoryImage: "imageURL", items: {} },
-    ];
     return (
         <Box>
             <Header
                 title="Shop by Category"
                 subTitle="Handpicked Happiness for Little Ones!"
             />
-            {CatrgoryItemList.map((CatrgoryItem, i) => (
+            {CollectionItemList.map((CollectionItem, i) => (
                 <ShopByCategorySection
                     key={i}
-                    category={CatrgoryItem.category}
+                    category={CollectionItem}
                     reverse={i % 2 == 0}
                 />
             ))}

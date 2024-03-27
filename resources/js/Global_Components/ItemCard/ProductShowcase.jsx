@@ -3,9 +3,8 @@ import { Box, Typography, useTheme } from "@mui/material";
 
 import CustomButton from "../CustomButton";
 
-const ProductShowcase = ({ sale, buttonText = "ADD TO CART" }) => {
+const ProductShowcase = ({ itemImage, sale, buttonText = "ADD TO CART" }) => {
     const theme = useTheme();
-    const randomImageUrl = `https://picsum.photos/400/800?random=${Math.random()}`;
 
     return (
         <Box
@@ -16,8 +15,10 @@ const ProductShowcase = ({ sale, buttonText = "ADD TO CART" }) => {
                 alignItems: "Center",
                 height: { lg: "360px", xl: "400px" },
                 width: { lg: "270px", xl: "300px" },
-                backgroundImage: `url(${randomImageUrl})`,
-                backgroundSize: "cover",
+                backgroundImage: `url(${
+                    itemImage ? itemImage : "./assets/blank.jpg"
+                })`,
+                backgroundSize: "100%",
                 backgroundPosition: "center",
                 position: "relative",
                 p: "20px",
@@ -27,6 +28,9 @@ const ProductShowcase = ({ sale, buttonText = "ADD TO CART" }) => {
                 "&:hover .MuiButtonBase-root": {
                     opacity: "100",
                     mb: "0px",
+                },
+                "&:hover": {
+                    backgroundSize: "110%",
                 },
             }}
         >
@@ -74,7 +78,6 @@ const ProductShowcase = ({ sale, buttonText = "ADD TO CART" }) => {
                           }
                         : {
                               opacity: "0",
-                              cursor: "initial",
                               transition: ".4s",
                               mb: "-20px",
                           }

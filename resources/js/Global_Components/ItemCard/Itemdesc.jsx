@@ -3,7 +3,7 @@ import { Typography, Box, useTheme } from "@mui/material";
 const Itemdesc = ({ mainText, ageRange, currentPrice, oldPrice }) => {
     const theme = useTheme();
     return (
-        <Box width="250px" textAlign="center">
+        <Box width="300px" textAlign="center">
             <Typography
                 display="block"
                 variant="itemdescTitle"

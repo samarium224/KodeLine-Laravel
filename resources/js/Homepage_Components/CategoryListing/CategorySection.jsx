@@ -1,35 +1,8 @@
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
 import { Box, Container, Grid, Typography, useTheme } from "@mui/material";
 
-const ShopByCategorySection = ({ reverse = false }) => {
+const ShopByCategorySection = ({ category, reverse = false }) => {
     const theme = useTheme();
-    const CategoryItemList = [
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 40,
-            oldPrice: 50,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 22.5,
-            oldPrice: 30,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [4, 7],
-            currentPrice: 50,
-            oldPrice: 65,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [5, 8],
-            currentPrice: 32.5,
-            oldPrice: 40,
-        },
-    ];
-
     return (
         <Container
             maxWidth="desktopMaxWidth"
@@ -52,7 +25,7 @@ const ShopByCategorySection = ({ reverse = false }) => {
                     height="1000px"
                     mb={2.5}
                     sx={{
-                        backgroundImage: "url('./assets/Boys_6_9.png')",
+                        backgroundImage: `url(${category.categoryImage})`,
                         backgroundPosition: "center",
                         backgroundSize: "cover",
                     }}
@@ -64,7 +37,7 @@ const ShopByCategorySection = ({ reverse = false }) => {
                     display="block"
                     mb={1}
                 >
-                    Boy's summer Collection
+                    {category.categoryTitle}
                 </Typography>
             </Box>
             <Box
@@ -74,28 +47,34 @@ const ShopByCategorySection = ({ reverse = false }) => {
                 flexDirection="column"
             >
                 <Grid container height="50%">
-                    {CategoryItemList.slice(0, 2).map((CategoryItem, i) => (
-                        <Grid item xs={12} sm={6} key={i}>
-                            <ItemCard
-                                itemTitle={CategoryItem.itemTitle}
-                                ageRange={CategoryItem.ageRange}
-                                currentPrice={CategoryItem.currentPrice}
-                                oldPrice={CategoryItem.oldPrice}
-                            />
-                        </Grid>
-                    ))}
+                    {category.categoryItemList
+                        .slice(0, 2)
+                        .map((CategoryItem, i) => (
+                            <Grid item xs={12} sm={6} key={i}>
+                                <ItemCard
+                                    itemImage={CategoryItem.imgURL}
+                                    itemTitle={CategoryItem.itemTitle}
+                                    ageRange={CategoryItem.ageRange}
+                                    currentPrice={CategoryItem.currentPrice}
+                                    oldPrice={CategoryItem.oldPrice}
+                                />
+                            </Grid>
+                        ))}
                 </Grid>
                 <Grid container height="50%" mt={5}>
-                    {CategoryItemList.slice(2).map((CategoryItem, i) => (
-                        <Grid item xs={12} sm={6} key={i}>
-                            <ItemCard
-                                itemTitle={CategoryItem.itemTitle}
-                                ageRange={CategoryItem.ageRange}
-                                currentPrice={CategoryItem.currentPrice}
-                                oldPrice={CategoryItem.oldPrice}
-                            />
-                        </Grid>
-                    ))}
+                    {category.categoryItemList
+                        .slice(2)
+                        .map((CategoryItem, i) => (
+                            <Grid item xs={12} sm={6} key={i}>
+                                <ItemCard
+                                    itemImage={CategoryItem.imgURL}
+                                    itemTitle={CategoryItem.itemTitle}
+                                    ageRange={CategoryItem.ageRange}
+                                    currentPrice={CategoryItem.currentPrice}
+                                    oldPrice={CategoryItem.oldPrice}
+                                />
+                            </Grid>
+                        ))}
                 </Grid>
             </Box>
         </Container>

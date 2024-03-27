@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Menu, MenuItem } from "@mui/material";
+import { Link } from "@inertiajs/react";
+import { Collections } from "@/Global_data/Categories";
 
 const CategoryMenu = ({ color }) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -25,7 +27,7 @@ const CategoryMenu = ({ color }) => {
                 aria-controls="category-menu"
                 aria-haspopup="true"
                 onClick={handleMenuOpen}
-                sx={{ color: color }}
+                sx={{ color: color, fontWeight: "700" }}
             >
                 Collections
             </Button>
@@ -36,9 +38,13 @@ const CategoryMenu = ({ color }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
             >
-                <MenuItem onClick={handleMenuClose}>Category 1</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Category 2</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Category 3</MenuItem>
+                {Collections.map((collection, i) => (
+                    <Link href={route(`collection`)} key={i}>
+                        <MenuItem onClick={handleMenuClose}>
+                            {collection.collectionName}
+                        </MenuItem>
+                    </Link>
+                ))}
             </Menu>
         </>
     );

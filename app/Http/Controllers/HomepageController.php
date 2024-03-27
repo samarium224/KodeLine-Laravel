@@ -17,6 +17,7 @@ class HomepageController extends Controller
             $ageRangeArray = explode('|', $item->ageRange);
 
             return [
+                'imgURL' => $item->product_img,
                 'itemTitle' => $item->product_name,
                 'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]
                 'currentPrice' => $item->price,
@@ -25,10 +26,9 @@ class HomepageController extends Controller
         });
 
         return Inertia::render('Welcome', [
-            'signatureItemsList' => $signatureItemsList,
+            // 'signatureItemsList' => $signatureItemsList,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);
     }
-
 }

@@ -1,67 +1,17 @@
 import { Box, Button, Container, Grid, useTheme } from "@mui/material";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import BestSellingHeader from "./BestSellingHeader";
-import CustomButton from "@/Global_Components/CustomButton";
+import { bestSellingItemsList, collections } from "./data";
 
 const BestSellingItems = () => {
     const theme = useTheme();
-    const categoryList = ["Girls", "Boys", "Shoes"];
-    let bestSellingItemsList = [
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 40,
-            oldPrice: 50,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 22.5,
-            oldPrice: 30,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [4, 7],
-            currentPrice: 50,
-            oldPrice: 65,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [5, 8],
-            currentPrice: 32.5,
-            oldPrice: 40,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 40,
-            oldPrice: 50,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 22.5,
-            oldPrice: 30,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [4, 7],
-            currentPrice: 50,
-            oldPrice: 65,
-        },
-        {
-            itemTitle: "GIRL’S SUMMER FASHION OUTFIT",
-            ageRange: [5, 8],
-            currentPrice: 32.5,
-            oldPrice: 40,
-        },
-    ];
+
     return (
         <Container maxWidth="desktopMaxWidth">
             <Box mx={theme.containerMarginWidth} mt={7.5} mb={20}>
                 <BestSellingHeader
                     title="Best Selling Items"
-                    categoryList={categoryList}
+                    collections={collections}
                 />
                 <Grid container>
                     {bestSellingItemsList.map((signatureItem, i) => (

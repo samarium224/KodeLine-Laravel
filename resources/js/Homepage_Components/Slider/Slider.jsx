@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 
 import SliderComp from "./SliderComp";
 
+import { HomeSliderData } from "./data";
+
 const SliderComponent = () => {
     const settings = {
         dots: true,
@@ -58,18 +60,17 @@ const SliderComponent = () => {
     return (
         <div style={{ width: "100vw" }}>
             <Slider {...settings}>
-                <SliderComp
-                    image={"url('https://picsum.photos/seed/image2/1920/1080')"}
-                />
-                <SliderComp
-                    image={"url('https://picsum.photos/seed/image2/1920/1080')"}
-                />
-                <SliderComp
-                    image={"url('https://picsum.photos/seed/image3/1920/1080')"}
-                />
-                <SliderComp
-                    image={"url('https://picsum.photos/seed/image4/1920/1080')"}
-                />
+                {HomeSliderData.map((sliderData, i) => (
+                    <SliderComp
+                        key={i}
+                        collectionID={sliderData.collectionID}
+                        imgURL={sliderData.imgURL}
+                        title={sliderData.title}
+                        subtitle={sliderData.subtitle}
+                        reverseAlign={sliderData.reverseAlign}
+                        backgroundPosition={sliderData.backgroundPosition}
+                    />
+                ))}
             </Slider>
         </div>
     );

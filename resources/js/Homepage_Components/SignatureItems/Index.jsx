@@ -1,32 +1,30 @@
-import { Box, Grid, Container, useTheme } from "@mui/material";
+import React from "react";
+import { Box, Container } from "@mui/material";
 import SignatureItemsHeader from "./SignatureItemsHeader";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
+import { collections, signatureItemsList } from "./data";
+import SignatureItemsSlider from "./SignatureItemsSlider";
 
-// Accept props in the component function
-const SignatureItems = ({ signatureItemsList }) => { // Accept signatureItemsList as a prop
-    const theme = useTheme();
-    let categories = ["Girls", "Boys", "Shoes"];
-
+const SignatureItems = () => {
     return (
         <Container maxWidth="desktopMaxWidth">
             <Box mb={15}>
                 <SignatureItemsHeader
                     title="Shop our must-have picks!"
-                    categoryList={categories}
+                    categoryList={collections}
                 />
-                <Grid container>
+                <SignatureItemsSlider>
                     {signatureItemsList.map((signatureItem, i) => (
-                        <Grid item xs={12} sm={6} md={3} key={i} mt={5}>
-                            <ItemCard
-                                key={i}
-                                itemTitle={signatureItem.itemTitle}
-                                ageRange={signatureItem.ageRange}
-                                currentPrice={signatureItem.currentPrice}
-                                oldPrice={signatureItem.oldPrice}
-                            />
-                        </Grid>
+                        <ItemCard
+                            key={i}
+                            itemImage={signatureItem.imgURL}
+                            itemTitle={signatureItem.itemTitle}
+                            ageRange={signatureItem.ageRange}
+                            currentPrice={signatureItem.currentPrice}
+                            oldPrice={signatureItem.oldPrice}
+                        />
                     ))}
-                </Grid>
+                </SignatureItemsSlider>
             </Box>
         </Container>
     );
