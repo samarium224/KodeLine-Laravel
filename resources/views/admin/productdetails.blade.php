@@ -14,6 +14,10 @@
     <p><strong>Category:</strong> {{ $product->product_category_name }}</p>
     <p><strong>Subcategory:</strong> {{ $product->product_subcategory_name }}</p>
 
+    <form action="{{route('checkout')}}" method="POST">
+        @csrf
+        <button type="submit">checkout</button>
+    </form>
     <h3>Images</h3>
     @foreach ($product->product_img as $img)
         <img src="{{ asset($img) }}" alt="Product Image" style="width: 100px; height: 100px;">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -24,14 +25,16 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'role:user'])->name('dashboard');
 
+//payment routes
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('/checkout/success', [OrderController::class, 'payment_success'])->name('checkout.success');
+Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checkout.cancel');
 
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase', function () {
     return Inertia::render('ItemShowcase');
 })->name('itemshowcase');
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
