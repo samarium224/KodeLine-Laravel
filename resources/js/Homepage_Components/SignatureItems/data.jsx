@@ -4,6 +4,8 @@ export const collections = Collections.sort((a, b) => a.sortID - b.sortID).map(
     ({ collectionName }) => collectionName
 );
 
+// export const getData = () => usePage().props;
+
 export const signatureItemsList = [
     {
         itemTitle: "GIRL'S SUMMER FASHION OUTFIT",

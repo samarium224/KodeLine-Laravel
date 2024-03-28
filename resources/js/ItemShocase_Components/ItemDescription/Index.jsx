@@ -1,14 +1,17 @@
-import { Box, useTheme } from "@mui/material";
+import { Container, useTheme } from "@mui/material";
 import ItemDescriptionImages from "./ItemDescriptionImages";
 import ItemDescriptionTexts from "./ItemDescriptionTexts";
 
 const ItemDescription = () => {
     const theme = useTheme();
     return (
-        <Box display="flex" mx={20} my={20} justifyContent="space-between">
+        <Container
+            maxWidth="desktopMaxWidth"
+            sx={{ display: "flex", my: 20, justifyContent: "space-between" }}
+        >
             <ItemDescriptionImages />
             <ItemDescriptionTexts />
-        </Box>
+        </Container>
     );
 };
 
