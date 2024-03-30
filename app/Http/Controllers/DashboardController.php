@@ -22,7 +22,8 @@ class DashboardController extends Controller
 
     public function All_Category_Add()
     {
-        return view('admin.AddNewCategory');
+        $categories = Category::latest()->get();
+        return view('admin.AddNewCategory', compact('categories'));
     }
 
     public function All_Category_Store(Request $request)
@@ -36,7 +37,7 @@ class DashboardController extends Controller
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
 
-        return redirect()->route('allcategory')->with(
+        return redirect()->route('addcategory')->with(
             'message',
             'Category Added Successfully'
         );
@@ -72,7 +73,7 @@ class DashboardController extends Controller
     {
         Category::findOrFail($id)->delete();
 
-        return redirect()->route('allcategory')->with(
+        return redirect()->route('addcategory')->with(
             'message',
             'Category Deleted Successfully'
         );
@@ -88,7 +89,8 @@ class DashboardController extends Controller
     public function Sub_Category_Add()
     {
         $categories = Category::latest()->get();
-        return view('admin.AddSubCategory', compact('categories'));
+        $subcategories = SubCategory::latest()->get();
+        return view('admin.AddSubCategory', compact('categories', 'subcategories'));
     }
 
     public function Store_Subcategory(Request $request)
@@ -222,12 +224,22 @@ class DashboardController extends Controller
         $quantityGroup = implode('|', $request->quantityGroup);
         $imgVariationGroup = implode('|', $img_variation);
 
+
         $category_id = $request->product_category_id;
         $subcategory_id = $request->product_subcategory_id;
 
-        $category_name = Category::where('id', $category_id)->value('category_name');
-        $subcategory_name = SubCategory::where('id', $subcategory_id)->value('subcategory_name');
-
+        if ($category_id != 0) {
+            $category_name = Category::where('id', $category_id)->value('category_name');
+        } else {
+            $category_name = "none";
+        }
+        if ($category_id != 0) {
+            $subcategory_name = SubCategory::where('id', $subcategory_id)->value('subcategory_name');
+        } else {
+            $subcategory_name = "none";
+        }
+        // handle out of stock selling
+        $continue_selling = $request->continue_selling;
         // Create a new product
         Products::insert([
             'product_name' => $validatedData['product_name'],
@@ -247,12 +259,18 @@ class DashboardController extends Controller
             'sizeGroup' => $sizeGroup,
             'colorGroup' => $colorGroup,
             'quantityGroup' => $quantityGroup,
-            'imageVariations' => $imgVariationGroup
+            'imageVariations' => $imgVariationGroup,
+            'continue_selling' => $continue_selling
         ]);
-
-        Category::where('id', $category_id)->increment('product_count', 1);
-        SubCategory::where('id', $subcategory_id)->increment('product_count', 1);
-
+        
+        try {
+            //code...
+            Category::where('id', $category_id)->increment('product_count', 1);
+            SubCategory::where('id', $subcategory_id)->increment('product_count', 1);
+        } catch (\Throwable $th) {
+            //throw $th; do nothing
+            return redirect()->route('allproducts')->with('success', 'Product added successfully!');
+        }
 
         // Redirect back or to a success page
         return redirect()->route('allproducts')->with('success', 'Product added successfully!');

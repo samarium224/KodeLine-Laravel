@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('colorGroup');
             $table->string('quantityGroup');
             $table->text('imageVariations');
+            $table->string('continue_selling')->default('false')->nullable();
             $table->timestamps();
         });
     }

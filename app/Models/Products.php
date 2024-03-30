@@ -26,6 +26,7 @@ class Products extends Model
         'sizeGroup',
         'colorGroup',
         'quantityGroup',
-        'imageVariations'
+        'imageVariations',
+        'continue_selling'
     ];
 }

@@ -31,10 +31,12 @@
 
 <body class="fix-header fix-sidebar">
     <!-- Preloader - style you can find in spinners.css -->
-    {{-- <div class="preloader">
+    <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div> --}}
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                stroke-miterlimit="10" />
+        </svg>
+    </div>
     <!-- Main wrapper  -->
     <div id="main-wrapper">
         <!-- header header  -->
@@ -67,21 +69,20 @@
                     </ul>
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
-
                         <!-- Search -->
-
                         <!-- Comment -->
-
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="/" class="text-white">My Store</a>
+                        </li>
                         <!-- Profile -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg" alt="user"
+                            <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img
+                                    src="{{ asset('uploads/17112084307540_ad337533c1.png') }}" alt="user"
                                     class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                                     <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
                                     <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
@@ -95,63 +96,71 @@
         <!-- Left Sidebar  -->
         <div class="left-sidebar">
             <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-devider"></li>
-                        <li class="nav-label">Home</li>
-                        <li> <a class="has-arrow" href="#" aria-expanded="false">
-                                <i class="fa fa-home"></i>
-                                <span class="hide-menu">Dashboard
-                                    {{-- <span class="label label-rouded label-primary pull-right">2</span></span> --}}
-                            </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="">Ecommerce </a></li>
-                                <li><a href="">Analytics </a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-label">Products</li>
-                        <li> <a class="has-arrow" href="" aria-expanded="false">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span class="hide-menu">Inventory</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('addproducts') }}">Add new product</a></li>
-                                <li><a href="{{ route('allproducts') }}">Product List</a></li>
-                                <li><a href="email-inbox.html">Collections</a></li>
-                                <li><a href="email-inbox.html">Category</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false">
-                                <i class="fa fa-bookmark"></i>
-                                <span class="hide-menu">Collections</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('addcategory') }}">Add New Collection</a></li>
-                                <li><a href="{{ route('allcategory') }}">Collection List</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow" href="#" aria-expanded="false">
-                                <i class="fa fa-th-large"></i>
-                                <span class="hide-menu">Category</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('addsubcategory') }}">Add New Category</a></li>
-                                <li><a href="{{ route('subcategory') }}">Category List</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-label">Orders</li>
-                        <li> <a class="has-arrow" href="#" aria-expanded="false">
-                                <i class="fa fa-credit-card"></i>
-                                <span class="hide-menu">Order List</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="email-compose.html">Pending Orders</a></li>
-                                <li><a href="email-read.html">Unpaid Orders</a></li>
-                                <li><a href="email-inbox.html">Completed Orders</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li class="nav-devider"></li>
+                    <li>
+                        <a class="has-arrow" href="#main" aria-expanded="false">
+                            <i class="fa fa-home"></i>
+                            <span class="hide-menu text-white">Home
+                                {{-- <span class="label label-rouded label-primary pull-right">2</span></span> --}}
+                        </a>
+                        <ul aria-expanded="false" class="collapse text-white">
+                            <li><a href="#" class="text-white">Analytics</a></li>
+                        </ul>
+                    </li><hr class="side-hr">
+                    <li>
+                        <a class="has-arrow" href="#inventory" aria-expanded="false">
+                            <i class="fa fa-bar-chart"></i>
+                            <span class="hide-menu text-white">Performance
+                                {{-- <span class="label label-rouded label-primary pull-right">2</span></span> --}}
+                        </a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="#">All Performance</a></li>
+                        </ul>
+                    </li><hr class="side-hr">
+                    <li><a class="has-arrow" href="#collection" aria-expanded="false">
+                            <i class="fa fa-shopping-bag"></i>
+                            <span class="hide-menu">Orders</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="#">Order list</a></li>
+                            <li><a href="email-compose.html">Pending Orders</a></li>
+                            <li><a href="email-read.html">Unpaid Orders</a></li>
+                            <li><a href="email-inbox.html">Completed Orders</a></li>
+                        </ul>
+                    </li><hr class="side-hr">
+                    <li>
+                        <a class="has-arrow" href="#product" aria-expanded="false">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span class="hide-menu">Products</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{ route('addproducts') }}">Add Product</a></li>
+                            <li><a href="{{ route('allproducts') }}">Product List</a></li>
+                            <li><a href="{{ route('addcategory') }}">Collections</a></li>
+                            <li><a href="{{ route('addsubcategory') }}">Category</a></li>
+                        </ul>
+                    </li> <hr class="side-hr">
+                    <li><a class="has-arrow" href="#collection" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                            <span class="hide-menu">Customers</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="#">Add New Collection</a></li>
+                            <li><a href="{{ route('allcategory') }}">Collection List</a></li>
+                        </ul>
+                    </li><hr class="side-hr">
+                    <li> <a class="has-arrow" href="#content" aria-expanded="false">
+                            <i class="fa fa-database"></i>
+                            <span class="hide-menu">Content</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="#">Add New Category</a></li>
+                            <li><a href="{{ route('subcategory') }}">Category List</a></li>
+                        </ul>
+                    </li><hr class="side-hr">
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+
             <!-- End Sidebar scroll-->
         </div>
         <!-- End Left Sidebar  -->
