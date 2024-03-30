@@ -13,15 +13,15 @@ const ProductShowcase = ({ itemImage, sale, buttonText = "ADD TO CART" }) => {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "Center",
-                height: { lg: "360px", xl: "400px" },
-                width: { lg: "270px", xl: "300px" },
+                height: { xs: "232px", md: "270px", lg: "360px", xl: "400px" },
+                width: { xs: "174px", md: "242px", lg: "270px", xl: "300px" },
                 backgroundImage: `url(${
                     itemImage ? itemImage : "./assets/blank.jpg"
                 })`,
                 backgroundSize: "100%",
                 backgroundPosition: "center",
                 position: "relative",
-                p: "20px",
+                p: { xs: "12px", md: "20px" },
                 mb: 2,
                 transition: "1s",
                 cursor: "pointer",
@@ -50,10 +50,10 @@ const ProductShowcase = ({ itemImage, sale, buttonText = "ADD TO CART" }) => {
                         }}
                     >
                         <Typography
-                            px={1.5}
-                            py={1}
                             sx={{
-                                fontSize: "0.75rem",
+                                fontSize: { xs: "0.55rem", md: "0.75rem" },
+                                px: { xs: 1, md: 1.5 },
+                                py: { xs: 0.66, md: 1 },
                                 fontWeight: "400",
                                 color: theme.palette.text.grey[500],
                                 backgroundColor: theme.palette.text.white[100],
@@ -72,14 +72,14 @@ const ProductShowcase = ({ itemImage, sale, buttonText = "ADD TO CART" }) => {
                         ? {
                               backgroundColor: theme.palette.primary.main,
                               fontWeight: "500",
-                              opacity: "0",
+                              opacity: { xs: "100", md: "0" },
                               transition: ".4s",
-                              mb: "-20px",
+                              mb: { xs: "0", md: "-20px" },
                           }
                         : {
-                              opacity: "0",
+                              opacity: { xs: "100", md: "0" },
                               transition: ".4s",
-                              mb: "-20px",
+                              mb: { xs: "0", md: "-20px" },
                           }
                 }
             />

@@ -65,6 +65,7 @@ const SliderComponent = () => {
                         key={i}
                         collectionID={sliderData.collectionID}
                         imgURL={sliderData.imgURL}
+                        mobileImgURL={sliderData.mobileImgURL}
                         title={sliderData.title}
                         subtitle={sliderData.subtitle}
                         reverseAlign={sliderData.reverseAlign}

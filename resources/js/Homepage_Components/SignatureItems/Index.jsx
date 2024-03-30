@@ -8,7 +8,7 @@ import SignatureItemsSlider from "./SignatureItemsSlider";
 const SignatureItems = () => {
     return (
         <Container maxWidth="desktopMaxWidth">
-            <Box mb={15}>
+            <Box sx={{ mb: { md: 15, xs: 10 } }}>
                 <SignatureItemsHeader
                     title="Shop our must-have picks!"
                     categoryList={collections}

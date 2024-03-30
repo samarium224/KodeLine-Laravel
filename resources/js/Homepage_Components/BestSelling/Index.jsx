@@ -7,7 +7,7 @@ const BestSellingItems = () => {
     const theme = useTheme();
 
     return (
-        <Container maxWidth="desktopMaxWidth">
+        <Container maxWidth="desktopMaxWidth" sx={{ p: "0px" }}>
             <Box mx={theme.containerMarginWidth} mt={7.5} mb={20}>
                 <BestSellingHeader
                     title="Best Selling Items"
@@ -15,7 +15,7 @@ const BestSellingItems = () => {
                 />
                 <Grid container>
                     {bestSellingItemsList.map((signatureItem, i) => (
-                        <Grid item xs={12} sm={6} md={3} key={i} mt={5}>
+                        <Grid item xs={6} md={3} key={i} mt={5}>
                             <ItemCard
                                 itemTitle={signatureItem.itemTitle}
                                 ageRange={signatureItem.ageRange}
@@ -30,10 +30,10 @@ const BestSellingItems = () => {
                         sx={{
                             backgroundColor: theme.palette.primary.main,
                             color: theme.palette.text.grey[500],
-                            fontSize: "1.5rem",
+                            fontSize: { xs: "0.9rem", md: "1.5rem" },
                             fontWeight: 400,
-                            px: 10,
-                            py: 2,
+                            px: { xs: 6, md: 10 },
+                            py: { xs: 1.5, md: 2 },
                             "&:hover": {
                                 backgroundColor: theme.palette.primary.main,
                             },

@@ -4,11 +4,11 @@ const ServiceComponent = ({ text, subText }) => {
     const theme = useTheme();
     return (
         <Box
-            width="28.5%"
             textAlign="center"
             display="flex"
             flexDirection="column"
             alignItems="center"
+            sx={{ width: { md: "28.5%", xs: "100%" }, mb: { md: 0, xs: 2 } }}
         >
             <Typography
                 variant="secondaryTitle"
@@ -21,7 +21,7 @@ const ServiceComponent = ({ text, subText }) => {
                 variant="subtitle"
                 display="block"
                 color={theme.palette.text.grey[500]}
-                mt={2}
+                sx={{ mt: { md: 2, xs: 0.5 } }}
             >
                 {subText}
             </Typography>

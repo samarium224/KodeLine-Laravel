@@ -2,6 +2,10 @@ import { Box, Typography, useTheme } from "@mui/material";
 
 const Banner = ({ text, variant, sx = {} }) => {
     const theme = useTheme();
+    const mergedStyles = {
+        ...sx,
+        width: { md: "60%", xs: "95%" },
+    };
 
     return (
         <Box
@@ -13,11 +17,10 @@ const Banner = ({ text, variant, sx = {} }) => {
             alignItems="center"
         >
             <Typography
-                width="60%"
                 variant={variant}
                 color={theme.palette.text.grey[500]}
                 py={5}
-                sx={sx}
+                sx={mergedStyles}
             >
                 {text}
             </Typography>

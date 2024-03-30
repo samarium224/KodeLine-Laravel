@@ -9,9 +9,9 @@ const CustomButton = ({ text, sx = {} }) => {
                 sx={{
                     color: theme.palette.text.grey[500],
                     backgroundColor: theme.palette.text.white[100],
-                    fontWeight: "600",
+                    fontWeight: "500",
                     width: "90%",
-                    py: 1.25,
+                    py: { xs: 0.9, md: 1.25 },
                     "&:hover": { backgroundColor: "#cdcdd0" },
                     ...sx,
                 }}

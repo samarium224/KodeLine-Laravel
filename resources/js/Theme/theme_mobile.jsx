@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-const theme_desktop = createTheme({
+const theme_mobile = createTheme({
     palette: {
         primary: {
             main: "#EED8C3",
@@ -32,30 +32,31 @@ const theme_desktop = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "3rem",
+            fontSize: "1.5rem",
             fontWeight: "700",
+            lineHeight: "2.25rem",
         },
         title: {
-            fontSize: "2.33rem",
-            fontWeight: "700",
+            fontSize: "1.5rem",
+            fontWeight: "600",
         },
         secondaryTitle: {
+            fontSize: "1.5rem",
             fontWeight: "600",
-            fontSize: "2rem",
         },
         subtitle: {
-            fontSize: "1.25rem",
+            fontSize: "0.8rem",
             fontWeight: "500",
-            lineHeight: "1.8rem",
+            lineHeight: "1rem",
         },
         itemdescTitle: {
-            fontSize: "1rem",
-            fontWeight: "500",
+            fontSize: "0.875rem",
+            fontWeight: "400",
             textTransform: "uppercase",
-            lineHeight: "1.5rem",
+            lineHeight: "1.33rem",
         },
         itemdescSubtitle: {
-            fontSize: "0.9rem",
+            fontSize: "0.66rem",
             fontWeight: "400",
         },
     },
@@ -76,7 +77,7 @@ const theme_desktop = createTheme({
                 root: {
                     fontFamily: "'Poppins', sans-serif",
                     boxShadow: "none",
-                    fontSize: "0.85rem",
+                    fontSize: "0.7rem",
                     fontWeight: "400",
                     borderRadius: "0px",
                 },
@@ -91,4 +92,4 @@ const theme_desktop = createTheme({
     },
 });
 
-export default theme_desktop;
+export default theme_mobile;

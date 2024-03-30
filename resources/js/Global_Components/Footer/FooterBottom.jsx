@@ -15,7 +15,7 @@ const FooterBottom = () => {
         <Container
             maxWidth="desktopMaxWidth"
             sx={{
-                display: "flex",
+                display: { xs: "none", md: "flex" },
                 justifyContent: "space-around",
             }}
         >

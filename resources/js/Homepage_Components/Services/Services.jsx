@@ -6,10 +6,11 @@ const Services = () => {
         <Container
             maxWidth="desktopMaxWidth"
             sx={{
-                mt: 10,
-                mb: 15,
+                mt: { md: 10, xs: 7.5 },
+                mb: { md: 15, xs: 10 },
                 display: "flex",
                 justifyContent: "space-between",
+                flexDirection: { md: "row", xs: "column" },
             }}
         >
             <ServiceComponent

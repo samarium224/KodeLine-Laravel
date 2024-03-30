@@ -3,7 +3,10 @@ import { Typography, Box, useTheme } from "@mui/material";
 const Itemdesc = ({ mainText, ageRange, currentPrice, oldPrice }) => {
     const theme = useTheme();
     return (
-        <Box width="300px" textAlign="center">
+        <Box
+            sx={{ width: { xs: "175px", md: "252px", lg: "300px" } }}
+            textAlign="center"
+        >
             <Typography
                 display="block"
                 variant="itemdescTitle"
@@ -22,19 +25,21 @@ const Itemdesc = ({ mainText, ageRange, currentPrice, oldPrice }) => {
             <Box display="flex" justifyContent="center">
                 <Typography
                     mx={0.75}
-                    fontSize="1.5rem"
                     color={theme.palette.text.grey[500]}
                     fontWeight="400"
+                    sx={{ fontSize: { xs: "1rem", md: "1.5rem" } }}
                 >
                     ${currentPrice.toFixed(2)}
                 </Typography>
                 {oldPrice && (
                     <Typography
                         mx={0.75}
-                        fontSize="1.5rem"
                         color={theme.palette.text.grey[200]}
                         fontWeight="400"
-                        sx={{ textDecoration: "line-through" }}
+                        sx={{
+                            textDecoration: "line-through",
+                            fontSize: { xs: "1rem", md: "1.5rem" },
+                        }}
                     >
                         ${oldPrice.toFixed(2)}
                     </Typography>
