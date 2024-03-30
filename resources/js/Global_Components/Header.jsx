@@ -3,7 +3,12 @@ import { Box, Typography, useTheme } from "@mui/material";
 const Header = ({ title, subTitle }) => {
     const theme = useTheme();
     return (
-        <Box display="flex" flexDirection="column" alignItems="center">
+        <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            textAlign="center"
+        >
             <Typography variant="title" color={theme.palette.text.grey[500]}>
                 {title}
             </Typography>
@@ -18,7 +23,7 @@ const Header = ({ title, subTitle }) => {
                 display="block"
                 variant="subtitle"
                 color={theme.palette.text.grey[500]}
-                mb={subTitle && 10}
+                mb={subTitle && { md: 10, xs: 5 }}
             >
                 {subTitle}
             </Typography>

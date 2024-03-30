@@ -6,12 +6,19 @@ const FooterTop = () => {
         <Box backgroundColor={theme.palette.primary.main}>
             <Box
                 sx={{
-                    backgroundImage: `url("./assets/New.png")`,
+                    backgroundImage: {
+                        xs: `url("./assets/New_6_9.png")`,
+                        sm: `url("./assets/New.png")`,
+                    },
                     backgroundPosition: "right bottom",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-                    width: { lg: "100%", xl: "1960px" },
-                    height: { lg: "100vh", xl: "1060px" },
+                    width: { xs: "100%", maxAllowableWidth: "1920px" },
+                    height: {
+                        xs: "600px",
+                        lg: "100vh",
+                        maxAllowableWidth: "1000px",
+                    },
                     mx: "auto",
                 }}
             >
@@ -21,8 +28,13 @@ const FooterTop = () => {
                         sx={{
                             position: "absolute",
                             color: theme.palette.text.grey[500],
-                            top: { lg: "25vh", xl: "250px" },
-                            left: "37.5%",
+                            transform: {
+                                xs: "translate(-50%, -50%)",
+                                md: "initial",
+                            },
+                            top: { xs: "120px", md: "25vh", xl: "250px" },
+                            left: { xs: "50%", md: "37.5%" },
+                            textAlign: { md: "left", xs: "center" },
                             fontWeight: "700",
                             width: "100%",
                         }}
@@ -40,6 +52,7 @@ const FooterTop = () => {
                             fontWeight: 400,
                             px: 10,
                             py: 2,
+                            display: { md: "initial", xs: "none" },
                         }}
                     >
                         SHOP NOW

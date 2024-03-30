@@ -1,5 +1,6 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import ItemShopQuantity from "./ItemShopQuantity";
+import { itemData } from "./data";
 
 const ItemDescriptionTexts = () => {
     const theme = useTheme();
@@ -7,14 +8,15 @@ const ItemDescriptionTexts = () => {
         <Box width="40%">
             <Box>
                 <Typography
-                    variant="subtitle"
+                    variant="secondaryTitle"
                     className="item-name"
                     fontWeight="500"
                     display="block"
                     textTransform="uppercase"
                     color={theme.palette.text.grey[500]}
+                    mb={2}
                 >
-                    Summer Suit
+                    {itemData.itemName}
                 </Typography>
                 <Typography
                     variant="subtitle"
@@ -23,27 +25,8 @@ const ItemDescriptionTexts = () => {
                     display="block"
                     color={theme.palette.text.grey[500]}
                 >
-                    $50.00
+                    ${itemData.price.toFixed(2)}
                 </Typography>
-            </Box>
-            <ItemShopQuantity theme={theme} />
-            <Box className="sizes" mt={5}>
-                {[
-                    "3 Years: 100CM",
-                    "4 Years: 110CM",
-                    "5 Years: 120CM",
-                    "6 Years: 130CM",
-                ].map((size, i) => (
-                    <Typography
-                        key={i}
-                        variant="itemdescTitle"
-                        textTransform="initial"
-                        color={theme.palette.text.grey[500]}
-                        display="block"
-                    >
-                        {size}
-                    </Typography>
-                ))}
             </Box>
             <Box className="colors" mt={5}>
                 <Typography
@@ -54,16 +37,66 @@ const ItemDescriptionTexts = () => {
                 >
                     Colour
                 </Typography>
-                {["#ff0000", "#00ff00", "#0000ff"].map((color, i) => (
-                    <Button
+                {itemData.colorVariants.map((colorVariant, i) => (
+                    <Box
                         key={i}
                         sx={{
-                            backgroundColor: color,
+                            backgroundSize: "cover",
+                            border: `2px solid ${theme.palette.text.grey[500]}`,
                             mr: 1,
-                            py: 2,
-                            borderRadius: "5px",
                         }}
-                    />
+                        display="inline-block"
+                    >
+                        <img
+                            src={
+                                colorVariant.imgURL
+                                    ? colorVariant.imgURL
+                                    : "./assets/blank.jpg"
+                            }
+                            height="40"
+                            width="40"
+                            style={{ margin: "2px" }}
+                        />
+                    </Box>
+                ))}
+            </Box>
+            {/* <ItemShopQuantity theme={theme} /> */}
+            <Box className="sizes" mt={5}>
+                <Typography
+                    variant="itemdescTitle"
+                    display="block"
+                    color={theme.palette.text.grey[500]}
+                    mb={3}
+                >
+                    Size <span style={{ fontWeight: "200" }}>|</span>{" "}
+                    <Typography
+                        variant="itemdescSubtitle"
+                        color={theme.palette.text.grey[500]}
+                        textTransform="initial"
+                        fontWeight="300"
+                    >
+                        Age
+                    </Typography>
+                </Typography>
+                {itemData.sizes.map((size, i) => (
+                    <Typography
+                        key={i}
+                        variant="itemdescTitle"
+                        textTransform="initial"
+                        color={theme.palette.text.white[100]}
+                        backgroundColor={theme.palette.text.grey[700]}
+                        py={1.5}
+                        px={3}
+                        mr={1}
+                        sx={{
+                            "&:hover": {
+                                backgroundColor: theme.palette.text.grey[800],
+                                cursor: "pointer",
+                            },
+                        }}
+                    >
+                        {size}
+                    </Typography>
                 ))}
             </Box>
             <Box className="shop-buttons" mt={5}>
@@ -88,14 +121,15 @@ const ItemDescriptionTexts = () => {
                 </Typography>
                 <Button
                     sx={{
-                        backgroundColor: theme.palette.primary.main,
-                        color: theme.palette.text.white[100],
+                        color: theme.palette.primary.main,
                         textTransform: "uppercase",
-                        mr: 2.5,
-                        px: 2.5,
+                        width: "80%",
+                        border: `1px solid ${theme.palette.primary.main}`,
+                        my: 1,
                         py: 1.25,
                         "&:hover": {
                             backgroundColor: theme.palette.primary.main,
+                            color: theme.palette.text.white[100],
                         },
                     }}
                 >
@@ -103,14 +137,14 @@ const ItemDescriptionTexts = () => {
                 </Button>
                 <Button
                     sx={{
-                        backgroundColor: theme.palette.text.grey[700],
+                        backgroundColor: theme.palette.primary.main,
                         color: theme.palette.text.white[100],
                         textTransform: "uppercase",
-                        mr: 2.5,
-                        px: 2.5,
-                        py: 1.25,
+                        my: 1,
+                        width: "80%",
+                        py: 1.75,
                         "&:hover": {
-                            backgroundColor: theme.palette.text.grey[700],
+                            backgroundColor: theme.palette.primary.main,
                         },
                     }}
                 >
@@ -125,7 +159,7 @@ const ItemDescriptionTexts = () => {
                     color={theme.palette.text.grey[600]}
                     my={1}
                 >
-                    A limited edition product, designed exclusively for you
+                    {itemData.itemDescription.title}
                 </Typography>
                 <Typography
                     variant="itemdescTitle"
@@ -134,36 +168,7 @@ const ItemDescriptionTexts = () => {
                     color={theme.palette.text.grey[500]}
                     my={2}
                 >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-                    corporis atque quos deserunt, rerum molestiae illum odit
-                    eius maxime ex debitis aut! Sit nihil atque dolor iure
-                    eveniet eaque quasi?
-                </Typography>
-                <Typography
-                    variant="itemdescTitle"
-                    display="block"
-                    textTransform="initial"
-                    color={theme.palette.text.grey[600]}
-                    my={1}
-                >
-                    Product details
-                </Typography>
-                <Typography
-                    variant="itemdescTitle"
-                    display="block"
-                    textTransform="initial"
-                    color={theme.palette.text.grey[500]}
-                    my={2}
-                >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    <br />
-                    In corporis atque quos deserunt, <br />
-                    rerum molestiae illum odit eius maxime ex debitis aut!
-                    <br />
-                    Sit nihil <br />
-                    atque dolor <br />
-                    iure eveniet eaque <br />
-                    quasi?
+                    {itemData.itemDescription.desc}
                 </Typography>
             </Box>
         </Box>

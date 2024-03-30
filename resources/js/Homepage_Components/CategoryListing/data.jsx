@@ -4,6 +4,10 @@ const UnsortedCollectionItemList = [
     {
         ID: 1,
         categoryTitle: "Girl's Summer Collection",
+        categoryMobileQuote: {
+            title: "Sun-kissed Style",
+            subtitle: "For Every Little Princess",
+        },
         categoryImage: "./assets/Girls_6_9.png",
         categoryItemList: [
             {
@@ -39,6 +43,10 @@ const UnsortedCollectionItemList = [
     {
         ID: 2,
         categoryTitle: "Boy's Summer Collection",
+        categoryMobileQuote: {
+            title: "Sun-kissed Style",
+            subtitle: "For Every Little Princess",
+        },
         categoryImage: "./assets/Boys_6_9.png",
         categoryItemList: [
             {
@@ -74,6 +82,10 @@ const UnsortedCollectionItemList = [
     {
         ID: 3,
         categoryTitle: "Shoes Collection",
+        categoryMobileQuote: {
+            title: "Sun-kissed Style",
+            subtitle: "For Every Little Princess",
+        },
         categoryImage: "./assets/Shoes_6_9.png",
         categoryItemList: [
             {

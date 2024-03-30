@@ -10,16 +10,18 @@ const Footer = () => {
                 display="flex"
                 flexDirection="column"
                 alignItems="center"
-                my={10}
+                sx={{ my: { xs: 7.5, md: 10 } }}
             >
                 <Typography
-                    fontSize="2.75rem"
                     textTransform="uppercase"
                     fontWeight="500"
                     color={theme.palette.text.grey[500]}
-                    letterSpacing={12}
                     display="block"
                     mb={1}
+                    sx={{
+                        fontSize: { xs: "1.5rem", md: "2.75rem" },
+                        letterSpacing: { xs: 8, md: 12 },
+                    }}
                 >
                     Subscribe
                 </Typography>
@@ -31,9 +33,13 @@ const Footer = () => {
                     mb={4}
                 >
                     Get the latest updates and special offers by signing up for
-                    emails of following us on social media
+                    emails of following us on social media!
                 </Typography>
-                <Box display="flex" alignItems="center">
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    sx={{ flexDirection: { xs: "column", md: "row" } }}
+                >
                     <TextField
                         variant="outlined"
                         width="400px"
@@ -43,7 +49,8 @@ const Footer = () => {
                                     borderColor: theme.palette.primary.main,
                                     borderRadius: "0px",
                                 },
-                                width: "400px",
+                                width: { xs: "300px", md: "400px" },
+                                mb: 2,
                             },
                         }}
                     />
@@ -56,7 +63,7 @@ const Footer = () => {
                             marginLeft: "12px",
                             px: 5,
                             color: theme.palette.text.grey[500],
-                            fontWeight: 600,
+                            fontWeight: { xs: 700, md: 600 },
                         }}
                     >
                         Subscribe

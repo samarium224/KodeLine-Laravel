@@ -12,7 +12,7 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
 
     const quotationStyle = {
         fontFamily: "'Poppins', sans-serif",
-        fontSize: "2rem",
+        fontSize: { md: "2rem", xs: "1.35rem" },
         fontWeight: "800",
         color: theme.palette.text.grey[800],
         display: "inline",
@@ -37,7 +37,7 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
     };
 
     return (
-        <Box position="relative" height="400px" mx={10}>
+        <Box position="relative" height="400px" sx={{ mx: { xs: 2, md: 10 } }}>
             <Box
                 position="absolute"
                 top="47.5%"
@@ -51,9 +51,9 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
                 <Box mb={3} textAlign="center">
                     <Typography
                         fontFamily="'Poppins', sans-serif"
-                        fontSize="1.3rem"
                         fontWeight="500"
                         color={theme.palette.text.grey[500]}
+                        sx={{ fontSize: { xs: "1.1rem", md: "1.3rem" } }}
                     >
                         <Typography component={"span"} sx={quotationStyle}>
                             “
@@ -66,10 +66,10 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
                 </Box>
                 <Typography
                     fontFamily="'Poppins', sans-serif"
-                    fontSize="1.1rem"
                     fontWeight="500"
                     lineHeight="1.4rem"
                     color={theme.palette.text.grey[500]}
+                    sx={{ fontSize: { xs: "0.9rem", md: "1.1rem" } }}
                 >
                     {userCommentDesc}
                 </Typography>

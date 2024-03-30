@@ -11,7 +11,11 @@ const BestSellingHeader = ({ title, collections }) => {
                     <CustomButton
                         key={i}
                         text={category}
-                        sx={{ px: 5, fontSize: "1.2rem", fontWeight: "400" }}
+                        sx={{
+                            px: { xs: 2.5, md: 5 },
+                            fontSize: { xs: "1rem", md: "1.2rem" },
+                            fontWeight: "400",
+                        }}
                     />
                 ))}
             </Box>

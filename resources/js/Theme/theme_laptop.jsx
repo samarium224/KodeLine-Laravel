@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-const theme_desktop = createTheme({
+const theme_laptop = createTheme({
     palette: {
         primary: {
             main: "#EED8C3",
@@ -32,7 +32,7 @@ const theme_desktop = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "3rem",
+            fontSize: "2.25rem",
             fontWeight: "700",
         },
         title: {
@@ -44,9 +44,9 @@ const theme_desktop = createTheme({
             fontSize: "2rem",
         },
         subtitle: {
-            fontSize: "1.25rem",
+            fontSize: "1.1rem",
             fontWeight: "500",
-            lineHeight: "1.8rem",
+            lineHeight: "1.45rem",
         },
         itemdescTitle: {
             fontSize: "1rem",
@@ -91,4 +91,4 @@ const theme_desktop = createTheme({
     },
 });
 
-export default theme_desktop;
+export default theme_laptop;

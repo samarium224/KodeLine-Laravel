@@ -19,18 +19,33 @@ const PreOrder = ({ items }) => {
         autoplaySpeed: 3000,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
+        responsive: [
+            {
+                breakpoint: 900,
+                settings: {
+                    arrows: false,
+                },
+            },
+        ],
     };
 
     return (
         <Box backgroundColor={theme.palette.primary.main}>
             <Box
                 sx={{
-                    backgroundImage: `url("./assets/Savings.png")`,
-                    backgroundPosition: "left top",
+                    backgroundImage: {
+                        xs: `url("./assets/KidsLine_6_9.png")`,
+                        sm: `url("./assets/Savings.png")`,
+                    },
+                    backgroundPosition: "left bottom",
                     backgroundSize: "contain",
                     backgroundRepeat: "no-repeat",
-                    width: { lg: "100%", maxAllowableWidth: "1920px" },
-                    height: { lg: "110vh", maxAllowableWidth: "1000px" },
+                    width: { xs: "100%", maxAllowableWidth: "1920px" },
+                    height: {
+                        xs: "600px",
+                        lg: "110vh",
+                        maxAllowableWidth: "1000px",
+                    },
                     mx: "auto",
                 }}
             >
@@ -44,23 +59,27 @@ const PreOrder = ({ items }) => {
                             position: "absolute",
                             color: theme.palette.text.grey[500],
                             transform: "translate(-50%, -50%)",
-                            top: { xs: "55vh", xl: "550px" },
-                            left: "50%",
+                            top: { xs: "80px", md: "55vh", xl: "550px" },
+                            left: { xs: "135px", md: "50%" },
                             fontWeight: "700",
                         }}
                     >
                         Coming Soon...
                     </Typography>
                     <Box
-                        backgroundColor="white"
                         position="absolute"
-                        px={3.5}
-                        py={6}
                         sx={{
-                            maxWidth: { xl: "350px", lg: "325px" },
-                            right: { lg: 80, xl: -10 },
-                            top: { lg: "50px", xl: "50px" },
-                            scale: { md: "0.8", lg: "1" },
+                            backgroundColor: { xs: "transparent", md: "white" },
+                            py: { xs: 3, md: 6 },
+                            transform: {
+                                xs: "translate(-50%, -50%)",
+                                md: "initial",
+                            },
+                            maxWidth: { xs: "225px", xl: "350px", md: "325px" },
+                            right: { md: 80, xl: -10 }, // Remove the right property for xs breakpoint
+                            top: { xs: "235px", md: "50px" },
+                            scale: { xs: "0.7", md: "0.8", lg: "1" },
+                            left: { xs: "50%" }, // Add this to center horizontally in xs breakpoint
                         }}
                     >
                         <Slider {...settings}>

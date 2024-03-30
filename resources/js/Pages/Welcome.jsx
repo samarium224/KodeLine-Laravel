@@ -1,5 +1,9 @@
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/Theme/theme";
+import theme_desktop from "@/Theme/theme";
+import theme_laptop from "@/Theme/theme_laptop";
+import theme_mobile from "@/Theme/theme_mobile";
+
+import useWindowSize from "@/Util/useWindowSize";
 
 import SliderComponent from "@/Homepage_Components/Slider/Slider";
 import Banner from "@/Global_Components/Banner";
@@ -21,10 +25,21 @@ import { usePage } from "@inertiajs/react";
 
 export default function Welcome({ auth }) {
     const { signatureItemsList } = usePage().props;
+    const { width } = useWindowSize();
+
+    const getTheme = () => {
+        if (width > 1536) {
+            return theme_desktop;
+        } else if (width > 900) {
+            return theme_laptop;
+        } else {
+            return theme_mobile;
+        }
+    };
 
     return (
         <div style={{ overflow: "hidden" }}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={getTheme()}>
                 <Slogan />
                 <Navigation />
                 <SliderComponent></SliderComponent>

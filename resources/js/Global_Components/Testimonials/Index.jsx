@@ -55,6 +55,15 @@ const Testimonials = () => {
                 }}
             ></Box>
         ),
+        responsive: [
+            {
+                breakpoint: 900,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                },
+            },
+        ],
     };
 
     return (
