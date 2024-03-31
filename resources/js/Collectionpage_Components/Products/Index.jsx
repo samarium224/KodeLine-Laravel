@@ -38,7 +38,7 @@ const Products = () => {
             </Box>
             <Grid container>
                 {filteredItems.map((item, i) => (
-                    <Grid item xs={12} sm={6} md={3} key={i} mt={5}>
+                    <Grid item xs={6} md={3} key={i} mt={5}>
                         <ItemCard
                             itemImage={item.imgURL}
                             itemTitle={item.itemTitle}
