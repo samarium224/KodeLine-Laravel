@@ -58,10 +58,20 @@ class DashboardController extends Controller
             'category_name' => 'required|unique:categories'
         ]);
 
+        $category = Category::findOrFail($category_id);
+        $oldName = $category->category_name;
+        $newName = $request->category_name;
+
         Category::findOrFail($category_id)->update([
-            'category_name' => $request->category_name,
+            'category_name' => $newName,
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
+
+        SubCategory::where('category_id', $category_id)
+            ->update(['category_name' => $newName]);
+
+        Products::where('product_category_name', $oldName)
+            ->update(['product_category_name' => $newName]);
 
         return redirect()->route('allcategory')->with(
             'message',
@@ -233,7 +243,7 @@ class DashboardController extends Controller
         } else {
             $category_name = "none";
         }
-        if ($category_id != 0) {
+        if ($subcategory_id != 0) {
             $subcategory_name = SubCategory::where('id', $subcategory_id)->value('subcategory_name');
         } else {
             $subcategory_name = "none";
@@ -262,7 +272,7 @@ class DashboardController extends Controller
             'imageVariations' => $imgVariationGroup,
             'continue_selling' => $continue_selling
         ]);
-        
+
         try {
             //code...
             Category::where('id', $category_id)->increment('product_count', 1);
@@ -336,15 +346,36 @@ class DashboardController extends Controller
             'product_long_description' => 'required|string',
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
+            'ageRange.*' => 'required',
+            'ageGroup.*' => 'required',
+            'sizeGroup.*' => 'required',
+            'colorGroup.*' => 'required',
+            'quantityGroup.*' => 'required|integer',
         ]);
 
+        $ageRange = implode('|', $request->ageRange);
+        $ageGroup = implode('|', $request->ageGroup);
+        $sizeGroup = implode('|', $request->sizeGroup);
+        $colorGroup = implode('|', $request->colorGroup);
+        $quantityGroup = implode('|', $request->quantityGroup);
+        // handle out of stock selling
+        $continue_selling = $request->continue_selling;
+        //get the product id
         $product_id = $request->product_id;
 
         $category_id = $request->product_category_id;
         $subcategory_id = $request->product_subcategory_id;
 
-        $category_name = Category::where('id', $category_id)->value('category_name');
-        $subcategory_name = SubCategory::where('id', $subcategory_id)->value('subcategory_name');
+        if ($category_id != 0) {
+            $category_name = Category::where('id', $category_id)->value('category_name');
+        } else {
+            $category_name = "none";
+        }
+        if ($subcategory_id != 0) {
+            $subcategory_name = SubCategory::where('id', $subcategory_id)->value('subcategory_name');
+        } else {
+            $subcategory_name = "none";
+        }
 
         Products::findOrFail($product_id)->update([
             'product_name' => $validatedData['product_name'],
@@ -356,7 +387,13 @@ class DashboardController extends Controller
             'product_category_id' => $category_id,
             'product_subcategory_name' => $subcategory_name,
             'product_subcategory_id' => $subcategory_id,
-            'slug' => strtolower(str_replace(' ', '-', $request->product_name))
+            'slug' => strtolower(str_replace(' ', '-', $request->product_name)),
+            'ageRange' => $ageRange,
+            'ageGroup' => $ageGroup,
+            'sizeGroup' => $sizeGroup,
+            'colorGroup' => $colorGroup,
+            'quantityGroup' => $quantityGroup,
+            'continue_selling' => $continue_selling
         ]);
 
         return redirect()->route('allproducts')->with('success', 'Product Updated successfully!');

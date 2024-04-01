@@ -89,7 +89,7 @@
                             <div class="card-subtitle text-dark"><b>Media</b></div>
                             <div id="dropzone" class="dropzone">Drag and drop up to 5 images here or click to select</div>
                             <input type="file" id="product_img" name="product_img[]" accept="image/*" multiple
-                                style="display: none;">
+                                style="opacity: 0;" required>
                             <div id="image-preview" class="image-preview"></div>
                         </div>
                     </div>

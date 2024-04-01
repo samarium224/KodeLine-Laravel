@@ -47,7 +47,7 @@ class HomepageController extends Controller
                         'title' => "Sun-kissed Style",
                         'subtitle' => "For Every Little Princess",
                     ],
-                    'categoryItemList' => $group->map(function ($product) {
+                    'categoryItemList' => $group->take(4)->map(function ($product) {
                         $ageRangeArray = explode('|', $product->ageRange);
                         return [
                             'imgURL' => $product->product_img,
