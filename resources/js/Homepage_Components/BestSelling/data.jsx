@@ -1,4 +1,4 @@
-import { Collections } from "@/Global_data/Categories";
+import { Collections } from "@/Global_data/Collections";
 
 export const collections = Collections.sort((a, b) => a.sortID - b.sortID).map(
     ({ collectionName }) => collectionName

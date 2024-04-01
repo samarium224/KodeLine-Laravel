@@ -1,4 +1,4 @@
-import { Collections } from "@/Global_data/Categories";
+import { Collections } from "@/Global_data/Collections";
 
 const UnsortedCollectionItemList = [
     {

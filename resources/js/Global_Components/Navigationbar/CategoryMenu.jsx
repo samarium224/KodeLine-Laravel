@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { Link } from "@inertiajs/react";
-import { Collections } from "@/Global_data/Categories";
+import { Collections } from "@/Global_data/Collections";
 
 const CategoryMenu = ({ color }) => {
     const [anchorEl, setAnchorEl] = useState(null);

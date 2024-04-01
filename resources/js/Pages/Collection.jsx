@@ -1,5 +1,9 @@
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/Theme/theme";
+import theme_desktop from "@/Theme/theme";
+import theme_laptop from "@/Theme/theme_laptop";
+import theme_mobile from "@/Theme/theme_mobile";
+
+import useWindowSize from "@/Util/useWindowSize";
 
 import Navigation from "@/Global_Components/Navigationbar/Index";
 import Header from "@/Collectionpage_Components/Header/Index";
@@ -10,26 +14,20 @@ import Testimonials from "@/Global_Components/Testimonials/Index";
 import Footer from "@/Global_Components/Footer/Index";
 import Slogan from "@/Global_Components/Slogan";
 
+import { preorderItems } from "@/Global_data/PreorderItems";
+
 export default function Collection({ auth, laravelVersion, phpVersion }) {
-    const preorderItems = [
-        {
-            itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
-            ageRange: [3, 6],
-            currentPrice: 37.5,
-            oldPrice: 50,
-            buttonText: "PRE ORDER",
-        },
-        {
-            itemTitle: "BOY's WINTER FASHION OUTFIT",
-            ageRange: [4, 7],
-            currentPrice: 37.5,
-            oldPrice: 50,
-            buttonText: "PRE ORDER",
-        },
-    ];
+    const { width } = useWindowSize();
+
+    const getTheme = () => {
+        if (width > 1536) return theme_desktop;
+        else if (width > 900) return theme_laptop;
+        else return theme_mobile;
+    };
+
     return (
         <div style={{ overflow: "hidden" }}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={getTheme()}>
                 <Slogan />
                 <Navigation />
                 <Header />
@@ -38,8 +36,8 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
                     variant="title"
                     sx={{
                         fontWeight: 500,
-                        letterSpacing: "10px",
-                        wordSpacing: "15px;",
+                        letterSpacing: { xs: "7.5px", md: "10px" },
+                        wordSpacing: { xs: "12px", md: "15px;" },
                     }}
                 />
                 <Products />

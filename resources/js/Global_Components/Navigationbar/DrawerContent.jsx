@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "@inertiajs/react";
 import {
     Box,
     List,
@@ -10,6 +9,8 @@ import {
 } from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import { Link } from "@inertiajs/react";
+import { Collections } from "@/Global_data/Collections";
 
 const DrawerContent = ({ toggleDrawer, auth, theme }) => {
     const [collectionOpen, setCollectionOpen] = useState(false);
@@ -35,13 +36,19 @@ const DrawerContent = ({ toggleDrawer, auth, theme }) => {
                 </ListItem>
                 <Collapse in={collectionOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <ListItem button sx={{ pl: 4 }}>
-                            <ListItemText primary="Collection 1" />
-                        </ListItem>
-                        <ListItem button sx={{ pl: 4 }}>
-                            <ListItemText primary="Collection 2" />
-                        </ListItem>
-                        {/* Add more collection items as needed */}
+                        {Collections.map((collection, i) => (
+                            <ListItem
+                                button
+                                key={i}
+                                component={Link}
+                                href={route("collection")}
+                                sx={{ pl: 4 }}
+                            >
+                                <ListItemText
+                                    primary={collection.collectionName}
+                                />
+                            </ListItem>
+                        ))}
                     </List>
                 </Collapse>
                 <ListItem button>

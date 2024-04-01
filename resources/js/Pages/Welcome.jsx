@@ -28,13 +28,9 @@ export default function Welcome({ auth }) {
     const { width } = useWindowSize();
 
     const getTheme = () => {
-        if (width > 1536) {
-            return theme_desktop;
-        } else if (width > 900) {
-            return theme_laptop;
-        } else {
-            return theme_mobile;
-        }
+        if (width > 1536) return theme_desktop;
+        else if (width > 900) return theme_laptop;
+        else return theme_mobile;
     };
 
     return (
