@@ -40,6 +40,7 @@ const Products = () => {
                 {filteredItems.map((item, i) => (
                     <Grid item xs={6} md={3} key={i} mt={5}>
                         <ItemCard
+                            itemID={item.itemID}
                             itemImage={item.imgURL}
                             itemTitle={item.itemTitle}
                             ageRange={item.ageRange}

@@ -3,6 +3,7 @@ import ProductShowcase from "@/Global_Components/ItemCard/ProductShowcase";
 import { Box } from "@mui/material";
 
 const ItemCard = ({
+    itemID,
     itemImage,
     itemTitle,
     ageRange,
@@ -14,6 +15,7 @@ const ItemCard = ({
     return (
         <Box display="flex" flexDirection="column" alignItems="center">
             <ProductShowcase
+                itemID={itemID}
                 itemImage={itemImage}
                 sale={sale > 0 && sale}
                 buttonText={buttonText}

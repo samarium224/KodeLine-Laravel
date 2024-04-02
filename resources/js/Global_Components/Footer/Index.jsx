@@ -50,7 +50,7 @@ const Footer = () => {
                                     borderRadius: "0px",
                                 },
                                 width: { xs: "300px", md: "400px" },
-                                mb: 2,
+                                mb: { md: 0, xs: 2 },
                             },
                         }}
                     />

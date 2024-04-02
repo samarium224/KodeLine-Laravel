@@ -17,6 +17,7 @@ const SignatureItems = () => {
                     {signatureItemsList.map((signatureItem, i) => (
                         <ItemCard
                             key={i}
+                            itemID={signatureItem.itemID}
                             itemImage={signatureItem.imgURL}
                             itemTitle={signatureItem.itemTitle}
                             ageRange={signatureItem.ageRange}

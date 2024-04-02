@@ -4,27 +4,30 @@ const Banner = ({ text, variant, sx = {} }) => {
     const theme = useTheme();
     const mergedStyles = {
         ...sx,
-        width: { md: "60%", xs: "95%" },
+        width: { md: "80%", xs: "95%" },
     };
 
     return (
-        <Box
-            width="100%"
-            backgroundColor={theme.palette.text.grey[100]}
-            textAlign="center"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-        >
-            <Typography
-                variant={variant}
-                color={theme.palette.text.grey[500]}
-                py={5}
-                sx={mergedStyles}
+        <>
+            <Box width="100%" height="20px" backgroundColor={"#CD864A"}></Box>
+            <Box
+                width="100%"
+                backgroundColor={"#EED8C3"}
+                textAlign="center"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
             >
-                {text}
-            </Typography>
-        </Box>
+                <Typography
+                    variant={variant}
+                    color={theme.palette.text.grey[500]}
+                    py={5}
+                    sx={mergedStyles}
+                >
+                    {text}
+                </Typography>
+            </Box>
+        </>
     );
 };
 

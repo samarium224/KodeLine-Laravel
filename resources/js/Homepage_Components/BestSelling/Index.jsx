@@ -17,6 +17,8 @@ const BestSellingItems = () => {
                     {bestSellingItemsList.map((signatureItem, i) => (
                         <Grid item xs={6} md={3} key={i} mt={5}>
                             <ItemCard
+                                key={i}
+                                itemID={signatureItem.itemID}
                                 itemTitle={signatureItem.itemTitle}
                                 ageRange={signatureItem.ageRange}
                                 currentPrice={signatureItem.currentPrice}
