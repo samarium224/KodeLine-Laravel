@@ -2,10 +2,10 @@ import React from "react";
 import { Box, Container } from "@mui/material";
 import SignatureItemsHeader from "./SignatureItemsHeader";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
-import { collections, signatureItemsList } from "./data";
+// import { collections } from "./data";
 import SignatureItemsSlider from "./SignatureItemsSlider";
 
-const SignatureItems = () => {
+const SignatureItems = ({signatureItemsList, collections}) => {
     return (
         <Container maxWidth="desktopMaxWidth">
             <Box sx={{ mb: { md: 15, xs: 10 } }}>

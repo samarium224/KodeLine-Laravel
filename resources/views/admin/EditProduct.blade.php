@@ -51,7 +51,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('storeproduct') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('updateproduct') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-8">
@@ -87,7 +87,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    {{-- <div class="card">
                         <div class="card-body">
                             <div class="card-subtitle text-dark"><b>Media</b></div>
                             <div id="dropzone" class="dropzone">Drag and drop up to 5 images here or click to select</div>
@@ -95,7 +95,7 @@
                                 style="display: none;">
                             <div id="image-preview" class="image-preview"></div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="card">
                         <div class="card-body">
@@ -161,7 +161,6 @@
                                             class="fa fa-plus"></i> Add
                                         Variation</button>
                                 </div>
-                                <img src="{{ asset('') }}" alt="">
                             </div>
                             @php
                                 $ageGroup = explode('|', $productinfo->ageGroup);

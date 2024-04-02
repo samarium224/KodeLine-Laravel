@@ -24,7 +24,7 @@ import { preorderItems } from "@/Global_data/PreorderItems";
 import { usePage } from "@inertiajs/react";
 
 export default function Welcome({ auth }) {
-    const { signatureItemsList } = usePage().props;
+    const { signatureItemsList, collections, collectionItemList } = usePage().props;
     const { width } = useWindowSize();
 
     const getTheme = () => {
@@ -46,8 +46,8 @@ export default function Welcome({ auth }) {
                     variant="subtitle"
                 />
                 <Services />
-                <SignatureItems signatureItemsList={signatureItemsList} />
-                <ShopByCategory />
+                <SignatureItems signatureItemsList={signatureItemsList} collections={collections} />
+                <ShopByCategory CollectionItemList={collectionItemList} />
                 <BestSellingItems />
                 {/* <TopCategories /> */}
                 <PreOrder items={preorderItems} />
