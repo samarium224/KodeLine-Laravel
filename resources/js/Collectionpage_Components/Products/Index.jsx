@@ -3,11 +3,11 @@ import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import React, { useState } from "react";
 import PriceFilter from "./PriceFilter";
 
-import { CollectionItemsList } from "./data";
+// import { CollectionItemsList } from "./data";
 
-const Products = () => {
+const Products = ({CollectionItemsList}) => {
     const theme = useTheme();
-    const [priceRange, setPriceRange] = useState([0, 100]); // Default price range
+    const [priceRange, setPriceRange] = useState([0, 1000]); // Default price range
 
     // Filter items based on price range
     const filteredItems = CollectionItemsList.filter(

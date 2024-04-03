@@ -18,7 +18,7 @@ import { preorderItems } from "@/Global_data/PreorderItems";
 import { usePage } from "@inertiajs/react";
 
 export default function Collection({ auth, laravelVersion, phpVersion }) {
-    const { collections , collection_name} = usePage().props;
+    const { collections , collection_name, collectionItemList} = usePage().props;
     const { width } = useWindowSize();
 
     const getTheme = () => {
@@ -42,7 +42,7 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
                         wordSpacing: { xs: "12px", md: "15px;" },
                     }}
                 />
-                <Products />
+                <Products CollectionItemsList = {collectionItemList} />
                 <PreOrder items={preorderItems} />
                 <Testimonials />
                 <Footer />
