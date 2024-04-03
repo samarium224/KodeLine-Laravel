@@ -10,13 +10,14 @@ use Inertia\Inertia;
 class CollectionController extends Controller
 {
     public function Index(Request $request){
+        $id = $request->get("id");
 
         $collections = Category::all()->map(function ($item) {
             return [
-                $item->category_name,
+                'collection_name' => $item->category_name,
+                'collection_id'=> $item->id,
             ];
         });
-        $id = $request->get("id");
 
         $collection_name = Category::where("id", $id)->value('category_name');
 
@@ -39,4 +40,6 @@ class CollectionController extends Controller
             'collectionItemList'=> $CollectionItemList,
         ]);
     }
+
+    
 }

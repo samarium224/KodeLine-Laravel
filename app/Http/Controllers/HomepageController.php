@@ -18,6 +18,7 @@ class HomepageController extends Controller
             $ageRangeArray = explode('|', $item->ageRange);
 
             return [
+                'itemID' => $item->id,
                 'imgURL' => $item->product_img,
                 'itemTitle' => $item->product_name,
                 'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]
@@ -28,7 +29,8 @@ class HomepageController extends Controller
 
         $collections = Category::all()->map(function ($item) {
             return [
-                $item->category_name,
+                'collection_name' => $item->category_name,
+                'collection_id'=> $item->id,
             ];
         });
 
@@ -50,6 +52,7 @@ class HomepageController extends Controller
                     'categoryItemList' => $group->take(4)->map(function ($product) {
                         $ageRangeArray = explode('|', $product->ageRange);
                         return [
+                            'itemID' => $product->id,
                             'imgURL' => $product->product_img,
                             'itemTitle' => $product->product_name,
                             'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]

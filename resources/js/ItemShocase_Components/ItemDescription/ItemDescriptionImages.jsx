@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import { itemData } from "./data";
+// import { itemData } from "./data";
 
-const ItemDescriptionImages = () => {
+const ItemDescriptionImages = ({itemData}) => {
     return (
         <Box display="flex" width="55%" justifyContent="space-between">
             <Box

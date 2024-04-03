@@ -15,7 +15,7 @@ const ProductShowcase = ({
     return (
         <Box
             component={Link}
-            href={route(`itemshowcase`)}
+            href={route('itemshowcase', { id: itemID })}
             sx={{
                 display: "flex",
                 flexDirection: "column",
