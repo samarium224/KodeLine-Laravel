@@ -1,5 +1,6 @@
 import { Box, useTheme } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 export const PrevArrow = ({ onClick }) => {
     const theme = useTheme();
@@ -8,21 +9,20 @@ export const PrevArrow = ({ onClick }) => {
             sx={{
                 position: "absolute",
                 top: "50%",
-                left: "-80px",
-                transform: "translateY(-50%)",
+                left: "-50px",
+                transform: "translateY(-200%)",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 zIndex: 1,
                 color: theme.palette.text.grey[500],
-                scale: "2.5",
-                rotate: "180deg",
-                transformOrigin: "50% 0%",
+                backgroundColor: theme.palette.text.grey[100],
+                borderRadius: "50%",
             }}
             onClick={onClick}
         >
-            <PlayArrowIcon fontSize="large" />
+            <KeyboardArrowLeftIcon fontSize="large" />
         </Box>
     );
 };
@@ -34,20 +34,20 @@ export const NextArrow = ({ onClick }) => {
             sx={{
                 position: "absolute",
                 top: "50%",
-                right: "-80px",
-                transform: "translateY(-50%)",
+                right: "-50px",
+                transform: "translateY(-200%)",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 zIndex: 1,
                 color: theme.palette.text.grey[500],
-                transformOrigin: "50% 0%",
-                scale: "2.5",
+                backgroundColor: theme.palette.text.grey[100],
+                borderRadius: "50%",
             }}
             onClick={onClick}
         >
-            <PlayArrowIcon fontSize="large" />
+            <KeyboardArrowRightIcon fontSize="large" />
         </Box>
     );
 };

@@ -11,7 +11,7 @@ const ShopByCategory = ({CollectionItemList}) => {
                 title="Shop by Category"
                 subTitle="Handpicked Happiness for Little Ones!"
             />
-            {CollectionItemList.map((CollectionItem, i) => (
+            {CollectionItemList.slice(0, 3).map((CollectionItem, i) => (
                 <ShopByCategorySection
                     key={i}
                     category={CollectionItem}

@@ -2,12 +2,20 @@ import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 
 import CustomButton from "../CustomButton";
+import { Link } from "@inertiajs/react";
 
-const ProductShowcase = ({ itemImage, sale, buttonText = "ADD TO CART" }) => {
+const ProductShowcase = ({
+    itemID,
+    itemImage,
+    sale,
+    buttonText = "ADD TO CART",
+}) => {
     const theme = useTheme();
 
     return (
         <Box
+            component={Link}
+            href={route(`itemshowcase`)}
             sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -15,11 +23,10 @@ const ProductShowcase = ({ itemImage, sale, buttonText = "ADD TO CART" }) => {
                 alignItems: "Center",
                 height: { xs: "232px", md: "270px", lg: "360px", xl: "400px" },
                 width: { xs: "174px", md: "242px", lg: "270px", xl: "300px" },
-                backgroundImage: `url(${
-                    itemImage ? itemImage : "./assets/blank.jpg"
-                })`,
+                backgroundImage: `url(${itemImage || "./assets/blank.jpg"})`,
                 backgroundSize: "100%",
                 backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
                 position: "relative",
                 p: { xs: "12px", md: "20px" },
                 mb: 2,
@@ -67,21 +74,17 @@ const ProductShowcase = ({ itemImage, sale, buttonText = "ADD TO CART" }) => {
             </Box>
             <CustomButton
                 text={buttonText}
-                sx={
-                    buttonText != "ADD TO CART"
+                sx={{
+                    ...(buttonText !== "ADD TO CART"
                         ? {
                               backgroundColor: theme.palette.primary.main,
                               fontWeight: "500",
-                              opacity: { xs: "100", md: "0" },
-                              transition: ".4s",
-                              mb: { xs: "0", md: "-20px" },
                           }
-                        : {
-                              opacity: { xs: "100", md: "0" },
-                              transition: ".4s",
-                              mb: { xs: "0", md: "-20px" },
-                          }
-                }
+                        : {}),
+                    opacity: { xs: "100", md: "0" },
+                    transition: ".4s",
+                    mb: { xs: "0", md: "-20px" },
+                }}
             />
         </Box>
     );

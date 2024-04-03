@@ -40,9 +40,9 @@ export default function Welcome({ auth }) {
                 <Navigation />
                 <SliderComponent></SliderComponent>
                 <Banner
-                    text="We are your partner in parenting! With top-notch products and
-                    pocket-friendly prices, let's navigate parenthood together,
-                    hassle-free"
+                    text="Kidsline is your trusted companion, offering a lovingly curated range of top-notch children's products. With swift, free delivery, we 
+                    make every purchase a joy. Our commitment to uncompromising quality strengthens the bond between you and your little ones, 
+                    creating cherished moments filled with laughter, warmth, and unforgettable memories."
                     variant="subtitle"
                 />
                 <Services />

@@ -12,8 +12,9 @@ const BestSellingHeader = ({ title, collections }) => {
                         key={i}
                         text={category}
                         sx={{
-                            px: { xs: 2.5, md: 5 },
-                            fontSize: { xs: "1rem", md: "1.2rem" },
+                            mx: 1,
+                            px: { xs: 2, md: 4 },
+                            fontSize: { xs: "0.825rem", md: "1rem" },
                             fontWeight: "400",
                         }}
                     />

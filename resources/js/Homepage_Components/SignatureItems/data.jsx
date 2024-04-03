@@ -8,6 +8,7 @@ export const collections = Collections.sort((a, b) => a.sortID - b.sortID).map(
 
 export const signatureItemsList = [
     {
+        itemID: 5,
         itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
         ageRange: [3, 6],
         currentPrice: 40,
@@ -15,6 +16,7 @@ export const signatureItemsList = [
         imgURL: "./assets/Shoes_6_9.png",
     },
     {
+        itemID: 5,
         itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
         ageRange: [3, 6],
         currentPrice: 22.5,
@@ -22,6 +24,7 @@ export const signatureItemsList = [
         imgURL: "",
     },
     {
+        itemID: 5,
         itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
         ageRange: [4, 7],
         currentPrice: 50,
@@ -29,6 +32,7 @@ export const signatureItemsList = [
         imgURL: "",
     },
     {
+        itemID: 5,
         itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
         ageRange: [5, 8],
         currentPrice: 32.5,
@@ -36,6 +40,7 @@ export const signatureItemsList = [
         imgURL: "",
     },
     {
+        itemID: 5,
         itemTitle: "BOY'S CASUAL OUTFIT",
         ageRange: [6, 9],
         currentPrice: 45,
@@ -43,6 +48,7 @@ export const signatureItemsList = [
         imgURL: "",
     },
     {
+        itemID: 5,
         itemTitle: "GIRL'S PARTY DRESS",
         ageRange: [2, 5],
         currentPrice: 35,
@@ -50,6 +56,7 @@ export const signatureItemsList = [
         imgURL: "",
     },
     {
+        itemID: 5,
         itemTitle: "BOY'S SUMMER SHORTS SET",
         ageRange: [4, 7],
         currentPrice: 28,
@@ -57,6 +64,7 @@ export const signatureItemsList = [
         imgURL: "",
     },
     {
+        itemID: 5,
         itemTitle: "SNEAKERS FOR KIDS",
         ageRange: [5, 8],
         currentPrice: 25,

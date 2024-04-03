@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
-import { Box, Container, Typography, useTheme } from "@mui/material";
+import { Box, Button, useTheme } from "@mui/material";
 import { PrevArrow, NextArrow } from "./SliderArrows";
 
 const PreOrder = ({ items }) => {
@@ -30,84 +30,72 @@ const PreOrder = ({ items }) => {
     };
 
     return (
-        <Box backgroundColor={theme.palette.primary.main}>
+        <Box display="flex">
             <Box
                 sx={{
                     backgroundImage: {
-                        xs: `url("./assets/KidsLine_6_9.png")`,
-                        sm: `url("./assets/Savings.png")`,
+                        xs: `url("https://picsum.photos/640/800")`,
+                        sm: `url("https://picsum.photos/800/640")`,
                     },
-                    backgroundPosition: "left bottom",
-                    backgroundSize: "contain",
+                    backgroundPosition: "center bottom",
+                    backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-                    width: { xs: "100%", maxAllowableWidth: "1920px" },
+                    width: { xs: "100%", md: "50%" },
                     height: {
                         xs: "600px",
-                        lg: "110vh",
-                        maxAllowableWidth: "1000px",
+                        lg: "80vh",
+                        maxAllowableWidth: "800px",
                     },
-                    mx: "auto",
+                    pb: 15,
+                    display: "flex",
+                    alignItems: "flex-end",
+                    justifyContent: "center",
                 }}
             >
-                <Container
-                    maxWidth="desktopMaxWidth"
-                    sx={{ position: "relative" }}
+                <Button
+                    sx={{
+                        backgroundColor: theme.palette.text.white[100],
+                        color: theme.palette.text.grey[500],
+                        fontSize: "1.5rem",
+                        fontWeight: 400,
+                        px: 10,
+                        py: 2,
+                    }}
                 >
-                    <Typography
-                        variant="headline"
-                        sx={{
-                            position: "absolute",
-                            color: theme.palette.text.grey[500],
-                            transform: "translate(-50%, -50%)",
-                            top: { xs: "80px", md: "55vh", xl: "550px" },
-                            left: { xs: "135px", md: "50%" },
-                            fontWeight: "700",
-                        }}
-                    >
-                        Coming Soon...
-                    </Typography>
-                    <Box
-                        position="absolute"
-                        sx={{
-                            backgroundColor: { xs: "transparent", md: "white" },
-                            py: { xs: 3, md: 6 },
-                            transform: {
-                                xs: "translate(-50%, -50%)",
-                                md: "initial",
-                            },
-                            maxWidth: { xs: "225px", xl: "350px", md: "325px" },
-                            right: { md: 80, xl: -10 }, // Remove the right property for xs breakpoint
-                            top: { xs: "235px", md: "50px" },
-                            scale: { xs: "0.7", md: "0.8", lg: "1" },
-                            left: { xs: "50%" }, // Add this to center horizontally in xs breakpoint
-                        }}
-                    >
-                        <Slider {...settings}>
-                            {items.map((item, i) => (
-                                <ItemCard
-                                    key={i}
-                                    itemTitle={item.itemTitle}
-                                    ageRange={item.ageRange}
-                                    currentPrice={item.currentPrice}
-                                    oldPrice={item.oldPrice}
-                                    buttonText="PRE ORDER"
-                                />
-                            ))}
-                        </Slider>
-                    </Box>
-                    <Box
-                        position="absolute"
-                        sx={{
-                            right: { lg: "50px", xl: "-50px" },
-                            top: { lg: "92.5vh", xl: "800px" },
-                            "& img": {
-                                height: { xs: "0px", xl: "40px" },
-                            },
-                        }}
-                    >
-                        <img src="./assets/Logo Final.png" alt="Logo" />
-                    </Box>
-                </Container>
+                    SHOP NOW
+                </Button>
+            </Box>
+            <Box
+                backgroundColor={theme.palette.primary.main}
+                sx={{
+                    width: { xs: "100%", md: "50%" },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <Box
+                    sx={{
+                        backgroundColor: { xs: "transparent", md: "white" },
+                        py: { xs: 3, md: 6 },
+                        maxWidth: { xs: "225px", md: "350px" },
+                        scale: { xs: "0.7", md: "0.8", lg: "1" },
+                    }}
+                >
+                    <Slider {...settings}>
+                        {items.map((item, i) => (
+                            <ItemCard
+                                key={i}
+                                itemID={item.itemID}
+                                itemTitle={item.itemTitle}
+                                ageRange={item.ageRange}
+                                currentPrice={item.currentPrice}
+                                oldPrice={item.oldPrice}
+                                buttonText="PRE ORDER"
+                            />
+                        ))}
+                    </Slider>
+                </Box>
             </Box>
         </Box>
     );

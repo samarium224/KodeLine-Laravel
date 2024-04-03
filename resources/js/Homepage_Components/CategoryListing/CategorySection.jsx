@@ -43,47 +43,30 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                 >
                     <Box
                         sx={{
-                            display: { xs: "flex", md: "none" },
+                            display: "flex",
                             flexDirection: "column",
-                            justifyContent: "space-between",
+                            justifyContent: "flex-end",
                             alignItems: "center",
                             py: 15,
                             height: "100%",
                         }}
                     >
-                        <Box
-                            width="80%"
-                            sx={{ textAlign: reverse ? "right" : "left" }}
-                        >
-                            <Typography
-                                fontSize="2.5rem"
-                                fontWeight="800"
-                                color={theme.palette.text.grey[500]}
-                                display="block"
-                            >
-                                {category.categoryMobileQuote.title}
-                            </Typography>
-                            <Typography
-                                fontSize="1.33rem"
-                                fontWeight="500"
-                                color={theme.palette.text.grey[500]}
-                                display="block"
-                            >
-                                {category.categoryMobileQuote.subtitle}
-                            </Typography>
-                        </Box>
                         <Button
                             sx={{
                                 color: theme.palette.text.grey[500],
                                 backgroundColor: theme.palette.text.white[100],
                                 fontWeight: "500",
-                                fontSize: "0.825rem",
-                                px: 5,
-                                py: 1.25,
+                                fontSize: {
+                                    xl: "1.1rem",
+                                    md: "0.9rem",
+                                    xs: "0.825rem",
+                                },
+                                px: { xl: 8, md: 5, xs: 3 },
+                                py: { xl: 1.66, md: 1.2, xs: 1 },
                                 "&:hover": { backgroundColor: "#cdcdd0" },
                             }}
                         >
-                            EXPLORE
+                            Shop now
                         </Button>
                     </Box>
                 </Box>
@@ -110,6 +93,7 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                         .map((CategoryItem, i) => (
                             <Grid item xs={6} sm={6} key={i}>
                                 <ItemCard
+                                    itemID={CategoryItem.itemID}
                                     itemImage={CategoryItem.imgURL}
                                     itemTitle={CategoryItem.itemTitle}
                                     ageRange={CategoryItem.ageRange}
@@ -125,6 +109,7 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                         .map((CategoryItem, i) => (
                             <Grid item xs={6} sm={6} key={i}>
                                 <ItemCard
+                                    itemID={CategoryItem.itemID}
                                     itemImage={CategoryItem.imgURL}
                                     itemTitle={CategoryItem.itemTitle}
                                     ageRange={CategoryItem.ageRange}
