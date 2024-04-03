@@ -20,7 +20,7 @@ class CollectionController extends Controller
 
         $product = Products::where("product_category_id", $id)->get();
         $collection_name = Category::where("id", $id)->value('category_name');
-
+        
         return Inertia::render('Collection',[
             'collections' => $collections,
             'collection_name' => $collection_name

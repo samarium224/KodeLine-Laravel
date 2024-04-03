@@ -34,7 +34,7 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
                 <Navigation collections={collections} />
                 <Header />
                 <Banner
-                    text={`EXPLORE ${collection_name} COLLECTION`}
+                    text={`EXPLORE ${collection_name.toUpperCase()} COLLECTION`}
                     variant="title"
                     sx={{
                         fontWeight: 500,
