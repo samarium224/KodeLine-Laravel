@@ -6,6 +6,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowcaseProduct;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -68,6 +69,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('admin/update-product', 'UpdateProduct')->name('updateproduct');
         Route::get('admin/delete-product/{id}', 'DeleteProduct')->name('deleteproduct');
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
+        //ajax subcategory
+        Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
         // order
         Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
     });

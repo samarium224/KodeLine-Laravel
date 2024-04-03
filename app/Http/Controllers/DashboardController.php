@@ -122,7 +122,7 @@ class DashboardController extends Controller
 
         Category::where('id', $category_id)->increment('subcategory_count', 1);
 
-        return redirect()->route('subcategory')->with(
+        return redirect()->route('addsubcategory')->with(
             'message',
             'Sub Category Added Successfully'
         );
@@ -149,7 +149,7 @@ class DashboardController extends Controller
             'slug' => strtolower(str_replace(' ', '-', $request->subcategory_name))
         ]);
 
-        return redirect()->route('subcategory')->with(
+        return redirect()->route('addsubcategory')->with(
             'message',
             'Sub Category Updated Successfully'
         );
