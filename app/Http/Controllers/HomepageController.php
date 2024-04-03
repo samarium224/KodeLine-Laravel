@@ -13,7 +13,7 @@ class HomepageController extends Controller
     //load product in homepage
     public function index()
     {
-        $signatureItemsList = Products::orderBy('created_at', 'desc')->take(10)->get()->map(function ($item) {
+        $signatureItemsList = Products::where('featured','true')->take(10)->get()->map(function ($item) {
             // Assuming 'ageRange' is a string like "3|6", we split it into an array.
             $ageRangeArray = explode('|', $item->ageRange);
 

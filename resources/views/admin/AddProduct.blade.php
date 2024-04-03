@@ -215,6 +215,23 @@
                             </select>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-subtitle text-dark">
+                                <b>Product Display</b>
+                            </div>
+                            <div class="px-3 mt-3">
+                                <input type="checkbox" value="true" name="featured" style="width: 15px; height: 15px;">
+                                <span>featured Item</span>
+                            </div>
+                            <div class="px-3 mt-3">
+                                <input type="checkbox" value="true" name="best_selling" style="width: 15px; height: 15px;">
+                                <span>Best Selling</span>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-dark btn-sm mt-3">Save Product</button>

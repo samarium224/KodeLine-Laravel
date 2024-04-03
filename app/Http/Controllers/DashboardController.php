@@ -107,7 +107,7 @@ class DashboardController extends Controller
     {
         $request->validate([
             'subcategory_name' => 'required|unique:sub_categories',
-            'category_id' => 'required'
+            'category_id' => ['required', 'integer', 'min:1', 'max:100']
         ]);
 
         $category_id = $request->category_id;
@@ -248,8 +248,10 @@ class DashboardController extends Controller
         } else {
             $subcategory_name = "none";
         }
-        // handle out of stock selling
+        // handle out of stock selling and other tic marks
         $continue_selling = $request->continue_selling;
+        $featured = $request->featured;
+        $best_selling = $request->best_selling;
         // Create a new product
         Products::insert([
             'product_name' => $validatedData['product_name'],
@@ -270,7 +272,9 @@ class DashboardController extends Controller
             'colorGroup' => $colorGroup,
             'quantityGroup' => $quantityGroup,
             'imageVariations' => $imgVariationGroup,
-            'continue_selling' => $continue_selling
+            'continue_selling' => $continue_selling,
+            'featured'=> $featured,
+            'best_selling'=> $best_selling,
         ]);
 
         try {

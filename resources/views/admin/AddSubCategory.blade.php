@@ -28,7 +28,7 @@
                             name="subcategory_name" class="form-control">
                     </div>
                     <select name="category_id" class="form-control">
-                        <option selected>select collection</option>
+                        <option selected value="0">select collection</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                         @endforeach

@@ -59,7 +59,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('admin/edit-subcategory/{id}', 'Edit_SubCategory')->name('editsubcategory');
         Route::post('admin/update-subcategory', 'SubCategory_Update')->name('updatesubcategory');
         Route::get('admin/delete-subcategory/{id}', 'Delete_SubCategory')->name('deletesubcategory');
-
         // products
         Route::get('/admin/all-products', 'All_Products')->name('allproducts');
         Route::get('/admin/add-products', 'Add_Products')->name('addproducts');
