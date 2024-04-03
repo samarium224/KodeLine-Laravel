@@ -1,13 +1,13 @@
 @extends('admin.dashboardcore')
 
-@section('page-title', 'Dashboard | Category')
+@section('page-title', 'Dashboard | Collection')
 
-@section('page-heading', 'Edit Category')
-@section('page-active-heading', 'Category')
+@section('page-heading', 'Edit Collection')
+@section('page-active-heading', 'Collection')
 
 @section('dashboard-content')
     <div class="container">
-        <h1>Edit Category</h1>
+        <h1>Edit Collection</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -21,10 +21,10 @@
             @csrf
             <div class="form-group">
                 <input type="text" hidden name="category_id" value="{{$category_info-> id}}">
-                <label class="mb-3" for="category_name">Category Name:</label>
+                <label class="mb-3" for="category_name">Collection Name:</label>
                 <input type="text" id="category_name" name="category_name" value="{{$category_info-> category_name}}" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Edit Category</button>
+            <button type="submit" class="btn btn-primary mt-3">Edit Collection</button>
         </form>
     </div>
 @endsection

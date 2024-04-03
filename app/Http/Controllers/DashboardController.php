@@ -73,7 +73,7 @@ class DashboardController extends Controller
         Products::where('product_category_name', $oldName)
             ->update(['product_category_name' => $newName]);
 
-        return redirect()->route('allcategory')->with(
+        return redirect()->route('addcategory')->with(
             'message',
             'Category Updated Successfully'
         );
