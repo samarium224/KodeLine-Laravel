@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-const ServiceComponent = ({ text, subText }) => {
+const ServiceComponent = ({ text, subText, animationDelay }) => {
     const theme = useTheme();
     return (
         <Box

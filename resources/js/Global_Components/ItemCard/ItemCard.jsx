@@ -1,6 +1,9 @@
+import React, { useEffect, useRef } from "react";
+import { Box } from "@mui/material";
+import { motion, useInView, useAnimation } from "framer-motion";
+
 import Itemdesc from "@/Global_Components/ItemCard/Itemdesc";
 import ProductShowcase from "@/Global_Components/ItemCard/ProductShowcase";
-import { Box } from "@mui/material";
 
 const ItemCard = ({
     itemID,
@@ -10,10 +13,34 @@ const ItemCard = ({
     currentPrice,
     oldPrice,
     buttonText,
+    animationDelay = 0.25,
 }) => {
     const sale = Math.round(((oldPrice - currentPrice) / oldPrice) * 100);
+
+    const fadeFromBottom = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0 },
+    };
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+    const mainControls = useAnimation();
+
+    useEffect(() => {
+        if (isInView) mainControls.start("visible");
+    }, [isInView]);
+
     return (
-        <Box display="flex" flexDirection="column" alignItems="center">
+        <Box
+            ref={ref}
+            component={motion.div}
+            variants={fadeFromBottom}
+            initial="hidden"
+            animate={mainControls}
+            transition={{ duration: 0.66, delay: animationDelay }}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+        >
             <ProductShowcase
                 itemID={itemID}
                 itemImage={itemImage}

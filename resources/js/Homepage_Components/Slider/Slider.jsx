@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,14 +9,18 @@ import SliderComp from "./SliderComp";
 import { HomeSliderData } from "./data";
 
 const SliderComponent = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
     const settings = {
         dots: true,
         infinite: true,
-        speed: 1000,
+        speed: 600,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 4000,
+        fade: true,
+        afterChange: (current) => setCurrentSlide(current),
         appendDots: (dots) => (
             <Box
                 sx={{
@@ -70,6 +74,7 @@ const SliderComponent = () => {
                         subtitle={sliderData.subtitle}
                         reverseAlign={sliderData.reverseAlign}
                         backgroundPosition={sliderData.backgroundPosition}
+                        isActive={i === currentSlide}
                     />
                 ))}
             </Slider>

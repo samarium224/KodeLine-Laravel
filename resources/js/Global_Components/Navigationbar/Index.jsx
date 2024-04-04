@@ -50,7 +50,7 @@ const Navigation = () => {
                     transform: "translateX(-50%)",
                     left: "47.5%",
                     top: { md: 10, xs: 4 },
-                    mx: "5%",
+                    mx: "2.5%",
                 }}
             >
                 <Toolbar sx={{ mt: 1 }}>
@@ -104,12 +104,12 @@ const Navigation = () => {
                                     justifyContent: "center",
                                 }}
                             >
-                                <CategoryMenu
-                                    color={theme.palette.text.grey[500]}
-                                />
                                 <Link href={route("home")}>
                                     <Button sx={navButtonStyle}>Home</Button>
                                 </Link>
+                                <CategoryMenu
+                                    color={theme.palette.text.grey[500]}
+                                />
                                 <Button sx={navButtonStyle}>About us</Button>
                                 {auth.user ? (
                                     <Link href={route("dashboard")}>

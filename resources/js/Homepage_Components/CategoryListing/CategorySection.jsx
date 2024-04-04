@@ -99,6 +99,7 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                                     ageRange={CategoryItem.ageRange}
                                     currentPrice={CategoryItem.currentPrice}
                                     oldPrice={CategoryItem.oldPrice}
+                                    animationDelay={0.2 + (i % 2) * 0.15}
                                 />
                             </Grid>
                         ))}
@@ -115,6 +116,7 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                                     ageRange={CategoryItem.ageRange}
                                     currentPrice={CategoryItem.currentPrice}
                                     oldPrice={CategoryItem.oldPrice}
+                                    animationDelay={0.2 + (i % 2) * 0.15}
                                 />
                             </Grid>
                         ))}

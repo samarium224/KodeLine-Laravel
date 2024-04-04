@@ -23,6 +23,7 @@ const BestSellingItems = () => {
                                 ageRange={signatureItem.ageRange}
                                 currentPrice={signatureItem.currentPrice}
                                 oldPrice={signatureItem.oldPrice}
+                                animationDelay={0.2 + (i % 4) * 0.15}
                             />
                         </Grid>
                     ))}

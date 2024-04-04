@@ -1,4 +1,5 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
+import { motion } from "framer-motion";
 
 const SliderComp = ({
     collectionID,
@@ -8,8 +9,17 @@ const SliderComp = ({
     subtitle,
     reverseAlign = false,
     backgroundPosition = "right bottom",
+    isActive,
 }) => {
     const theme = useTheme();
+    const fadeFromLeft = {
+        hidden: { opacity: 0, x: -50 },
+        visible: { opacity: 1, x: 0 },
+    };
+    const fadeFromRight = {
+        hidden: { opacity: 0, x: 50 },
+        visible: { opacity: 1, x: 0 },
+    };
 
     return (
         <Box backgroundColor={theme.palette.primary.main} width="100vw">
@@ -32,7 +42,7 @@ const SliderComp = ({
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "center",
+                        justifyContent: { xs: "center", md: "end" },
                         lineHeight: "50px",
                         height: "100%",
                         alignItems: {
@@ -44,31 +54,47 @@ const SliderComp = ({
                             md: reverseAlign ? "right" : "left",
                         },
                         mx: { md: 5, xl: 15 },
+                        pb: { xs: 0, md: 15 },
                     }}
                 >
                     <Typography
                         variant="headline"
-                        display="block"
-                        color={theme.palette.text.grey[500]}
+                        component={motion.div}
+                        variants={reverseAlign ? fadeFromRight : fadeFromLeft}
+                        initial="hidden"
+                        animate={isActive ? "visible" : "hidden"}
+                        color={theme.palette.text.white[500]}
+                        transition={{ duration: 0.5, delay: 0 }}
                         sx={{
-                            mb: { xl: 4, xs: 1 },
+                            mb: 1,
                             width: "95%",
+                            textShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
                         }}
                     >
                         {title}
                     </Typography>
                     <Typography
                         variant="subtitle"
-                        display="block"
-                        color={theme.palette.text.grey[500]}
+                        component={motion.div}
+                        variants={reverseAlign ? fadeFromRight : fadeFromLeft}
+                        initial="hidden"
+                        animate={isActive ? "visible" : "hidden"}
+                        transition={{ duration: 0.5, delay: 0.33 }}
+                        color={theme.palette.text.white[500]}
                         sx={{
-                            width: { md: "40%", xs: "87.5%" },
                             mb: { xl: 5, md: 3, xs: 20 },
+                            textShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
                         }}
                     >
                         {subtitle}
                     </Typography>
-                    <Box>
+                    <Box
+                        component={motion.div}
+                        variants={reverseAlign ? fadeFromRight : fadeFromLeft}
+                        initial="hidden"
+                        animate={isActive ? "visible" : "hidden"}
+                        transition={{ duration: 0.5, delay: 0.75 }}
+                    >
                         <Button
                             sx={{
                                 color: theme.palette.text.grey[500],

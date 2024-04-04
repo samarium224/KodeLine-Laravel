@@ -4,7 +4,7 @@ const Banner = ({ text, variant, sx = {} }) => {
     const theme = useTheme();
     const mergedStyles = {
         ...sx,
-        width: { md: "80%", xs: "95%" },
+        width: { md: "75%", xs: "95%" },
     };
 
     return (
@@ -21,7 +21,7 @@ const Banner = ({ text, variant, sx = {} }) => {
                 <Typography
                     variant={variant}
                     color={theme.palette.text.grey[500]}
-                    py={5}
+                    py={text ? 4 : 2.5}
                     sx={mergedStyles}
                 >
                     {text}
