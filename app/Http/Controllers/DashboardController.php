@@ -100,13 +100,15 @@ class DashboardController extends Controller
     {
         $categories = Category::latest()->get();
         $subcategories = SubCategory::latest()->get();
-        return view('admin.AddSubCategory', compact('categories', 'subcategories'));
+        $GroupedByCategory = $subcategories->groupBy('category_name');
+
+        return view('admin.AddSubCategory', compact('categories', 'subcategories', 'GroupedByCategory'));
     }
 
     public function Store_Subcategory(Request $request)
     {
         $request->validate([
-            'subcategory_name' => 'required|unique:sub_categories',
+            'subcategory_name' => 'required',
             'category_id' => ['required', 'integer', 'min:1', 'max:100']
         ]);
 
@@ -162,7 +164,7 @@ class DashboardController extends Controller
 
         Category::where('id', $category_id)->decrement('subcategory_count', 1);
 
-        return redirect()->route('subcategory')->with(
+        return redirect()->route('addsubcategory')->with(
             'message',
             'Sub Category Deleted Successfully'
         );
@@ -214,15 +216,17 @@ class DashboardController extends Controller
             }
         }
 
-        $img_variation = array();
-        if ($vfiles = $request->file('imageVariations')) {
-            foreach ($vfiles as $vfile) {
-                $timestamp = microtime(true) * 10000; // High resolution timestamp
-                $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
-                $vfile->move(public_path('uploads'), $vimage_name);
-                $vimg_url = 'uploads/' . $vimage_name;
-                $img_variation[] = $vimg_url;
+        if ($request->file('imageVariations') != null) {
+            $img_variation = array();
+            if ($vfiles = $request->file('imageVariations')) {
+                foreach ($vfiles as $vfile) {
+                    $timestamp = microtime(true) * 10000; // High resolution timestamp
+                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
+                    $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
+                    $vfile->move(public_path('uploads'), $vimage_name);
+                    $vimg_url = 'uploads/' . $vimage_name;
+                    $img_variation[] = $vimg_url;
+                }
             }
         }
 
@@ -273,8 +277,8 @@ class DashboardController extends Controller
             'quantityGroup' => $quantityGroup,
             'imageVariations' => $imgVariationGroup,
             'continue_selling' => $continue_selling,
-            'featured'=> $featured,
-            'best_selling'=> $best_selling,
+            'featured' => $featured,
+            'best_selling' => $best_selling,
         ]);
 
         try {

@@ -39,41 +39,74 @@
         </form>
 
         {{-- subcategory table --}}
-        <div class="card">
-            <div class="card-title text-dark">
-                <b>Category</b>
-            </div>
-            @if (session()->has('message'))
-                <div class="alert alert-info">
-                    {{ session()->get('message') }}
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-title text-dark">
+                        <b>Category</b>
+                    </div>
+                    @if (session()->has('message'))
+                        <div class="alert alert-info">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Collection</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($subcategories as $subcategory)
+                                <tr>
+                                    <th scope="row">{{ $subcategory->id }}</th>
+                                    <td>{{ $subcategory->subcategory_name }}</td>
+                                    <td>{{ $subcategory->category_name }}</td>
+                                    <td>
+                                        <a href="{{ route('editsubcategory', $subcategory->id) }}"
+                                            class="btn btn-secondary btn-sm">edit</a>
+                                        <a href="{{ route('deletesubcategory', $subcategory->id) }}"
+                                            class="btn btn-dark btn-sm">delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-            @endif
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Category Name</th>
-                        <th scope="col">Collection Name</th>
-                        <th scope="col">slug</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($subcategories as $subcategory)
-                        <tr>
-                            <th scope="row">{{ $subcategory->id }}</th>
-                            <td>{{ $subcategory->subcategory_name }}</td>
-                            <td>{{ $subcategory->category_name }}</td>
-                            <td>{{ $subcategory->slug }}</td>
-                            <td>
-                                <a href="{{ route('editsubcategory', $subcategory->id) }}" class="btn btn-secondary btn-sm">edit</a>
-                                <a href="{{ route('deletesubcategory', $subcategory->id) }}"
-                                    class="btn btn-dark btn-sm">delete</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-title text-dark mb-3">
+                        <b>Category Overview</b>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Index</th>
+                                <th scope="col">Collection</th>
+                                <th scope="col">Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $index = 0;
+                            @endphp
+                            @foreach ($GroupedByCategory as $categoryName => $subcategories)
+                                <tr>
+                                    <td>{{ ++$index }}</td>
+                                    <td>{{ $categoryName }}</td>
+                                    <td>{{ $subcategories->pluck('subcategory_name')->implode(' | ') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+
+
     </div>
 @endsection
