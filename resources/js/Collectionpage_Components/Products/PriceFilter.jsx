@@ -4,9 +4,14 @@ import React, { useState, useEffect } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-const PriceFilter = ({ onPriceRangeChange }) => {
+const PriceFilter = ({
+    onPriceRangeChange,
+    priceRange,
+    setPriceRange,
+    minPrice,
+    maxPrice,
+}) => {
     const theme = useTheme();
-    const [priceRange, setPriceRange] = useState([0, 100]); // Default price range
     const [anchorEl, setAnchorEl] = useState(null); // For dropdown menu
 
     const handlePriceChange = (event, newValue) => {
@@ -14,19 +19,13 @@ const PriceFilter = ({ onPriceRangeChange }) => {
         onPriceRangeChange(newValue);
     };
 
-    const handleDropdownClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const handleDropdownClick = (event) => setAnchorEl(event.currentTarget);
 
-    const handleDropdownClose = () => {
-        setAnchorEl(null);
-    };
+    const handleDropdownClose = () => setAnchorEl(null);
 
     useEffect(() => {
         window.addEventListener("scroll", handleDropdownClose);
-        return () => {
-            window.removeEventListener("scroll", handleDropdownClose);
-        };
+        return () => window.removeEventListener("scroll", handleDropdownClose);
     }, []);
 
     const valueLabelFormat = (value) => `$${value.toFixed(2)}`;
@@ -66,8 +65,8 @@ const PriceFilter = ({ onPriceRangeChange }) => {
                         onChange={handlePriceChange}
                         valueLabelFormat={valueLabelFormat}
                         aria-labelledby="range-slider"
-                        min={0}
-                        max={100}
+                        min={minPrice}
+                        max={maxPrice}
                     />
                 </Box>
             </Menu>

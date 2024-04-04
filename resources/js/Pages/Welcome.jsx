@@ -24,7 +24,12 @@ import { preorderItems } from "@/Global_data/PreorderItems";
 import { usePage } from "@inertiajs/react";
 
 export default function Welcome({ auth }) {
-    const { signatureItemsList, collections, collectionItemList, featuredcollection } = usePage().props;
+    const {
+        signatureItemsList,
+        collections,
+        collectionItemList,
+        featuredcollection,
+    } = usePage().props;
     const { width } = useWindowSize();
 
     const getTheme = () => {
@@ -43,10 +48,14 @@ export default function Welcome({ auth }) {
                     text="Kidsline is your trusted companion, offering a lovingly curated range of top-notch children's products. With swift, free delivery, we
                     make every purchase a joy. Our commitment to uncompromising quality strengthens the bond between you and your little ones,
                     creating cherished moments filled with laughter, warmth, and unforgettable memories."
-                    variant="subtitle"
+                    variant="itemdescTitle"
+                    sx={{ textTransform: "initial" }}
                 />
                 <Services />
-                <SignatureItems signatureItemsList={signatureItemsList} collections={featuredcollection} />
+                <SignatureItems
+                    signatureItemsList={signatureItemsList}
+                    collections={featuredcollection}
+                />
                 <ShopByCategory CollectionItemList={collectionItemList} />
                 <BestSellingItems />
                 {/* <TopCategories /> */}

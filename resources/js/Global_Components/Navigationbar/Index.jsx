@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CategoryMenu from "./CategoryMenu";
 import DrawerContent from "./DrawerContent";
 
-const Navigation = ({collections}) => {
+const Navigation = ({ collections }) => {
     const theme = useTheme();
     const { auth } = usePage().props;
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -50,7 +50,7 @@ const Navigation = ({collections}) => {
                     transform: "translateX(-50%)",
                     left: "47.5%",
                     top: { md: 10, xs: 4 },
-                    mx: "5%",
+                    mx: "2.5%",
                 }}
             >
                 <Toolbar sx={{ mt: 1 }}>
@@ -104,13 +104,16 @@ const Navigation = ({collections}) => {
                                     justifyContent: "center",
                                 }}
                             >
-                                <CategoryMenu
-                                    color={theme.palette.text.grey[500]}
-                                    Collections = {collections}
-                                />
                                 <Link href={route("home")}>
                                     <Button sx={navButtonStyle}>Home</Button>
                                 </Link>
+                                <CategoryMenu
+                                    color={theme.palette.text.grey[500]}
+                                    Collections={collections}
+                                />
+                                <CategoryMenu
+                                    color={theme.palette.text.grey[500]}
+                                />
                                 <Button sx={navButtonStyle}>About us</Button>
                                 {auth.user ? (
                                     <Link href={route("dashboard")}>

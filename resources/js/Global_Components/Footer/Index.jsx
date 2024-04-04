@@ -1,11 +1,25 @@
+import React, { useEffect, useRef } from "react";
 import { Box, Typography, TextField, Button, useTheme } from "@mui/material";
 import FooterBottom from "./FooterBottom";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 const Footer = () => {
     const theme = useTheme();
+    const fadeFromBottom = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0 },
+    };
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+    const mainControls = useAnimation();
+
+    useEffect(() => {
+        if (isInView) mainControls.start("visible");
+    }, [isInView]);
     return (
         <Box my={5}>
             <Box
+                ref={ref}
                 textAlign="center"
                 display="flex"
                 flexDirection="column"
@@ -16,7 +30,11 @@ const Footer = () => {
                     textTransform="uppercase"
                     fontWeight="500"
                     color={theme.palette.text.grey[500]}
-                    display="block"
+                    component={motion.div}
+                    variants={fadeFromBottom}
+                    initial="hidden"
+                    animate={mainControls}
+                    transition={{ duration: 0.5, delay: 0.15 }}
                     mb={1}
                     sx={{
                         fontSize: { xs: "1.5rem", md: "2.75rem" },
@@ -27,7 +45,11 @@ const Footer = () => {
                 </Typography>
                 <Typography
                     variant="itemdescSubtitle"
-                    display="block"
+                    component={motion.div}
+                    variants={fadeFromBottom}
+                    initial="hidden"
+                    animate={mainControls}
+                    transition={{ duration: 0.5, delay: 0.3 }}
                     color={theme.palette.text.grey[500]}
                     width="400px"
                     mb={4}
@@ -36,6 +58,11 @@ const Footer = () => {
                     emails of following us on social media!
                 </Typography>
                 <Box
+                    component={motion.div}
+                    variants={fadeFromBottom}
+                    initial="hidden"
+                    animate={mainControls}
+                    transition={{ duration: 0.5, delay: 0.45 }}
                     display="flex"
                     alignItems="center"
                     sx={{ flexDirection: { xs: "column", md: "row" } }}
@@ -70,7 +97,15 @@ const Footer = () => {
                     </Button>
                 </Box>
             </Box>
-            <FooterBottom />
+            <Box
+                component={motion.div}
+                variants={fadeFromBottom}
+                initial="hidden"
+                animate={mainControls}
+                transition={{ duration: 0.75, delay: 0.6 }}
+            >
+                <FooterBottom />
+            </Box>
         </Box>
     );
 };

@@ -5,9 +5,17 @@ import PriceFilter from "./PriceFilter";
 
 // import { CollectionItemsList } from "./data";
 
-const Products = ({CollectionItemsList}) => {
+const Products = ({ CollectionItemsList }) => {
     const theme = useTheme();
-    const [priceRange, setPriceRange] = useState([0, 1000]); // Default price range
+
+    const lowestPrice = Math.floor(
+        Math.min(...CollectionItemsList.map((item) => item.currentPrice))
+    );
+    const highestPrice = Math.ceil(
+        Math.max(...CollectionItemsList.map((item) => item.currentPrice))
+    );
+
+    const [priceRange, setPriceRange] = useState([lowestPrice, highestPrice]); // Default price range
 
     // Filter items based on price range
     const filteredItems = CollectionItemsList.filter(
@@ -31,7 +39,13 @@ const Products = ({CollectionItemsList}) => {
                     Filter
                 </Typography>
                 {/* Price Filter */}
-                <PriceFilter onPriceRangeChange={handlePriceRangeChange} />
+                <PriceFilter
+                    onPriceRangeChange={handlePriceRangeChange}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    minPrice={lowestPrice}
+                    maxPrice={highestPrice}
+                />
 
                 {/* Age Filter */}
                 {/* Best Selling Filter */}

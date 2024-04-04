@@ -24,6 +24,7 @@
         "@emotion/styled": "^11.11.0",
         "@mui/icons-material": "^5.15.13",
         "@mui/material": "^5.15.13",
+        "framer-motion": "^11.0.24",
         "react-slick": "^0.30.2",
         "slick-carousel": "^1.8.1"
     }

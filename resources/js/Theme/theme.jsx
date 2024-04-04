@@ -5,6 +5,13 @@ const theme_desktop = createTheme({
         primary: {
             main: "#EED8C3",
         },
+        secondary: {
+            main: "#CD864A",
+        },
+        // text: {
+        //     primary: "#686a71",
+        //     secondary: "#fbfbfb",
+        // },
         text: {
             grey: {
                 100: "#e1e1e3",
@@ -32,7 +39,7 @@ const theme_desktop = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "3rem",
+            fontSize: "3.25rem",
             fontWeight: "700",
         },
         title: {

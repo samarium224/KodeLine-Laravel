@@ -30,7 +30,7 @@ const PreOrder = ({ items }) => {
     };
 
     return (
-        <Box display="flex">
+        <Box display="flex" sx={{ flexDirection: { xs: "column", md: "row" } }}>
             <Box
                 sx={{
                     backgroundImage: {
@@ -56,10 +56,10 @@ const PreOrder = ({ items }) => {
                     sx={{
                         backgroundColor: theme.palette.text.white[100],
                         color: theme.palette.text.grey[500],
-                        fontSize: "1.5rem",
+                        fontSize: { xs: "0.9rem", md: "1.5rem" },
                         fontWeight: 400,
-                        px: 10,
-                        py: 2,
+                        px: { xs: 6, md: 10 },
+                        py: { xs: 1.5, md: 2 },
                     }}
                 >
                     SHOP NOW
