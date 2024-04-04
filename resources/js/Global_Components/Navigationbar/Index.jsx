@@ -111,9 +111,6 @@ const Navigation = ({ collections }) => {
                                     color={theme.palette.text.grey[500]}
                                     Collections={collections}
                                 />
-                                <CategoryMenu
-                                    color={theme.palette.text.grey[500]}
-                                />
                                 <Button sx={navButtonStyle}>About us</Button>
                                 {auth.user ? (
                                     <Link href={route("dashboard")}>
