@@ -31,7 +31,7 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
                 <Slogan />
-                <Navigation collections={collections} />
+                <Navigation collections={collections} auth={auth} />
                 <Header />
                 <Banner
                     text={`EXPLORE ${collection_name.toUpperCase()} COLLECTION`}

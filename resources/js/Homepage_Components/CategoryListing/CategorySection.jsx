@@ -66,7 +66,7 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                                 "&:hover": { backgroundColor: "#cdcdd0" },
                             }}
                         >
-                            Shop now
+                            Explore
                         </Button>
                     </Box>
                 </Box>
@@ -77,7 +77,7 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                     display="block"
                     sx={{ mb: { md: 1, xs: 8 } }}
                 >
-                    {category.categoryTitle}
+                    {category.categoryTitle} Collection
                 </Typography>
             </Box>
             <Box

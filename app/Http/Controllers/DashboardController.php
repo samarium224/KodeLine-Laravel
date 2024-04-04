@@ -193,13 +193,13 @@ class DashboardController extends Controller
             'product_long_description' => 'required|string',
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
-            'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:5048',
+            'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'ageRange.*' => 'required',
             'ageGroup.*' => 'required',
             'sizeGroup.*' => 'required',
             'colorGroup.*' => 'required',
             'quantityGroup.*' => 'required|integer',
-            'imageVariations.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:5048',
+            'imageVariations.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
         $product_img_array = array();

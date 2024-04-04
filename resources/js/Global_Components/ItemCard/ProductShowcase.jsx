@@ -24,7 +24,7 @@ const ProductShowcase = ({
                 height: { xs: "232px", md: "270px", lg: "360px", xl: "400px" },
                 width: { xs: "174px", md: "242px", lg: "270px", xl: "300px" },
                 backgroundImage: `url(${itemImage || "./assets/blank.jpg"})`,
-                backgroundSize: "100%",
+                backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 position: "relative",
@@ -37,7 +37,7 @@ const ProductShowcase = ({
                     mb: "0px",
                 },
                 "&:hover": {
-                    backgroundSize: "110%",
+                    // backgroundSize: "110%",
                 },
             }}
         >

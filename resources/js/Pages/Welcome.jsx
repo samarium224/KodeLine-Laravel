@@ -42,7 +42,7 @@ export default function Welcome({ auth }) {
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
                 <Slogan />
-                <Navigation collections={collections} />
+                <Navigation collections={collections} auth={auth} />
                 <SliderComponent></SliderComponent>
                 <Banner
                     text="Kidsline is your trusted companion, offering a lovingly curated range of top-notch children's products. With swift, free delivery, we

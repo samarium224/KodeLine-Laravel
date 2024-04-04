@@ -3,7 +3,7 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import { Link } from "@inertiajs/react";
 // import { Collections } from "@/Global_data/Collections";
 
-const CategoryMenu = ({ color, Collections }) => {
+const CategoryMenu = ({ color, collections }) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenuOpen = (event) => {
@@ -38,7 +38,7 @@ const CategoryMenu = ({ color, Collections }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
             >
-                {Collections.map((collection, i) => (
+                {collections.map((collection, i) => (
                     <Link href={route('collection', {'id':collection.collection_id} )} key={i}>
                         <MenuItem onClick={handleMenuClose}>
                             {collection.collection_name}

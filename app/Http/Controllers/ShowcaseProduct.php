@@ -43,7 +43,7 @@ class ShowcaseProduct extends Controller
 
         return Inertia::render('ItemShowcase',[
             'collections' => $collections,
-            'product' => $ProductItem[0],
+            'product' => $ProductItem[0], //don't touch it works
         ]);
     }
 }

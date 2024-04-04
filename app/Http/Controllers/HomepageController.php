@@ -75,7 +75,7 @@ class HomepageController extends Controller
                 ];
             })->values(); // Reset keys on the collections array for JSON-friendly output
 
-        // dd($collectionItemList);
+        // dd($collections);
         return Inertia::render('Welcome', [
             'signatureItemsList' => $signatureItemsList,
             'collectionItemList' => $collectionItemList,
