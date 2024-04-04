@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShowcaseProduct;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,9 +34,7 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
-Route::get('/itemshowcase', function () {
-    return Inertia::render('ItemShowcase');
-})->name('itemshowcase');
+Route::get('/itemshowcase',[ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -59,7 +59,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('admin/edit-subcategory/{id}', 'Edit_SubCategory')->name('editsubcategory');
         Route::post('admin/update-subcategory', 'SubCategory_Update')->name('updatesubcategory');
         Route::get('admin/delete-subcategory/{id}', 'Delete_SubCategory')->name('deletesubcategory');
-
         // products
         Route::get('/admin/all-products', 'All_Products')->name('allproducts');
         Route::get('/admin/add-products', 'Add_Products')->name('addproducts');
@@ -70,6 +69,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('admin/update-product', 'UpdateProduct')->name('updateproduct');
         Route::get('admin/delete-product/{id}', 'DeleteProduct')->name('deleteproduct');
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
+        //ajax subcategory
+        Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
         // order
         Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
     });

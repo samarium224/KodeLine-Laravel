@@ -3,9 +3,9 @@ import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import React, { useState } from "react";
 import PriceFilter from "./PriceFilter";
 
-import { CollectionItemsList } from "./data";
+// import { CollectionItemsList } from "./data";
 
-const Products = () => {
+const Products = ({ CollectionItemsList }) => {
     const theme = useTheme();
 
     const lowestPrice = Math.floor(

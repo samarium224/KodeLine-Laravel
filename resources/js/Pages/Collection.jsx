@@ -15,8 +15,10 @@ import Footer from "@/Global_Components/Footer/Index";
 import Slogan from "@/Global_Components/Slogan";
 
 import { preorderItems } from "@/Global_data/PreorderItems";
+import { usePage } from "@inertiajs/react";
 
 export default function Collection({ auth, laravelVersion, phpVersion }) {
+    const { collections , collection_name, collectionItemList} = usePage().props;
     const { width } = useWindowSize();
 
     const getTheme = () => {
@@ -29,10 +31,10 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
                 <Slogan />
-                <Navigation />
+                <Navigation collections={collections} />
                 <Header />
                 <Banner
-                    text="EXPLORE BOY'S COLLECTION"
+                    text={`EXPLORE ${collection_name.toUpperCase()} COLLECTION`}
                     variant="title"
                     sx={{
                         fontWeight: 500,
@@ -40,7 +42,7 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
                         wordSpacing: { xs: "12px", md: "15px;" },
                     }}
                 />
-                <Products />
+                <Products CollectionItemsList = {collectionItemList} />
                 <PreOrder items={preorderItems} />
                 <Testimonials />
                 <Footer />

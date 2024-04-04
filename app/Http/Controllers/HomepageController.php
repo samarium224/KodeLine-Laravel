@@ -13,11 +13,12 @@ class HomepageController extends Controller
     //load product in homepage
     public function index()
     {
-        $signatureItemsList = Products::orderBy('created_at', 'desc')->take(10)->get()->map(function ($item) {
+        $signatureItemsList = Products::where('featured', 'true')->take(10)->get()->map(function ($item) {
             // Assuming 'ageRange' is a string like "3|6", we split it into an array.
             $ageRangeArray = explode('|', $item->ageRange);
 
             return [
+                'itemID' => $item->id,
                 'imgURL' => $item->product_img,
                 'itemTitle' => $item->product_name,
                 'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]
@@ -28,9 +29,21 @@ class HomepageController extends Controller
 
         $collections = Category::all()->map(function ($item) {
             return [
-                $item->category_name,
+                'collection_name' => $item->category_name,
+                'collection_id'=> $item->id,
             ];
         });
+
+        $featuredcollections = Products::select('product_category_name', 'product_category_id')
+            ->where('featured', 'true')
+            ->distinct('product_category_name')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'collection_name' => $item->product_category_name,
+                    'collection_id' => $item->product_category_id,
+                ];
+            });
 
         $products = Products::all();
 
@@ -50,6 +63,7 @@ class HomepageController extends Controller
                     'categoryItemList' => $group->take(4)->map(function ($product) {
                         $ageRangeArray = explode('|', $product->ageRange);
                         return [
+                            'itemID' => $product->id,
                             'imgURL' => $product->product_img,
                             'itemTitle' => $product->product_name,
                             'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]
@@ -66,6 +80,7 @@ class HomepageController extends Controller
             'signatureItemsList' => $signatureItemsList,
             'collectionItemList' => $collectionItemList,
             'collections' => $collections,
+            'featuredcollection' => $featuredcollections,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);

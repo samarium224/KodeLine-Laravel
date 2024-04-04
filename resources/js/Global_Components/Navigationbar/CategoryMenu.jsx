@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { Link } from "@inertiajs/react";
-import { Collections } from "@/Global_data/Collections";
+// import { Collections } from "@/Global_data/Collections";
 
-const CategoryMenu = ({ color }) => {
+const CategoryMenu = ({ color, Collections }) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenuOpen = (event) => {
@@ -39,9 +39,9 @@ const CategoryMenu = ({ color }) => {
                 onClose={handleMenuClose}
             >
                 {Collections.map((collection, i) => (
-                    <Link href={route(`collection`)} key={i}>
+                    <Link href={route('collection', {'id':collection.collection_id} )} key={i}>
                         <MenuItem onClick={handleMenuClose}>
-                            {collection.collectionName}
+                            {collection.collection_name}
                         </MenuItem>
                     </Link>
                 ))}

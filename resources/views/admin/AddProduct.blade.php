@@ -140,7 +140,8 @@
                             </div>
                             <div class="row">
                                 <div class="px-3 mt-3">
-                                    <input type="checkbox" value="true" name="continue_selling" style="width: 15px; height: 15px;">
+                                    <input type="checkbox" value="true" name="continue_selling"
+                                        style="width: 15px; height: 15px;">
                                     <span>Continue selling when out of stock</span>
                                 </div>
                             </div>
@@ -207,12 +208,27 @@
 
                             <div class="card-subtitle mt-3">Select Category</div>
                             <select id="product_subcategory_id" name="product_subcategory_id" class="form-control">
-                                <option selected value="0">Select category</option>
-                                @foreach ($subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}
-                                    </option>
-                                @endforeach
+                                <option selected value="0">Select a collection to load categories</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-subtitle text-dark">
+                                <b>Product Display</b>
+                            </div>
+                            <div class="px-3 mt-3">
+                                <input type="checkbox" value="true" name="featured"
+                                    style="width: 15px; height: 15px;">
+                                <span>Featured Item</span>
+                            </div>
+                            <div class="px-3 mt-3">
+                                <input type="checkbox" value="true" name="best_selling"
+                                    style="width: 15px; height: 15px;">
+                                <span>Best Selling</span>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -222,4 +238,35 @@
     </div>
     <script src="{{ asset('js/dropimage.js') }}"></script>
     <script src="{{ asset('js/addvariation.js') }}"></script>
+    <script>
+        document.getElementById('product_category_id').addEventListener('change', function() {
+            var categoryId = this.value;
+            var subcategorySelect = document.getElementById('product_subcategory_id');
+
+            // Clear previous options
+            subcategorySelect.innerHTML = '<option selected value="0">Select Category</option>';
+
+            if (categoryId != 0) {
+                // Send AJAX request to fetch subcategories
+                fetch('/getSubcategories/' + categoryId)
+                    .then(function(response) {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(function(subcategories) {
+                        subcategories.forEach(function(subcategory) {
+                            var option = document.createElement('option');
+                            option.value = subcategory.id;
+                            option.textContent = subcategory.subcategory_name;
+                            subcategorySelect.appendChild(option);
+                        });
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching subcategories:', error);
+                    });
+            }
+        });
+    </script>
 @endsection

@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CategoryMenu from "./CategoryMenu";
 import DrawerContent from "./DrawerContent";
 
-const Navigation = () => {
+const Navigation = ({ collections }) => {
     const theme = useTheme();
     const { auth } = usePage().props;
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -107,6 +107,10 @@ const Navigation = () => {
                                 <Link href={route("home")}>
                                     <Button sx={navButtonStyle}>Home</Button>
                                 </Link>
+                                <CategoryMenu
+                                    color={theme.palette.text.grey[500]}
+                                    Collections={collections}
+                                />
                                 <CategoryMenu
                                     color={theme.palette.text.grey[500]}
                                 />

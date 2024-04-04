@@ -10,7 +10,11 @@ import Header from "@/Global_Components/Header";
 import Testimonials from "@/Global_Components/Testimonials/Index";
 import Footer from "@/Global_Components/Footer/Index";
 
+import { usePage } from "@inertiajs/react";
+
 export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
+    const { collections , product} = usePage().props;
+
     const preorderItems = [
         {
             itemTitle: "GIRL'S SUMMER FASHION OUTFIT",
@@ -31,8 +35,8 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={theme}>
                 <Slogan />
-                <Navigation />
-                <ItemDescription />
+                <Navigation collections={collections} />
+                <ItemDescription product={product} />
                 <Header title="You may also like" />
                 <Box my={5}></Box>
                 <PreOrder items={preorderItems} />

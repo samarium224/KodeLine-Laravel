@@ -1,8 +1,8 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import ItemShopQuantity from "./ItemShopQuantity";
-import { itemData } from "./data";
+// import { itemData } from "./data";
 
-const ItemDescriptionTexts = () => {
+const ItemDescriptionTexts = ({itemData}) => {
     const theme = useTheme();
     return (
         <Box width="40%">
