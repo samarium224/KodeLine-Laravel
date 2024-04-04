@@ -30,7 +30,7 @@ class HomepageController extends Controller
         $collections = Category::all()->map(function ($item) {
             return [
                 'collection_name' => $item->category_name,
-                'collection_id'=> $item->id,
+                'collection_id' => $item->id,
             ];
         });
 
@@ -75,12 +75,25 @@ class HomepageController extends Controller
                 ];
             })->values(); // Reset keys on the collections array for JSON-friendly output
 
+        $bestsellingItems = Products::where('best_selling', 'true')->get()->map(function ($item) {
+            $ageRangeArray = explode('|', $item->ageRange);
+
+            return [
+                'itemID' => $item->id,
+                'imgURL' => $item->product_img,
+                'itemTitle' => $item->product_name,
+                'ageRange' => $ageRangeArray,
+                'currentPrice' => $item->price,
+                'oldPrice' => $item->compare_price,
+            ];
+        });
         // dd($collections);
         return Inertia::render('Welcome', [
             'signatureItemsList' => $signatureItemsList,
             'collectionItemList' => $collectionItemList,
             'collections' => $collections,
             'featuredcollection' => $featuredcollections,
+            'bestsellingItems'=> $bestsellingItems,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);

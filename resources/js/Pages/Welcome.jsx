@@ -29,6 +29,7 @@ export default function Welcome({ auth }) {
         collections,
         collectionItemList,
         featuredcollection,
+        bestsellingItems,
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -57,7 +58,7 @@ export default function Welcome({ auth }) {
                     collections={featuredcollection}
                 />
                 <ShopByCategory CollectionItemList={collectionItemList} />
-                <BestSellingItems />
+                <BestSellingItems bestSellingItemsList={bestsellingItems} collections={collections} />
                 {/* <TopCategories /> */}
                 <PreOrder items={preorderItems} />
                 <Testimonials />

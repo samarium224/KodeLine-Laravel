@@ -197,11 +197,11 @@ class DashboardController extends Controller
             'product_subcategory_id' => 'required',
             'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'ageRange.*' => 'required',
-            'ageGroup.*' => 'required',
-            'sizeGroup.*' => 'required',
-            'colorGroup.*' => 'required',
-            'quantityGroup.*' => 'required|integer',
-            'imageVariations.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'ageGroup.*' => 'nullable',
+            'sizeGroup.*' => 'nullable',
+            'colorGroup.*' => 'nullable',
+            'quantityGroup.*' => 'nullable|integer',
+            'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
         $product_img_array = array();
@@ -228,6 +228,8 @@ class DashboardController extends Controller
                     $img_variation[] = $vimg_url;
                 }
             }
+        }else{
+            $img_variation = ["none"];
         }
 
         $image_set = implode('|', $product_img_array);
@@ -355,10 +357,10 @@ class DashboardController extends Controller
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
             'ageRange.*' => 'required',
-            'ageGroup.*' => 'required',
-            'sizeGroup.*' => 'required',
-            'colorGroup.*' => 'required',
-            'quantityGroup.*' => 'required|integer',
+            'ageGroup.*' => 'nullable',
+            'sizeGroup.*' => 'nullable',
+            'colorGroup.*' => 'nullable',
+            'quantityGroup.*' => 'nullable|integer',
         ]);
 
         $ageRange = implode('|', $request->ageRange);
