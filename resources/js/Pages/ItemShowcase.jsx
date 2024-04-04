@@ -35,7 +35,7 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={theme}>
                 <Slogan />
-                <Navigation collections={collections} />
+                <Navigation collections={collections} auth={auth} />
                 <ItemDescription product={product} />
                 <Header title="You may also like" />
                 <Box my={5}></Box>
