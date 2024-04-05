@@ -10,7 +10,7 @@ const BestSellingHeader = ({ title, collections }) => {
                 {collections.map((category, i) => (
                     <CustomButton
                         key={i}
-                        text={category}
+                        text={category.collection_name}
                         sx={{
                             mx: 1,
                             px: { xs: 2, md: 4 },

@@ -29,11 +29,21 @@ class DashboardController extends Controller
     public function All_Category_Store(Request $request)
     {
         $request->validate([
-            'category_name' => 'required|unique:categories'
+            'category_name' => 'required|unique:categories',
+            'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
+
+        if ($file = $request->file('category_img')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/collections'), $image_name);
+            $img_url = 'uploads/collections/' . $image_name;
+        }
 
         Category::insert([
             'category_name' => $request->category_name,
+            'category_img' => $img_url,
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
 
@@ -81,7 +91,21 @@ class DashboardController extends Controller
 
     public function Delete_Category($id)
     {
-        Category::findOrFail($id)->delete();
+        $category = Category::findOrFail($id);
+
+        // Delete the associated image file
+        $imagePath = public_path($category->category_img);
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+
+        Products::where('product_category_id', $category->id)->update([
+            'product_category_name' => 'none',
+            'product_category_id' => 0,
+        ]);
+
+        // Delete the category
+        $category->delete();
 
         return redirect()->route('addcategory')->with(
             'message',
@@ -100,13 +124,15 @@ class DashboardController extends Controller
     {
         $categories = Category::latest()->get();
         $subcategories = SubCategory::latest()->get();
-        return view('admin.AddSubCategory', compact('categories', 'subcategories'));
+        $GroupedByCategory = $subcategories->groupBy('category_name');
+
+        return view('admin.AddSubCategory', compact('categories', 'subcategories', 'GroupedByCategory'));
     }
 
     public function Store_Subcategory(Request $request)
     {
         $request->validate([
-            'subcategory_name' => 'required|unique:sub_categories',
+            'subcategory_name' => 'required',
             'category_id' => ['required', 'integer', 'min:1', 'max:100']
         ]);
 
@@ -162,7 +188,7 @@ class DashboardController extends Controller
 
         Category::where('id', $category_id)->decrement('subcategory_count', 1);
 
-        return redirect()->route('subcategory')->with(
+        return redirect()->route('addsubcategory')->with(
             'message',
             'Sub Category Deleted Successfully'
         );
@@ -195,11 +221,11 @@ class DashboardController extends Controller
             'product_subcategory_id' => 'required',
             'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'ageRange.*' => 'required',
-            'ageGroup.*' => 'required',
-            'sizeGroup.*' => 'required',
-            'colorGroup.*' => 'required',
-            'quantityGroup.*' => 'required|integer',
-            'imageVariations.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'ageGroup.*' => 'nullable',
+            'sizeGroup.*' => 'nullable',
+            'colorGroup.*' => 'nullable',
+            'quantityGroup.*' => 'nullable|integer',
+            'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
         $product_img_array = array();
@@ -214,16 +240,20 @@ class DashboardController extends Controller
             }
         }
 
-        $img_variation = array();
-        if ($vfiles = $request->file('imageVariations')) {
-            foreach ($vfiles as $vfile) {
-                $timestamp = microtime(true) * 10000; // High resolution timestamp
-                $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
-                $vfile->move(public_path('uploads'), $vimage_name);
-                $vimg_url = 'uploads/' . $vimage_name;
-                $img_variation[] = $vimg_url;
+        if ($request->file('imageVariations') != null) {
+            $img_variation = array();
+            if ($vfiles = $request->file('imageVariations')) {
+                foreach ($vfiles as $vfile) {
+                    $timestamp = microtime(true) * 10000; // High resolution timestamp
+                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
+                    $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
+                    $vfile->move(public_path('uploads'), $vimage_name);
+                    $vimg_url = 'uploads/' . $vimage_name;
+                    $img_variation[] = $vimg_url;
+                }
             }
+        } else {
+            $img_variation = ["none"];
         }
 
         $image_set = implode('|', $product_img_array);
@@ -273,8 +303,8 @@ class DashboardController extends Controller
             'quantityGroup' => $quantityGroup,
             'imageVariations' => $imgVariationGroup,
             'continue_selling' => $continue_selling,
-            'featured'=> $featured,
-            'best_selling'=> $best_selling,
+            'featured' => $featured,
+            'best_selling' => $best_selling,
         ]);
 
         try {
@@ -351,10 +381,10 @@ class DashboardController extends Controller
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
             'ageRange.*' => 'required',
-            'ageGroup.*' => 'required',
-            'sizeGroup.*' => 'required',
-            'colorGroup.*' => 'required',
-            'quantityGroup.*' => 'required|integer',
+            'ageGroup.*' => 'nullable',
+            'sizeGroup.*' => 'nullable',
+            'colorGroup.*' => 'nullable',
+            'quantityGroup.*' => 'nullable|integer',
         ]);
 
         $ageRange = implode('|', $request->ageRange);
@@ -406,7 +436,21 @@ class DashboardController extends Controller
     public function DeleteProduct($id)
     {
 
-        Products::findOrFail($id)->delete();
+        $product = Products::findOrFail($id);
+
+        // Split the product image URLs into an array
+        $imageUrls = explode('|', $product->product_img);
+
+        // Delete each associated image file
+        foreach ($imageUrls as $imageUrl) {
+            $imagePath = public_path($imageUrl);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        // Delete the product
+        $product->delete();
 
         return redirect()->route('allproducts')->with(
             'message',

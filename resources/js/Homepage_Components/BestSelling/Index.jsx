@@ -1,9 +1,9 @@
 import { Box, Button, Container, Grid, useTheme } from "@mui/material";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import BestSellingHeader from "./BestSellingHeader";
-import { bestSellingItemsList, collections } from "./data";
+// import { bestSellingItemsList, collections } from "./data";
 
-const BestSellingItems = () => {
+const BestSellingItems = ({bestSellingItemsList , collections}) => {
     const theme = useTheme();
 
     return (
@@ -23,6 +23,7 @@ const BestSellingItems = () => {
                                 ageRange={signatureItem.ageRange}
                                 currentPrice={signatureItem.currentPrice}
                                 oldPrice={signatureItem.oldPrice}
+                                itemImage={signatureItem.imgURL}
                                 animationDelay={0.2 + (i % 4) * 0.15}
                             />
                         </Grid>
