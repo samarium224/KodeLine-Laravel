@@ -91,7 +91,21 @@ class DashboardController extends Controller
 
     public function Delete_Category($id)
     {
-        Category::findOrFail($id)->delete();
+        $category = Category::findOrFail($id);
+
+        // Delete the associated image file
+        $imagePath = public_path($category->category_img);
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+
+        Products::where('product_category_id', $category->id)->update([
+            'product_category_name' => 'none',
+            'product_category_id' => 0,
+        ]);
+
+        // Delete the category
+        $category->delete();
 
         return redirect()->route('addcategory')->with(
             'message',
@@ -422,7 +436,21 @@ class DashboardController extends Controller
     public function DeleteProduct($id)
     {
 
-        Products::findOrFail($id)->delete();
+        $product = Products::findOrFail($id);
+
+        // Split the product image URLs into an array
+        $imageUrls = explode('|', $product->product_img);
+
+        // Delete each associated image file
+        foreach ($imageUrls as $imageUrl) {
+            $imagePath = public_path($imageUrl);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        // Delete the product
+        $product->delete();
 
         return redirect()->route('allproducts')->with(
             'message',

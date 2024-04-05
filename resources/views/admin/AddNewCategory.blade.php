@@ -106,7 +106,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Collection Name</th>
                         <th scope="col">Category</th>
-                        <th scope="col">slug</th>
+                        <th scope="col">Product Count</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -116,7 +116,7 @@
                             <th scope="row">{{ $category->id }}</th>
                             <td>{{ $category->category_name }}</td>
                             <td>{{ $category->subcategory_count }}</td>
-                            <td>{{ $category->slug }}</td>
+                            <td>{{ $category->product_count }}</td>
                             <td>
                                 <a href="{{ route('editcategory', $category->id) }}"
                                     class="btn btn-secondary btn-sm">edit</a>
