@@ -61,6 +61,7 @@ const Testimonials = () => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
+                    fade: true,
                 },
             },
         ],

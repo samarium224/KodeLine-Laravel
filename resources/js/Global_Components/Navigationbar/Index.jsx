@@ -17,7 +17,6 @@ import CategoryMenu from "./CategoryMenu";
 import DrawerContent from "./DrawerContent";
 
 const Navigation = ({ collections, auth }) => {
-
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [drawerOpen, setDrawerOpen] = useState(false);
