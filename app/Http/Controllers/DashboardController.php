@@ -29,11 +29,21 @@ class DashboardController extends Controller
     public function All_Category_Store(Request $request)
     {
         $request->validate([
-            'category_name' => 'required|unique:categories'
+            'category_name' => 'required|unique:categories',
+            'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
+
+        if ($file = $request->file('category_img')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/collections'), $image_name);
+            $img_url = 'uploads/collections/' . $image_name;
+        }
 
         Category::insert([
             'category_name' => $request->category_name,
+            'category_img' => $img_url,
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
 
@@ -228,7 +238,7 @@ class DashboardController extends Controller
                     $img_variation[] = $vimg_url;
                 }
             }
-        }else{
+        } else {
             $img_variation = ["none"];
         }
 

@@ -55,7 +55,7 @@ class HomepageController extends Controller
             ->map(function ($group, $categoryName) {
                 return [
                     'categoryTitle' => $categoryName,
-                    'categoryImage' => "./assets/Girls_6_9.png", // Consider dynamically determining this based on the category if possible
+                    'categoryImage' => Category::where('category_name', $categoryName)->value('category_img'),
                     'categoryMobileQuote' => [
                         'title' => "Sun-kissed Style",
                         'subtitle' => "For Every Little Princess",
