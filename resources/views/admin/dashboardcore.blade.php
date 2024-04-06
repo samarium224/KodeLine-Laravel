@@ -136,8 +136,9 @@
                             <span class="hide-menu">Products</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{ route('addproducts') }}">Add Product</a></li>
-                            <li><a href="{{ route('allproducts') }}">Product List</a></li>
-                            <li><a href="{{ route('addcategory') }}">Collections</a></li>
+                            <li><a href="{{ route('allproducts') }}">Inventory</a></li>
+                            <li><a href="{{ route('addcategory') }}">Add Collection</a></li>
+                            <li><a href="{{ route('allcategory') }}">Collections</a></li>
                             <li><a href="{{ route('addsubcategory') }}">Category</a></li>
                         </ul>
                     </li> <hr class="side-hr">
@@ -146,7 +147,7 @@
                             <span class="hide-menu">Customers</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="#">Add New Collection</a></li>
-                            <li><a href="{{ route('allcategory') }}">Collection List</a></li>
+                            <li><a href="#">Collection List</a></li>
                         </ul>
                     </li><hr class="side-hr">
                     <li> <a class="has-arrow" href="#content" aria-expanded="false">

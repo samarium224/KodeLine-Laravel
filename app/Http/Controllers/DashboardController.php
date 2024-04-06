@@ -71,7 +71,7 @@ class DashboardController extends Controller
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
 
-        return redirect()->route('addcategory')->with(
+        return redirect()->route('allcategory')->with(
             'message',
             'Category Added Successfully'
         );
@@ -107,7 +107,7 @@ class DashboardController extends Controller
         Products::where('product_category_name', $oldName)
             ->update(['product_category_name' => $newName]);
 
-        return redirect()->route('addcategory')->with(
+        return redirect()->route('allcategory')->with(
             'message',
             'Category Updated Successfully'
         );
@@ -139,7 +139,7 @@ class DashboardController extends Controller
         // Delete the category
         $category->delete();
 
-        return redirect()->route('addcategory')->with(
+        return redirect()->route('allcategory')->with(
             'message',
             'Category Deleted Successfully'
         );
