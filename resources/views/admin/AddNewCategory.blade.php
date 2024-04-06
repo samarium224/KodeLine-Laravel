@@ -73,15 +73,57 @@
                     <div class="card-title text-secondary"><b>Collection Image</b></div>
                     <div class="row">
                         <div class="col-md-8">
-                            <div id="dropzone" class="dropzone">
+                            <div id="dropzone1" class="dropzone">
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
-                            <input type="file" id="product_img" name="category_img" accept="image/*" style="opacity: 0;"
+                            <input type="file" id="product_img1" name="category_img" accept="image/*" style="opacity: 0;"
                                 required>
                         </div>
                         <div class="col-md-4">
-                            <div id="image-preview" class="image-preview">
+                            <div id="image-preview1" class="image-preview">
                                 <img src="{{ asset('assets/admin_select_an_image.jpg') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title text-secondary mb-3">
+                    <b>Collection Header Image</b>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="image-preview2" class="image-preview">
+                                <img src="{{ asset('assets/admin-col-pc.jpg') }}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="dropzone2" class="dropzone">
+                                <div class="dropzone-text">Drag and drop image or click to select</div>
+                            </div>
+                            <input type="file" id="product_img2" name="cat_headerImg_PC" accept="image/*"
+                                style="opacity: 0;" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title text-secondary mb-3">
+                    <b>Collection Header Mobile Image</b>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div id="dropzone3" class="dropzone">
+                                <div class="dropzone-text">Drag and drop image or click to select</div>
+                            </div>
+                            <input type="file" id="product_img3" name="cat_headerImg_mobile" accept="image/*"
+                                style="opacity: 0;" required>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="image-preview3" class="image-preview">
+                                <img src="{{ asset('assets/admin_col_mobile.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>

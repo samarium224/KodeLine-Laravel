@@ -31,6 +31,10 @@ class DashboardController extends Controller
         $request->validate([
             'category_name' => 'required|unique:categories',
             'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            // 'category_title'=> 'required',
+            // 'category_subtitle'=> 'required',
         ]);
 
         if ($file = $request->file('category_img')) {
@@ -41,9 +45,29 @@ class DashboardController extends Controller
             $img_url = 'uploads/collections/' . $image_name;
         }
 
+        if ($file = $request->file('cat_headerImg_PC')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/collections/contents'), $image_name);
+            $header_url = 'uploads/collections/contents/' . $image_name;
+        }
+
+        if ($file = $request->file('cat_headerImg_mobile')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/collections/contents'), $image_name);
+            $mobileHeader_url = 'uploads/collections/contents/' . $image_name;
+        }
+
         Category::insert([
             'category_name' => $request->category_name,
             'category_img' => $img_url,
+            'cat_headerImg_PC' => $header_url,
+            'cat_headerImg_mobile' => $mobileHeader_url,
+            'category_title' => 'Wrap Your Little Ones in Love',
+            'category_subtitle' => "Simplify parenting decisions with our thoughtfully curated kid's fashion",
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
 
@@ -93,10 +117,18 @@ class DashboardController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        // Delete the associated image file
-        $imagePath = public_path($category->category_img);
-        if (file_exists($imagePath)) {
-            unlink($imagePath);
+        // Delete all associated image files
+        $imagePaths = [
+            public_path($category->category_img),
+            public_path($category->cat_headerImg_PC),
+            public_path($category->cat_headerImg_mobile),
+            // Add more paths for other image attributes if necessary
+        ];
+
+        foreach ($imagePaths as $imagePath) {
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
 
         Products::where('product_category_id', $category->id)->update([

@@ -19,7 +19,18 @@ class CollectionController extends Controller
             ];
         });
 
-        $collection_name = Category::where("id", $id)->value('category_name');
+        $collection_info = Category::where("id", $id)->get()->map(function ($item) {
+            return [
+                'category_name' => $item->category_name,
+                'title' => $item->category_title,
+                'subtitle' => $item->category_subtitle,
+                'category_img' => $item->category_img,
+                'backgroundImgURL' => $item->cat_headerImg_PC,
+                'mobileBackgroundImgURL' => $item->cat_headerImg_mobile,
+                'reverseAlign' => $item->reverseAlign,
+                'backgroundPosition' => "right top",
+            ];
+        });
 
         $CollectionItemList = Products::where('product_category_id', $id)->take(30)->get()->map(function ($item) {
             // Assuming 'ageRange' is a string like "3|6", we split it into an array.
@@ -34,12 +45,14 @@ class CollectionController extends Controller
             ];
         });
 
+        // dd($collection_info[0]);
+
         return Inertia::render('Collection',[
             'collections' => $collections,
-            'collection_name' => $collection_name,
+            'collection_info' => $collection_info[0],
             'collectionItemList'=> $CollectionItemList,
         ]);
     }
 
-    
+
 }

@@ -1,8 +1,8 @@
 import { Button, Box, Typography, useTheme } from "@mui/material";
 
-import { CollectionHeaderData } from "./Data";
+// import { CollectionHeaderData } from "./Data";
 
-const Header = () => {
+const Header = ({CollectionHeaderData}) => {
     const theme = useTheme();
     return (
         <Box
@@ -17,7 +17,7 @@ const Header = () => {
                         md: `url("${CollectionHeaderData.backgroundImgURL}")`,
                     },
                     backgroundPosition: CollectionHeaderData.backgroundPosition,
-                    backgroundSize: "contain",
+                    backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
 
                     width: { xs: "100%", maxAllowableWidth: "1960px" },

@@ -18,7 +18,7 @@ import { preorderItems } from "@/Global_data/PreorderItems";
 import { usePage } from "@inertiajs/react";
 
 export default function Collection({ auth, laravelVersion, phpVersion }) {
-    const { collections , collection_name, collectionItemList} = usePage().props;
+    const { collections , collection_info, collectionItemList} = usePage().props;
     const { width } = useWindowSize();
 
     const getTheme = () => {
@@ -32,9 +32,9 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
             <ThemeProvider theme={getTheme()}>
                 <Slogan />
                 <Navigation collections={collections} auth={auth} />
-                <Header />
+                <Header CollectionHeaderData={collection_info}/>
                 <Banner
-                    text={`EXPLORE ${collection_name.toUpperCase()} COLLECTION`}
+                    text={`EXPLORE ${collection_info['category_name'].toUpperCase()} COLLECTION`}
                     variant="title"
                     sx={{
                         fontWeight: 500,

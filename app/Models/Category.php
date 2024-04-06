@@ -10,7 +10,12 @@ class Category extends Model
     use HasFactory;
     protected $fillable = [
         'category_name',
+        'category_title',
+        'category_subtitle',
         'category_img',
+        'cat_headerImg_PC',
+        'cat_headerImg_mobile',
+        'reverseAlign',
         'slug',
     ];
 }
