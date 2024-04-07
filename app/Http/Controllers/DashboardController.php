@@ -449,15 +449,39 @@ class DashboardController extends Controller
             'sizeGroup.*' => 'nullable',
             'colorGroup.*' => 'nullable',
             'quantityGroup.*' => 'nullable|integer',
+            'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
+
+
+        if ($request->file('imageVariations') != null) {
+            $img_variation = array();
+            if ($vfiles = $request->file('imageVariations')) {
+                foreach ($vfiles as $vfile) {
+                    $timestamp = microtime(true) * 10000; // High resolution timestamp
+                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
+                    $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
+                    $vfile->move(public_path('uploads'), $vimage_name);
+                    $vimg_url = 'uploads/' . $vimage_name;
+                    $img_variation[] = $vimg_url;
+                }
+            }
+            // implode here for the condition safety
+            $imgVariationGroup = implode('|', $img_variation);
+        } else {
+            $imgVariationGroup = Products::where('id', $request->product_id)->value('imageVariations');
+        }
 
         $ageRange = implode('|', $request->ageRange);
         $ageGroup = implode('|', $request->ageGroup);
         $sizeGroup = implode('|', $request->sizeGroup);
         $colorGroup = implode('|', $request->colorGroup);
         $quantityGroup = implode('|', $request->quantityGroup);
-        // handle out of stock selling
+
+        // handle out of stock selling and other tic marks
         $continue_selling = $request->continue_selling;
+        $featured = $request->featured;
+        $best_selling = $request->best_selling;
+
         //get the product id
         $product_id = $request->product_id;
 
@@ -491,7 +515,10 @@ class DashboardController extends Controller
             'sizeGroup' => $sizeGroup,
             'colorGroup' => $colorGroup,
             'quantityGroup' => $quantityGroup,
-            'continue_selling' => $continue_selling
+            'imageVariations' => $imgVariationGroup,
+            'continue_selling' => $continue_selling,
+            'featured' => $featured,
+            'best_selling' => $best_selling,
         ]);
 
         return redirect()->route('allproducts')->with('success', 'Product Updated successfully!');

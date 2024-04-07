@@ -143,7 +143,8 @@
                             </div>
                             <div class="row">
                                 <div class="px-3 mt-3">
-                                    <input type="checkbox" name="continue_selling" style="width: 15px; height: 15px;">
+                                    <input type="checkbox" name="continue_selling" style="width: 15px; height: 15px;"
+                                        {{ $productinfo->continue_selling ? 'checked' : '' }}>
                                     <span>Continue selling when out of stock</span>
                                 </div>
                             </div>
@@ -169,6 +170,16 @@
                                 $quantityGroup = explode('|', $productinfo->quantityGroup);
                                 $imgVariationGroup = explode('|', $productinfo->imageVariations);
                             @endphp
+                            <div class="card">
+                                <div class="card-title">Image Variations</div>
+                                <div class="row">
+                                    @foreach ($imgVariationGroup as $imges)
+                                        <div class="col-3">
+                                            <img class="img-thumbnail" src="{{ asset($imges) }}" alt="">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
 
                             @foreach ($sizeGroup as $i => $size)
                                 <div class="variation row" id="variationTemplate">
@@ -177,7 +188,7 @@
                                             <input type="file" name="imageVariations[]" accept="image/*"
                                                 class="form-control image-upload"
                                                 style="opacity: 0; position: absolute; width: 100%; height: 100%; cursor: pointer;">
-                                            <img src="{{ asset($imgVariationGroup[$i]) }}" alt=""
+                                            <img src="" alt=""
                                                 style="max-width: 100%; max-height: 100%; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
                                         </div>
                                     </div>
@@ -216,20 +227,42 @@
                             </div>
                             <div class="card-subtitle mt-3">Select collection for your product</div>
                             <select id="product_category_id" name="product_category_id" class="form-control">
-                                <option selected value="0">Select collection</option>
+                                <option value="0">Select collection</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    <option value="{{ $category->id }}"
+                                        {{ $productinfo->product_category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->category_name }}
+                                    </option>
                                 @endforeach
                             </select>
 
                             <div class="card-subtitle mt-3">Select Category</div>
                             <select id="product_subcategory_id" name="product_subcategory_id" class="form-control">
-                                <option selected value="0">Select category</option>
+                                <option value="0">Select category</option>
                                 @foreach ($subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}
+                                    <option value="{{ $subcategory->id }}"
+                                        {{ $productinfo->product_subcategory_id == $subcategory->id ? 'selected' : '' }}>
+                                        {{ $subcategory->subcategory_name }}
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-subtitle text-dark">
+                                <b>Product Display</b>
+                            </div>
+                            <div class="px-3 mt-3">
+                                <input type="checkbox" value="true" name="featured" style="width: 15px; height: 15px;"
+                                    {{ $productinfo->featured ? 'checked' : '' }}>
+                                <span>Featured Item</span>
+                            </div>
+                            <div class="px-3 mt-3">
+                                <input type="checkbox" value="true" name="best_selling"
+                                    style="width: 15px; height: 15px;" {{ $productinfo->best_selling ? 'checked' : '' }}>
+                                <span>Best Selling</span>
+                            </div>
                         </div>
                     </div>
                 </div>
