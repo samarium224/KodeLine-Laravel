@@ -31,7 +31,15 @@
                     <tr>
                         <th scope="row">{{ $product->id }}</th>
                         <td>
-                            <img src="{{ '../' . $product->product_img }}" alt="" width="100px"><br>
+                            @php
+                                $product_img = explode('|', $product->product_img);
+                                if (count($product_img) != 1) {
+                                    $product_img = $product_img[0];
+                                } else {
+                                    $product_img = $product->product_img;
+                                }
+                            @endphp
+                            <img src="{{ asset($product_img) }}" alt="" width="100px"><br>
                             <a href="{{ route('editproductimg', $product->id) }}"
                                 class="btn btn-outline-dark btn-sm mt-2">Change Image</a>
                         </td>
@@ -41,10 +49,10 @@
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->price }}</td>
                         @php
-                            if ($product->continue_selling == Null) {
-                                $outstock_sell = "no";
-                            }else{
-                                $outstock_sell = "yes";
+                            if ($product->continue_selling == null) {
+                                $outstock_sell = 'no';
+                            } else {
+                                $outstock_sell = 'yes';
                             }
                         @endphp
                         <td>{{ $outstock_sell }}</td>

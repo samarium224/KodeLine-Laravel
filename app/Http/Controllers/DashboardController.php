@@ -393,21 +393,35 @@ class DashboardController extends Controller
     public function UpdateProductImage(Request $request)
     {
         $validatedData = $request->validate([
-            'product_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the image size limit as needed
+            'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Adjust the image size limit as needed
             'product_id' => 'required|integer'
         ]);
 
         $product_id = $request->product_id;
-        $image = $request->file('product_img');
-        $img_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        $request->product_img->move(public_path('uploads'), $img_name);
-        $img_url = 'uploads/' . $img_name;
+
+        if ($request->file('product_img') != null) {
+            $img = array();
+            if ($files = $request->file('product_img')) {
+                foreach ($files as $file) {
+                    $timestamp = microtime(true) * 10000; // High resolution timestamp
+                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
+                    $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('uploads'), $image_name);
+                    $img_url = 'uploads/' . $image_name;
+                    $img[] = $img_url;
+                }
+            }
+            // implode here for the condition safety
+            $productImages = implode('|', $img);
+        } else {
+            $productImages = Products::where('id', $product_id)->value('product_img');
+        }
 
         Products::findOrFail($product_id)->update([
-            'product_img' => $img_url,
+            'product_img' => $productImages,
         ]);
 
-        return redirect()->route('allproducts')->with('success', 'Product Updated successfully!');
+        return redirect()->route('allproducts')->with('success', 'Product Images Updated successfully!');
     }
 
     public function EditProduct($id)

@@ -227,8 +227,6 @@
                                     style="width: 15px; height: 15px;">
                                 <span>Best Selling</span>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
