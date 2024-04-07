@@ -22,7 +22,7 @@ const ItemDescriptionImages = ({ itemData }) => {
                 className="inactive-item-images"
                 display="flex"
                 flexDirection="column"
-                justifyContent="space-between"
+                justifyContent="flex-start"
             >
                 {itemData.imgURL.secondary.map((image, i) => (
                     <Box
@@ -59,7 +59,7 @@ const ItemDescriptionImages = ({ itemData }) => {
                     backgroundRepeat: "no-repeat",
                     cursor: "pointer",
                 }}
-                onClick={() => handleOpen(itemData.imgURL.primary[0])}
+                onClick={() => handleOpen(itemData.imgURL.primary)}
             />
 
             <Modal

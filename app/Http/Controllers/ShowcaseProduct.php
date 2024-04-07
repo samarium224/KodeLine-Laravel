@@ -25,11 +25,12 @@ class ShowcaseProduct extends Controller
             $product_img = explode('|', $item->product_img);
             $colorGroup = explode('|', $item->colorGroup);
             $sizeGroup = explode('|', $item->sizeGroup);
+            $imgvariation = explode('|', $item->imageVariations);
             return [
                 'itemName' => $item->product_name,
                 'imgURL' => [
-                    'primary' => $product_img,
-                    'secondary' => $product_img,
+                    'primary' => $product_img[0],
+                    'secondary' => $imgvariation,
                 ],
                 'price' => $item->price,
                 'colorVariants' => $colorGroup,

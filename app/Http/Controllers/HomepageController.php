@@ -16,10 +16,15 @@ class HomepageController extends Controller
         $signatureItemsList = Products::where('featured', 'true')->take(10)->get()->map(function ($item) {
             // Assuming 'ageRange' is a string like "3|6", we split it into an array.
             $ageRangeArray = explode('|', $item->ageRange);
+            $product_img = explode('|', $item->product_img);
+
+            if (count($product_img) != 1) {
+                $product_img = $product_img[0];
+            }
 
             return [
                 'itemID' => $item->id,
-                'imgURL' => $item->product_img,
+                'imgURL' => $product_img,
                 'itemTitle' => $item->product_name,
                 'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]
                 'currentPrice' => $item->price,
@@ -62,9 +67,14 @@ class HomepageController extends Controller
                     ],
                     'categoryItemList' => $group->take(4)->map(function ($product) {
                         $ageRangeArray = explode('|', $product->ageRange);
+                        $product_img = explode('|', $product->product_img);
+
+                        if (count($product_img) != 1) {
+                            $product_img = $product_img[0];
+                        }
                         return [
                             'itemID' => $product->id,
-                            'imgURL' => $product->product_img,
+                            'imgURL' => $product_img,
                             'itemTitle' => $product->product_name,
                             'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]
                             'currentPrice' => $product->price,
@@ -77,10 +87,15 @@ class HomepageController extends Controller
 
         $bestsellingItems = Products::where('best_selling', 'true')->get()->map(function ($item) {
             $ageRangeArray = explode('|', $item->ageRange);
+            $product_img = explode('|', $item->product_img);
+
+            if (count($product_img) != 1) {
+                $product_img = $product_img[0];
+            }
 
             return [
                 'itemID' => $item->id,
-                'imgURL' => $item->product_img,
+                'imgURL' => $product_img,
                 'itemTitle' => $item->product_name,
                 'ageRange' => $ageRangeArray,
                 'currentPrice' => $item->price,
@@ -93,7 +108,7 @@ class HomepageController extends Controller
             'collectionItemList' => $collectionItemList,
             'collections' => $collections,
             'featuredcollection' => $featuredcollections,
-            'bestsellingItems'=> $bestsellingItems,
+            'bestsellingItems' => $bestsellingItems,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);
