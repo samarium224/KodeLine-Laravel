@@ -79,9 +79,9 @@ class DashboardController extends Controller
 
     public function All_Category_Edit($id)
     {
-        $category_info = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
 
-        return view('admin.EditCategory', compact('category_info'));
+        return view('admin.EditCategory', compact('category'));
     }
 
     public function All_Category_Update(Request $request)
@@ -89,8 +89,37 @@ class DashboardController extends Controller
         $category_id = $request->category_id;
 
         $request->validate([
-            'category_name' => 'required|unique:categories'
+            'category_name' => 'required',
+            'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            // 'category_title'=> 'required',
+            // 'category_subtitle'=> 'required',
         ]);
+
+        if ($file = $request->file('category_img')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/collections'), $image_name);
+            $img_url = 'uploads/collections/' . $image_name;
+        }
+
+        if ($file = $request->file('cat_headerImg_PC')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/collections/contents'), $image_name);
+            $header_url = 'uploads/collections/contents/' . $image_name;
+        }
+
+        if ($file = $request->file('cat_headerImg_mobile')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/collections/contents'), $image_name);
+            $mobileHeader_url = 'uploads/collections/contents/' . $image_name;
+        }
 
         $category = Category::findOrFail($category_id);
         $oldName = $category->category_name;
@@ -98,6 +127,9 @@ class DashboardController extends Controller
 
         Category::findOrFail($category_id)->update([
             'category_name' => $newName,
+            'category_img' => $img_url,
+            'cat_headerImg_PC' => $header_url,
+            'cat_headerImg_mobile' => $mobileHeader_url,
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
 
