@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HelpersController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -73,6 +74,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
         // order
         Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
+        // product utilities
+        Route::get('/admin/all-products/sort/{sortID}', [HelpersController::class,'Sort'])->name('product.sort');
     });
 });
 
