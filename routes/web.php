@@ -36,6 +36,8 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase',[ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
+// cart route
+Route::post('/cart',[OrderController::class,'AddtoCart'])->name('addtocart');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
