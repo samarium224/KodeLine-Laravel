@@ -16,8 +16,17 @@
 
     <form action="{{route('checkout')}}" method="POST">
         @csrf
-        <button type="submit">checkout</button>
+        <button class="btn btn-dark" type="submit">checkout</button>
     </form>
+
+    <form action="{{route('addtocart')}}" method="POST">
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="product_name" value="{{ $product->product_name }}">
+        <input type="number" name="product_quantity">
+        <button class="btn btn-secondary my-3" type="submit">add to cart</button>
+    </form>
+
     <h3>Images</h3>
     @foreach ($product->product_img as $img)
         <img src="{{ asset($img) }}" alt="Product Image" style="width: 100px; height: 100px;">

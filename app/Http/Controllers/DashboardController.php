@@ -513,6 +513,31 @@ class DashboardController extends Controller
             $subcategory_name = "none";
         }
 
+        $preCategoryId = Products::where("id", $product_id)->value('product_category_id');
+        $newCategoryId = $category_id;
+        $preSubcategoryId = Products::where("id", $product_id)->value('product_subcategory_id');
+        $newSubcategoryId = $subcategory_id;
+
+        // handle category change
+        if ($preCategoryId != $newCategoryId && $newCategoryId != 0) {
+            Category::where('id', $category_id)->increment('product_count', 1);
+            if ($preCategoryId != 0) {
+                Category::where('id', $preCategoryId)->decrement('product_count', 1);
+            }
+        }else{
+            Category::where('id', $preCategoryId)->decrement('product_count', 1);
+        }
+
+        // handle subcategory change
+        if ($preSubcategoryId != $newSubcategoryId && $newSubcategoryId != 0) {
+            SubCategory::where('id', $subcategory_id)->increment('product_count', 1);
+            if ($preSubcategoryId != 0) {
+                SubCategory::where('id', $preSubcategoryId)->decrement('product_count', 1);
+            }
+        }else{
+            SubCategory::where('id', $preSubcategoryId)->decrement('product_count', 1);
+        }
+
         Products::findOrFail($product_id)->update([
             'product_name' => $validatedData['product_name'],
             'price' => $validatedData['price'],
@@ -553,6 +578,13 @@ class DashboardController extends Controller
                 unlink($imagePath);
             }
         }
+
+        $preCategoryId = Products::where("id", $id)->value('product_category_id');
+        $preSubcategoryId = Products::where("id", $id)->value('product_subcategory_id');
+
+        // handle category delete
+        Category::where('id', $preCategoryId)->decrement('product_count', 1);
+        SubCategory::where('id', $preSubcategoryId)->decrement('product_count', 1);
 
         // Delete the product
         $product->delete();

@@ -2,13 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\Facades\Auth;
+
 
 class OrderController extends Controller
 {
+    public function AddtoCart(Request $request){
+        $validate = $request->validate([
+            "product_id"=> "required|integer",
+            "product_name"=> "required",
+            "product_quantity"=> "required",
+        ]);
+
+        // Retrieve the currently authenticated user...
+        $username = $request->user()->value('name');
+        $userid = $request->user()->value('id');
+        $prduct_id = $request->product_id;
+        $product_quantity = $request->product_quantity;
+
+        $current_stock = Products::where('id', $prduct_id)->value('quantity');
+        $unit_price = Products::where('id', $prduct_id)->value('price');
+
+        if($product_quantity < $current_stock){
+            $product_price = $product_quantity * $unit_price;
+            Cart::insert([
+                'username'=> $username,
+                'user_id'=> $userid,
+                'product_id'=> $prduct_id,
+                'product_name'=> $request->product_name,
+                'product_quantity'=> $product_quantity,
+                'product_price'=> $product_price,
+            ]);
+        }
+        else{
+            return redirect()->route('allproducts')->with('message', 'Product stock out!');
+        }
+
+        return redirect()->route('allproducts')->with('message', 'Product added to cart successfully!');
+
+    }
+
     public function checkout()
     {
         $products = Products::all();
@@ -74,7 +112,7 @@ class OrderController extends Controller
                 $order->status = 'paid';
                 $order->save();
             }
-            
+
             return view('test.success', compact('customer'));
 
         } catch (\Throwable $th) {

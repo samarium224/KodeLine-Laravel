@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HelpersController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
@@ -35,6 +36,8 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase',[ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
+// cart route
+Route::post('/cart',[OrderController::class,'AddtoCart'])->name('addtocart');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -73,6 +76,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
         // order
         Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
+        // product utilities
+        Route::get('/admin/all-products/sort/{sortID}', [HelpersController::class,'Sort'])->name('product.sort');
     });
 });
 

@@ -15,14 +15,28 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="border-0">ID</th>
+                    <th scope="col" class="border-0"><a class="text-dark"
+                        href="{{ route('product.sort', 'id') }}">
+                        ID </a>
+                    </th>
                     <th scope="col" class="border-0">Product Image</th>
-                    <th scope="col" class="border-0">Product Name</th>
-                    <th scope="col" class="border-0">Collection</th>
+                    <th scope="col" class="border-0"><a class="text-dark"
+                        href="{{ route('product.sort', 'product_name') }}">
+                        Product Name </a>
+                    </th>
+                    <th scope="col" class="border-0"><a class="text-dark"
+                        href="{{ route('product.sort', 'product_category_id') }}">
+                        Collection</a>
+                    </th>
                     <th scope="col" class="border-0">Category</th>
                     <th scope="col" class="border-0">Quantity</th>
                     <th scope="col" class="border-0">Unit Price</th>
-                    <th scope="col" class="border-0 w-10">Continue selling</th>
+                    <th scope="col" class="border-0 w-10">
+                        <a class="text-dark"
+                        href="{{ route('product.sort', 'continue_selling') }}">
+                        Continue selling
+                        </a>
+                    </th>
                     <th scope="col" class="border-0">Action</th>
                 </tr>
             </thead>
