@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import theme_desktop from "@/Theme/theme";
+import theme_desktop from "@/Theme/theme_desktop";
 import theme_laptop from "@/Theme/theme_laptop";
 import theme_mobile from "@/Theme/theme_mobile";
 
@@ -58,7 +58,10 @@ export default function Welcome({ auth }) {
                     collections={featuredcollection}
                 />
                 <ShopByCategory CollectionItemList={collectionItemList} />
-                <BestSellingItems bestSellingItemsList={bestsellingItems} collections={collections} />
+                <BestSellingItems
+                    bestSellingItemsList={bestsellingItems}
+                    collections={collections}
+                />
                 {/* <TopCategories /> */}
                 <PreOrder items={preorderItems} />
                 <Testimonials />

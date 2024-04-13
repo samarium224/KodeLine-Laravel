@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/Theme/theme";
+import theme from "@/Theme/theme_desktop";
 import { Box } from "@mui/material";
 
 import Slogan from "@/Global_Components/Slogan";
@@ -13,7 +13,7 @@ import Footer from "@/Global_Components/Footer/Index";
 import { usePage } from "@inertiajs/react";
 
 export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
-    const { collections , product} = usePage().props;
+    const { collections, product } = usePage().props;
 
     const preorderItems = [
         {

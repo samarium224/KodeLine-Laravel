@@ -44,10 +44,10 @@ const theme_desktop = createTheme({
         },
         title: {
             fontSize: "2.33rem",
-            fontWeight: "700",
+            fontWeight: "600",
         },
         secondaryTitle: {
-            fontWeight: "600",
+            fontWeight: "700",
             fontSize: "2rem",
         },
         subtitle: {
