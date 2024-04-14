@@ -45,7 +45,7 @@ const theme_laptop = createTheme({
         },
         subtitle: {
             fontSize: "1.1rem",
-            fontWeight: "500",
+            fontWeight: "400",
             lineHeight: "1.45rem",
         },
         itemdescTitle: {
@@ -85,6 +85,14 @@ const theme_laptop = createTheme({
                     "&:hover": {
                         boxShadow: "none",
                     },
+                },
+            },
+        },
+        MuiBackdrop: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "rgba(255, 255, 255, 0.75)",
+                    backdropFilter: "blur(1.5px)",
                 },
             },
         },

@@ -8,10 +8,6 @@ const theme_desktop = createTheme({
         secondary: {
             main: "#CD864A",
         },
-        // text: {
-        //     primary: "#686a71",
-        //     secondary: "#fbfbfb",
-        // },
         text: {
             grey: {
                 100: "#e1e1e3",
@@ -47,13 +43,13 @@ const theme_desktop = createTheme({
             fontWeight: "600",
         },
         secondaryTitle: {
-            fontWeight: "700",
+            fontWeight: "600",
             fontSize: "2rem",
         },
         subtitle: {
-            fontSize: "1.125rem",
-            fontWeight: "500",
-            lineHeight: "1.75rem",
+            fontSize: "1.25rem",
+            fontWeight: "400",
+            lineHeight: "1.8rem",
         },
         itemdescTitle: {
             fontSize: "1rem",
@@ -92,6 +88,14 @@ const theme_desktop = createTheme({
                     "&:hover": {
                         boxShadow: "none",
                     },
+                },
+            },
+        },
+        MuiBackdrop: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "rgba(255, 255, 255, 0.75)",
+                    backdropFilter: "blur(1.5px)",
                 },
             },
         },

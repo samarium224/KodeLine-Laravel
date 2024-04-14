@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, usePage } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import {
     AppBar,
     Toolbar,
@@ -11,19 +11,20 @@ import {
     useMediaQuery,
     Drawer,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
 import CategoryMenu from "./CategoryMenu";
-import DrawerContent from "./DrawerContent";
+import DrawerContent from "./ResponsiveDrawer";
+import { NavigationCheckout } from "./Cart/Index";
 
 const Navigation = ({ collections, auth }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [cartOpen, setCartOpen] = useState(false);
 
     const navButtonStyle = {
-        color: theme.palette.text.grey[500],
-        mx: { xs: 1.75, md: 2.25 },
+        color: theme.palette.text.white[500],
+        mx: { xs: 1, md: 1.5 },
         fontSize: { xs: "0.66rem", md: "0.9rem" },
         fontWeight: "500",
         textTransform: "initial",
@@ -33,11 +34,18 @@ const Navigation = ({ collections, auth }) => {
         if (
             event.type === "keydown" &&
             (event.key === "Tab" || event.key === "Shift")
-        ) {
+        )
             return;
-        }
-
         setDrawerOpen(open);
+    };
+
+    const toggleCart = (open) => (event) => {
+        if (
+            event.type === "keydown" &&
+            (event.key === "Tab" || event.key === "Shift")
+        )
+            return;
+        setCartOpen(open);
     };
 
     return (
@@ -108,7 +116,7 @@ const Navigation = ({ collections, auth }) => {
                                     <Button sx={navButtonStyle}>Home</Button>
                                 </Link>
                                 <CategoryMenu
-                                    sx={navButtonStyle}
+                                    color={theme.palette.text.grey[500]}
                                     collections={collections}
                                 />
                                 <Button sx={navButtonStyle}>About us</Button>
@@ -128,29 +136,19 @@ const Navigation = ({ collections, auth }) => {
                             </Box>
                         </>
                     )}
-                    <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Button
-                            sx={navButtonStyle}
-                            aria-controls="currency-menu"
-                            aria-haspopup="true"
-                        >
-                            Currency: $CAD
-                        </Button>
-                        <IconButton
-                            sx={{ color: theme.palette.text.grey[500] }}
-                        >
-                            <ShoppingCartIcon />
-                        </IconButton>
-                    </Box>
+                    <NavigationCheckout
+                        cartOpen={cartOpen}
+                        toggleCart={toggleCart}
+                        navButtonStyle={navButtonStyle}
+                        theme={theme}
+                    />
                 </Toolbar>
             </AppBar>
             <Drawer
                 anchor="left"
                 open={drawerOpen}
                 onClose={toggleDrawer(false)}
-                ModalProps={{
-                    keepMounted: true,
-                }}
+                ModalProps={{ keepMounted: true }}
             >
                 <DrawerContent
                     toggleDrawer={toggleDrawer}

@@ -1,39 +1,42 @@
 export const HomeSliderData = [
     {
         collectionID: 1,
-        imgURL: "./assets/Home Background_1960_700.png",
+        imgURL: "./All Images/Image 2_1960_800.png",
         mobileImgURL: "./assets/Home_6_9.png",
-        title: "Dress Your Little Ones in Style",
+        title: "Dress Your Little Ones in Style.",
         subtitle:
             "Discover our carefully curated collection of trendy and comfortable kids' fashion.",
-        backgroundPosition: "right bottom",
+        reverseAlign: false,
+        backgroundPosition: "center top",
     },
     {
         collectionID: 2,
-        imgURL: "./assets/Boy's Clothing_1960_700.png",
+        imgURL: "./All Images/Image 1_1960_800.png",
         mobileImgURL: "./assets/Boys_6_9.png",
-        title: "Adventure-Ready Boys' Outfits",
+        title: "Adventure-Ready Boys' Outfits.",
         subtitle:
             "Let your little explorers embrace their wild side with our durable and stylish boys' wear.",
-        reverseAlign: true,
-        backgroundPosition: "left bottom",
+        reverseAlign: false,
+        backgroundPosition: "center top",
     },
     {
         collectionID: 3,
-        imgURL: "./assets/Girl's Clothing_1960_700.png",
+        imgURL: "./All Images/Image 3_I960_800.png",
         mobileImgURL: "./assets/Girls_6_9.png",
-        title: "Enchanting Dresses for Princesses",
+        title: "Enchanting Dresses for Princesses.",
         subtitle:
             "Unleash their inner royalty with our stunning collection of girls' dresses and accessories.",
-        backgroundPosition: "right bottom",
+        reverseAlign: false,
+        backgroundPosition: "center top",
     },
     {
         collectionID: 4,
-        imgURL: "./assets/Shoes Background_1960_700.png",
+        imgURL: "./All Images/Image 4_I960_800.png",
         mobileImgURL: "./assets/Shoes_6_9.png",
-        title: "Step into Style and Comfort",
+        title: "Step into Style and Comfort.",
         subtitle:
             "Find the perfect pair of shoes to keep their little feet happy and their outfits on point.",
-        backgroundPosition: "right top",
+        reverseAlign: false,
+        backgroundPosition: "center top",
     },
 ];

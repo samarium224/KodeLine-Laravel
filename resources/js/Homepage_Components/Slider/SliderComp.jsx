@@ -31,7 +31,7 @@ const SliderComp = ({
                         md: `url("${imgURL}")`,
                     },
                     backgroundPosition: backgroundPosition,
-                    backgroundSize: "contain",
+                    backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
 
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
@@ -65,11 +65,7 @@ const SliderComp = ({
                         animate={isActive ? "visible" : "hidden"}
                         color={theme.palette.text.white[500]}
                         transition={{ duration: 0.5, delay: 0 }}
-                        sx={{
-                            mb: 1,
-                            width: "95%",
-                            textShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
-                        }}
+                        sx={{ mb: 2, width: "95%" }}
                     >
                         {title}
                     </Typography>
@@ -81,10 +77,7 @@ const SliderComp = ({
                         animate={isActive ? "visible" : "hidden"}
                         transition={{ duration: 0.5, delay: 0.33 }}
                         color={theme.palette.text.white[500]}
-                        sx={{
-                            mb: { xl: 5, md: 3, xs: 20 },
-                            textShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
-                        }}
+                        sx={{ mb: { xl: 5, md: 3, xs: 20 }, width: "40%" }}
                     >
                         {subtitle}
                     </Typography>
@@ -97,20 +90,21 @@ const SliderComp = ({
                     >
                         <Button
                             sx={{
-                                color: theme.palette.text.grey[500],
-                                backgroundColor: theme.palette.text.white[100],
+                                color: theme.palette.text.white[500],
+                                backgroundColor: "transparent",
+                                border: `2px solid ${theme.palette.text.white[500]}`,
                                 fontWeight: "500",
                                 fontSize: {
                                     xl: "1rem",
                                     md: "0.85rem",
                                     xs: "0.8rem",
                                 },
-                                px: { xl: 7, md: 4.5, xs: 2.75 },
-                                py: { xl: 1.6, md: 1.2, xs: 1 },
+                                px: { xl: 8, md: 5, xs: 3 },
+                                py: { xl: 1.66, md: 1.2, xs: 1 },
                                 "&:hover": {
                                     backgroundColor:
-                                        theme.palette.text.white[100],
-                                    color: theme.palette.text.grey[400],
+                                        theme.palette.text.white[500],
+                                    color: theme.palette.text.grey[500],
                                 },
                             }}
                         >

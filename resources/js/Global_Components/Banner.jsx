@@ -9,10 +9,10 @@ const Banner = ({ text, variant, sx = {} }) => {
 
     return (
         <>
-            <Box width="100%" height="20px" backgroundColor={"#CD864A"}></Box>
+            {/* <Box width="100%" height="20px" backgroundColor={"#CD864A"}></Box> */}
             <Box
                 width="100%"
-                backgroundColor={"#EED8C3"}
+                backgroundColor={theme.palette.text.grey[500]}
                 textAlign="center"
                 display="flex"
                 justifyContent="center"
@@ -20,7 +20,7 @@ const Banner = ({ text, variant, sx = {} }) => {
             >
                 <Typography
                     variant={variant}
-                    color={theme.palette.text.grey[500]}
+                    color={theme.palette.text.white[500]}
                     py={text ? 4 : 2.5}
                     sx={mergedStyles}
                 >

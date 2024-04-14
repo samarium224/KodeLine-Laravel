@@ -46,7 +46,7 @@ const theme_mobile = createTheme({
         },
         subtitle: {
             fontSize: "0.8rem",
-            fontWeight: "500",
+            fontWeight: "400",
             lineHeight: "1rem",
         },
         itemdescTitle: {
@@ -86,6 +86,14 @@ const theme_mobile = createTheme({
                     "&:hover": {
                         boxShadow: "none",
                     },
+                },
+            },
+        },
+        MuiBackdrop: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "rgba(255, 255, 255, 0.75)",
+                    backdropFilter: "blur(1.5px)",
                 },
             },
         },

@@ -1,6 +1,6 @@
 import sanitizeHtml from "sanitize-html";
 import { Box, Button, Typography, useTheme } from "@mui/material";
-import ItemShopQuantity from "./ItemShopQuantity";
+// import ItemShopQuantity from "../../Global_Components/Navigationbar/ItemShopQuantity";
 // import { itemData } from "./data";
 
 const ItemDescriptionTexts = ({ itemData }) => {
