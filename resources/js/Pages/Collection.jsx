@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import theme_desktop from "@/Theme/theme";
+import theme_desktop from "@/Theme/theme_desktop";
 import theme_laptop from "@/Theme/theme_laptop";
 import theme_mobile from "@/Theme/theme_mobile";
 
@@ -18,7 +18,8 @@ import { preorderItems } from "@/Global_data/PreorderItems";
 import { usePage } from "@inertiajs/react";
 
 export default function Collection({ auth, laravelVersion, phpVersion }) {
-    const { collections , collection_info, collectionItemList} = usePage().props;
+    const { collections, collection_info, collectionItemList } =
+        usePage().props;
     const { width } = useWindowSize();
 
     const getTheme = () => {
@@ -32,8 +33,8 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
             <ThemeProvider theme={getTheme()}>
                 <Slogan />
                 <Navigation collections={collections} auth={auth} />
-                <Header CollectionHeaderData={collection_info}/>
-                <Banner
+                <Header CollectionHeaderData={collection_info} />
+                {/* <Banner
                     text={`EXPLORE ${collection_info['category_name'].toUpperCase()} COLLECTION`}
                     variant="title"
                     sx={{
@@ -41,8 +42,8 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
                         letterSpacing: { xs: "7.5px", md: "10px" },
                         wordSpacing: { xs: "12px", md: "15px;" },
                     }}
-                />
-                <Products CollectionItemsList = {collectionItemList} />
+                /> */}
+                <Products CollectionItemsList={collectionItemList} />
                 <PreOrder items={preorderItems} />
                 <Testimonials />
                 <Footer />

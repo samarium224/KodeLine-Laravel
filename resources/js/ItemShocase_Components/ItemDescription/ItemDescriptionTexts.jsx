@@ -1,9 +1,17 @@
+import sanitizeHtml from "sanitize-html";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import ItemShopQuantity from "./ItemShopQuantity";
 // import { itemData } from "./data";
 
-const ItemDescriptionTexts = ({itemData}) => {
+const ItemDescriptionTexts = ({ itemData }) => {
     const theme = useTheme();
+    const sanitizedDescription = sanitizeHtml(itemData.itemDescription.desc, {
+        allowedTags: ["b", "i", "em", "strong", "a", "p", "br"],
+        allowedAttributes: {
+            a: ["href"],
+        },
+    });
+
     return (
         <Box width="40%">
             <Box>
@@ -167,9 +175,8 @@ const ItemDescriptionTexts = ({itemData}) => {
                     textTransform="initial"
                     color={theme.palette.text.grey[500]}
                     my={2}
-                >
-                    {itemData.itemDescription.desc}
-                </Typography>
+                    dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+                />
             </Box>
         </Box>
     );
