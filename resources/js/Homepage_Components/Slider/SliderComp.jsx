@@ -35,7 +35,7 @@ const SliderComp = ({
                     backgroundRepeat: "no-repeat",
 
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
-                    height: { xs: `75vh`, maxAllowableWidth: "700px" },
+                    height: { xs: `70vh`, maxAllowableWidth: "700px" },
                 }}
             >
                 <Box
@@ -95,9 +95,9 @@ const SliderComp = ({
                                 border: `2px solid ${theme.palette.text.white[500]}`,
                                 fontWeight: "500",
                                 fontSize: {
-                                    xl: "1.1rem",
-                                    md: "0.9rem",
-                                    xs: "0.825rem",
+                                    xl: "1rem",
+                                    md: "0.85rem",
+                                    xs: "0.8rem",
                                 },
                                 px: { xl: 8, md: 5, xs: 3 },
                                 py: { xl: 1.66, md: 1.2, xs: 1 },

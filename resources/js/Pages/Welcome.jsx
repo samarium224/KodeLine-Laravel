@@ -62,7 +62,7 @@ export default function Welcome({ auth }) {
                     bestSellingItemsList={bestsellingItems}
                     collections={collections}
                 />
-                {/* <TopCategories /> */}
+                <TopCategories />
                 <PreOrder items={preorderItems} />
                 <Testimonials />
                 <FooterTop />
