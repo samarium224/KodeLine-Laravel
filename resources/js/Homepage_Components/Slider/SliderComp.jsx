@@ -35,7 +35,7 @@ const SliderComp = ({
                     backgroundRepeat: "no-repeat",
 
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
-                    height: { xs: `75vh`, maxAllowableWidth: "700px" },
+                    height: { xs: `70vh`, maxAllowableWidth: "700px" },
                 }}
             >
                 <Box
@@ -101,13 +101,17 @@ const SliderComp = ({
                                 backgroundColor: theme.palette.text.white[100],
                                 fontWeight: "500",
                                 fontSize: {
-                                    xl: "1.1rem",
-                                    md: "0.9rem",
-                                    xs: "0.825rem",
+                                    xl: "1rem",
+                                    md: "0.85rem",
+                                    xs: "0.8rem",
                                 },
-                                px: { xl: 8, md: 5, xs: 3 },
-                                py: { xl: 1.66, md: 1.2, xs: 1 },
-                                "&:hover": { backgroundColor: "#cdcdd0" },
+                                px: { xl: 7, md: 4.5, xs: 2.75 },
+                                py: { xl: 1.6, md: 1.2, xs: 1 },
+                                "&:hover": {
+                                    backgroundColor:
+                                        theme.palette.text.white[100],
+                                    color: theme.palette.text.grey[400],
+                                },
                             }}
                         >
                             Shop now

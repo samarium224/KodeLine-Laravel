@@ -19,6 +19,8 @@ class OrderController extends Controller
             "product_quantity"=> "required",
         ]);
 
+        dd(session()->getId());
+
         // Retrieve the currently authenticated user...
         $username = $request->user()->value('name');
         $userid = $request->user()->value('id');
@@ -80,9 +82,15 @@ class OrderController extends Controller
         ]);
 
         $order = Order::insert([
-            'status' => 'unpaid',
-            'total_price' => $totalPrice,
+            'order_id'=> uniqid('order'),
+            'username'=> 'guest',
             'session_id' => $checkout_session->id,
+            'product_id'=> '1',
+            'product_name' => 'test_value',
+            'product_quantity' => '100',
+            'total_price' => $totalPrice,
+            'payment_status' => 'unpaid',
+            'delivery_status'=> 'on progress',
         ]);
 
         return redirect($checkout_session->url);

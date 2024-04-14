@@ -11,6 +11,7 @@ use App\Http\Controllers\SubCategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,9 +36,9 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
-Route::get('/itemshowcase',[ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
+Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
 // cart route
-Route::post('/cart',[OrderController::class,'AddtoCart'])->name('addtocart');
+Route::post('/cart', [OrderController::class, 'AddtoCart'])->name('addtocart');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -72,13 +73,16 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('admin/update-product', 'UpdateProduct')->name('updateproduct');
         Route::get('admin/delete-product/{id}', 'DeleteProduct')->name('deleteproduct');
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
-        //ajax subcategory
-        Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
+
         // order
-        Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
-        // product utilities
-        Route::get('/admin/all-products/sort/{sortID}', [HelpersController::class,'Sort'])->name('product.sort');
+        Route::get('/admin/orders', 'Orders')->name('viewOrders');
+
     });
+    // product utilities
+    Route::get('/admin/all-products/sort/{sortID}', [HelpersController::class, 'Sort'])->name('product.sort');
+    //ajax subcategory
+    Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
+
 });
 
 require __DIR__ . '/auth.php';

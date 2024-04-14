@@ -36,7 +36,7 @@ const theme_desktop = createTheme({
     typography: {
         headline: {
             fontSize: "3.25rem",
-            fontWeight: "700",
+            fontWeight: "600",
         },
         title: {
             fontSize: "2.33rem",
@@ -47,9 +47,9 @@ const theme_desktop = createTheme({
             fontSize: "2rem",
         },
         subtitle: {
-            fontSize: "1.25rem",
+            fontSize: "1.125rem",
             fontWeight: "500",
-            lineHeight: "1.8rem",
+            lineHeight: "1.75rem",
         },
         itemdescTitle: {
             fontSize: "1rem",

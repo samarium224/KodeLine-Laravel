@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Products;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -453,6 +454,7 @@ class DashboardController extends Controller
             'product_id' => 'required',
             'product_name' => 'required|string|max:255',
             'price' => 'required',
+            'compare_price'=> 'required',
             'quantity' => 'required|integer',
             'product_short_description' => 'required|string',
             'product_long_description' => 'required|string',
@@ -542,6 +544,7 @@ class DashboardController extends Controller
             'product_name' => $validatedData['product_name'],
             'price' => $validatedData['price'],
             'quantity' => $validatedData['quantity'],
+            'compare_price'=> $request->compare_price,
             'product_short_description' => $validatedData['product_short_description'],
             'product_long_description' => $validatedData['product_long_description'],
             'product_category_name' => $category_name,
@@ -595,8 +598,10 @@ class DashboardController extends Controller
         );
     }
 
-    public function PendingOrder()
+    //order section
+    public function Orders()
     {
-        return view('admin.pendingOrder');
+        $orders = Order::latest()->get();
+        return view('admin.AllOrders', compact('orders'));
     }
 }

@@ -24,9 +24,10 @@ const Navigation = ({ collections, auth }) => {
 
     const navButtonStyle = {
         color: theme.palette.text.grey[500],
-        mx: { xs: 1, md: 1.5 },
+        mx: { xs: 1.75, md: 2.25 },
         fontSize: { xs: "0.66rem", md: "0.9rem" },
-        fontWeight: "600",
+        fontWeight: "500",
+        textTransform: "initial",
     };
 
     const toggleDrawer = (open) => (event) => {
@@ -115,7 +116,7 @@ const Navigation = ({ collections, auth }) => {
                                     <Button sx={navButtonStyle}>Home</Button>
                                 </Link>
                                 <CategoryMenu
-                                    color={theme.palette.text.grey[500]}
+                                    sx={navButtonStyle}
                                     collections={collections}
                                 />
                                 <Button sx={navButtonStyle}>About us</Button>
