@@ -14,7 +14,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CategoryMenu from "./CategoryMenu";
 import DrawerContent from "./ResponsiveDrawer";
-import { NavigationCheckout } from "./Checkout";
+import { NavigationCheckout } from "./Cart/Index";
 
 const Navigation = ({ collections, auth }) => {
     const theme = useTheme();
@@ -23,7 +23,7 @@ const Navigation = ({ collections, auth }) => {
     const [cartOpen, setCartOpen] = useState(false);
 
     const navButtonStyle = {
-        color: theme.palette.text.grey[500],
+        color: theme.palette.text.white[500],
         mx: { xs: 1, md: 1.5 },
         fontSize: { xs: "0.66rem", md: "0.9rem" },
         fontWeight: "600",
@@ -47,6 +47,67 @@ const Navigation = ({ collections, auth }) => {
         setCartOpen(open);
     };
 
+    const renderMobileMenu = () => (
+        <>
+            <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={toggleDrawer(true)}
+                sx={{ mr: 2 }}
+            >
+                <MenuIcon />
+            </IconButton>
+            <Box flexGrow={1} display="flex" justifyContent="center">
+                <Link href={route("home")}>
+                    <img
+                        src="./All Images/Logo_White.png"
+                        alt="Logo"
+                        style={{ height: "20px" }}
+                    />
+                </Link>
+            </Box>
+        </>
+    );
+
+    const renderDesktopMenu = () => (
+        <>
+            <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="logo"
+                sx={{ borderRadius: "0px" }}
+            >
+                <Link href={route("home")}>
+                    <img
+                        src="./All Images/Logo_White.png"
+                        alt="Logo"
+                        style={{ height: "75px" }}
+                    />
+                </Link>
+            </IconButton>
+            <Box flexGrow={1} display="flex" justifyContent="center">
+                <Link href={route("home")}>
+                    <Button sx={navButtonStyle}>Home</Button>
+                </Link>
+                <CategoryMenu
+                    color={theme.palette.text.white[500]}
+                    collections={collections}
+                />
+                <Button sx={navButtonStyle}>About us</Button>
+                {auth.user ? (
+                    <Link href={route("dashboard")}>
+                        <Button sx={navButtonStyle}>My Account</Button>
+                    </Link>
+                ) : (
+                    <Link href={route("login")}>
+                        <Button sx={navButtonStyle}>Log In</Button>
+                    </Link>
+                )}
+            </Box>
+        </>
+    );
+
     return (
         <Container maxWidth="xl" sx={{ position: "relative" }}>
             <AppBar
@@ -56,85 +117,12 @@ const Navigation = ({ collections, auth }) => {
                     boxShadow: "none",
                     transform: "translateX(-50%)",
                     left: "47.5%",
-                    top: { md: 10, xs: 4 },
+                    top: { md: 25, xs: 10 },
                     mx: "2.5%",
                 }}
             >
-                <Toolbar sx={{ mt: 1 }}>
-                    {isMobile ? (
-                        <>
-                            <IconButton
-                                edge="start"
-                                color="inherit"
-                                aria-label="open drawer"
-                                onClick={toggleDrawer(true)}
-                                sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Box
-                                sx={{
-                                    flexGrow: 1,
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}
-                            >
-                                <Link href={route("home")}>
-                                    <img
-                                        src="./assets/Logo Final.png"
-                                        alt="Logo"
-                                        style={{ height: "20px" }}
-                                    />
-                                </Link>
-                            </Box>
-                        </>
-                    ) : (
-                        <>
-                            <IconButton
-                                edge="start"
-                                color="inherit"
-                                aria-label="logo"
-                                sx={{ borderRadius: "0px" }}
-                            >
-                                <Link href={route("home")}>
-                                    <img
-                                        src="./assets/Logo Final.png"
-                                        alt="Logo"
-                                        style={{ height: "30px" }}
-                                    />
-                                </Link>
-                            </IconButton>
-                            <Box
-                                sx={{
-                                    flexGrow: 1,
-                                    display: "flex",
-                                    justifyContent: "center",
-                                }}
-                            >
-                                <Link href={route("home")}>
-                                    <Button sx={navButtonStyle}>Home</Button>
-                                </Link>
-                                <CategoryMenu
-                                    color={theme.palette.text.grey[500]}
-                                    collections={collections}
-                                />
-                                <Button sx={navButtonStyle}>About us</Button>
-                                {auth.user ? (
-                                    <Link href={route("dashboard")}>
-                                        <Button sx={navButtonStyle}>
-                                            My Account
-                                        </Button>
-                                    </Link>
-                                ) : (
-                                    <Link href={route("login")}>
-                                        <Button sx={navButtonStyle}>
-                                            Log In
-                                        </Button>
-                                    </Link>
-                                )}
-                            </Box>
-                        </>
-                    )}
+                <Toolbar sx={{ mt: 1, alignItems: "flex-start" }}>
+                    {isMobile ? renderMobileMenu() : renderDesktopMenu()}
                     <NavigationCheckout
                         cartOpen={cartOpen}
                         toggleCart={toggleCart}
@@ -147,9 +135,7 @@ const Navigation = ({ collections, auth }) => {
                 anchor="left"
                 open={drawerOpen}
                 onClose={toggleDrawer(false)}
-                ModalProps={{
-                    keepMounted: true,
-                }}
+                ModalProps={{ keepMounted: true }}
             >
                 <DrawerContent
                     toggleDrawer={toggleDrawer}

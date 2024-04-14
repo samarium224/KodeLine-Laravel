@@ -45,7 +45,7 @@ const theme_laptop = createTheme({
         },
         subtitle: {
             fontSize: "1.1rem",
-            fontWeight: "500",
+            fontWeight: "400",
             lineHeight: "1.45rem",
         },
         itemdescTitle: {

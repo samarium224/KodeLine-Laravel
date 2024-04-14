@@ -20,7 +20,7 @@ const ServiceComponent = ({ text, subText, animationDelay }) => {
             <Typography
                 variant="subtitle"
                 display="block"
-                color={theme.palette.text.grey[400]}
+                color={theme.palette.text.grey[500]}
                 sx={{ mt: { md: 2, xs: 0.5 } }}
             >
                 {subText}

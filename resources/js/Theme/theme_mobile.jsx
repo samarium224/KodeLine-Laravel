@@ -46,7 +46,7 @@ const theme_mobile = createTheme({
         },
         subtitle: {
             fontSize: "0.8rem",
-            fontWeight: "500",
+            fontWeight: "400",
             lineHeight: "1rem",
         },
         itemdescTitle: {

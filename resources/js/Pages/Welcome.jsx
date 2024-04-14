@@ -49,8 +49,8 @@ export default function Welcome({ auth }) {
                     text="Kidsline is your trusted companion, offering a lovingly curated range of top-notch children's products. With swift, free delivery, we
                     make every purchase a joy. Our commitment to uncompromising quality strengthens the bond between you and your little ones,
                     creating cherished moments filled with laughter, warmth, and unforgettable memories."
-                    variant="itemdescTitle"
-                    sx={{ textTransform: "initial" }}
+                    variant="subtitle"
+                    sx={{ textTransform: "initial", fontWeight: 400 }}
                 />
                 <Services />
                 <SignatureItems
