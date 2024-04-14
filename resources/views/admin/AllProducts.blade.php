@@ -78,5 +78,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="my-5 d-flex justify-content-center">
+                {{$products->onEachSide(1)->links()}}
+        </div>
     </div>
 @endsection

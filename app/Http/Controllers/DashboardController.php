@@ -261,7 +261,7 @@ class DashboardController extends Controller
 
     public function All_Products()
     {
-        $products = Products::latest()->get();
+        $products = Products::paginate(10);
         return view('admin.AllProducts', compact('products'));
     }
 
