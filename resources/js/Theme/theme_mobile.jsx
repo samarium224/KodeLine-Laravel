@@ -89,6 +89,14 @@ const theme_mobile = createTheme({
                 },
             },
         },
+        MuiBackdrop: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "rgba(255, 255, 255, 0.75)",
+                    backdropFilter: "blur(1.5px)",
+                },
+            },
+        },
     },
 });
 

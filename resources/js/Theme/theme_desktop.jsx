@@ -8,10 +8,6 @@ const theme_desktop = createTheme({
         secondary: {
             main: "#CD864A",
         },
-        // text: {
-        //     primary: "#686a71",
-        //     secondary: "#fbfbfb",
-        // },
         text: {
             grey: {
                 100: "#e1e1e3",
@@ -92,6 +88,14 @@ const theme_desktop = createTheme({
                     "&:hover": {
                         boxShadow: "none",
                     },
+                },
+            },
+        },
+        MuiBackdrop: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "rgba(255, 255, 255, 0.75)",
+                    backdropFilter: "blur(1.5px)",
                 },
             },
         },

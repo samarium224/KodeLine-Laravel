@@ -7,9 +7,12 @@ import {
     Divider,
     Collapse,
 } from "@mui/material";
+import { Link } from "@inertiajs/react";
+
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-import { Link } from "@inertiajs/react";
+import ClearIcon from "@mui/icons-material/Clear";
+
 import { Collections } from "@/Global_data/Collections";
 
 const DrawerContent = ({ toggleDrawer, auth, theme }) => {
@@ -20,12 +23,11 @@ const DrawerContent = ({ toggleDrawer, auth, theme }) => {
     };
 
     return (
-        <Box
-            sx={{ width: 250 }}
-            role="presentation"
-            onClick={toggleDrawer(true)}
-            onKeyDown={toggleDrawer(true)}
-        >
+        <Box sx={{ width: "100vw" }} role="presentation">
+            <Box pt={3} pb={2} pl={1} onClick={toggleDrawer(false)}>
+                <ClearIcon /> Close
+            </Box>
+            <hr />
             <List>
                 <ListItem button component={Link} href={route("home")}>
                     <ListItemText primary="Home" />
