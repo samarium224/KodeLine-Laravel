@@ -82,7 +82,7 @@ const Navigation = ({ collections, auth }) => {
                             >
                                 <Link href={route("home")}>
                                     <img
-                                        src="./assets/Logo Final.png"
+                                        src="./All Images/Logo_White.png"
                                         alt="Logo"
                                         style={{ height: "20px" }}
                                     />
@@ -99,9 +99,9 @@ const Navigation = ({ collections, auth }) => {
                             >
                                 <Link href={route("home")}>
                                     <img
-                                        src="./assets/Logo Final.png"
+                                        src="./All Images/Logo_White.png"
                                         alt="Logo"
-                                        style={{ height: "30px" }}
+                                        style={{ height: "60px" }}
                                     />
                                 </Link>
                             </IconButton>

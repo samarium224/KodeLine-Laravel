@@ -6,7 +6,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 const ItemDescriptionTexts = ({ itemData }) => {
     const theme = useTheme();
     const sanitizedDescription = sanitizeHtml(itemData.itemDescription.desc, {
-        allowedTags: ["b", "i", "em", "strong", "a", "p", "br"],
+        allowedTags: ["b", "i", "em", "strong", "a", "p", "br", "h1", "h2", "h3", "h4", "h5", "h6", "span", "div", "u", "ul", "li", "ol"],
         allowedAttributes: {
             a: ["href"],
         },
