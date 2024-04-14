@@ -3,7 +3,7 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import { Link } from "@inertiajs/react";
 // import { Collections } from "@/Global_data/Collections";
 
-const CategoryMenu = ({ color, collections }) => {
+const CategoryMenu = ({ sx, collections }) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenuOpen = (event) => {
@@ -27,7 +27,7 @@ const CategoryMenu = ({ color, collections }) => {
                 aria-controls="category-menu"
                 aria-haspopup="true"
                 onClick={handleMenuOpen}
-                sx={{ color: color, fontWeight: "700" }}
+                sx={sx}
             >
                 Collections
             </Button>
