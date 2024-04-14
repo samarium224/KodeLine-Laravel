@@ -109,7 +109,8 @@
                         <ul aria-expanded="false" class="collapse text-white">
                             <li><a href="#" class="text-white">Analytics</a></li>
                         </ul>
-                    </li><hr class="side-hr">
+                    </li>
+                    <hr class="side-hr">
                     <li>
                         <a class="has-arrow" href="#inventory" aria-expanded="false">
                             <i class="fa fa-bar-chart"></i>
@@ -119,17 +120,19 @@
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="#">All Performance</a></li>
                         </ul>
-                    </li><hr class="side-hr">
+                    </li>
+                    <hr class="side-hr">
                     <li><a class="has-arrow" href="#collection" aria-expanded="false">
                             <i class="fa fa-shopping-bag"></i>
                             <span class="hide-menu">Orders</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="#">Order list</a></li>
+                            <li><a href="{{ route('viewOrders') }}">Order list</a></li>
                             <li><a href="email-compose.html">Pending Orders</a></li>
                             <li><a href="email-read.html">Unpaid Orders</a></li>
                             <li><a href="email-inbox.html">Completed Orders</a></li>
                         </ul>
-                    </li><hr class="side-hr">
+                    </li>
+                    <hr class="side-hr">
                     <li>
                         <a class="has-arrow" href="#product" aria-expanded="false">
                             <i class="fa fa-shopping-cart"></i>
@@ -141,7 +144,8 @@
                             <li><a href="{{ route('allcategory') }}">Collections</a></li>
                             <li><a href="{{ route('addsubcategory') }}">Category</a></li>
                         </ul>
-                    </li> <hr class="side-hr">
+                    </li>
+                    <hr class="side-hr">
                     <li><a class="has-arrow" href="#collection" aria-expanded="false">
                             <i class="fa fa-user"></i>
                             <span class="hide-menu">Customers</span></a>
@@ -149,7 +153,8 @@
                             <li><a href="#">Add New Collection</a></li>
                             <li><a href="#">Collection List</a></li>
                         </ul>
-                    </li><hr class="side-hr">
+                    </li>
+                    <hr class="side-hr">
                     <li> <a class="has-arrow" href="#content" aria-expanded="false">
                             <i class="fa fa-database"></i>
                             <span class="hide-menu">Content</span></a>
@@ -157,7 +162,8 @@
                             <li><a href="#">Add New Category</a></li>
                             <li><a href="{{ route('subcategory') }}">Category List</a></li>
                         </ul>
-                    </li><hr class="side-hr">
+                    </li>
+                    <hr class="side-hr">
                 </ul>
             </nav>
             <!-- End Sidebar navigation -->
