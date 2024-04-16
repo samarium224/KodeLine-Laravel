@@ -94,8 +94,8 @@ const ProductShowcase = ({
                           }
                         : {}),
                     opacity: { xs: "100", md: "0" },
-                    transition: ".4s",
-                    mb: { xs: "0", md: "-20px" },
+                    transition: ".33s",
+                    mb: { xs: "0", md: "-10px" },
                 }}
             />
         </Box>
