@@ -43,6 +43,10 @@ const CategoryMenu = ({ sx, collections }) => {
                         boxShadow: "none",
                         py: 0.75,
                     },
+                    "& .MuiBackdrop-root": {
+                        backgroundColor: "transparent",
+                        backdropFilter: "none",
+                    },
                 }}
             >
                 {collections.map((collection, i) => (

@@ -33,9 +33,13 @@ const SliderComp = ({
                     backgroundPosition: backgroundPosition,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
-                    height: { xs: `70vh`, maxAllowableWidth: "700px" },
+                    height: {
+                        xl: `calc(82.5vh - 56px)`,
+                        md: `calc(82.5vh - 49px)`,
+                        xs: `calc(82.5vh - 28px)`,
+                        maxAllowableWidth: "700px",
+                    },
                 }}
             >
                 <Box
@@ -64,7 +68,7 @@ const SliderComp = ({
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
                         color={theme.palette.text.white[500]}
-                        transition={{ duration: 0.5, delay: 0 }}
+                        transition={{ duration: 0.4, delay: 0 }}
                         sx={{ mb: 2, width: "95%" }}
                     >
                         {title}
@@ -75,7 +79,7 @@ const SliderComp = ({
                         variants={reverseAlign ? fadeFromRight : fadeFromLeft}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
-                        transition={{ duration: 0.5, delay: 0.33 }}
+                        transition={{ duration: 0.4, delay: 0.25 }}
                         color={theme.palette.text.white[500]}
                         sx={{ mb: { xl: 5, md: 3, xs: 20 }, width: "40%" }}
                     >
@@ -86,7 +90,7 @@ const SliderComp = ({
                         variants={reverseAlign ? fadeFromRight : fadeFromLeft}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
-                        transition={{ duration: 0.5, delay: 0.75 }}
+                        transition={{ duration: 0.4, delay: 0.66 }}
                     >
                         <Button
                             sx={{

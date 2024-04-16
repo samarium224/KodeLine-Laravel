@@ -44,7 +44,7 @@ const theme_desktop = createTheme({
         },
         secondaryTitle: {
             fontWeight: "600",
-            fontSize: "2rem",
+            fontSize: "1.8rem",
         },
         subtitle: {
             fontSize: "1.25rem",

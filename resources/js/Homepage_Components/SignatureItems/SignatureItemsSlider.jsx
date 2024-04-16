@@ -8,7 +8,7 @@ const SignatureItemsSlider = ({ children }) => {
     const theme = useTheme();
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const handleBeforeChange = (oldIndex, newIndex) => {
+    const handleBeforeChange = (newIndex) => {
         setCurrentSlide(newIndex);
     };
 

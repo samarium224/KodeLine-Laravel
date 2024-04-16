@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Container } from "@mui/material";
 import SignatureItemsHeader from "./SignatureItemsHeader";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
-// import { collections } from "./data";
+// import { collections, signatureItemsList } from "./data";
 import SignatureItemsSlider from "./SignatureItemsSlider";
 
 const SignatureItems = ({ signatureItemsList, collections }) => {
