@@ -116,7 +116,7 @@ const Navigation = ({ collections, auth }) => {
                                     <Button sx={navButtonStyle}>Home</Button>
                                 </Link>
                                 <CategoryMenu
-                                    color={theme.palette.text.grey[500]}
+                                    sx={navButtonStyle}
                                     collections={collections}
                                 />
                                 <Button sx={navButtonStyle}>About us</Button>

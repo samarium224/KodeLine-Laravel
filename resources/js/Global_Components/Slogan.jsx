@@ -4,8 +4,10 @@ const Slogan = () => {
     return (
         <Box
             backgroundColor="#231F20"
-            textAlign="center"
-            sx={{ py: { xl: 2, md: 1.75, xs: 1 } }}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ height: { xl: "56px", md: "49px", xs: "28px" } }}
         >
             <Typography
                 variant="subtitle"

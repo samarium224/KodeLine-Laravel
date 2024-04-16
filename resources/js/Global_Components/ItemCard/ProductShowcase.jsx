@@ -12,10 +12,15 @@ const ProductShowcase = ({
 }) => {
     const theme = useTheme();
 
+    const handleClick = (event) => {
+        event.preventDefault();
+        console.log("Button clicked!");
+    };
+
     return (
         <Box
             component={Link}
-            href={route('itemshowcase', { id: itemID })}
+            href={route("itemshowcase", { id: itemID })}
             sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -74,6 +79,7 @@ const ProductShowcase = ({
             </Box>
             <CustomButton
                 text={buttonText}
+                onClick={handleClick}
                 sx={{
                     ...(buttonText !== "ADD TO CART"
                         ? {
