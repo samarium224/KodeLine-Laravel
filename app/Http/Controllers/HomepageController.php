@@ -59,6 +59,7 @@ class HomepageController extends Controller
             ->groupBy('product_category_name')
             ->map(function ($group, $categoryName) {
                 return [
+                    'categoryID' => Products::where('product_category_name', $categoryName)->value('product_category_id'),
                     'categoryTitle' => $categoryName,
                     'categoryImage' => Category::where('category_name', $categoryName)->value('category_img'),
                     'categoryMobileQuote' => [

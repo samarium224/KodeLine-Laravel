@@ -9,9 +9,9 @@ export const NavigationCheckout = ({
     toggleCart,
     navButtonStyle,
     theme,
+    cartData,
 }) => {
-    const [checkoutRequestItems, setCheckoutRequestItems] =
-        useState(checkoutItems);
+    const [checkoutRequestItems, setCheckoutRequestItems] = useState(cartData);
 
     const totalQuantity = checkoutRequestItems.reduce(
         (total, item) => total + item.quantity,

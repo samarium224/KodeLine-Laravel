@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
+
 import { Box, Typography, useTheme } from "@mui/material";
 
 import CustomButton from "../CustomButton";
-import { Link } from "@inertiajs/react";
 
 const ProductShowcase = ({
     itemID,
@@ -12,9 +14,13 @@ const ProductShowcase = ({
 }) => {
     const theme = useTheme();
 
+    const { data, setData, post, errors } = useForm({
+        itemID: itemID,
+    });
+
     const handleClick = (event) => {
         event.preventDefault();
-        console.log("Button clicked!");
+        post(route("addtocart"));
     };
 
     return (

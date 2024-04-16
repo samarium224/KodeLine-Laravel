@@ -12,41 +12,44 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function AddtoCart(Request $request){
+    public function AddtoCart(Request $request)
+    {
         $validate = $request->validate([
-            "product_id"=> "required|integer",
-            "product_name"=> "required",
-            "product_quantity"=> "required",
+            'itemID' => 'required|integer',
         ]);
 
-        dd(session()->getId());
+        // dd(session()->getId());
 
         // Retrieve the currently authenticated user...
         $username = $request->user()->value('name');
         $userid = $request->user()->value('id');
-        $prduct_id = $request->product_id;
-        $product_quantity = $request->product_quantity;
+        $product_id = $request->itemID;
+        $product_quantity = 1;
 
-        $current_stock = Products::where('id', $prduct_id)->value('quantity');
-        $unit_price = Products::where('id', $prduct_id)->value('price');
+        $current_stock = Products::where('id', $product_id)->value('quantity');
+        $product_name = Products::where('id', $product_id)->value('product_name');
+        $unit_price = Products::where('id', $product_id)->value('price');
 
-        if($product_quantity < $current_stock){
-            $product_price = $product_quantity * $unit_price;
+        if ($product_quantity < $current_stock) {
+            $product_price = $unit_price;
             Cart::insert([
-                'username'=> $username,
-                'user_id'=> $userid,
-                'product_id'=> $prduct_id,
-                'product_name'=> $request->product_name,
-                'product_quantity'=> $product_quantity,
-                'product_price'=> $product_price,
+                'username' => $username,
+                'user_id' => $userid,
+                'product_id' => $product_id,
+                'product_name' => $product_name,
+                'product_quantity' => $product_quantity,
+                'product_price' => $product_price,
             ]);
-        }
-        else{
+        } else {
             return redirect()->route('allproducts')->with('message', 'Product stock out!');
         }
 
         return redirect()->route('allproducts')->with('message', 'Product added to cart successfully!');
+    }
 
+    public function ShowCart(Request $request)
+    {
+        return response()->json($request);
     }
 
     public function checkout()
@@ -82,19 +85,18 @@ class OrderController extends Controller
         ]);
 
         $order = Order::insert([
-            'order_id'=> uniqid('order'),
-            'username'=> 'guest',
+            'order_id' => uniqid('order'),
+            'username' => 'guest',
             'session_id' => $checkout_session->id,
-            'product_id'=> '1',
+            'product_id' => '1',
             'product_name' => 'test_value',
             'product_quantity' => '100',
             'total_price' => $totalPrice,
             'payment_status' => 'unpaid',
-            'delivery_status'=> 'on progress',
+            'delivery_status' => 'on progress',
         ]);
 
         return redirect($checkout_session->url);
-
     }
 
     public function payment_success(Request $request)
@@ -122,11 +124,8 @@ class OrderController extends Controller
             }
 
             return view('test.success', compact('customer'));
-
         } catch (\Throwable $th) {
             throw new NotFoundHttpException;
         }
-
-
     }
 }

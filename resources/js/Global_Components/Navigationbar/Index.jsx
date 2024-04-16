@@ -21,6 +21,7 @@ const Navigation = ({ collections, auth }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
+    const [cartData, setcartData] = useState([]);
 
     const navButtonStyle = {
         color: theme.palette.text.white[500],
@@ -39,12 +40,22 @@ const Navigation = ({ collections, auth }) => {
         setDrawerOpen(open);
     };
 
-    const toggleCart = (open) => (event) => {
+    const toggleCart = (open) => async (event) => {
         if (
             event.type === "keydown" &&
             (event.key === "Tab" || event.key === "Shift")
         )
             return;
+
+        if (open) {
+            try {
+                const response = await axios.get(route("cartItems"));
+                setcartData(response.data);
+            } catch (error) {
+                console.error("Error adding item to cart:", error);
+            }
+        }
+
         setCartOpen(open);
     };
 
@@ -141,6 +152,7 @@ const Navigation = ({ collections, auth }) => {
                         toggleCart={toggleCart}
                         navButtonStyle={navButtonStyle}
                         theme={theme}
+                        cartData={cartData}
                     />
                 </Toolbar>
             </AppBar>
