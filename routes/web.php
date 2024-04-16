@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HelpersController;
@@ -37,11 +38,11 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
-Route::get('/cartItems', [OrderController::class, 'ShowCart'])->name('cartItems');
+
 
 // cart route
 Route::post('/cart', [OrderController::class, 'AddtoCart'])->name('addtocart');
-// Route::post('/addtocart', [OrderController::class, 'AddtoCartTest'])->name('addtocartTest');
+Route::get('/cartItems', [CartController::class, 'index'])->name('cartItems');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

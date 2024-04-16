@@ -51,6 +51,7 @@ const Navigation = ({ collections, auth }) => {
             try {
                 const response = await axios.get(route("cartItems"));
                 setcartData(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Error adding item to cart:", error);
             }

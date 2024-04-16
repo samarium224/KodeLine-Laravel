@@ -47,11 +47,6 @@ class OrderController extends Controller
         return redirect()->route('allproducts')->with('message', 'Product added to cart successfully!');
     }
 
-    public function ShowCart(Request $request)
-    {
-        return response()->json($request);
-    }
-
     public function checkout()
     {
         $products = Products::all();
