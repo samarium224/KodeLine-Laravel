@@ -81,7 +81,7 @@ const SliderComp = ({
                         animate={isActive ? "visible" : "hidden"}
                         transition={{ duration: 0.4, delay: 0.25 }}
                         color={theme.palette.text.white[500]}
-                        sx={{ mb: { xl: 5, md: 3, xs: 20 }, width: "40%" }}
+                        sx={{ mb: { xl: 5, md: 3, xs: 20 }, width: "33%" }}
                     >
                         {subtitle}
                     </Typography>

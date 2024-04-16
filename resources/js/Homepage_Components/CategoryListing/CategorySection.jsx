@@ -1,4 +1,5 @@
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
+import { Link } from "@inertiajs/react";
 import {
     Box,
     Button,
@@ -51,23 +52,30 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                             height: "100%",
                         }}
                     >
-                        <Button
-                            sx={{
-                                color: theme.palette.text.grey[500],
-                                backgroundColor: theme.palette.text.white[100],
-                                fontWeight: "500",
-                                fontSize: {
-                                    xl: "1.1rem",
-                                    md: "0.9rem",
-                                    xs: "0.825rem",
-                                },
-                                px: { xl: 8, md: 5, xs: 3 },
-                                py: { xl: 1.66, md: 1.2, xs: 1 },
-                                "&:hover": { backgroundColor: "#cdcdd0" },
-                            }}
+                        <Link
+                            href={route("collection", {
+                                id: category.categoryID,
+                            })}
                         >
-                            Explore
-                        </Button>
+                            <Button
+                                sx={{
+                                    color: theme.palette.text.grey[500],
+                                    backgroundColor:
+                                        theme.palette.text.white[100],
+                                    fontWeight: "500",
+                                    fontSize: {
+                                        xl: "1.1rem",
+                                        md: "0.9rem",
+                                        xs: "0.825rem",
+                                    },
+                                    px: { xl: 8, md: 5, xs: 3 },
+                                    py: { xl: 1.66, md: 1.2, xs: 1 },
+                                    "&:hover": { backgroundColor: "#cdcdd0" },
+                                }}
+                            >
+                                Explore
+                            </Button>
+                        </Link>
                     </Box>
                 </Box>
                 <Typography

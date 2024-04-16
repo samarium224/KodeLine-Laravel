@@ -4,7 +4,7 @@ import Header from "@/Global_Components/Header";
 
 // import { CollectionItemList } from "./data";
 
-const ShopByCategory = ({CollectionItemList}) => {
+const ShopByCategory = ({ CollectionItemList }) => {
     return (
         <Box>
             <Header

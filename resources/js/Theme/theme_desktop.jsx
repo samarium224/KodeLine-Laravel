@@ -47,7 +47,7 @@ const theme_desktop = createTheme({
             fontSize: "1.8rem",
         },
         subtitle: {
-            fontSize: "1.25rem",
+            fontSize: "1.11rem",
             fontWeight: "400",
             lineHeight: "1.8rem",
         },

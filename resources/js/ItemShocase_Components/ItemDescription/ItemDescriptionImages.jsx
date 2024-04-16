@@ -95,7 +95,10 @@ const ItemDescriptionImages = ({ itemData }) => {
                             "&:focus": { outline: "none" },
                         }}
                     >
-                        <img src={selectedImage} style={{ height: "80vh" }} />
+                        <img
+                            src={selectedImage}
+                            // style={{ height: "80vh"}}
+                        />
                     </Box>
                 </>
             </Modal>
