@@ -1,10 +1,19 @@
 import { Typography, Box, useTheme } from "@mui/material";
 
-const Itemdesc = ({ mainText, ageRange, currentPrice, oldPrice }) => {
+const Itemdesc = ({
+    mainText,
+    ageRange,
+    currentPrice,
+    oldPrice,
+    alternativeCard,
+}) => {
     const theme = useTheme();
     return (
         <Box
-            sx={{ width: { xs: "175px", md: "252px", lg: "300px" } }}
+            sx={{
+                width: { xs: "175px", md: "252px", lg: "300px" },
+                scale: alternativeCard && "0.9",
+            }}
             textAlign="center"
         >
             <Typography

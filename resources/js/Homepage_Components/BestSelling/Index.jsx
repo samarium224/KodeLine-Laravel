@@ -3,7 +3,7 @@ import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import BestSellingHeader from "./BestSellingHeader";
 // import { bestSellingItemsList, collections } from "./data";
 
-const BestSellingItems = ({bestSellingItemsList , collections}) => {
+const BestSellingItems = ({ bestSellingItemsList, collections }) => {
     const theme = useTheme();
 
     return (
@@ -32,14 +32,20 @@ const BestSellingItems = ({bestSellingItemsList , collections}) => {
                 <Box display="flex" justifyContent="center" mt={7.55}>
                     <Button
                         sx={{
-                            backgroundColor: theme.palette.primary.main,
                             color: theme.palette.text.grey[500],
-                            fontSize: { xs: "0.9rem", md: "1.5rem" },
-                            fontWeight: 400,
-                            px: { xs: 6, md: 10 },
-                            py: { xs: 1.5, md: 2 },
+                            backgroundColor: "transparent",
+                            border: `2px solid ${theme.palette.text.grey[500]}`,
+                            fontWeight: "500",
+                            fontSize: {
+                                xl: "1.25rem",
+                                md: "1rem",
+                                xs: "0.9rem",
+                            },
+                            px: { xl: 9, md: 6, xs: 4 },
+                            py: { xl: 1.66, md: 1.2, xs: 1 },
                             "&:hover": {
-                                backgroundColor: theme.palette.primary.main,
+                                backgroundColor: theme.palette.text.grey[500],
+                                color: theme.palette.text.white[500],
                             },
                         }}
                     >

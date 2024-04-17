@@ -8,8 +8,8 @@ const SliderContent = ({ theme }) => (
     <Box
         sx={{
             backgroundImage: {
-                xs: `url("./assets/New_6_9.png")`,
-                sm: `url("./assets/New.png")`,
+                xs: `url("./All Images/Fast Delivery_Image.png")`,
+                sm: `url("./All Images/Fast Delivery_Image.png")`,
             },
             backgroundPosition: "right bottom",
             backgroundSize: "cover",
@@ -24,7 +24,7 @@ const SliderContent = ({ theme }) => (
         }}
     >
         <Container maxWidth="xl" sx={{ position: "relative" }}>
-            <Typography
+            {/* <Typography
                 variant="headline"
                 sx={{
                     position: "absolute",
@@ -38,19 +38,28 @@ const SliderContent = ({ theme }) => (
                 }}
             >
                 Simplifying Choices <br /> Maximizing Convenience
-            </Typography>
+            </Typography> */}
             <Button
                 sx={{
                     position: "absolute",
-                    backgroundColor: theme.palette.text.white[100],
-                    color: theme.palette.text.grey[500],
-                    top: { lg: "50vh", xl: "475px" },
-                    left: "37.5%",
-                    fontSize: "1.5rem",
-                    fontWeight: 400,
-                    px: 10,
-                    py: 2,
-                    display: { md: "initial", xs: "none" },
+                    transform: "translate(-50%, -50%)",
+                    top: { lg: "75%", xl: "600px" },
+                    left: "50%",
+                    color: theme.palette.text.white[500],
+                    backgroundColor: "transparent",
+                    border: `2px solid ${theme.palette.text.white[500]}`,
+                    fontWeight: "500",
+                    fontSize: {
+                        xl: "1.25rem",
+                        md: "1rem",
+                        xs: "0.9rem",
+                    },
+                    px: { xl: 9, md: 6, xs: 4 },
+                    py: { xl: 1.66, md: 1.2, xs: 1 },
+                    "&:hover": {
+                        backgroundColor: theme.palette.text.white[500],
+                        color: theme.palette.text.grey[500],
+                    },
                 }}
             >
                 SHOP NOW
@@ -62,7 +71,7 @@ const SliderContent = ({ theme }) => (
 const FooterTop = () => {
     const theme = useTheme();
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 600,
         slidesToShow: 1,
@@ -117,7 +126,7 @@ const FooterTop = () => {
                 <SliderContent theme={theme} />
                 <SliderContent theme={theme} />
             </Slider>
-            <Banner />
+            {/* <Banner /> */}
         </Box>
     );
 };

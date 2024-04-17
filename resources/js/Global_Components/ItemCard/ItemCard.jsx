@@ -52,6 +52,7 @@ const ItemCard = ({
                 ageRange={ageRange}
                 currentPrice={currentPrice}
                 oldPrice={currentPrice != oldPrice && oldPrice}
+                alternativeCard={buttonText == "PRE ORDER"}
             ></Itemdesc>
         </Box>
     );
