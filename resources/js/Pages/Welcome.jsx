@@ -22,6 +22,7 @@ import Slogan from "@/Global_Components/Slogan";
 import { preorderItems } from "@/Global_data/PreorderItems";
 
 import { usePage } from "@inertiajs/react";
+import { Category } from "@mui/icons-material";
 
 export default function Welcome({ auth }) {
     const {
@@ -62,7 +63,7 @@ export default function Welcome({ auth }) {
                     bestSellingItemsList={bestsellingItems}
                     collections={collections}
                 />
-                <TopCategories />
+                <TopCategories RestCategories={collections} />
                 <PreOrder items={preorderItems} />
                 <Testimonials />
                 <FooterTop />

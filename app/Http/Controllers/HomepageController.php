@@ -36,6 +36,7 @@ class HomepageController extends Controller
             return [
                 'collection_name' => $item->category_name,
                 'collection_id' => $item->id,
+                'ImgUrl' => $item->cat_headerImg_PC,
             ];
         });
 

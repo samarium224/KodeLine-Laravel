@@ -1,7 +1,8 @@
+import { Link } from "@inertiajs/react";
 import { Container, Box, useTheme, Button } from "@mui/material";
 
-const TopCategories = () => {
-    const topCategories = ["Girl's", "Boy's", "Winter", "Summer"];
+const TopCategories = ({ RestCategories }) => {
+    // const topCategories = ["Girl's", "Boy's", "Winter", "Summer"];
     const theme = useTheme();
 
     return (
@@ -12,8 +13,8 @@ const TopCategories = () => {
                 justifyContent="space-between"
                 flexWrap="wrap"
             >
-                {topCategories.map((category, i) => {
-                    const randomImageURL = `https://picsum.photos/800/350?random=${Math.random()}`;
+                {RestCategories.slice(3).map((category, i) => {
+                    const ImageURL = category.ImgUrl;
 
                     return (
                         <Box
@@ -25,34 +26,40 @@ const TopCategories = () => {
                                 alignItems: "center",
                                 width: "47.5%",
                                 height: "350px",
-                                backgroundImage: `url(${randomImageURL})`,
+                                backgroundImage: `url(${ImageURL})`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                                 position: "relative",
                             }}
                         >
-                            <Button
-                                sx={{
-                                    color: theme.palette.text.white[500],
-                                    backgroundColor: "transparent",
-                                    border: `2px solid ${theme.palette.text.white[500]}`,
-                                    fontWeight: "500",
-                                    fontSize: {
-                                        xl: "1.25rem",
-                                        md: "1rem",
-                                        xs: "0.9rem",
-                                    },
-                                    px: { xl: 9, md: 6, xs: 4 },
-                                    py: { xl: 1.66, md: 1.2, xs: 1 },
-                                    "&:hover": {
-                                        backgroundColor:
-                                            theme.palette.text.white[500],
-                                        color: theme.palette.text.grey[500],
-                                    },
-                                }}
+                            <Link
+                                href={route("collection", {
+                                    id: category.collection_id,
+                                })}
                             >
-                                {category} Collection
-                            </Button>
+                                <Button
+                                    sx={{
+                                        color: theme.palette.text.white[500],
+                                        backgroundColor: "transparent",
+                                        border: `2px solid ${theme.palette.text.white[500]}`,
+                                        fontWeight: "500",
+                                        fontSize: {
+                                            xl: "1.25rem",
+                                            md: "1rem",
+                                            xs: "0.9rem",
+                                        },
+                                        px: { xl: 9, md: 6, xs: 4 },
+                                        py: { xl: 1.66, md: 1.2, xs: 1 },
+                                        "&:hover": {
+                                            backgroundColor:
+                                                theme.palette.text.white[500],
+                                            color: theme.palette.text.grey[500],
+                                        },
+                                    }}
+                                >
+                                    {category.collection_name} Collection
+                                </Button>
+                            </Link>
                         </Box>
                     );
                 })}

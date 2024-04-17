@@ -46,7 +46,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
-                        <b><img src="{{ asset('KidslineAssets/Logo Final_White.png') }}" width="100px" alt="homepage"
+                        <b><img src="{{ asset('All Images/Logo_White.png') }}" width="100px" alt="homepage"
                                 class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -72,18 +72,18 @@
                         <!-- Search -->
                         <!-- Comment -->
                         <li class="nav-item d-flex align-items-center">
-                            <a href="/" class="text-white">My Store</a>
+                            <a href="/" class="text-white mx-3">My Store</a>
                         </li>
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"><img
-                                    src="{{ asset('uploads/17112084307540_ad337533c1.png') }}" alt="user"
+                                    src="{{ asset('assets/K logo.png') }}" alt="user"
                                     class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
+                                    {{-- <li><a href="#"><i class="ti-user"></i> Profile</a></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li> --}}
                                     <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
                                 </ul>
                             </div>
@@ -107,7 +107,7 @@
                                 {{-- <span class="label label-rouded label-primary pull-right">2</span></span> --}}
                         </a>
                         <ul aria-expanded="false" class="collapse text-white">
-                            <li><a href="#" class="text-white">Analytics</a></li>
+                            <li><a href="{{ route('admin.dashboard')}} " class="text-white">Analytics</a></li>
                         </ul>
                     </li>
                     <hr class="side-hr">

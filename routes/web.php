@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
-        Route::get('/admin/dashboard', 'Index');
+        Route::get('/admin/dashboard', 'Index')->name('admin.dashboard');
         // all category
         Route::get('/admin/all-category', 'All_Category')->name('allcategory');
         Route::get('/admin/add-category', 'All_Category_Add')->name('addcategory');
