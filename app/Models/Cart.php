@@ -12,6 +12,8 @@ class Cart extends Model
         'username',
         'user_id',
         'product_id',
+        'imgUrl',
+        'ageRange',
         'product_name',
         'product_quantity',
         'product_price'

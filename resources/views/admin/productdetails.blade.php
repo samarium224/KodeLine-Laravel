@@ -14,18 +14,6 @@
     <p><strong>Category:</strong> {{ $product->product_category_name }}</p>
     <p><strong>Subcategory:</strong> {{ $product->product_subcategory_name }}</p>
 
-    <form action="{{route('checkout')}}" method="POST">
-        @csrf
-        <button class="btn btn-dark" type="submit">checkout</button>
-    </form>
-
-    <form action="{{route('addtocart')}}" method="POST">
-        @csrf
-        <input type="hidden" name="product_id" value="{{ $product->id }}">
-        <input type="hidden" name="product_name" value="{{ $product->product_name }}">
-        <input type="number" name="product_quantity">
-        <button class="btn btn-secondary my-3" type="submit">add to cart</button>
-    </form>
 
     <h3>Images</h3>
     @foreach ($product->product_img as $img)

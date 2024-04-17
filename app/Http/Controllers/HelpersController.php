@@ -20,7 +20,7 @@ class HelpersController extends Controller
         // Proceed with sorting if the column name is valid
         $columnName = $sortID;
         $direction = 'asc';
-        $products = Products::orderBy($columnName, $direction)->get();
+        $products = Products::orderBy($columnName, $direction)->paginate(10);
 
         return view('admin.AllProducts', compact('products'));
     }

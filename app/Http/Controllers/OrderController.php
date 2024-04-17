@@ -12,44 +12,17 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function AddtoCart(Request $request)
-    {
-        $validate = $request->validate([
-            'itemID' => 'required|integer',
-        ]);
-
-        // dd(session()->getId());
-
-        // Retrieve the currently authenticated user...
-        $username = $request->user()->value('name');
-        $userid = $request->user()->value('id');
-        $product_id = $request->itemID;
-        $product_quantity = 1;
-
-        $current_stock = Products::where('id', $product_id)->value('quantity');
-        $product_name = Products::where('id', $product_id)->value('product_name');
-        $unit_price = Products::where('id', $product_id)->value('price');
-
-        if ($product_quantity < $current_stock) {
-            $product_price = $unit_price;
-            Cart::insert([
-                'username' => $username,
-                'user_id' => $userid,
-                'product_id' => $product_id,
-                'product_name' => $product_name,
-                'product_quantity' => $product_quantity,
-                'product_price' => $product_price,
-            ]);
-        } else {
-            return redirect()->route('allproducts')->with('message', 'Product stock out!');
-        }
-
-        return redirect()->route('allproducts')->with('message', 'Product added to cart successfully!');
-    }
 
     public function checkout()
     {
-        $products = Products::all();
+        // Get the authenticated user's ID
+        $user_id = Auth::id();
+
+        if ($user_id == null) {
+            $user_id = session()->getId();
+        }
+
+        $products = Cart::where('user_id', $user_id)->get();
 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $YOUR_DOMAIN = 'http://127.0.0.1:8000/';
@@ -57,18 +30,18 @@ class OrderController extends Controller
         $lineItems = [];
         $totalPrice = 0;
         foreach ($products as $product) {
-            $totalPrice += $product->price;
+            $totalPrice += $product->product_price;
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'usd',
-                    'unit_amount' => $product->price * 100,
+                    'unit_amount' => $product->product_price * 100,
                     'product_data' => [
                         'name' => $product->product_name,
-                        'description' => $product->product_short_description,
-                        'images' => ['https://example.com/t-shirt.png'],
+                        'description' => $product->product_name,
+                        'images' => [$product->imgUrl],
                     ],
                 ],
-                'quantity' => 1,
+                'quantity' => $product->product_quantity,
             ];
         }
 
@@ -122,5 +95,9 @@ class OrderController extends Controller
         } catch (\Throwable $th) {
             throw new NotFoundHttpException;
         }
+    }
+
+    public function cancel(){
+        return redirect(route('home'));
     }
 }

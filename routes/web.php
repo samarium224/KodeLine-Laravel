@@ -31,7 +31,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified', 'role:user'])->name('dashboard');
 
 //payment routes
-Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('/checkout/success', [OrderController::class, 'payment_success'])->name('checkout.success');
 Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checkout.cancel');
 
@@ -39,9 +39,8 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
 
-
 // cart route
-Route::post('/cart', [OrderController::class, 'AddtoCart'])->name('addtocart');
+Route::post('/cart', [CartController::class, 'store'])->name('addtocart');
 Route::get('/cartItems', [CartController::class, 'index'])->name('cartItems');
 
 Route::middleware('auth')->group(function () {
