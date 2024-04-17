@@ -10,20 +10,19 @@ export const NavigationCheckout = ({
     navButtonStyle,
     theme,
     cartData,
+    setcartData,
 }) => {
-    const [checkoutRequestItems, setCheckoutRequestItems] = useState(cartData);
-
-    const totalQuantity = checkoutRequestItems.reduce(
+    const totalQuantity = cartData.reduce(
         (total, item) => total + item.quantity,
         0
     );
-    const subtotal = checkoutRequestItems.reduce(
+    const subtotal = cartData.reduce(
         (total, item) => total + item.currentPrice * item.quantity,
         0
     );
 
     const handleQuantityChange = (index, newQuantity) => {
-        setCheckoutRequestItems((prevItems) => {
+        setcartData((prevItems) => {
             const updatedItems = [...prevItems];
             updatedItems[index].quantity = newQuantity;
             return updatedItems;
@@ -31,7 +30,7 @@ export const NavigationCheckout = ({
     };
 
     const removeItem = (index) => {
-        setCheckoutRequestItems((prevItems) => {
+        setcartData((prevItems) => {
             const updatedItems = [...prevItems];
             updatedItems.splice(index, 1);
             return updatedItems;
@@ -67,7 +66,7 @@ export const NavigationCheckout = ({
                 }}
             >
                 <CartContent
-                    checkoutRequestItems={checkoutRequestItems}
+                    checkoutRequestItems={cartData}
                     handleQuantityChange={handleQuantityChange}
                     removeItem={removeItem}
                     totalQuantity={totalQuantity}

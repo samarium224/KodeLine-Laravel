@@ -40,6 +40,8 @@ const Navigation = ({ collections, auth }) => {
         setDrawerOpen(open);
     };
 
+    // console.log(cartData);
+
     const toggleCart = (open) => async (event) => {
         if (
             event.type === "keydown" &&
@@ -51,7 +53,6 @@ const Navigation = ({ collections, auth }) => {
             try {
                 const response = await axios.get(route("cartItems"));
                 setcartData(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.error("Error adding item to cart:", error);
             }
@@ -154,6 +155,7 @@ const Navigation = ({ collections, auth }) => {
                         navButtonStyle={navButtonStyle}
                         theme={theme}
                         cartData={cartData}
+                        setcartData={setcartData}
                     />
                 </Toolbar>
             </AppBar>

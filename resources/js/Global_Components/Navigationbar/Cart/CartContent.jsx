@@ -77,7 +77,12 @@ const CartItem = ({
     removeItem,
     theme,
 }) => (
-    <Box display="flex" justifyContent="space-between" alignItems="center">
+    <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={4}
+    >
         <img src={requestItem.itemImgURL} height="80" width="60" />
         <Box flex={1} ml={2.5}>
             <Typography display="block" variant="itemdescTitle">

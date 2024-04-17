@@ -60,6 +60,7 @@ const Products = ({ CollectionItemsList }) => {
                             ageRange={item.ageRange}
                             currentPrice={item.currentPrice}
                             oldPrice={item.oldPrice}
+                            animationDelay={0.2 + (i % 4) * 0.15}
                         />
                     </Grid>
                 ))}

@@ -59,18 +59,22 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                         >
                             <Button
                                 sx={{
-                                    color: theme.palette.text.grey[500],
-                                    backgroundColor:
-                                        theme.palette.text.white[100],
+                                    color: theme.palette.text.white[500],
+                                    backgroundColor: "transparent",
+                                    border: `2px solid ${theme.palette.text.white[500]}`,
                                     fontWeight: "500",
                                     fontSize: {
-                                        xl: "1.1rem",
-                                        md: "0.9rem",
-                                        xs: "0.825rem",
+                                        xl: "1rem",
+                                        md: "0.85rem",
+                                        xs: "0.8rem",
                                     },
                                     px: { xl: 8, md: 5, xs: 3 },
                                     py: { xl: 1.66, md: 1.2, xs: 1 },
-                                    "&:hover": { backgroundColor: "#cdcdd0" },
+                                    "&:hover": {
+                                        backgroundColor:
+                                            theme.palette.text.white[500],
+                                        color: theme.palette.text.grey[500],
+                                    },
                                 }}
                             >
                                 Explore
@@ -95,11 +99,16 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                 alignItems="center"
                 sx={{ width: { md: "48.75%", xs: "100%" } }}
             >
-                <Grid container height="50%">
+                <Box
+                    height="50%"
+                    width="100%"
+                    display="flex"
+                    justifyContent="center"
+                >
                     {category.categoryItemList
                         .slice(0, 2)
                         .map((CategoryItem, i) => (
-                            <Grid item xs={6} sm={6} key={i}>
+                            <Box key={i} width="48%">
                                 <ItemCard
                                     itemID={CategoryItem.itemID}
                                     itemImage={CategoryItem.imgURL}
@@ -109,14 +118,33 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                                     oldPrice={CategoryItem.oldPrice}
                                     animationDelay={0.2 + (i % 2) * 0.15}
                                 />
-                            </Grid>
+                            </Box>
                         ))}
-                </Grid>
-                <Grid container height="50%" mt={5}>
+                </Box>
+                <Box
+                    height="50%"
+                    width="100%"
+                    display="flex"
+                    justifyContent="center"
+                    mt={5}
+                >
                     {category.categoryItemList
                         .slice(2)
                         .map((CategoryItem, i) => (
-                            <Grid item xs={6} sm={6} key={i}>
+                            <Box
+                                key={i}
+                                width={
+                                    category.categoryItemList.length === 3
+                                        ? "100%"
+                                        : "48%"
+                                }
+                                display="flex"
+                                justifyContent={
+                                    category.categoryItemList.length === 3
+                                        ? "center"
+                                        : "flex-start"
+                                }
+                            >
                                 <ItemCard
                                     itemID={CategoryItem.itemID}
                                     itemImage={CategoryItem.imgURL}
@@ -126,9 +154,9 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                                     oldPrice={CategoryItem.oldPrice}
                                     animationDelay={0.2 + (i % 2) * 0.15}
                                 />
-                            </Grid>
+                            </Box>
                         ))}
-                </Grid>
+                </Box>
                 <Button
                     sx={{
                         backgroundColor: theme.palette.primary.main,

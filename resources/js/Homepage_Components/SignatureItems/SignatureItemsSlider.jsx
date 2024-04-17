@@ -13,7 +13,8 @@ const SignatureItemsSlider = ({ children }) => {
     };
 
     const isFirstSlide = currentSlide === 0;
-    const isLastSlide = currentSlide === React.Children.count(children) - 4;
+    const isLastSlide =
+        currentSlide >= Math.max(React.Children.count(children) - 4, 0);
 
     const PrevArrow = ({ onClick }) => (
         <Box
