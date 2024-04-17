@@ -124,7 +124,7 @@ const QuantityControls = ({ quantity, onDecrease, onIncrease, theme }) => (
             </Button>
             <Typography
                 display="inline"
-                color={theme.palette.text.grey[500]}
+                color={theme.palette.text.white[500]}
                 backgroundColor={theme.palette.primary.main}
                 mx={0.75}
                 width="40px"

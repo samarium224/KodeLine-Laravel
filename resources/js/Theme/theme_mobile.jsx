@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 const theme_mobile = createTheme({
     palette: {
         primary: {
-            main: "#EED8C3",
+            main: "#53555a",
         },
         text: {
             grey: {

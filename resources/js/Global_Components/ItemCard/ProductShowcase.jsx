@@ -28,6 +28,7 @@ const ProductShowcase = ({
             component={Link}
             href={route("itemshowcase", { id: itemID })}
             sx={{
+                scale: buttonText == "PRE ORDER" && "0.9",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",

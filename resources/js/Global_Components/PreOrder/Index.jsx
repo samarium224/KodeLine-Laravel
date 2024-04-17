@@ -9,7 +9,7 @@ import { PrevArrow, NextArrow } from "./SliderArrows";
 const PreOrder = ({ items }) => {
     const theme = useTheme();
     const settings = {
-        arrows: true,
+        arrows: false,
         infinite: true,
         fade: true,
         speed: 1000,
@@ -17,8 +17,8 @@ const PreOrder = ({ items }) => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-        prevArrow: <PrevArrow />,
-        nextArrow: <NextArrow />,
+        // prevArrow: <PrevArrow />,
+        // nextArrow: <NextArrow />,
         responsive: [
             {
                 breakpoint: 900,
@@ -42,9 +42,9 @@ const PreOrder = ({ items }) => {
                     backgroundRepeat: "no-repeat",
                     width: { xs: "100%", md: "50%" },
                     height: {
-                        xs: "600px",
-                        lg: "80vh",
-                        maxAllowableWidth: "800px",
+                        xs: "550px",
+                        lg: "75vh",
+                        maxAllowableWidth: "700px",
                     },
                     pb: 15,
                     display: "flex",
@@ -54,12 +54,21 @@ const PreOrder = ({ items }) => {
             >
                 <Button
                     sx={{
-                        backgroundColor: theme.palette.text.white[100],
-                        color: theme.palette.text.grey[500],
-                        fontSize: { xs: "0.9rem", md: "1.5rem" },
-                        fontWeight: 400,
-                        px: { xs: 6, md: 10 },
-                        py: { xs: 1.5, md: 2 },
+                        color: theme.palette.text.white[500],
+                        backgroundColor: "transparent",
+                        border: `2px solid ${theme.palette.text.white[500]}`,
+                        fontWeight: "500",
+                        fontSize: {
+                            xl: "1.25rem",
+                            md: "1rem",
+                            xs: "0.9rem",
+                        },
+                        px: { xl: 9, md: 6, xs: 4 },
+                        py: { xl: 1.66, md: 1.2, xs: 1 },
+                        "&:hover": {
+                            backgroundColor: theme.palette.text.white[500],
+                            color: theme.palette.text.grey[500],
+                        },
                     }}
                 >
                     SHOP NOW
@@ -77,8 +86,8 @@ const PreOrder = ({ items }) => {
                 <Box
                     sx={{
                         backgroundColor: { xs: "transparent", md: "white" },
-                        py: { xs: 3, md: 6 },
-                        maxWidth: { xs: "225px", md: "350px" },
+                        py: { xs: 2, md: 4.5 },
+                        maxWidth: { xs: "205px", md: "320px" },
                         scale: { xs: "0.7", md: "0.8", lg: "1" },
                     }}
                 >

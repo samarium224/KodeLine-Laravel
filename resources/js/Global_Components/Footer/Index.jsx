@@ -89,7 +89,7 @@ const Footer = () => {
                             borderRadius: "0px",
                             marginLeft: "12px",
                             px: 5,
-                            color: theme.palette.text.grey[500],
+                            color: theme.palette.text.white[500],
                             fontWeight: { xs: 700, md: 600 },
                         }}
                     >
