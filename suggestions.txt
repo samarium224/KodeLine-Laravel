@@ -1,9 +1,0 @@
-Make a header for collection page
-reduce texts on banner
-
-========== TO DO ==========
-working view all button best-selling section
-Lazyload
-
-========== Query ==========
-Preorder button

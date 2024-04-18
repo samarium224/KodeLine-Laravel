@@ -51,7 +51,7 @@ export default function Welcome({ auth }) {
                     make every purchase a joy. Our commitment to uncompromising quality strengthens the bond between you and your little ones,
                     creating cherished moments filled with laughter, warmth, and unforgettable memories."
                     variant="subtitle"
-                    sx={{ textTransform: "initial", fontWeight: 400 }}
+                    sx={{ textTransform: "initial" }}
                 />
                 <Services />
                 <SignatureItems

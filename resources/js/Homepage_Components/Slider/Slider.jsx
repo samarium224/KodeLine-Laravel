@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 
 import SliderComp from "./SliderComp";
 
@@ -10,6 +10,7 @@ import { HomeSliderData } from "./data";
 
 const SliderComponent = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const theme = useTheme();
 
     const settings = {
         dots: true,
@@ -34,10 +35,12 @@ const SliderComponent = () => {
             >
                 <Box
                     display="flex"
-                    gap={0.25}
+                    gap={0.5}
                     sx={{
                         "& > li": { width: "3px" },
-                        "& > .slick-active div": { backgroundColor: "white" },
+                        "& > .slick-active div": {
+                            backgroundColor: "rgba(255, 255, 255, 0.75)",
+                        },
                     }}
                 >
                     {dots}
@@ -50,7 +53,7 @@ const SliderComponent = () => {
                     width: 8,
                     height: 8,
                     backgroundColor: "transparent",
-                    border: "1px solid white",
+                    border: `1px solid rgba(255, 255, 255, 0.75)`,
                     borderRadius: "50%",
                     cursor: "pointer",
                     transition: "0.3s ease",

@@ -8,7 +8,7 @@ const ServiceComponent = ({ text, subText, animationDelay }) => {
             display="flex"
             flexDirection="column"
             alignItems="center"
-            sx={{ width: { md: "28.5%", xs: "100%" }, mb: { md: 0, xs: 2 } }}
+            sx={{ width: { md: "28.5%", xs: "100%" }, mb: { md: 0, xs: 1 } }}
         >
             <Typography
                 variant="secondaryTitle"
@@ -22,9 +22,8 @@ const ServiceComponent = ({ text, subText, animationDelay }) => {
                 display="block"
                 color={theme.palette.text.grey[500]}
                 sx={{ mt: { md: 2, xs: 0.5 } }}
-            >
-                {subText}
-            </Typography>
+                dangerouslySetInnerHTML={{ __html: subText }}
+            />
         </Box>
     );
 };

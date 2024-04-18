@@ -32,7 +32,7 @@ const Header = ({ CollectionHeaderData }) => {
 
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
                     height: {
-                        xs: `calc(75vh - 56px)`,
+                        xs: `calc(60vh - 56px)`,
                         maxAllowableWidth: "700px",
                     },
                 }}

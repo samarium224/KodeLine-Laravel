@@ -9,7 +9,7 @@ import { PrevArrow, NextArrow } from "./SliderArrows";
 const PreOrder = ({ items }) => {
     const theme = useTheme();
     const settings = {
-        arrows: false,
+        arrows: true,
         infinite: true,
         fade: true,
         speed: 1000,
@@ -17,8 +17,8 @@ const PreOrder = ({ items }) => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-        // prevArrow: <PrevArrow />,
-        // nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
         responsive: [
             {
                 breakpoint: 900,
@@ -30,17 +30,29 @@ const PreOrder = ({ items }) => {
     };
 
     return (
-        <Box display="flex" sx={{ flexDirection: { xs: "column", md: "row" } }}>
+        <Box
+            display="flex"
+            sx={{
+                flexDirection: { xs: "column", md: "row" },
+                width: "100vw",
+                justifyContent: "center",
+                backgroundColor: theme.palette.primary.main,
+            }}
+        >
             <Box
                 sx={{
                     backgroundImage: {
-                        xs: `url("https://picsum.photos/640/800")`,
-                        sm: `url("https://picsum.photos/800/640")`,
+                        xs: `url("./All Images/Coming Soon.jpg")`,
+                        sm: `url("./All Images/Coming Soon.jpg")`,
                     },
                     backgroundPosition: "center bottom",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-                    width: { xs: "100%", md: "50%" },
+                    width: {
+                        xs: "100%",
+                        md: "55%",
+                        maxAllowableWidth: "980px",
+                    },
                     height: {
                         xs: "550px",
                         lg: "75vh",
@@ -75,9 +87,12 @@ const PreOrder = ({ items }) => {
                 </Button>
             </Box>
             <Box
-                backgroundColor={theme.palette.primary.main}
                 sx={{
-                    width: { xs: "100%", md: "50%" },
+                    width: {
+                        xs: "100%",
+                        md: "45%",
+                        maxAllowableWidth: "980px",
+                    },
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",

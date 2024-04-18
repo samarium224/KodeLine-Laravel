@@ -6,7 +6,7 @@ const Services = () => {
         <Container
             maxWidth="desktopMaxWidth"
             sx={{
-                mt: { md: 10, xs: 7.5 },
+                mt: { md: 12.5, xs: 8 },
                 mb: { md: 15, xs: 10 },
                 display: "flex",
                 justifyContent: "space-between",
@@ -14,16 +14,16 @@ const Services = () => {
             }}
         >
             <ServiceComponent
-                text="Curated Selection"
-                subText="Handpicked items for attractive designs, approved for Regina families."
+                text="Curated with Care"
+                subText="Discover handpicked kids items <br/> featuring captivating designs, perfect for loved ones."
             />
             <ServiceComponent
-                text="Swift Solution"
-                subText="Free shipping within 48 hours to Regina homes, hassle-free."
+                text="Effortless Solutions"
+                subText="Enjoy hasslefree shopping experience with fast delivery, because your convenience matters to us!"
             />
             <ServiceComponent
-                text="Secure Transaction"
-                subText="Registered Saskatchewan business ensures risk-free payments."
+                text="Trustworthy Transactions"
+                subText="As a registered Saskatchewan business, we guarantee secure payments for your peace of mind."
             />
         </Container>
     );

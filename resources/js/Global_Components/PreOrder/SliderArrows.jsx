@@ -16,8 +16,8 @@ export const PrevArrow = ({ onClick }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 zIndex: 1,
-                color: theme.palette.text.grey[500],
-                backgroundColor: theme.palette.text.grey[100],
+                color: theme.palette.text.white[500],
+                backgroundColor: theme.palette.text.grey[500],
                 borderRadius: "50%",
             }}
             onClick={onClick}
@@ -41,8 +41,8 @@ export const NextArrow = ({ onClick }) => {
                 alignItems: "center",
                 justifyContent: "center",
                 zIndex: 1,
-                color: theme.palette.text.grey[500],
-                backgroundColor: theme.palette.text.grey[100],
+                color: theme.palette.text.white[500],
+                backgroundColor: theme.palette.text.grey[500],
                 borderRadius: "50%",
             }}
             onClick={onClick}
