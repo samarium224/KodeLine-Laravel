@@ -12,7 +12,8 @@ class DashboardController extends Controller
 {
     public function Index()
     {
-        return view('admin.dashboard');
+        $orders = Order::orderBy("id","desc")->paginate(5);
+        return view('admin.dashboard', compact('orders'));
     }
 
     public function All_Category()

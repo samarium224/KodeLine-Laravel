@@ -13,23 +13,27 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
 
-    public function checkout()
+    public function checkout(Request $request)
     {
         // Get the authenticated user's ID
         $user_id = Auth::id();
 
         if ($user_id == null) {
             $user_id = session()->getId();
+            $username = 'guest';
+        } else {
+            $username = $request->user()->value('name');
+            $userid = $request->user()->value('id');
         }
 
-        $products = Cart::where('user_id', $user_id)->get();
+        $Cartproducts = Cart::where('user_id', $user_id)->get();
 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $YOUR_DOMAIN = 'http://127.0.0.1:8000/';
 
         $lineItems = [];
         $totalPrice = 0;
-        foreach ($products as $product) {
+        foreach ($Cartproducts as $product) {
             $totalPrice += $product->product_price;
             $lineItems[] = [
                 'price_data' => [
@@ -52,17 +56,22 @@ class OrderController extends Controller
             'cancel_url' => route('checkout.cancel', [], true),
         ]);
 
-        $order = Order::insert([
-            'order_id' => uniqid('order'),
-            'username' => 'guest',
-            'session_id' => $checkout_session->id,
-            'product_id' => '1',
-            'product_name' => 'test_value',
-            'product_quantity' => '100',
-            'total_price' => $totalPrice,
-            'payment_status' => 'unpaid',
-            'delivery_status' => 'on progress',
-        ]);
+        foreach ($Cartproducts as $product) {
+            $order = Order::create([
+                'order_id' => uniqid('order'),
+                'username' => $username,
+                'user_id' => $userid,
+                'session_id' => $checkout_session->id,
+                'product_id' => $product->id,
+                'product_name' => $product->product_name,
+                'product_quantity' => $product->product_quantity,
+                'total_price' => $totalPrice,
+                'phonenumber'=> '12324244',
+                'address'=> 'myaddess',
+                'imgUrl'=> $product->imgUrl,
+
+            ]);
+        }
 
         return redirect($checkout_session->url);
     }
@@ -86,8 +95,8 @@ class OrderController extends Controller
             if (!$order) {
                 throw new NotFoundHttpException();
             }
-            if ($order->status === 'unpaid') {
-                $order->status = 'paid';
+            if ($order->payment_status === 0) {
+                $order->payment_status = 1;
                 $order->save();
             }
 
@@ -97,7 +106,8 @@ class OrderController extends Controller
         }
     }
 
-    public function cancel(){
+    public function cancel()
+    {
         return redirect(route('home'));
     }
 }
