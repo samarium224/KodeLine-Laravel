@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Box, Typography, TextField, Button, useTheme } from "@mui/material";
 import SocialLinks from "./SocialLinks";
 import { motion, useInView, useAnimation } from "framer-motion";
+import Copyright from "./Copyright";
 
 const Footer = ({collections}) => {
     const theme = useTheme();
@@ -17,7 +18,7 @@ const Footer = ({collections}) => {
         if (isInView) mainControls.start("visible");
     }, [isInView]);
     return (
-        <Box my={5}>
+        <Box mt={5}>
             <Box
                 ref={ref}
                 textAlign="center"
@@ -106,6 +107,7 @@ const Footer = ({collections}) => {
             >
                 <SocialLinks collection={collections} />
             </Box>
+            <Copyright />
         </Box>
     );
 };

@@ -15,11 +15,11 @@ body {
     overflow-x: hidden; /* Disable horizontal scrolling */
 }
 
-/* body {
+body {
     overflow-y: scroll; 
     -ms-overflow-style: none; 
 }
 
 body::-webkit-scrollbar {
     display: none; 
-} */
+} 

@@ -4,21 +4,21 @@ import "slick-carousel/slick/slick-theme.css";
 import { Box, Button, Container, Typography, useTheme } from "@mui/material";
 import Banner from "@/Global_Components/Banner";
 
-const SliderContent = ({ theme }) => (
+const SliderContent = ({ theme, image }) => (
     <Box
         sx={{
             backgroundImage: {
-                xs: `url("./All Images/Fast Delivery_Image.png")`,
-                sm: `url("./All Images/Fast Delivery_Image.png")`,
+                xs: `url("${image}")`,
+                sm: `url("${image}")`,
             },
-            backgroundPosition: "right bottom",
+            backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             width: { xs: "100%", maxAllowableWidth: "1920px" },
             height: {
                 xs: "600px",
-                lg: "100vh",
-                maxAllowableWidth: "1000px",
+                lg: "105vh",
+                maxAllowableWidth: "1100px",
             },
             mx: "auto",
         }}
@@ -43,7 +43,7 @@ const SliderContent = ({ theme }) => (
                 sx={{
                     position: "absolute",
                     transform: "translate(-50%, -50%)",
-                    top: { lg: "75%", xl: "600px" },
+                    top: { lg: "75%", xl: "750px", maxAllowableWidth: "800px" },
                     left: "50%",
                     color: theme.palette.text.white[500],
                     backgroundColor: "transparent",
@@ -122,9 +122,18 @@ const FooterTop = () => {
     return (
         <Box backgroundColor={theme.palette.primary.main}>
             <Slider {...settings}>
-                <SliderContent theme={theme} />
-                <SliderContent theme={theme} />
-                <SliderContent theme={theme} />
+                <SliderContent
+                    theme={theme}
+                    image="./All Images/Curated Design_1960_1080.png"
+                />
+                <SliderContent
+                    theme={theme}
+                    image="./All Images/Fast Delivery_1960_1080.png"
+                />
+                <SliderContent
+                    theme={theme}
+                    image="./All Images/Best Value_1960_1080.png"
+                />
             </Slider>
             {/* <Banner /> */}
         </Box>

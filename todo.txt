@@ -1,0 +1,17 @@
+========== TO DO ==========
+working view all button best-selling section
+Lazyload
+
+========== Suggestions ==========
+reduce size of footer top image
+
+========== Query ==========
+    remove filter
+    age
+    subcategory
+
+catergoty page
+line side of header
+footer bottom
+
+RESPONSIVE FIX

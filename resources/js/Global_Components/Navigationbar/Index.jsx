@@ -16,7 +16,7 @@ import CategoryMenu from "./CategoryMenu";
 import DrawerContent from "./ResponsiveDrawer";
 import { NavigationCheckout } from "./Cart/Index";
 
-const Navigation = ({ collections, auth }) => {
+const Navigation = ({ collections, auth, alternativeColor = false }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -24,7 +24,9 @@ const Navigation = ({ collections, auth }) => {
     const [cartData, setcartData] = useState([]);
 
     const navButtonStyle = {
-        color: theme.palette.text.white[500],
+        color: alternativeColor
+            ? theme.palette.text.grey[500]
+            : theme.palette.text.white[500],
         mx: { xs: 1, md: 1.5 },
         fontSize: { xs: "0.66rem", md: "0.9rem" },
         fontWeight: "500",
@@ -39,8 +41,6 @@ const Navigation = ({ collections, auth }) => {
             return;
         setDrawerOpen(open);
     };
-
-    // console.log(cartData);
 
     const toggleCart = (open) => async (event) => {
         if (
@@ -95,7 +95,11 @@ const Navigation = ({ collections, auth }) => {
                             >
                                 <Link href={route("home")}>
                                     <img
-                                        src="./All Images/Logo_White.png"
+                                        src={
+                                            alternativeColor
+                                                ? "./All Images/Logo_Black.png"
+                                                : "./All Images/Logo_White.png"
+                                        }
                                         alt="Logo"
                                         style={{ height: "20px" }}
                                     />
@@ -112,7 +116,11 @@ const Navigation = ({ collections, auth }) => {
                             >
                                 <Link href={route("home")}>
                                     <img
-                                        src="./All Images/Logo_White.png"
+                                        src={
+                                            alternativeColor
+                                                ? "./All Images/Logo_Black.png"
+                                                : "./All Images/Logo_White.png"
+                                        }
                                         alt="Logo"
                                         style={{ height: "60px" }}
                                     />

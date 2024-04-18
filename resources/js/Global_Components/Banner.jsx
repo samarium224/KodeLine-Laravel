@@ -4,7 +4,7 @@ const Banner = ({ text, variant, sx = {} }) => {
     const theme = useTheme();
     const mergedStyles = {
         ...sx,
-        width: { md: "75%", xs: "95%" },
+        width: { maxAllowableWidth: "1800px", md: "75%", xs: "95%" },
     };
 
     return (
@@ -17,7 +17,7 @@ const Banner = ({ text, variant, sx = {} }) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                height="17.5vh"
+                sx={{ height: { xs: "15vh", maxAllowableWidth: "150px" } }}
             >
                 <Typography
                     variant={variant}

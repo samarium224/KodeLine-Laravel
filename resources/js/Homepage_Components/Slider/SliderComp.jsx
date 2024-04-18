@@ -35,9 +35,9 @@ const SliderComp = ({
                     backgroundRepeat: "no-repeat",
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
                     height: {
-                        xl: `calc(82.5vh - 56px)`,
-                        md: `calc(82.5vh - 49px)`,
-                        xs: `calc(82.5vh - 28px)`,
+                        xl: `calc(85vh - 56px)`,
+                        md: `calc(85vh - 49px)`,
+                        xs: `calc(85vh - 28px)`,
                         maxAllowableWidth: "700px",
                     },
                 }}
@@ -57,7 +57,7 @@ const SliderComp = ({
                             xs: "center",
                             md: reverseAlign ? "right" : "left",
                         },
-                        mx: { md: 5, xl: 15 },
+                        mx: { md: 5, xl: 25 },
                         pb: { xs: 0, md: 15 },
                     }}
                 >
@@ -70,9 +70,9 @@ const SliderComp = ({
                         color={theme.palette.text.white[500]}
                         transition={{ duration: 0.4, delay: 0 }}
                         sx={{ mb: 2, width: "95%" }}
-                    >
-                        {title}
-                    </Typography>
+                        dangerouslySetInnerHTML={{ __html: title }}
+                    />
+
                     <Typography
                         variant="subtitle"
                         component={motion.div}
@@ -82,9 +82,9 @@ const SliderComp = ({
                         transition={{ duration: 0.4, delay: 0.25 }}
                         color={theme.palette.text.white[500]}
                         sx={{ mb: { xl: 5, md: 3, xs: 20 }, width: "33%" }}
-                    >
-                        {subtitle}
-                    </Typography>
+                        dangerouslySetInnerHTML={{ __html: subtitle }}
+                    />
+
                     <Box
                         component={motion.div}
                         variants={reverseAlign ? fadeFromRight : fadeFromLeft}
