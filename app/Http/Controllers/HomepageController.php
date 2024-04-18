@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
+use App\Models\PreOrderItem;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -104,6 +106,20 @@ class HomepageController extends Controller
                 'oldPrice' => $item->compare_price,
             ];
         });
+
+        $preOrderContent = Content::where('content_name', 'preordercontent')->first();
+        $preOrderItems = PreOrderItem::all()->map(function ($item) {
+            $ageRangeArray = explode('|', $item->ageRange);
+            return [
+                'itemID' => $item->id,
+                'imgURL' => $item->product_img,
+                'itemTitle' => $item->product_name,
+                'ageRange' => $ageRangeArray,
+                'currentPrice' => $item->price,
+                'oldPrice' => $item->compare_price,
+                'buttonText' => "PRE ORDER",
+            ];
+        });
         // dd($collections);
         return Inertia::render('Welcome', [
             'signatureItemsList' => $signatureItemsList,
@@ -111,6 +127,8 @@ class HomepageController extends Controller
             'collections' => $collections,
             'featuredcollection' => $featuredcollections,
             'bestsellingItems' => $bestsellingItems,
+            'preOrderContent' => $preOrderContent,
+            'preOrderItems' => $preOrderItems,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);

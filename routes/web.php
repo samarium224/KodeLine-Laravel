@@ -90,6 +90,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/orders/unpaid', 'OrderUnpaid')->name('order.unpaid');
         Route::get('/admin/orders/pending', 'OrderPending')->name('order.pending');
         Route::get('/admin/orders/complete', 'OrderComplete')->name('order.complete');
+        Route::post('/admin/preorder/store', 'StorePreOrder')->name('preorder.store');
     });
 
     Route::controller(DashboardCustomerController::class)->group(function () {
