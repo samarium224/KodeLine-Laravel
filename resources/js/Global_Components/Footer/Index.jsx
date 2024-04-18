@@ -4,7 +4,7 @@ import SocialLinks from "./SocialLinks";
 import { motion, useInView, useAnimation } from "framer-motion";
 import Copyright from "./Copyright";
 
-const Footer = ({collections}) => {
+const Footer = ({ collections }) => {
     const theme = useTheme();
     const fadeFromBottom = {
         hidden: { opacity: 0, y: 30 },
@@ -29,7 +29,7 @@ const Footer = ({collections}) => {
             >
                 <Typography
                     textTransform="uppercase"
-                    fontWeight="500"
+                    fontWeight="400"
                     color={theme.palette.text.grey[500]}
                     component={motion.div}
                     variants={fadeFromBottom}
@@ -38,8 +38,8 @@ const Footer = ({collections}) => {
                     transition={{ duration: 0.5, delay: 0.15 }}
                     mb={1}
                     sx={{
-                        fontSize: { xs: "1.5rem", md: "2.75rem" },
-                        letterSpacing: { xs: 8, md: 12 },
+                        fontSize: { xs: "1.5rem", md: "2.5rem" },
+                        letterSpacing: { xs: 8, md: 10 },
                     }}
                 >
                     Subscribe
@@ -77,7 +77,7 @@ const Footer = ({collections}) => {
                                     borderColor: theme.palette.primary.main,
                                     borderRadius: "0px",
                                 },
-                                width: { xs: "300px", md: "400px" },
+                                width: { xs: "300px", md: "350px" },
                                 mb: { md: 0, xs: 2 },
                             },
                         }}

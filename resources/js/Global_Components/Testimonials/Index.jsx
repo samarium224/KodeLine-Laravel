@@ -35,7 +35,7 @@ const Testimonials = () => {
                     sx={{
                         "& > li": { width: "3px" },
                         "& > .slick-active div": {
-                            backgroundColor: theme.palette.text.grey[800],
+                            backgroundColor: theme.palette.text.grey[600],
                         },
                     }}
                 >
@@ -46,9 +46,9 @@ const Testimonials = () => {
         customPaging: (i) => (
             <Box
                 sx={{
-                    width: 9,
-                    height: 9,
-                    border: `1px solid ${theme.palette.text.grey[800]}`,
+                    width: 8,
+                    height: 8,
+                    border: `1px solid ${theme.palette.text.grey[600]}`,
                     borderRadius: "50%",
                     cursor: "pointer",
                     transition: "0.3s ease",

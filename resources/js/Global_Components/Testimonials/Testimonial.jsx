@@ -45,7 +45,7 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
                 display="flex"
                 flexDirection="column"
                 justifyContent="center"
-                color={theme.palette.text.grey[800]}
+                color={theme.palette.text.grey[700]}
             >
                 {getStars()}
                 <Box mb={3} textAlign="center">
@@ -66,7 +66,7 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
                 </Box>
                 <Typography
                     fontFamily="'Poppins', sans-serif"
-                    fontWeight="500"
+                    fontWeight="400"
                     lineHeight="1.4rem"
                     color={theme.palette.text.grey[500]}
                     sx={{ fontSize: { xs: "0.9rem", md: "1.1rem" } }}

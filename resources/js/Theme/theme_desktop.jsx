@@ -40,12 +40,12 @@ const theme_desktop = createTheme({
             lineHeight: "3.33rem",
         },
         title: {
-            fontSize: "2.33rem",
+            fontSize: "2.25rem",
             fontWeight: "500",
         },
         secondaryTitle: {
             fontWeight: "500",
-            fontSize: "1.8rem",
+            fontSize: "1.75rem",
         },
         subtitle: {
             fontSize: "1.125rem",

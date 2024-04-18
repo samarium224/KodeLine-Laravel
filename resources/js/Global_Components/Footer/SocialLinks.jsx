@@ -1,6 +1,6 @@
 import { Box, Container, Typography, useTheme } from "@mui/material";
 
-const SocialLinks = ({collection}) => {
+const SocialLinks = ({ collection }) => {
     const theme = useTheme();
     const informations = ["About us", "Contact us", "Terms and Conditions"];
     const collections = collection;

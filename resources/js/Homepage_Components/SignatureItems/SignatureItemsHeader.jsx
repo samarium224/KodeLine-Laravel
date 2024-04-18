@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 const SignatureItemsHeader = ({ title, categoryList }) => {
     return (
         <Box display="flex" flexDirection="column" alignItems="center" mb={5}>
-            <Header title={title} />
+            <Header title={title} customLineWidth="320px" />
             <Box display="flex">
                 {categoryList.map((category, i) => (
                     <CustomButton

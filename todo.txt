@@ -12,6 +12,5 @@ reduce size of footer top image
 
 catergoty page
 line side of header
-footer bottom
 
 RESPONSIVE FIX
