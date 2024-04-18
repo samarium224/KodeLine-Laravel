@@ -16,6 +16,10 @@ class DashboardController extends Controller
         return view('admin.dashboard', compact('orders'));
     }
 
+    public function analytics(){
+        return view('admin.Performance');
+    }
+
     public function All_Category()
     {
         $categories = Category::latest()->get();
@@ -599,10 +603,4 @@ class DashboardController extends Controller
         );
     }
 
-    //order section
-    public function Orders()
-    {
-        $orders = Order::latest()->get();
-        return view('admin.AllOrders', compact('orders'));
-    }
 }

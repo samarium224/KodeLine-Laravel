@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\DashboardContentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardCustomerController;
+use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\HelpersController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\OrderController;
@@ -52,6 +55,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/admin/dashboard', 'Index')->name('admin.dashboard');
+        Route::get('/admin/performance', 'analytics')->name('admin.performance');
         // all category
         Route::get('/admin/all-category', 'All_Category')->name('allcategory');
         Route::get('/admin/add-category', 'All_Category_Add')->name('addcategory');
@@ -77,9 +81,29 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/delete-product/{id}', 'DeleteProduct')->name('deleteproduct');
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
 
-        // order
-        Route::get('/admin/orders', 'Orders')->name('viewOrders');
     });
+
+    Route::controller(DashboardOrderController::class)->group(function () {
+        // order
+        Route::get('/admin/orders', 'Orders')->name('order.viewOrders');
+        Route::get('/admin/preOrdersItem', 'PreOrderItem')->name('order.preOrderItem');
+        Route::get('/admin/orders/unpaid', 'OrderUnpaid')->name('order.unpaid');
+        Route::get('/admin/orders/pending', 'OrderPending')->name('order.pending');
+        Route::get('/admin/orders/complete', 'OrderComplete')->name('order.complete');
+    });
+
+    Route::controller(DashboardCustomerController::class)->group(function () {
+        //customers
+        Route::get('/admin/view-customers', 'ViewCustomers')->name('admin.viewusers');
+        Route::get('/admin/view-guest', 'ViewGuest')->name('admin.viewguests');
+    });
+
+    Route::controller(DashboardContentController::class)->group(function () {
+        //content
+        Route::get('/admin/ContentpreOrder', 'PreOrderContent')->name('content.preorder');
+        Route::post('/admin/ContentpreOrder/edit', 'UpdatePreOrderContent')->name('content.preorder.store');
+    });
+
     // product utilities
     Route::get('/admin/all-products/sort/{sortID}', [HelpersController::class, 'Sort'])->name('product.sort');
     //ajax subcategory

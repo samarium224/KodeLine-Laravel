@@ -101,24 +101,24 @@
                 <ul id="sidebarnav">
                     <li class="nav-devider"></li>
                     <li>
-                        <a class="has-arrow" href="#main" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('admin.dashboard')}}" aria-expanded="false">
                             <i class="fa fa-home"></i>
                             <span class="hide-menu text-white">Home
                                 {{-- <span class="label label-rouded label-primary pull-right">2</span></span> --}}
                         </a>
-                        <ul aria-expanded="false" class="collapse text-white">
+                        {{-- <ul aria-expanded="false" class="collapse text-white">
                             <li><a href="{{ route('admin.dashboard')}} " class="text-white">Analytics</a></li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <hr class="side-hr">
                     <li>
-                        <a class="has-arrow" href="#inventory" aria-expanded="false">
+                        <a class="has-arrow" href="#performance" aria-expanded="false">
                             <i class="fa fa-bar-chart"></i>
                             <span class="hide-menu text-white">Performance
                                 {{-- <span class="label label-rouded label-primary pull-right">2</span></span> --}}
                         </a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="#">All Performance</a></li>
+                            <li><a href="{{ route('admin.performance')}}">Analytics</a></li>
                         </ul>
                     </li>
                     <hr class="side-hr">
@@ -126,10 +126,11 @@
                             <i class="fa fa-shopping-bag"></i>
                             <span class="hide-menu">Orders</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="{{ route('viewOrders') }}">Order list</a></li>
-                            <li><a href="email-compose.html">Pending Orders</a></li>
-                            <li><a href="email-read.html">Unpaid Orders</a></li>
-                            <li><a href="email-inbox.html">Completed Orders</a></li>
+                            <li><a href="{{ route('order.viewOrders') }}">Order list</a></li>
+                            <li><a href="{{ route('order.preOrderItem') }}">Add Pre Order Items</a></li>
+                            <li><a href="{{ route('order.unpaid') }}">Unpaid Orders</a></li>
+                            <li><a href="{{ route('order.pending') }}">Pending Orders</a></li>
+                            <li><a href="{{ route('order.complete') }}">Completed Orders</a></li>
                         </ul>
                     </li>
                     <hr class="side-hr">
@@ -150,8 +151,8 @@
                             <i class="fa fa-user"></i>
                             <span class="hide-menu">Customers</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="#">Add New Collection</a></li>
-                            <li><a href="#">Collection List</a></li>
+                            <li><a href="{{route('admin.viewusers')}}">Users</a></li>
+                            <li><a href="{{route('admin.viewguests')}}">Guests</a></li>
                         </ul>
                     </li>
                     <hr class="side-hr">
@@ -159,8 +160,7 @@
                             <i class="fa fa-database"></i>
                             <span class="hide-menu">Content</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="#">Add New Category</a></li>
-                            <li><a href="{{ route('subcategory') }}">Category List</a></li>
+                            <li><a href="{{route('content.preorder')}}">Pre Order Section</a></li>
                         </ul>
                     </li>
                     <hr class="side-hr">
@@ -232,6 +232,10 @@
     <!-- scripit init-->
 
     <script src="{{ asset('js/custom.min.js') }} "></script>
+
+    {{-- charts --}}
+    <script src="{{ asset('js/lib/chart-js/Chart.bundle.js') }}"></script>
+    <script src="{{ asset('js/lib/chart-js/chartjs-init.js') }}"></script>
 </body>
 
 </html>
