@@ -46,7 +46,7 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
                 <Products CollectionItemsList={collectionItemList} />
                 <PreOrder items={preorderItems} />
                 <Testimonials />
-                <Footer />
+                <Footer collections={collections} />
             </ThemeProvider>
         </div>
     );

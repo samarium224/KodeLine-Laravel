@@ -28,7 +28,7 @@ Route::get('/', [HomepageController::class, 'Index'])->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', 'role:user'])->name('dashboard');
+})->middleware(['auth', 'verified',])->name('dashboard');
 
 //payment routes
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'role:user'])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/admin/dashboard', 'Index')->name('admin.dashboard');
         // all category

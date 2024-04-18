@@ -1,13 +1,9 @@
 import { Box, Container, Typography, useTheme } from "@mui/material";
 
-const FooterBottom = () => {
+const SocialLinks = ({collection}) => {
     const theme = useTheme();
     const informations = ["About us", "Contact us", "Terms and Conditions"];
-    const collections = [
-        "Boys Summer Collections",
-        "Girls Summer Collections",
-        "All Season Shoes Collection",
-    ];
+    const collections = collection;
     const socialMedias = ["Facebook", "Instagram", "Twitter", "LinkedIn"];
     const accountOptions = ["Login"];
 
@@ -63,7 +59,7 @@ const FooterBottom = () => {
                         fontSize="1.25rem"
                         sx={{ cursor: "pointer" }}
                     >
-                        {collection}
+                        {collection.collection_name} Collection
                     </Typography>
                 ))}
             </Box>
@@ -118,4 +114,4 @@ const FooterBottom = () => {
         </Container>
     );
 };
-export default FooterBottom;
+export default SocialLinks;
