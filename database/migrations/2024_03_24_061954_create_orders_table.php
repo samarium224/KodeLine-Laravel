@@ -15,13 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('order_id');
             $table->string('username');
+            $table->string('user_id');
+            $table->string('phonenumber');
+            $table->string('address');
             $table->string('session_id');
             $table->string('product_id');
             $table->string('product_name');
+            $table->string('imgUrl');
             $table->string('product_quantity');
             $table->double('total_price');
-            $table->string('payment_status');
-            $table->string('delivery_status');
+            $table->boolean('payment_status')->default(0);
+            $table->boolean('delivery_status')->default(0);
             $table->timestamps();
         });
     }

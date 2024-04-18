@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { Box, Typography, TextField, Button, useTheme } from "@mui/material";
-import FooterBottom from "./FooterBottom";
+import SocialLinks from "./SocialLinks";
 import { motion, useInView, useAnimation } from "framer-motion";
 import Copyright from "./Copyright";
 
-const Footer = () => {
+const Footer = ({collections}) => {
     const theme = useTheme();
     const fadeFromBottom = {
         hidden: { opacity: 0, y: 30 },
@@ -105,7 +105,7 @@ const Footer = () => {
                 animate={mainControls}
                 transition={{ duration: 0.75, delay: 0.6 }}
             >
-                <FooterBottom />
+                <SocialLinks collection={collections} />
             </Box>
             <Copyright />
         </Box>

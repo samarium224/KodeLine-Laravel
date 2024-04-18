@@ -2218,7 +2218,7 @@ textarea {
 }
 
 .badge-success {
-    background-color: #26dad2;
+    background-color: #22cd47;
 }
 
 .badge-info {
@@ -6562,7 +6562,7 @@ tbody tr td:last-child {
 }
 
 .table .badge {
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .student-data-table label {

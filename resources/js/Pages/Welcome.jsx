@@ -67,7 +67,7 @@ export default function Welcome({ auth }) {
                 <PreOrder items={preorderItems} />
                 <Testimonials />
                 <FooterTop />
-                <Footer />
+                <Footer collections={collections} />
             </ThemeProvider>
         </div>
     );
