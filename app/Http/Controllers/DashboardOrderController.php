@@ -37,6 +37,11 @@ class DashboardOrderController extends Controller
         return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 
+    public function ViewPreOrderItem(){
+        $products = PreOrderItem::paginate(10);
+        return view('admin.orders.preOrderView', compact('products'));
+    }
+
     public function StorePreOrder(Request $request){
         // Validate the incoming request data
         $validatedData = $request->validate([
@@ -110,7 +115,103 @@ class DashboardOrderController extends Controller
         ]);
 
         // Redirect back or to a success page
-        return redirect()->route('allproducts')->with('success', 'Product added successfully!');
+        return redirect()->route('order.preOrderItem.view')->with('success', 'Product added successfully!');
 
+    }
+
+    public function editPreOrder($id){
+        $productinfo = PreOrderItem::findOrFail($id);
+        return view('admin.orders.preOrderEdit', compact('productinfo'));
+    }
+
+    public function updatePreOrder(Request $request)
+    {
+        $validatedData = $request->validate([
+            'product_id' => 'required',
+            'product_name' => 'required|string|max:255',
+            'price' => 'required',
+            'compare_price'=> 'required',
+            'quantity' => 'required|integer',
+            'product_short_description' => 'required|string',
+            'product_long_description' => 'required|string',
+            'ageRange.*' => 'required',
+            'ageGroup.*' => 'nullable',
+            'sizeGroup.*' => 'nullable',
+            'colorGroup.*' => 'nullable',
+            'quantityGroup.*' => 'nullable|integer',
+            'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+        ]);
+
+
+        if ($request->file('imageVariations') != null) {
+            $img_variation = array();
+            if ($vfiles = $request->file('imageVariations')) {
+                foreach ($vfiles as $vfile) {
+                    $timestamp = microtime(true) * 10000; // High resolution timestamp
+                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
+                    $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
+                    $vfile->move(public_path('uploads'), $vimage_name);
+                    $vimg_url = 'uploads/' . $vimage_name;
+                    $img_variation[] = $vimg_url;
+                }
+            }
+            // implode here for the condition safety
+            $imgVariationGroup = implode('|', $img_variation);
+        } else {
+            $imgVariationGroup = PreOrderItem::where('id', $request->product_id)->value('imageVariations');
+        }
+
+        $ageRange = implode('|', $request->ageRange);
+        $ageGroup = implode('|', $request->ageGroup);
+        $sizeGroup = implode('|', $request->sizeGroup);
+        $colorGroup = implode('|', $request->colorGroup);
+        $quantityGroup = implode('|', $request->quantityGroup);
+
+
+        //get the product id
+        $product_id = $request->product_id;
+
+        PreOrderItem::findOrFail($product_id)->update([
+            'product_name' => $validatedData['product_name'],
+            'price' => $validatedData['price'],
+            'quantity' => $validatedData['quantity'],
+            'compare_price'=> $request->compare_price,
+            'product_short_description' => $validatedData['product_short_description'],
+            'product_long_description' => $validatedData['product_long_description'],
+            'slug' => strtolower(str_replace(' ', '-', $request->product_name)),
+            'ageRange' => $ageRange,
+            'ageGroup' => $ageGroup,
+            'sizeGroup' => $sizeGroup,
+            'colorGroup' => $colorGroup,
+            'quantityGroup' => $quantityGroup,
+            'imageVariations' => $imgVariationGroup,
+        ]);
+
+        return redirect()->route('order.preOrderItem.view')->with('success', 'Product Updated successfully!');
+    }
+
+    public function deletePreOrder($id)
+    {
+
+        $product = PreOrderItem::findOrFail($id);
+
+        // Split the product image URLs into an array
+        $imageUrls = explode('|', $product->product_img);
+
+        // Delete each associated image file
+        foreach ($imageUrls as $imageUrl) {
+            $imagePath = public_path($imageUrl);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
+        // Delete the product
+        $product->delete();
+
+        return redirect()->route('order.preOrderItem.view')->with(
+            'message',
+            'Product Deleted Successfully'
+        );
     }
 }

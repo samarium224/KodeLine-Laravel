@@ -18,11 +18,9 @@ RESPONSIVE FIX
 
 
 ======== Functional Problem =========
-cart add remove delete
 you may also like section
 cart item remove after order
 prompt phone number and address
 footer is not dynamic
 pre order btn not dynamic
 product variation logic need work
-
