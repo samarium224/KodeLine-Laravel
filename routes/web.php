@@ -107,6 +107,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // product utilities
     Route::get('/admin/all-products/sort/{sortID}', [HelpersController::class, 'Sort'])->name('product.sort');
+    Route::get('/admin/customers/sort/{sortID}', [HelpersController::class, 'SortCustomer'])->name('customers.sort');
     //ajax subcategory
     Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
 });
