@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Box, Button, IconButton, Drawer } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { checkoutItems } from "../data";
@@ -12,6 +11,7 @@ export const NavigationCheckout = ({
     cartData,
     setcartData,
 }) => {
+    console.log(cartData);
     const totalQuantity = cartData.reduce(
         (total, item) => total + item.quantity,
         0
@@ -35,6 +35,19 @@ export const NavigationCheckout = ({
             updatedItems.splice(index, 1);
             return updatedItems;
         });
+        updateCart();
+    };
+
+    const updateCart = async () => {
+        try {
+            const response = await axios.post(
+                route("updateCartItems"),
+                cartData
+            );
+            setcartData(response.data);
+        } catch (error) {
+            console.error("Error adding item to cart:", error);
+        }
     };
 
     return (
@@ -69,6 +82,7 @@ export const NavigationCheckout = ({
                     checkoutRequestItems={cartData}
                     handleQuantityChange={handleQuantityChange}
                     removeItem={removeItem}
+                    updateCart={updateCart}
                     totalQuantity={totalQuantity}
                     subtotal={subtotal}
                     theme={theme}

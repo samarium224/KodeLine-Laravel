@@ -1,4 +1,11 @@
-import { Box, Button, Typography, useTheme } from "@mui/material";
+import React from "react";
+import {
+    Box,
+    Button,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
 import { motion } from "framer-motion";
 
 const SliderComp = ({
@@ -12,6 +19,12 @@ const SliderComp = ({
     isActive,
 }) => {
     const theme = useTheme();
+    const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+    const fadeFromBottom = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+    };
     const fadeFromLeft = {
         hidden: { opacity: 0, x: -50 },
         visible: { opacity: 1, x: 0 },
@@ -20,6 +33,12 @@ const SliderComp = ({
         hidden: { opacity: 0, x: 50 },
         visible: { opacity: 1, x: 0 },
     };
+
+    const animationVariants = isMobileScreen
+        ? fadeFromBottom
+        : reverseAlign
+        ? fadeFromRight
+        : fadeFromLeft;
 
     return (
         <Box backgroundColor={theme.palette.primary.main} width="100vw">
@@ -46,7 +65,7 @@ const SliderComp = ({
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: { xs: "center", md: "end" },
+                        justifyContent: isMobileScreen ? "center" : "flex-end",
                         lineHeight: "50px",
                         height: "100%",
                         alignItems: {
@@ -64,7 +83,7 @@ const SliderComp = ({
                     <Typography
                         variant="headline"
                         component={motion.div}
-                        variants={reverseAlign ? fadeFromRight : fadeFromLeft}
+                        variants={animationVariants}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
                         color={theme.palette.text.white[500]}
@@ -76,18 +95,21 @@ const SliderComp = ({
                     <Typography
                         variant="subtitle"
                         component={motion.div}
-                        variants={reverseAlign ? fadeFromRight : fadeFromLeft}
+                        variants={animationVariants}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
                         transition={{ duration: 0.4, delay: 0.25 }}
                         color={theme.palette.text.white[500]}
-                        sx={{ mb: { xl: 5, md: 3, xs: 20 }, width: "33%" }}
+                        sx={{
+                            mb: { xl: 5, md: 3, xs: 20 },
+                            width: { xs: "95%", md: "33%" },
+                        }}
                         dangerouslySetInnerHTML={{ __html: subtitle }}
                     />
 
                     <Box
                         component={motion.div}
-                        variants={reverseAlign ? fadeFromRight : fadeFromLeft}
+                        variants={animationVariants}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
                         transition={{ duration: 0.4, delay: 0.66 }}

@@ -6,7 +6,7 @@ import ItemCard from "@/Global_Components/ItemCard/ItemCard";
 import { Box, Button, useTheme } from "@mui/material";
 import { PrevArrow, NextArrow } from "./SliderArrows";
 
-const PreOrder = ({ items , content}) => {
+const PreOrder = ({ items, content }) => {
     const theme = useTheme();
     const settings = {
         arrows: true,
@@ -103,29 +103,32 @@ const PreOrder = ({ items , content}) => {
                     },
                 }}
             >
-                <Box
-                    sx={{
-                        backgroundColor: { xs: "transparent", md: "white" },
-                        py: { xs: 2, md: 4.5 },
-                        maxWidth: { xs: "205px", md: "300px", xl: "320px" },
-                        scale: { xs: "0.7", md: "0.8", xl: "1" },
-                    }}
-                >
-                    <Slider {...settings}>
-                        {items.map((item, i) => (
-                            <ItemCard
-                                key={i}
-                                itemID={item.itemID}
-                                itemImage={item.imgURL}
-                                itemTitle={item.itemTitle}
-                                ageRange={item.ageRange}
-                                currentPrice={item.currentPrice}
-                                oldPrice={item.oldPrice}
-                                buttonText="PRE ORDER"
-                            />
-                        ))}
-                    </Slider>
-                </Box>
+                {items.length > 0 && (
+                    <Box
+                        sx={{
+                            backgroundColor: { xs: "transparent", md: "white" },
+                            py: 0.5,
+                            px: 0.5,
+                            // width: { xs: "205px", md: "300px", xl: "320px" },
+                            scale: { xs: "0.7", md: "0.8", xl: "1" },
+                        }}
+                    >
+                        <Slider {...settings}>
+                            {items.map((item, i) => (
+                                <ItemCard
+                                    key={i}
+                                    itemID={item.itemID}
+                                    itemImage={item.imgURL}
+                                    itemTitle={item.itemTitle}
+                                    ageRange={item.ageRange}
+                                    currentPrice={item.currentPrice}
+                                    oldPrice={item.oldPrice}
+                                    buttonText="PRE ORDER"
+                                />
+                            ))}
+                        </Slider>
+                    </Box>
+                )}
             </Box>
         </Box>
     );

@@ -5,8 +5,29 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 
 const ItemDescriptionTexts = ({ itemData }) => {
     const theme = useTheme();
+    console.log(itemData);
     const sanitizedDescription = sanitizeHtml(itemData.itemDescription.desc, {
-        allowedTags: ["b", "i", "em", "strong", "a", "p", "br", "h1", "h2", "h3", "h4", "h5", "h6", "span", "div", "u", "ul", "li", "ol"],
+        allowedTags: [
+            "b",
+            "i",
+            "em",
+            "strong",
+            "a",
+            "p",
+            "br",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "span",
+            "div",
+            "u",
+            "ul",
+            "li",
+            "ol",
+        ],
         allowedAttributes: {
             a: ["href"],
         },
@@ -127,22 +148,24 @@ const ItemDescriptionTexts = ({ itemData }) => {
                 >
                     Secure online shopping
                 </Typography>
-                <Button
-                    sx={{
-                        color: theme.palette.primary.main,
-                        textTransform: "uppercase",
-                        width: "80%",
-                        border: `1px solid ${theme.palette.primary.main}`,
-                        my: 1,
-                        py: 1.25,
-                        "&:hover": {
-                            backgroundColor: theme.palette.primary.main,
-                            color: theme.palette.text.white[100],
-                        },
-                    }}
-                >
-                    Add to cart
-                </Button>
+                {itemData.itemType != "PreordereItem" && (
+                    <Button
+                        sx={{
+                            color: theme.palette.primary.main,
+                            textTransform: "uppercase",
+                            width: "80%",
+                            border: `1px solid ${theme.palette.primary.main}`,
+                            my: 1,
+                            py: 1.25,
+                            "&:hover": {
+                                backgroundColor: theme.palette.primary.main,
+                                color: theme.palette.text.white[100],
+                            },
+                        }}
+                    >
+                        Add to cart
+                    </Button>
+                )}
                 <Button
                     sx={{
                         backgroundColor: theme.palette.primary.main,
@@ -156,7 +179,9 @@ const ItemDescriptionTexts = ({ itemData }) => {
                         },
                     }}
                 >
-                    Buy now
+                    {itemData.itemType == "PreordereItem"
+                        ? "Pre Order Now"
+                        : "Buy Now"}
                 </Button>
             </Box>
             <Box className="description-text" mt={5}>

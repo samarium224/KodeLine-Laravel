@@ -90,5 +90,8 @@ class CartController extends Controller
         return redirect()->route('home')->with('message', 'Product added to cart successfully!');
     }
 
-
+    public function updateCartItems(Request $request)
+    {
+        dd("hi");
+    }
 }

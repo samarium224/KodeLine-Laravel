@@ -29,7 +29,8 @@ const ItemDescriptionImages = ({ itemData }) => {
                         key={i}
                         className="active-item-image"
                         width="180px"
-                        height="calc((100% - 30px) / 4)"
+                        height="calc(100% / 4)"
+                        mb={1}
                         sx={{
                             backgroundImage: `url(${
                                 image ? image : "./assets/blank.jpg"
