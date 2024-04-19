@@ -49,7 +49,7 @@ export const NavigationCheckout = ({
                 Currency: $CAD
             </Button>
             <IconButton
-                sx={{ color: theme.palette.text.white[500], ml: 4 }}
+                sx={{ color: navButtonStyle.color, ml: 4 }}
                 onClick={toggleCart(true)}
             >
                 <ShoppingCartIcon />

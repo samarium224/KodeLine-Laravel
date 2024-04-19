@@ -43,7 +43,11 @@ const SliderContent = ({ theme, image }) => (
                 sx={{
                     position: "absolute",
                     transform: "translate(-50%, -50%)",
-                    top: { lg: "75%", xl: "750px", maxAllowableWidth: "800px" },
+                    top: {
+                        md: "80vh",
+                        xl: "750px",
+                        maxAllowableWidth: "800px",
+                    },
                     left: "50%",
                     color: theme.palette.text.white[500],
                     backgroundColor: "transparent",

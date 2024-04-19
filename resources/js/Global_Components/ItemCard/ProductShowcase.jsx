@@ -48,9 +48,6 @@ const ProductShowcase = ({
                     opacity: "100",
                     mb: "0px",
                 },
-                "&:hover": {
-                    // backgroundSize: "110%",
-                },
             }}
         >
             <Box

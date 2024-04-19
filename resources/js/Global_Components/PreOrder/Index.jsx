@@ -96,14 +96,19 @@ const PreOrder = ({ items }) => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    maxHeight: {
+                        xs: "550px",
+                        lg: "75vh",
+                        maxAllowableWidth: "700px",
+                    },
                 }}
             >
                 <Box
                     sx={{
                         backgroundColor: { xs: "transparent", md: "white" },
                         py: { xs: 2, md: 4.5 },
-                        maxWidth: { xs: "205px", md: "320px" },
-                        scale: { xs: "0.7", md: "0.8", lg: "1" },
+                        maxWidth: { xs: "205px", md: "300px", xl: "320px" },
+                        scale: { xs: "0.7", md: "0.8", xl: "1" },
                     }}
                 >
                     <Slider {...settings}>
