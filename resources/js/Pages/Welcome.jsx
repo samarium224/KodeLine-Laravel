@@ -19,7 +19,7 @@ import PreOrder from "@/Global_Components/PreOrder/Index";
 import FooterTop from "@/Homepage_Components/FooterTop";
 import Slogan from "@/Global_Components/Slogan";
 
-import { preorderItems } from "@/Global_data/PreorderItems";
+// import { preorderItems} from "@/Global_data/PreorderItems";
 
 import { usePage } from "@inertiajs/react";
 import { Category } from "@mui/icons-material";
@@ -31,6 +31,9 @@ export default function Welcome({ auth }) {
         collectionItemList,
         featuredcollection,
         bestsellingItems,
+        bestsellingCollection,
+        preOrderContent,
+        preOrderItems
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -61,10 +64,10 @@ export default function Welcome({ auth }) {
                 <ShopByCategory CollectionItemList={collectionItemList} />
                 <BestSellingItems
                     bestSellingItemsList={bestsellingItems}
-                    collections={collections}
+                    collections={bestsellingCollection}
                 />
                 <TopCategories RestCategories={collections} />
-                <PreOrder items={preorderItems} />
+                {preOrderContent && <PreOrder items={preOrderItems} content={preOrderContent} />}
                 <Testimonials />
                 <FooterTop />
                 <Footer collections={collections} />

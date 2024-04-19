@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
+use App\Models\PreOrderItem;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -87,6 +89,7 @@ class HomepageController extends Controller
                 ];
             })->values(); // Reset keys on the collections array for JSON-friendly output
 
+        //bestselling
         $bestsellingItems = Products::where('best_selling', 'true')->get()->map(function ($item) {
             $ageRangeArray = explode('|', $item->ageRange);
             $product_img = explode('|', $item->product_img);
@@ -104,6 +107,34 @@ class HomepageController extends Controller
                 'oldPrice' => $item->compare_price,
             ];
         });
+
+        $bestsellingCategories = Products::select('product_category_name', 'product_category_id')
+            ->where('best_selling', 'true')
+            ->distinct('product_category_name')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'collection_name' => $item->product_category_name,
+                    'collection_id' => $item->product_category_id,
+                ];
+            });
+
+        // dd($bestsellingCategories);
+
+        // preorderitem
+        $preOrderContent = Content::where('content_name', 'preordercontent')->first();
+        $preOrderItems = PreOrderItem::all()->map(function ($item) {
+            $ageRangeArray = explode('|', $item->ageRange);
+            return [
+                'itemID' => $item->id,
+                'imgURL' => $item->product_img,
+                'itemTitle' => $item->product_name,
+                'ageRange' => $ageRangeArray,
+                'currentPrice' => $item->price,
+                'oldPrice' => $item->compare_price,
+                'buttonText' => "PRE ORDER",
+            ];
+        });
         // dd($collections);
         return Inertia::render('Welcome', [
             'signatureItemsList' => $signatureItemsList,
@@ -111,6 +142,9 @@ class HomepageController extends Controller
             'collections' => $collections,
             'featuredcollection' => $featuredcollections,
             'bestsellingItems' => $bestsellingItems,
+            'bestsellingCollection' => $bestsellingCategories,
+            'preOrderContent' => $preOrderContent,
+            'preOrderItems' => $preOrderItems,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);

@@ -51,7 +51,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('storeproduct') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('preorder.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-8">
@@ -88,7 +88,7 @@
                         <div class="card-body">
                             <div class="card-subtitle text-dark"><b>Media</b></div>
                             <div id="dropzone" class="dropzone">Drag and drop up to 5 images here or click to select</div>
-                            <input type="file" id="product_img" name="product_img[]" accept="image/*" multiple
+                            <input type="file" id="product_img" name="product_img[]" accept="image/*"
                                 style="opacity: 0;" required>
                             <div id="image-preview" class="image-preview"></div>
                         </div>
@@ -199,5 +199,5 @@
     </div>
     <script src="{{ asset('js/dropimage.js') }}"></script>
     <script src="{{ asset('js/addvariation.js') }}"></script>
-    
+
 @endsection

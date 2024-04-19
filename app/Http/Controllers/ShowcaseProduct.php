@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
+use App\Models\PreOrderItem;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ShowcaseProduct extends Controller
 {
-    public function ShowItem(Request $request){
+    public function ShowItem(Request $request)
+    {
         $validatedData = $request->validate([
-            "id"=> "required|integer",
+            "id" => "required|integer",
         ]);
 
         $id = $request->get('id');
@@ -20,7 +23,7 @@ class ShowcaseProduct extends Controller
             $collections = Category::all()->map(function ($item) {
                 return [
                     'collection_name' => $item->category_name,
-                    'collection_id'=> $item->id,
+                    'collection_id' => $item->id,
                 ];
             });
 
@@ -47,9 +50,25 @@ class ShowcaseProduct extends Controller
                 ];
             });
 
-            return Inertia::render('ItemShowcase',[
+            $preOrderContent = Content::where('content_name', 'preordercontent')->first();
+            $preOrderItems = PreOrderItem::all()->map(function ($item) {
+                $ageRangeArray = explode('|', $item->ageRange);
+                return [
+                    'itemID' => $item->id,
+                    'imgURL' => $item->product_img,
+                    'itemTitle' => $item->product_name,
+                    'ageRange' => $ageRangeArray,
+                    'currentPrice' => $item->price,
+                    'oldPrice' => $item->compare_price,
+                    'buttonText' => "PRE ORDER",
+                ];
+            });
+
+            return Inertia::render('ItemShowcase', [
                 'collections' => $collections,
                 'product' => $ProductItem[0], //don't touch it works
+                'preOrderContent' => $preOrderContent,
+                'preOrderItems' => $preOrderItems,
             ]);
 
         } catch (\Throwable $th) {

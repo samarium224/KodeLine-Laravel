@@ -18,10 +18,6 @@ return new class extends Migration
             $table->text('product_long_description');
             $table->double('price');
             $table->double('compare_price');
-            $table->string('product_category_name');
-            $table->integer('product_category_id');
-            $table->string('product_subcategory_name');
-            $table->integer('product_subcategory_id');
             $table->text('product_img');
             $table->integer('quantity');
             $table->string('slug');

@@ -90,6 +90,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/orders/unpaid', 'OrderUnpaid')->name('order.unpaid');
         Route::get('/admin/orders/pending', 'OrderPending')->name('order.pending');
         Route::get('/admin/orders/complete', 'OrderComplete')->name('order.complete');
+        Route::post('/admin/preorder/store', 'StorePreOrder')->name('preorder.store');
     });
 
     Route::controller(DashboardCustomerController::class)->group(function () {
@@ -106,6 +107,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // product utilities
     Route::get('/admin/all-products/sort/{sortID}', [HelpersController::class, 'Sort'])->name('product.sort');
+    Route::get('/admin/customers/sort/{sortID}', [HelpersController::class, 'SortCustomer'])->name('customers.sort');
     //ajax subcategory
     Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
 });

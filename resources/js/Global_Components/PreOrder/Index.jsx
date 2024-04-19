@@ -6,7 +6,7 @@ import ItemCard from "@/Global_Components/ItemCard/ItemCard";
 import { Box, Button, useTheme } from "@mui/material";
 import { PrevArrow, NextArrow } from "./SliderArrows";
 
-const PreOrder = ({ items }) => {
+const PreOrder = ({ items , content}) => {
     const theme = useTheme();
     const settings = {
         arrows: true,
@@ -42,8 +42,8 @@ const PreOrder = ({ items }) => {
             <Box
                 sx={{
                     backgroundImage: {
-                        xs: `url("./All Images/Coming Soon.jpg")`,
-                        sm: `url("./All Images/Coming Soon.jpg")`,
+                        xs: `url(${content.MobileImg})`,
+                        sm: `url(${content.HomePageImg})`,
                     },
                     backgroundPosition: "center bottom",
                     backgroundSize: "cover",
@@ -116,6 +116,7 @@ const PreOrder = ({ items }) => {
                             <ItemCard
                                 key={i}
                                 itemID={item.itemID}
+                                itemImage={item.imgURL}
                                 itemTitle={item.itemTitle}
                                 ageRange={item.ageRange}
                                 currentPrice={item.currentPrice}
