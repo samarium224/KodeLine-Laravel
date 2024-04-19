@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import { motion, useInView, useAnimation } from "framer-motion";
 
-const Header = ({ title, subTitle, customLineWidth }) => {
+const Header = ({ title, subTitle }) => {
     const theme = useTheme();
     const fadeFromBottom = {
         hidden: { opacity: 0, y: 30 },
@@ -15,8 +15,6 @@ const Header = ({ title, subTitle, customLineWidth }) => {
     useEffect(() => {
         if (isInView) mainControls.start("visible");
     }, [isInView]);
-
-    const lineWidth = customLineWidth ? customLineWidth : "400px";
 
     return (
         <Container maxWidth="desktopMaxWidth">
@@ -38,23 +36,25 @@ const Header = ({ title, subTitle, customLineWidth }) => {
                     justifyContent="space-between"
                     alignItems="center"
                     mb={1.5}
+                    width="100%"
                 >
                     <Box
                         backgroundColor={theme.palette.text.white[600]}
                         height="1px"
-                        width={lineWidth}
+                        width="50%"
                     ></Box>
                     <Typography
                         variant="title"
                         color={theme.palette.text.grey[500]}
                         mx={5}
+                        sx={{ flex: "1 1 auto", textWrap: "nowrap" }}
                     >
                         {title}
                     </Typography>
                     <Box
                         backgroundColor={theme.palette.text.white[600]}
                         height="1px"
-                        width={lineWidth}
+                        width="50%"
                     ></Box>
                 </Box>
 

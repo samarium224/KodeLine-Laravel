@@ -57,7 +57,7 @@ const SliderComp = ({
                             xs: "center",
                             md: reverseAlign ? "right" : "left",
                         },
-                        mx: { md: 5, xl: 25 },
+                        mx: { md: 15, xl: 25 },
                         pb: { xs: 0, md: 15 },
                     }}
                 >

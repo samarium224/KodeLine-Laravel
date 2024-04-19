@@ -19,7 +19,7 @@ const Services = () => {
             />
             <ServiceComponent
                 text="Effortless Solutions"
-                subText="Enjoy hasslefree shopping experience with fast delivery, because your convenience matters to us!"
+                subText="Enjoy hasslefree shopping experience with <br/> fast delivery, because your convenience matters to us!"
             />
             <ServiceComponent
                 text="Trustworthy Transactions"

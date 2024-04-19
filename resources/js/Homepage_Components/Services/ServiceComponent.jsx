@@ -8,7 +8,7 @@ const ServiceComponent = ({ text, subText, animationDelay }) => {
             display="flex"
             flexDirection="column"
             alignItems="center"
-            sx={{ width: { md: "28.5%", xs: "100%" }, mb: { md: 0, xs: 1 } }}
+            sx={{ width: { md: "30%", xs: "100%" }, mb: { md: 0, xs: 1 } }}
         >
             <Typography
                 variant="secondaryTitle"
