@@ -31,6 +31,7 @@ export default function Welcome({ auth }) {
         collectionItemList,
         featuredcollection,
         bestsellingItems,
+        bestsellingCollection,
         preOrderContent,
         preOrderItems
     } = usePage().props;
@@ -63,7 +64,7 @@ export default function Welcome({ auth }) {
                 <ShopByCategory CollectionItemList={collectionItemList} />
                 <BestSellingItems
                     bestSellingItemsList={bestsellingItems}
-                    collections={collections}
+                    collections={bestsellingCollection}
                 />
                 <TopCategories RestCategories={collections} />
                 {preOrderContent && <PreOrder items={preOrderItems} content={preOrderContent} />}

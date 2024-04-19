@@ -89,6 +89,7 @@ class HomepageController extends Controller
                 ];
             })->values(); // Reset keys on the collections array for JSON-friendly output
 
+        //bestselling
         $bestsellingItems = Products::where('best_selling', 'true')->get()->map(function ($item) {
             $ageRangeArray = explode('|', $item->ageRange);
             $product_img = explode('|', $item->product_img);
@@ -107,6 +108,20 @@ class HomepageController extends Controller
             ];
         });
 
+        $bestsellingCategories = Products::select('product_category_name', 'product_category_id')
+            ->where('best_selling', 'true')
+            ->distinct('product_category_name')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'collection_name' => $item->product_category_name,
+                    'collection_id' => $item->product_category_id,
+                ];
+            });
+
+        // dd($bestsellingCategories);
+
+        // preorderitem
         $preOrderContent = Content::where('content_name', 'preordercontent')->first();
         $preOrderItems = PreOrderItem::all()->map(function ($item) {
             $ageRangeArray = explode('|', $item->ageRange);
@@ -127,6 +142,7 @@ class HomepageController extends Controller
             'collections' => $collections,
             'featuredcollection' => $featuredcollections,
             'bestsellingItems' => $bestsellingItems,
+            'bestsellingCollection' => $bestsellingCategories,
             'preOrderContent' => $preOrderContent,
             'preOrderItems' => $preOrderItems,
             'canLogin' => Route::has('login'),
