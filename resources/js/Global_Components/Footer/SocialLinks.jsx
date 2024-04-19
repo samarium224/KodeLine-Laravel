@@ -1,6 +1,7 @@
+import { Link } from "@inertiajs/react";
 import { Box, Container, Typography, useTheme } from "@mui/material";
 
-const SocialLinks = ({collection}) => {
+const SocialLinks = ({ collection }) => {
     const theme = useTheme();
     const informations = ["About us", "Contact us", "Terms and Conditions"];
     const collections = collection;
@@ -50,17 +51,24 @@ const SocialLinks = ({collection}) => {
                     Collections
                 </Typography>{" "}
                 {collections.map((collection, i) => (
-                    <Typography
+                    <Link
+                        href={route("collection", {
+                            id: collection.collection_id,
+                        })}
                         key={i}
-                        color={theme.palette.text.grey[500]}
-                        fontWeight={400}
-                        display="block"
-                        mb={0.75}
-                        fontSize="1.25rem"
-                        sx={{ cursor: "pointer" }}
                     >
-                        {collection.collection_name} Collection
-                    </Typography>
+                        <Typography
+                            key={i}
+                            color={theme.palette.text.grey[500]}
+                            fontWeight={400}
+                            display="block"
+                            mb={0.75}
+                            fontSize="1.25rem"
+                            sx={{ cursor: "pointer" }}
+                        >
+                            {collection.collection_name} Collection
+                        </Typography>
+                    </Link>
                 ))}
             </Box>
             <Box>

@@ -92,6 +92,62 @@ class CartController extends Controller
 
     public function updateCartItems(Request $request)
     {
-        dd("hi");
+        $itemId = $request->itemId;
+        // Get the authenticated user's ID
+        $user_id = Auth::id();
+
+        if ($user_id == null) {
+            $userid = session()->getId();
+            $username = "guest";
+        } else {
+            // Retrieve the currently authenticated user...
+            $username = $request->user()->name; // Use ->name directly
+            $userid = $request->user()->id; // Use ->id directly
+        }
+
+        $cart_id = Cart::where('user_id', $user_id)->where('product_id', $itemId)->value('id');
+
+        Cart::findOrFail($cart_id)->increment('product_quantity', 1);
+
+        // return response()->json($request);
     }
+
+    public function DecCartItems(Request $request){
+        $itemId = $request->itemId;
+        // Get the authenticated user's ID
+        $user_id = Auth::id();
+
+        if ($user_id == null) {
+            $userid = session()->getId();
+            $username = "guest";
+        } else {
+            // Retrieve the currently authenticated user...
+            $username = $request->user()->name; // Use ->name directly
+            $userid = $request->user()->id; // Use ->id directly
+        }
+
+        $cart_id = Cart::where('user_id', $user_id)->where('product_id', $itemId)->value('id');
+
+        Cart::findOrFail($cart_id)->decrement('product_quantity', 1);
+    }
+
+    public function RemoveCartItem(Request $request){
+        $itemId = $request->itemId;
+        // Get the authenticated user's ID
+        $user_id = Auth::id();
+
+        if ($user_id == null) {
+            $userid = session()->getId();
+            $username = "guest";
+        } else {
+            // Retrieve the currently authenticated user...
+            $username = $request->user()->name; // Use ->name directly
+            $userid = $request->user()->id; // Use ->id directly
+        }
+
+        $cart_id = Cart::where('user_id', $user_id)->where('product_id', $itemId)->value('id');
+
+        Cart::findOrFail($cart_id)->delete();
+    }
+
 }

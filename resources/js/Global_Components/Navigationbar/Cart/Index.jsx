@@ -44,7 +44,8 @@ export const NavigationCheckout = ({
                 route("updateCartItems"),
                 cartData
             );
-            setcartData(response.data);
+            // setcartData(response.data);
+            // console.log(response);
         } catch (error) {
             console.error("Error adding item to cart:", error);
         }

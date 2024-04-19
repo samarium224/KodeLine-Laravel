@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
+import { Link } from "@inertiajs/react";
 
 export const CartContent = ({
     checkoutRequestItems,
@@ -113,6 +114,7 @@ const CartItem = ({
             }}
             maxQuantity={5}
             index={index}
+            itemID={requestItem.itemID}
             removeItem={removeItem}
             updateCart={updateCart}
             theme={theme}
@@ -126,53 +128,76 @@ const QuantityControls = ({
     onIncrease,
     maxQuantity,
     index,
+    itemID,
     removeItem,
     theme,
-}) => (
-    <Box display="flex" justifyContent="center" flexDirection="column">
-        <Box display="flex" alignItems="center" textAlign="center">
-            <Button
-                px={0.5}
-                py={0}
-                sx={{ minWidth: "0px", color: theme.palette.text.grey[500] }}
-                onClick={onDecrease}
-                disabled={quantity <= 1}
+}) => {
+    return (
+        <Box display="flex" justifyContent="center" flexDirection="column">
+            <Box display="flex" alignItems="center" textAlign="center">
+                <Link
+                    href={route("updateDecQty", {
+                        itemId: itemID,
+                    })}
+                    key={index}
+                >
+                    <Button
+                        px={0.5}
+                        py={0}
+                        sx={{ minWidth: "0px", color: theme.palette.text.grey[500] }}
+                        onClick={onDecrease}
+                        disabled={quantity <= 1}
+                    >
+                        -
+                    </Button>
+                </Link>
+                <Typography
+                    display="inline"
+                    color={theme.palette.text.white[500]}
+                    backgroundColor={theme.palette.primary.main}
+                    mx={0.75}
+                    width="40px"
+                    py={0.5}
+                >
+                    {quantity}
+                </Typography>
+                <Link
+                    href={route("updateIncQty", {
+                        itemId: itemID,
+                    })}
+                    key={index}
+                >
+                    <Button
+                        px={0.5}
+                        py={0}
+                        sx={{ minWidth: "0px", color: theme.palette.text.grey[500] }}
+                        disabled={quantity >= maxQuantity}
+                    >
+                        +
+                    </Button>
+                </Link>
+            </Box>
+            <Link
+                href={route("removeitem", {
+                    itemId: itemID,
+                })}
+                key={index}
             >
-                -
-            </Button>
-            <Typography
-                display="inline"
-                color={theme.palette.text.white[500]}
-                backgroundColor={theme.palette.primary.main}
-                mx={0.75}
-                width="40px"
-                py={0.5}
-            >
-                {quantity}
-            </Typography>
-            <Button
-                px={0.5}
-                py={0}
-                sx={{ minWidth: "0px", color: theme.palette.text.grey[500] }}
-                onClick={onIncrease}
-                disabled={quantity >= maxQuantity}
-            >
-                +
-            </Button>
+                <Button
+                    sx={{
+                        color: theme.palette.text.grey[500],
+                        py: 0.25,
+                        mt: 0.75,
+                        textTransform: "initial",
+                    }}
+                    onClick={() => removeItem(index)}
+                >
+                    Remove
+                </Button>
+            </Link>
         </Box>
-        <Button
-            sx={{
-                color: theme.palette.text.grey[500],
-                py: 0.25,
-                mt: 0.75,
-                textTransform: "initial",
-            }}
-            onClick={() => removeItem(index)}
-        >
-            Remove
-        </Button>
-    </Box>
-);
+    )
+}
 
 const CartFooter = ({ subtotal, theme }) => (
     <Box

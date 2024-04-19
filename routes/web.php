@@ -46,7 +46,9 @@ Route::get('/preordershowcase', [ShowcaseProduct::class, 'ShowPreorderItem'])->n
 // cart route
 Route::post('/cart', [CartController::class, 'store'])->name('addtocart');
 Route::get('/cartItems', [CartController::class, 'index'])->name('cartItems');
-Route::get('/updateCartItems', [CartController::class, 'updateCartItems'])->name('updateCartItems');
+Route::get('/updateCartInc', [CartController::class, 'updateCartItems'])->name('updateIncQty');
+Route::get('/updateCartDec', [CartController::class, 'DecCartItems'])->name('updateDecQty');
+Route::get('/RemoveCartItem', [CartController::class, 'RemoveCartItem'])->name('removeitem');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
