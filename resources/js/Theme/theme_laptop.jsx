@@ -11,7 +11,7 @@ const theme_laptop = createTheme({
                 200: "#c3c3c6",
                 300: "#a4a6aa",
                 400: "#86888d",
-                500: "#686a71",
+                500: "#5c5c5c",
                 600: "#53555a",
                 700: "#3e4044",
                 800: "#2a2a2d",
@@ -33,19 +33,20 @@ const theme_laptop = createTheme({
     typography: {
         headline: {
             fontSize: "2.25rem",
-            fontWeight: "700",
+            lineHeight: "2.5rem",
+            fontWeight: "600",
         },
         title: {
             fontSize: "2.33rem",
-            fontWeight: "600",
+            fontWeight: "500",
         },
         secondaryTitle: {
-            fontWeight: "600",
+            fontWeight: "500",
             fontSize: "2rem",
         },
         subtitle: {
             fontSize: "1rem",
-            fontWeight: "400",
+            fontWeight: "300",
             lineHeight: "1.45rem",
         },
         itemdescTitle: {
