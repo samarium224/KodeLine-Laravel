@@ -21,7 +21,7 @@ class DashboardOrderController extends Controller
 
     public function OrderUnpaid(){
         $title = "Unpaid Order List";
-        $orders = Order::where('payment_status', 0);
+        $orders = Order::where('payment_status', 0)->get();
         return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 

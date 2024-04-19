@@ -14,12 +14,13 @@ import Testimonials from "@/Global_Components/Testimonials/Index";
 import Footer from "@/Global_Components/Footer/Index";
 import Slogan from "@/Global_Components/Slogan";
 
-import { preorderItems } from "@/Global_data/PreorderItems";
+// import { preorderItems } from "@/Global_data/PreorderItems";
 import { usePage } from "@inertiajs/react";
 
-export default function Collection({ auth, laravelVersion, phpVersion }) {
-    const { collections, collection_info, collectionItemList } =
-        usePage().props;
+export default function Collection({ auth }) {
+    const { collections, collection_info, collectionItemList, preOrderContent,
+        preOrderItems
+    } = usePage().props;
     const { width } = useWindowSize();
 
     const getTheme = () => {
@@ -44,7 +45,7 @@ export default function Collection({ auth, laravelVersion, phpVersion }) {
                     }}
                 /> */}
                 <Products CollectionItemsList={collectionItemList} />
-                <PreOrder items={preorderItems} />
+                {preOrderContent && <PreOrder items={preOrderItems} content={preOrderContent} />}
                 <Testimonials />
                 <Footer collections={collections} />
             </ThemeProvider>

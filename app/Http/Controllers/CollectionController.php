@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Content;
+use App\Models\PreOrderItem;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -51,12 +53,28 @@ class CollectionController extends Controller
                 ];
             });
 
+            $preOrderContent = Content::where('content_name', 'preordercontent')->first();
+            $preOrderItems = PreOrderItem::all()->map(function ($item) {
+                $ageRangeArray = explode('|', $item->ageRange);
+                return [
+                    'itemID' => $item->id,
+                    'imgURL' => $item->product_img,
+                    'itemTitle' => $item->product_name,
+                    'ageRange' => $ageRangeArray,
+                    'currentPrice' => $item->price,
+                    'oldPrice' => $item->compare_price,
+                    'buttonText' => "PRE ORDER",
+                ];
+            });
+
             // dd($collection_info[0]);
 
             return Inertia::render('Collection',[
                 'collections' => $collections,
                 'collection_info' => $collection_info[0],
                 'collectionItemList'=> $CollectionItemList,
+                'preOrderContent' => $preOrderContent,
+                'preOrderItems' => $preOrderItems,
             ]);
         } catch (\Throwable $th) {
             //throw $th;
