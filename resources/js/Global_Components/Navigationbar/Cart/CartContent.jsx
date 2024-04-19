@@ -5,6 +5,7 @@ export const CartContent = ({
     checkoutRequestItems,
     handleQuantityChange,
     removeItem,
+    updateCart,
     totalQuantity,
     subtotal,
     theme,
@@ -33,6 +34,7 @@ export const CartContent = ({
                     requestItem={requestItem}
                     handleQuantityChange={handleQuantityChange}
                     removeItem={removeItem}
+                    updateCart={updateCart}
                     theme={theme}
                 />
             ))}
@@ -75,6 +77,7 @@ const CartItem = ({
     index,
     handleQuantityChange,
     removeItem,
+    updateCart,
     theme,
 }) => (
     <Box
@@ -94,24 +97,38 @@ const CartItem = ({
         </Box>
         <QuantityControls
             quantity={requestItem.quantity}
-            onDecrease={() =>
+            onDecrease={() => {
                 handleQuantityChange(
                     index,
                     Math.max(requestItem.quantity - 1, 1)
-                )
-            }
-            onIncrease={() =>
+                );
+                updateCart();
+            }}
+            onIncrease={() => {
                 handleQuantityChange(
                     index,
-                    Math.min(requestItem.quantity + 1, 9)
-                )
-            }
+                    Math.min(requestItem.quantity + 1, 5)
+                );
+                updateCart();
+            }}
+            maxQuantity={5}
+            index={index}
+            removeItem={removeItem}
+            updateCart={updateCart}
             theme={theme}
         />
     </Box>
 );
 
-const QuantityControls = ({ quantity, onDecrease, onIncrease, theme }) => (
+const QuantityControls = ({
+    quantity,
+    onDecrease,
+    onIncrease,
+    maxQuantity,
+    index,
+    removeItem,
+    theme,
+}) => (
     <Box display="flex" justifyContent="center" flexDirection="column">
         <Box display="flex" alignItems="center" textAlign="center">
             <Button
@@ -119,6 +136,7 @@ const QuantityControls = ({ quantity, onDecrease, onIncrease, theme }) => (
                 py={0}
                 sx={{ minWidth: "0px", color: theme.palette.text.grey[500] }}
                 onClick={onDecrease}
+                disabled={quantity <= 1}
             >
                 -
             </Button>
@@ -137,6 +155,7 @@ const QuantityControls = ({ quantity, onDecrease, onIncrease, theme }) => (
                 py={0}
                 sx={{ minWidth: "0px", color: theme.palette.text.grey[500] }}
                 onClick={onIncrease}
+                disabled={quantity >= maxQuantity}
             >
                 +
             </Button>
@@ -191,7 +210,7 @@ const CartFooter = ({ subtotal, theme }) => (
                 ${subtotal.toFixed(2)}
             </Typography>
             <Button
-                href={route('checkout')}
+                href={route("checkout")}
                 sx={{
                     backgroundColor: theme.palette.primary.main,
                     color: theme.palette.text.white[100],

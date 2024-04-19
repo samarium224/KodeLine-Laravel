@@ -41,10 +41,12 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
+Route::get('/preordershowcase', [ShowcaseProduct::class, 'ShowPreorderItem'])->name('preordershowcase');
 
 // cart route
 Route::post('/cart', [CartController::class, 'store'])->name('addtocart');
 Route::get('/cartItems', [CartController::class, 'index'])->name('cartItems');
+Route::get('/updateCartItems', [CartController::class, 'updateCartItems'])->name('updateCartItems');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -80,7 +82,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('admin/update-product', 'UpdateProduct')->name('updateproduct');
         Route::get('admin/delete-product/{id}', 'DeleteProduct')->name('deleteproduct');
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
-
     });
 
     Route::controller(DashboardOrderController::class)->group(function () {

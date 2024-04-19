@@ -26,7 +26,11 @@ const ProductShowcase = ({
     return (
         <Box
             component={Link}
-            href={route("itemshowcase", { id: itemID })}
+            href={
+                buttonText == "ADD TO CART"
+                    ? route("itemshowcase", { id: itemID })
+                    : route("preordershowcase", { id: itemID })
+            }
             sx={{
                 scale: buttonText == "PRE ORDER" && "0.9",
                 display: "flex",
@@ -57,7 +61,7 @@ const ProductShowcase = ({
                     justifyContent: "flex-end",
                 }}
             >
-                {buttonText == "ADD TO CART" && sale && (
+                {sale && (
                     <Box
                         sx={{
                             display: "flex",
