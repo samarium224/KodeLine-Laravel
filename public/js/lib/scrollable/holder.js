@@ -388,7 +388,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    /**
-	     * Runs Holder with options. By default runs Holder on all images with "holder.js" in their source attributes.
+	     * Runs Holder with options. By default runs Holder on assets with "holder.js" in their source attributes.
 	     *
 	     * @param {Object} userOptions Options object, can contain domain, themes, images, and bgnodes properties
 	     */

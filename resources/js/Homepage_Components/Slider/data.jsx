@@ -1,8 +1,8 @@
 export const HomeSliderData = [
     {
         collectionID: 1,
-        imgURL: "./All Images/Image 2_1960_800.png",
-        mobileImgURL: "./All Images/Final Edit_2_Mobile Version.png",
+        imgURL: "./assets/Image 2_1960_800.png",
+        mobileImgURL: "./assets/Final Edit_2_Mobile Version.png",
         title: "Wrap Your Little Ones In Love.",
         subtitle:
             "Let Our Carefully Curated Kids' Fashion Make <br/> Parenting Choices a Breeze.",
@@ -11,8 +11,8 @@ export const HomeSliderData = [
     },
     {
         collectionID: 2,
-        imgURL: "./All Images/Image 1_1960_800.png",
-        mobileImgURL: "./All Images/Final Edit_1_Mobile Version.png",
+        imgURL: "./assets/Image 1_1960_800.png",
+        mobileImgURL: "./assets/Final Edit_1_Mobile Version.png",
         title: "Hassle-Free Shopping. <br/> Delivered With Love.",
         subtitle:
             "Explore Top-Quality Children's Products, With Swift <br/> Delivery And No Shipping Costs.",
@@ -21,8 +21,8 @@ export const HomeSliderData = [
     },
     {
         collectionID: 3,
-        imgURL: "./All Images/Image 3_I960_800.png",
-        mobileImgURL: "./All Images/Final Edit_3_Mobile Version.png",
+        imgURL: "./assets/Image 3_I960_800.png",
+        mobileImgURL: "./assets/Final Edit_3_Mobile Version.png",
         title: "Affordable Price. <br/> Endless Love.",
         subtitle:
             "Discover Top-Tier Quality And Unbeatable Prices <br/> In Our Curated Kids' Products!",
@@ -31,8 +31,8 @@ export const HomeSliderData = [
     },
     {
         collectionID: 4,
-        imgURL: "./All Images/Image 4_I960_800.png",
-        mobileImgURL: "./All Images/Final Edit_4_Mobile Version.png",
+        imgURL: "./assets/Image 4_I960_800.png",
+        mobileImgURL: "./assets/Final Edit_4_Mobile Version.png",
         title: "Quick Choices. <br/> Infused With Love.",
         subtitle:
             "Find The Perfect Fit For Every Moment <br/> And Mood For Your Kids.",

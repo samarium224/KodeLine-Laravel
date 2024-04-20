@@ -1,5 +1,5 @@
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
+import ApplicationLogo from "@/Components/ApplicationLogo";
+import { Link } from "@inertiajs/react";
 
 export default function Guest({ children }) {
     return (
@@ -7,7 +7,11 @@ export default function Guest({ children }) {
             <div>
                 <Link href="/">
                     {/* <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" /> */}
-                    <img className='w-80' src="./All Images/Logo_Black.png" alt="Kodeline.kids" />
+                    <img
+                        className="w-80"
+                        src="./assets/Logo_Black.png"
+                        alt="Kodeline.kids"
+                    />
                 </Link>
             </div>
 
