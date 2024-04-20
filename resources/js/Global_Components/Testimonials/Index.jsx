@@ -35,7 +35,7 @@ const Testimonials = () => {
                     sx={{
                         "& > li": { width: "3px" },
                         "& > .slick-active div": {
-                            backgroundColor: theme.palette.text.grey[800],
+                            backgroundColor: theme.palette.text.grey[700],
                         },
                     }}
                 >
@@ -48,7 +48,7 @@ const Testimonials = () => {
                 sx={{
                     width: 9,
                     height: 9,
-                    border: `1px solid ${theme.palette.text.grey[800]}`,
+                    border: `1px solid ${theme.palette.text.grey[700]}`,
                     borderRadius: "50%",
                     cursor: "pointer",
                     transition: "0.3s ease",
@@ -67,22 +67,23 @@ const Testimonials = () => {
         ],
     };
 
-    return (
-        <Box width="100%" backgroundColor="#F1EDEC">
-            <Container maxWidth="xl">
-                <Slider {...settings}>
-                    {TestimonialsData.map((testimonial, i) => (
-                        <Testimonial
-                            key={i}
-                            userRating={testimonial.userRating}
-                            userCommentTitle={testimonial.userCommentTitle}
-                            userCommentDesc={testimonial.userCommentDesc}
-                        />
-                    ))}
-                </Slider>
-            </Container>
-        </Box>
-    );
+    if (TestimonialsData.length > 0)
+        return (
+            <Box width="100%" backgroundColor="white">
+                <Container maxWidth="xl">
+                    <Slider {...settings}>
+                        {TestimonialsData.map((testimonial, i) => (
+                            <Testimonial
+                                key={i}
+                                userRating={testimonial.userRating}
+                                userCommentTitle={testimonial.userCommentTitle}
+                                userCommentDesc={testimonial.userCommentDesc}
+                            />
+                        ))}
+                    </Slider>
+                </Container>
+            </Box>
+        );
 };
 
 export default Testimonials;

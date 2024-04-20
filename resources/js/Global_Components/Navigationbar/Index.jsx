@@ -101,7 +101,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                                                 : "./All Images/Logo_White.png"
                                         }
                                         alt="Logo"
-                                        style={{ height: "20px" }}
+                                        style={{ height: "30px" }}
                                     />
                                 </Link>
                             </Box>

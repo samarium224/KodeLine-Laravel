@@ -6,7 +6,6 @@ export const CartContent = ({
     checkoutRequestItems,
     handleQuantityChange,
     removeItem,
-    updateCart,
     totalQuantity,
     subtotal,
     theme,
@@ -35,7 +34,6 @@ export const CartContent = ({
                     requestItem={requestItem}
                     handleQuantityChange={handleQuantityChange}
                     removeItem={removeItem}
-                    updateCart={updateCart}
                     theme={theme}
                 />
             ))}
@@ -78,7 +76,6 @@ const CartItem = ({
     index,
     handleQuantityChange,
     removeItem,
-    updateCart,
     theme,
 }) => (
     <Box
@@ -98,25 +95,24 @@ const CartItem = ({
         </Box>
         <QuantityControls
             quantity={requestItem.quantity}
-            onDecrease={() => {
+            onDecrease={async () => {
                 handleQuantityChange(
                     index,
                     Math.max(requestItem.quantity - 1, 1)
                 );
-                updateCart();
+                await axios.get(`/updateCartDec?itemId=${requestItem.itemID}`);
             }}
-            onIncrease={() => {
+            onIncrease={async () => {
                 handleQuantityChange(
                     index,
-                    Math.min(requestItem.quantity + 1, 5)
+                    Math.min(requestItem.quantity + 1, 5) //Q U A N T I T Y
                 );
-                updateCart();
+                await axios.get(`/updateCartInc?itemId=${requestItem.itemID}`);
             }}
-            maxQuantity={5}
             index={index}
+            maxQuantity={5} //Q U A N T I T Y
             itemID={requestItem.itemID}
             removeItem={removeItem}
-            updateCart={updateCart}
             theme={theme}
         />
     </Box>
@@ -126,8 +122,8 @@ const QuantityControls = ({
     quantity,
     onDecrease,
     onIncrease,
-    maxQuantity,
     index,
+    maxQuantity,
     itemID,
     removeItem,
     theme,
@@ -135,22 +131,18 @@ const QuantityControls = ({
     return (
         <Box display="flex" justifyContent="center" flexDirection="column">
             <Box display="flex" alignItems="center" textAlign="center">
-                <Link
-                    href={route("updateDecQty", {
-                        itemId: itemID,
-                    })}
-                    key={index}
+                <Button
+                    px={0.5}
+                    py={0}
+                    sx={{
+                        minWidth: "0px",
+                        color: theme.palette.text.grey[500],
+                    }}
+                    disabled={quantity <= 1}
+                    onClick={onDecrease}
                 >
-                    <Button
-                        px={0.5}
-                        py={0}
-                        sx={{ minWidth: "0px", color: theme.palette.text.grey[500] }}
-                        onClick={onDecrease}
-                        disabled={quantity <= 1}
-                    >
-                        -
-                    </Button>
-                </Link>
+                    -
+                </Button>
                 <Typography
                     display="inline"
                     color={theme.palette.text.white[500]}
@@ -161,43 +153,33 @@ const QuantityControls = ({
                 >
                     {quantity}
                 </Typography>
-                <Link
-                    href={route("updateIncQty", {
-                        itemId: itemID,
-                    })}
-                    key={index}
-                >
-                    <Button
-                        px={0.5}
-                        py={0}
-                        sx={{ minWidth: "0px", color: theme.palette.text.grey[500] }}
-                        disabled={quantity >= maxQuantity}
-                    >
-                        +
-                    </Button>
-                </Link>
-            </Box>
-            <Link
-                href={route("removeitem", {
-                    itemId: itemID,
-                })}
-                key={index}
-            >
                 <Button
+                    px={0.5}
+                    py={0}
                     sx={{
+                        minWidth: "0px",
                         color: theme.palette.text.grey[500],
-                        py: 0.25,
-                        mt: 0.75,
-                        textTransform: "initial",
                     }}
-                    onClick={() => removeItem(index)}
+                    disabled={quantity >= maxQuantity}
+                    onClick={onIncrease}
                 >
-                    Remove
+                    +
                 </Button>
-            </Link>
+            </Box>
+            <Button
+                sx={{
+                    color: theme.palette.text.grey[500],
+                    py: 0.25,
+                    mt: 0.75,
+                    textTransform: "initial",
+                }}
+                onClick={() => removeItem(index)}
+            >
+                Remove
+            </Button>
         </Box>
-    )
-}
+    );
+};
 
 const CartFooter = ({ subtotal, theme }) => (
     <Box

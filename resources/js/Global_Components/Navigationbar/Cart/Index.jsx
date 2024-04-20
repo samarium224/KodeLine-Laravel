@@ -11,7 +11,6 @@ export const NavigationCheckout = ({
     cartData,
     setcartData,
 }) => {
-    console.log(cartData);
     const totalQuantity = cartData.reduce(
         (total, item) => total + item.quantity,
         0
@@ -29,26 +28,13 @@ export const NavigationCheckout = ({
         });
     };
 
-    const removeItem = (index) => {
+    const removeItem = async (index) => {
+        await axios.get(`/RemoveCartItem?itemId=${cartData[index].itemID}`);
         setcartData((prevItems) => {
             const updatedItems = [...prevItems];
             updatedItems.splice(index, 1);
             return updatedItems;
         });
-        updateCart();
-    };
-
-    const updateCart = async () => {
-        try {
-            const response = await axios.post(
-                route("updateCartItems"),
-                cartData
-            );
-            // setcartData(response.data);
-            // console.log(response);
-        } catch (error) {
-            console.error("Error adding item to cart:", error);
-        }
     };
 
     return (
@@ -83,7 +69,6 @@ export const NavigationCheckout = ({
                     checkoutRequestItems={cartData}
                     handleQuantityChange={handleQuantityChange}
                     removeItem={removeItem}
-                    updateCart={updateCart}
                     totalQuantity={totalQuantity}
                     subtotal={subtotal}
                     theme={theme}

@@ -159,16 +159,19 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                 </Box>
                 <Button
                     sx={{
-                        backgroundColor: theme.palette.primary.main,
+                        backgroundColor: "transparent",
                         color: theme.palette.text.grey[500],
+                        border: `2px solid ${theme.palette.text.grey[500]}`,
+                        fontWeight: "500",
                         fontSize: "0.9rem",
                         fontWeight: 400,
-                        px: 5,
-                        py: 1.5,
+                        px: 4,
+                        py: 1,
                         mt: 3.5,
                         display: { xs: "block", md: "none" },
                         "&:hover": {
-                            backgroundColor: theme.palette.primary.main,
+                            backgroundColor: theme.palette.text.grey[500],
+                            color: theme.palette.text.white[500],
                         },
                     }}
                 >
