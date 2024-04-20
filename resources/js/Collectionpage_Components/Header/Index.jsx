@@ -1,10 +1,22 @@
-import { Button, Box, Typography, useTheme } from "@mui/material";
+import {
+    Button,
+    Box,
+    Typography,
+    useTheme,
+    useMediaQuery,
+} from "@mui/material";
 import { motion } from "framer-motion";
 
 // import { CollectionHeaderData } from "./Data";
 
 const Header = ({ CollectionHeaderData }) => {
     const theme = useTheme();
+    const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+    const fadeFromBottom = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+    };
     const fadeFromLeft = {
         hidden: { opacity: 0, x: -50 },
         visible: { opacity: 1, x: 0 },
@@ -13,6 +25,12 @@ const Header = ({ CollectionHeaderData }) => {
         hidden: { opacity: 0, x: 50 },
         visible: { opacity: 1, x: 0 },
     };
+
+    const animationVariant = isMobileScreen
+        ? fadeFromBottom
+        : CollectionHeaderData.reverseAlign
+        ? fadeFromRight
+        : fadeFromLeft;
 
     return (
         <Box
@@ -63,11 +81,7 @@ const Header = ({ CollectionHeaderData }) => {
                     <Typography
                         variant="headline"
                         component={motion.div}
-                        variants={
-                            CollectionHeaderData.reverseAlign
-                                ? fadeFromRight
-                                : fadeFromLeft
-                        }
+                        variants={animationVariant}
                         initial="hidden"
                         animate={"visible"}
                         color={theme.palette.text.white[500]}
@@ -79,26 +93,21 @@ const Header = ({ CollectionHeaderData }) => {
                     <Typography
                         variant="subtitle"
                         component={motion.div}
-                        variants={
-                            CollectionHeaderData.reverseAlign
-                                ? fadeFromRight
-                                : fadeFromLeft
-                        }
+                        variants={animationVariant}
                         initial="hidden"
                         animate={"visible"}
                         transition={{ duration: 0.4, delay: 0.25 }}
                         color={theme.palette.text.white[500]}
-                        sx={{ mb: { xl: 5, md: 3, xs: 20 }, width: "33%" }}
+                        sx={{
+                            mb: { xl: 5, md: 3, xs: 5 },
+                            width: { xs: "80%", md: "33%" },
+                        }}
                     >
                         {CollectionHeaderData.subtitle}
                     </Typography>
                     <Box
                         component={motion.div}
-                        variants={
-                            CollectionHeaderData.reverseAlign
-                                ? fadeFromRight
-                                : fadeFromLeft
-                        }
+                        variants={animationVariant}
                         initial="hidden"
                         animate={"visible"}
                         transition={{ duration: 0.4, delay: 0.66 }}

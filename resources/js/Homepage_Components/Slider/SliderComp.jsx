@@ -56,7 +56,7 @@ const SliderComp = ({
                     height: {
                         xl: `calc(85vh - 56px)`,
                         md: `calc(85vh - 49px)`,
-                        xs: `calc(85vh - 28px)`,
+                        xs: `calc(82.5vh - 28px + 1px)`,
                         maxAllowableWidth: "700px",
                     },
                 }}
@@ -132,6 +132,15 @@ const SliderComp = ({
                                         theme.palette.text.white[500],
                                     color: theme.palette.text.grey[500],
                                 },
+                            }}
+                            onClick={() => {
+                                console.log("hello");
+                                const targetElement =
+                                    document.getElementById("collection-id-0");
+                                if (targetElement)
+                                    targetElement.scrollIntoView({
+                                        behavior: "smooth",
+                                    });
                             }}
                         >
                             Shop now

@@ -110,7 +110,6 @@ const PreOrder = ({ items, content }) => {
                             pt: 0.5,
                             pb: 1,
                             px: 0.5,
-                            // width: { xs: "205px", md: "300px", xl: "320px" },
                             scale: { xs: "0.7", md: "0.8", xl: "1" },
                         }}
                     >

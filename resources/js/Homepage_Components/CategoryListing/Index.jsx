@@ -14,6 +14,7 @@ const ShopByCategory = ({ CollectionItemList }) => {
             {CollectionItemList.slice(0, 3).map((CollectionItem, i) => (
                 <ShopByCategorySection
                     key={i}
+                    id={i}
                     category={CollectionItem}
                     reverse={i % 2 == 0}
                 />

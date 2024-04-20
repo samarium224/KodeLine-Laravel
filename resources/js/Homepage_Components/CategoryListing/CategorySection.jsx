@@ -9,7 +9,7 @@ import {
     useTheme,
 } from "@mui/material";
 
-const ShopByCategorySection = ({ category, reverse = false }) => {
+const ShopByCategorySection = ({ id, category, reverse = false }) => {
     const theme = useTheme();
     return (
         <Container
@@ -24,6 +24,7 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                 },
                 px: "0px !important",
             }}
+            id={`collection-id-${id}`}
         >
             <Box
                 textAlign="center"
@@ -157,26 +158,32 @@ const ShopByCategorySection = ({ category, reverse = false }) => {
                             </Box>
                         ))}
                 </Box>
-                <Button
-                    sx={{
-                        backgroundColor: "transparent",
-                        color: theme.palette.text.grey[500],
-                        border: `2px solid ${theme.palette.text.grey[500]}`,
-                        fontWeight: "500",
-                        fontSize: "0.9rem",
-                        fontWeight: 400,
-                        px: 4,
-                        py: 1,
-                        mt: 3.5,
-                        display: { xs: "block", md: "none" },
-                        "&:hover": {
-                            backgroundColor: theme.palette.text.grey[500],
-                            color: theme.palette.text.white[500],
-                        },
-                    }}
+                <Link
+                    href={route("collection", {
+                        id: category.categoryID,
+                    })}
                 >
-                    EXPLORE MORE
-                </Button>
+                    <Button
+                        sx={{
+                            backgroundColor: "transparent",
+                            color: theme.palette.text.grey[500],
+                            border: `2px solid ${theme.palette.text.grey[500]}`,
+                            fontWeight: "500",
+                            fontSize: "0.9rem",
+                            fontWeight: 400,
+                            px: 4,
+                            py: 1,
+                            mt: 3.5,
+                            display: { xs: "block", md: "none" },
+                            "&:hover": {
+                                backgroundColor: theme.palette.text.grey[500],
+                                color: theme.palette.text.white[500],
+                            },
+                        }}
+                    >
+                        EXPLORE MORE
+                    </Button>
+                </Link>
             </Box>
         </Container>
     );

@@ -17,12 +17,13 @@ const Banner = ({ text, variant, sx = {} }) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                sx={{ height: { xs: "15vh", maxAllowableWidth: "150px" } }}
+                sx={{ height: { xs: "17.5vh", maxAllowableWidth: "150px" } }}
             >
                 <Typography
                     variant={variant}
                     color={theme.palette.text.white[500]}
                     sx={mergedStyles}
+                    py={1}
                 >
                     {text}
                 </Typography>
