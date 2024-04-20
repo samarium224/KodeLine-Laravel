@@ -46,7 +46,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
-                        <b><img src="{{ asset('All Images/Logo_White.png') }}" width="100px" alt="homepage"
+                        <b><img src="{{ asset('assets/Logo_White.png') }}" width="100px" alt="homepage"
                                 class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->

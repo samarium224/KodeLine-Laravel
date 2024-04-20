@@ -97,8 +97,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                                     <img
                                         src={
                                             alternativeColor
-                                                ? "./All Images/Logo_Black.png"
-                                                : "./All Images/Logo_White.png"
+                                                ? "./assets/Logo_Black.png"
+                                                : "./assets/Logo_White.png"
                                         }
                                         alt="Logo"
                                         style={{ height: "30px" }}
@@ -118,8 +118,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                                     <img
                                         src={
                                             alternativeColor
-                                                ? "./All Images/Logo_Black.png"
-                                                : "./All Images/Logo_White.png"
+                                                ? "./assets/Logo_Black.png"
+                                                : "./assets/Logo_White.png"
                                         }
                                         alt="Logo"
                                         style={{ height: "60px" }}

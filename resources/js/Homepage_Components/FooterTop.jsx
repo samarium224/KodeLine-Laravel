@@ -44,9 +44,8 @@ const SliderContent = ({ theme, image }) => (
                     position: "absolute",
                     transform: "translate(-50%, -50%)",
                     top: {
-                        xs: "450px",
-                        md: "80vh",
-                        xl: "750px",
+                        xs: "480px",
+                        xl: "600px",
                         maxAllowableWidth: "800px",
                     },
                     left: "50%",
@@ -129,15 +128,15 @@ const FooterTop = () => {
             <Slider {...settings}>
                 <SliderContent
                     theme={theme}
-                    image="./All Images/Curated Design_1960_1080.png"
+                    image="./assets/Curated Design_1960_1080.png"
                 />
                 <SliderContent
                     theme={theme}
-                    image="./All Images/Fast Delivery_1960_1080.png"
+                    image="./assets/Fast Delivery_1960_1080.png"
                 />
                 <SliderContent
                     theme={theme}
-                    image="./All Images/Best Value_1960_1080.png"
+                    image="./assets/Best Value_1960_1080.png"
                 />
             </Slider>
         </Box>
