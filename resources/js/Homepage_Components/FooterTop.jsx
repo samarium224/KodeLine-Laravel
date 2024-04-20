@@ -17,7 +17,7 @@ const SliderContent = ({ theme, image }) => (
             width: { xs: "100%", maxAllowableWidth: "1920px" },
             height: {
                 xs: "600px",
-                lg: "105vh",
+                lg: "80vh",
                 maxAllowableWidth: "1100px",
             },
             mx: "auto",
@@ -44,6 +44,7 @@ const SliderContent = ({ theme, image }) => (
                     position: "absolute",
                     transform: "translate(-50%, -50%)",
                     top: {
+                        xs: "450px",
                         md: "80vh",
                         xl: "750px",
                         maxAllowableWidth: "800px",
@@ -139,7 +140,6 @@ const FooterTop = () => {
                     image="./All Images/Best Value_1960_1080.png"
                 />
             </Slider>
-            {/* <Banner /> */}
         </Box>
     );
 };
