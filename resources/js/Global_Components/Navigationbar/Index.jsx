@@ -176,6 +176,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                 <DrawerContent
                     toggleDrawer={toggleDrawer}
                     auth={auth}
+                    collections={collections}
                     theme={theme}
                 />
             </Drawer>

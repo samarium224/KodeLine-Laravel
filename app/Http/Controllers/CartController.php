@@ -20,6 +20,7 @@ class CartController extends Controller
         }
         // Fetch cart data for the user
         $cartdata = Cart::where('user_id', $user_id)->get()->map(function ($item) {
+            $current_stock = Products::where('id', $item->product_id)->value('quantity');
             return [
                 'itemID' => $item->product_id,
                 'itemImgURL' => $item->imgUrl,
@@ -27,6 +28,7 @@ class CartController extends Controller
                 'ageRange' => $item->ageRange,
                 'currentPrice' => $item->product_price,
                 'oldPrice' => "",
+                'on_stock' => $current_stock,
                 'quantity' => $item->product_quantity,
             ];
         })->toArray();

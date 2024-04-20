@@ -105,12 +105,12 @@ const CartItem = ({
             onIncrease={async () => {
                 handleQuantityChange(
                     index,
-                    Math.min(requestItem.quantity + 1, 5) //Q U A N T I T Y
+                    Math.min(requestItem.quantity + 1, requestItem.on_stock) //Q U A N T I T Y
                 );
                 await axios.get(`/updateCartInc?itemId=${requestItem.itemID}`);
             }}
             index={index}
-            maxQuantity={5} //Q U A N T I T Y
+            maxQuantity={requestItem.on_stock} //Q U A N T I T Y
             itemID={requestItem.itemID}
             removeItem={removeItem}
             theme={theme}

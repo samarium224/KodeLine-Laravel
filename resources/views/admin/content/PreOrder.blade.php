@@ -63,7 +63,7 @@
             @csrf
             <div class="card">
                 <div>
-                    <div class="card-title text-secondary"><b>Collection Image</b></div>
+                    <div class="card-title text-secondary"><b>Home Page Image</b></div>
                     <div class="row">
                         <div class="col-md-8">
                             <div id="dropzone1" class="dropzone">
@@ -82,13 +82,13 @@
             </div>
             <div class="card">
                 <div class="card-title text-secondary mb-3">
-                    <b>Collection Header Image</b>
+                    <b>Mobile View Image</b>
                 </div>
                 <div>
                     <div class="row">
                         <div class="col-md-4">
                             <div id="image-preview2" class="image-preview">
-                                <img src="{{ asset('assets/admin-col-pc.jpg') }}" alt="">
+                                <img src="{{ asset('assets/admin_col_mobile.jpg') }}" alt="">
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -103,7 +103,7 @@
             </div>
             <div class="card">
                 <div class="card-title text-secondary mb-3">
-                    <b>Collection Header Mobile Image</b>
+                    <b>View Page Image</b>
                 </div>
                 <div>
                     <div class="row">
@@ -116,7 +116,8 @@
                         </div>
                         <div class="col-md-4">
                             <div id="image-preview3" class="image-preview">
-                                <img src="{{ asset('assets/admin_col_mobile.jpg') }}" alt="">
+
+                                <img src="{{ asset('assets/admin-col-pc.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
