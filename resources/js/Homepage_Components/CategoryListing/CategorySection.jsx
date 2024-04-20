@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
 import { Link } from "@inertiajs/react";
 import {
@@ -11,6 +12,12 @@ import {
 
 const ShopByCategorySection = ({ id, category, reverse = false }) => {
     const theme = useTheme();
+    const [backgroundImage, setBackgroundImage] = useState("");
+
+    useEffect(() => {
+        setBackgroundImage(category.categoryImage || "./assets/blank.jpg");
+    }, [category]);
+
     return (
         <Container
             maxWidth="desktopMaxWidth"
@@ -37,7 +44,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                     width="100%"
                     mb={2.5}
                     sx={{
-                        backgroundImage: `url(${category.categoryImage})`,
+                        backgroundImage: `url(${backgroundImage})`,
                         backgroundPosition: "center",
                         backgroundSize: "cover",
                         height: { xs: "750px", md: "1000px" },

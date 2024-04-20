@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     Box,
     Button,
@@ -20,6 +20,12 @@ const SliderComp = ({
 }) => {
     const theme = useTheme();
     const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+    const [backgroundImage, setBackgroundImage] = useState("");
+
+    useEffect(() => {
+        const imageUrl = isMobileScreen ? mobileImgURL : imgURL;
+        setBackgroundImage(imageUrl);
+    }, [imgURL, isMobileScreen, mobileImgURL]);
 
     const fadeFromBottom = {
         hidden: { opacity: 0, y: 20 },
@@ -46,8 +52,8 @@ const SliderComp = ({
                 sx={{
                     mx: "auto",
                     backgroundImage: {
-                        xs: `url("${mobileImgURL}")`,
-                        md: `url("${imgURL}")`,
+                        xs: `url("${backgroundImage}")`,
+                        md: `url("${backgroundImage}")`,
                     },
                     backgroundPosition: backgroundPosition,
                     backgroundSize: "cover",

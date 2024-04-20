@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +9,12 @@ import { PrevArrow, NextArrow } from "./SliderArrows";
 
 const PreOrder = ({ items, content }) => {
     const theme = useTheme();
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setIsLoaded(true);
+    }, [content]);
+
     const settings = {
         arrows: true,
         infinite: true,
@@ -42,8 +49,8 @@ const PreOrder = ({ items, content }) => {
             <Box
                 sx={{
                     backgroundImage: {
-                        xs: `url(${content.MobileImg})`,
-                        sm: `url(${content.HomePageImg})`,
+                        xs: `url(${isLoaded && content.MobileImg})`,
+                        sm: `url(${isLoaded && content.HomePageImg})`,
                     },
                     backgroundPosition: "center bottom",
                     backgroundSize: "cover",
