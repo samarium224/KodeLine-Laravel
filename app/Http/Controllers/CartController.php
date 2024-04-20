@@ -44,21 +44,21 @@ class CartController extends Controller
         // dd(session()->getId());
         // Get the authenticated user's ID
         $user_id = Auth::id();
+        // dd($user_id);
 
         if ($user_id == null) {
-            $userid = session()->getId();
+            $user_id = session()->getId();
             $username = "guest";
         } else {
             // Retrieve the currently authenticated user...
-            $username = $request->user()->value('name');
-            $userid = $request->user()->value('id');
+            $username = Auth::user()->name;
         }
 
         $product_id = $request->itemID;
         $product_quantity = 1;
 
         // Check if the product already exists in the user's cart
-        $existingCartItem = Cart::where('user_id', $userid)->where('product_id', $product_id)->first();
+        $existingCartItem = Cart::where('user_id', $user_id)->where('product_id', $product_id)->first();
 
         if ($existingCartItem) {
             // Product already exists in the cart, you can handle this case as needed
@@ -75,7 +75,7 @@ class CartController extends Controller
         if ($product_quantity < $current_stock) {
             Cart::insert([
                 'username' => $username,
-                'user_id' => $userid,
+                'user_id' => $user_id,
                 'product_id' => $product_id,
                 'product_name' => $product_info->product_name,
                 'imgUrl' => $productImg,
@@ -92,17 +92,17 @@ class CartController extends Controller
 
     public function updateCartItems(Request $request)
     {
+        $request->validate([
+            'itemId'=> 'required|integer',
+        ]);
+
         $itemId = $request->itemId;
+
         // Get the authenticated user's ID
         $user_id = Auth::id();
 
         if ($user_id == null) {
-            $userid = session()->getId();
-            $username = "guest";
-        } else {
-            // Retrieve the currently authenticated user...
-            $username = $request->user()->name; // Use ->name directly
-            $userid = $request->user()->id; // Use ->id directly
+            $user_id = session()->getId();
         }
 
         $cart_id = Cart::where('user_id', $user_id)->where('product_id', $itemId)->value('id');
@@ -113,17 +113,17 @@ class CartController extends Controller
     }
 
     public function DecCartItems(Request $request){
+        $request->validate([
+            'itemId'=> 'required|integer',
+        ]);
+
         $itemId = $request->itemId;
+
         // Get the authenticated user's ID
         $user_id = Auth::id();
 
         if ($user_id == null) {
-            $userid = session()->getId();
-            $username = "guest";
-        } else {
-            // Retrieve the currently authenticated user...
-            $username = $request->user()->name; // Use ->name directly
-            $userid = $request->user()->id; // Use ->id directly
+            $user_id = session()->getId();
         }
 
         $cart_id = Cart::where('user_id', $user_id)->where('product_id', $itemId)->value('id');
@@ -132,17 +132,17 @@ class CartController extends Controller
     }
 
     public function RemoveCartItem(Request $request){
+        $request->validate([
+            'itemId'=> 'required|integer',
+        ]);
+
         $itemId = $request->itemId;
+
         // Get the authenticated user's ID
         $user_id = Auth::id();
 
         if ($user_id == null) {
-            $userid = session()->getId();
-            $username = "guest";
-        } else {
-            // Retrieve the currently authenticated user...
-            $username = $request->user()->name; // Use ->name directly
-            $userid = $request->user()->id; // Use ->id directly
+            $user_id = session()->getId();
         }
 
         $cart_id = Cart::where('user_id', $user_id)->where('product_id', $itemId)->value('id');

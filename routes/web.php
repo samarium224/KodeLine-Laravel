@@ -12,6 +12,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowcaseProduct;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\UserDashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,9 +30,8 @@ use Inertia\Inertia;
 
 Route::get('/', [HomepageController::class, 'Index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified',])->name('dashboard');
+//user dashboard
+Route::get('/dashboard', [UserDashboardController::class,'Index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //payment routes
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
