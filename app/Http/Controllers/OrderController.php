@@ -9,10 +9,8 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\Auth;
 
-
 class OrderController extends Controller
 {
-
     public function checkout(Request $request)
     {
         // Get the authenticated user's ID
@@ -22,8 +20,7 @@ class OrderController extends Controller
             $user_id = session()->getId();
             $username = 'guest';
         } else {
-            $username = $request->user()->value('name');
-            $userid = $request->user()->value('id');
+            $username = Auth::user()->name;
         }
 
         $Cartproducts = Cart::where('user_id', $user_id)->get();
@@ -60,17 +57,20 @@ class OrderController extends Controller
             $order = Order::create([
                 'order_id' => uniqid('order'),
                 'username' => $username,
-                'user_id' => $userid,
+                'user_id' => $user_id,
                 'session_id' => $checkout_session->id,
                 'product_id' => $product->id,
                 'product_name' => $product->product_name,
                 'product_quantity' => $product->product_quantity,
                 'total_price' => $totalPrice,
-                'phonenumber'=> '12324244',
-                'address'=> 'myaddess',
-                'imgUrl'=> $product->imgUrl,
+                'phonenumber' => '12324244',
+                'address' => 'myaddess',
+                'imgUrl' => $product->imgUrl,
 
             ]);
+
+            // Delete the product from the cart
+            // $product->delete();
         }
 
         return redirect($checkout_session->url);

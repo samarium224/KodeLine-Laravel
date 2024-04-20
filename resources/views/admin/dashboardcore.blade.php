@@ -128,6 +128,7 @@
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{ route('order.viewOrders') }}">Order list</a></li>
                             <li><a href="{{ route('order.preOrderItem') }}">Add Pre Order Items</a></li>
+                            <li><a href="{{ route('order.preOrderItem.view') }}">Pre Order Items</a></li>
                             <li><a href="{{ route('order.unpaid') }}">Unpaid Orders</a></li>
                             <li><a href="{{ route('order.pending') }}">Pending Orders</a></li>
                             <li><a href="{{ route('order.complete') }}">Completed Orders</a></li>

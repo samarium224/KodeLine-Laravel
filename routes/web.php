@@ -12,6 +12,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowcaseProduct;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\UserDashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,9 +30,8 @@ use Inertia\Inertia;
 
 Route::get('/', [HomepageController::class, 'Index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified',])->name('dashboard');
+//user dashboard
+Route::get('/dashboard', [UserDashboardController::class,'Index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //payment routes
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
@@ -90,10 +90,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         // order
         Route::get('/admin/orders', 'Orders')->name('order.viewOrders');
         Route::get('/admin/preOrdersItem', 'PreOrderItem')->name('order.preOrderItem');
+        Route::get('/admin/viewpreOrdersItem', 'ViewPreOrderItem')->name('order.preOrderItem.view');
         Route::get('/admin/orders/unpaid', 'OrderUnpaid')->name('order.unpaid');
         Route::get('/admin/orders/pending', 'OrderPending')->name('order.pending');
         Route::get('/admin/orders/complete', 'OrderComplete')->name('order.complete');
         Route::post('/admin/preorder/store', 'StorePreOrder')->name('preorder.store');
+        Route::get('/admin/preorder/edit/{id}', 'editPreOrder')->name('preorder.edit');
+        Route::post('/admin/preorder/update', 'updatePreOrder')->name('preorder.update');
+        Route::get('/admin/preorder/delete/{id}', 'deletePreOrder')->name('preorder.delete');
     });
 
     Route::controller(DashboardCustomerController::class)->group(function () {
