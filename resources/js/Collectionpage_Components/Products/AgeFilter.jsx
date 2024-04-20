@@ -3,28 +3,20 @@ import React, { useState, useEffect } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-const PriceFilter = ({ priceRange, setPriceRange, minPrice, maxPrice }) => {
+const AgeFilter = ({ ageRange, setAgeRange, minAge, maxAge }) => {
     const theme = useTheme();
     const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleMinPriceChange = (event) => {
-        const newMinPrice = parseFloat(event.target.value);
-        if (
-            !isNaN(newMinPrice) &&
-            newMinPrice >= minPrice &&
-            newMinPrice <= maxPrice
-        )
-            setPriceRange([newMinPrice, priceRange[1]]);
+    const handleMinAgeChange = (event) => {
+        const newMinAge = parseFloat(event.target.value);
+        if (!isNaN(newMinAge) && newMinAge >= minAge && newMinAge <= maxAge)
+            setAgeRange([newMinAge, ageRange[1]]);
     };
 
-    const handleMaxPriceChange = (event) => {
-        const newMaxPrice = parseFloat(event.target.value);
-        if (
-            !isNaN(newMaxPrice) &&
-            newMaxPrice >= minPrice &&
-            newMaxPrice <= maxPrice
-        )
-            setPriceRange([priceRange[0], newMaxPrice]);
+    const handleMaxAgeChange = (event) => {
+        const newMaxAge = parseFloat(event.target.value);
+        if (!isNaN(newMaxAge) && newMaxAge >= minAge && newMaxAge <= maxAge)
+            setAgeRange([ageRange[0], newMaxAge]);
     };
 
     const handleDropdownClick = (event) => setAnchorEl(event.currentTarget);
@@ -41,16 +33,16 @@ const PriceFilter = ({ priceRange, setPriceRange, minPrice, maxPrice }) => {
                 variant="itemdescTitle"
                 textTransform="initial"
                 color={theme.palette.text.grey[500]}
-                aria-controls="price-filter"
+                aria-controls="age-filter"
                 aria-haspopup="true"
                 onClick={handleDropdownClick}
-                sx={{ cursor: "pointer" }}
+                sx={{ cursor: "pointer", ml: 5 }}
             >
-                Price{" "}
+                Age{" "}
                 {anchorEl ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </Typography>
             <Menu
-                id="price-filter"
+                id="age-filter"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
@@ -69,12 +61,12 @@ const PriceFilter = ({ priceRange, setPriceRange, minPrice, maxPrice }) => {
                 >
                     <TextField
                         type="number"
-                        label="Min Price"
+                        label="Min Age"
                         placeholder="From"
                         InputProps={{
-                            inputProps: { min: minPrice, max: maxPrice },
+                            inputProps: { min: minAge, max: maxAge },
                         }}
-                        onChange={handleMinPriceChange}
+                        onChange={handleMinAgeChange}
                         sx={{
                             mr: 2,
                             width: "150px",
@@ -89,12 +81,12 @@ const PriceFilter = ({ priceRange, setPriceRange, minPrice, maxPrice }) => {
                     />
                     <TextField
                         type="number"
-                        label="Max Price"
+                        label="Max Age"
                         placeholder="To"
                         InputProps={{
-                            inputProps: { min: minPrice, max: maxPrice },
+                            inputProps: { min: minAge, max: maxAge },
                         }}
-                        onChange={handleMaxPriceChange}
+                        onChange={handleMaxAgeChange}
                         sx={{
                             width: "150px",
                             borderRadius: "0px",
@@ -110,4 +102,4 @@ const PriceFilter = ({ priceRange, setPriceRange, minPrice, maxPrice }) => {
     );
 };
 
-export default PriceFilter;
+export default AgeFilter;
