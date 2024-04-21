@@ -15,7 +15,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 
 import { Collections } from "@/Global_data/Collections";
 
-const DrawerContent = ({ toggleDrawer, auth, theme }) => {
+const DrawerContent = ({ toggleDrawer, auth, theme, collections }) => {
     const [collectionOpen, setCollectionOpen] = useState(false);
 
     const handleCollectionClick = () => {
@@ -38,16 +38,18 @@ const DrawerContent = ({ toggleDrawer, auth, theme }) => {
                 </ListItem>
                 <Collapse in={collectionOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        {Collections.map((collection, i) => (
+                        {collections.map((collection, i) => (
                             <ListItem
                                 button
                                 key={i}
                                 component={Link}
-                                href={route("collection")}
+                                href={route("collection", {
+                                    id: collection.collection_id,
+                                })}
                                 sx={{ pl: 4 }}
                             >
                                 <ListItemText
-                                    primary={collection.collectionName}
+                                    primary={collection.collection_name}
                                 />
                             </ListItem>
                         ))}

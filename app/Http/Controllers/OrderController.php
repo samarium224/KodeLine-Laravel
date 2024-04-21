@@ -66,11 +66,7 @@ class OrderController extends Controller
                 'phonenumber' => '12324244',
                 'address' => 'myaddess',
                 'imgUrl' => $product->imgUrl,
-
             ]);
-
-            // Delete the product from the cart
-            // $product->delete();
         }
 
         return redirect($checkout_session->url);
@@ -91,14 +87,22 @@ class OrderController extends Controller
 
             $customer = $session->customer_details;
 
-            $order = Order::where('session_id', $session->id)->first();
-            if (!$order) {
+            $orders = Order::where('session_id', $session->id)->get();
+            if (!$orders) {
                 throw new NotFoundHttpException();
             }
-            if ($order->payment_status === 0) {
-                $order->payment_status = 1;
-                $order->save();
+
+            foreach($orders as $order){
+                if ($order->payment_status === 0) {
+                    $order->payment_status = 1;
+                    $order->save();
+
+                    //remove the cart items
+                    $usercart = $order->user_id;
+                }
             }
+            
+            Cart::where('user_id', $usercart)->delete();
 
             return view('test.success', compact('customer'));
         } catch (\Throwable $th) {

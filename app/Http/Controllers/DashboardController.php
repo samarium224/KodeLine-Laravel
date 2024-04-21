@@ -12,11 +12,12 @@ class DashboardController extends Controller
 {
     public function Index()
     {
-        $orders = Order::orderBy("id","desc")->paginate(5);
+        $orders = Order::orderBy("id", "desc")->paginate(5);
         return view('admin.dashboard', compact('orders'));
     }
 
-    public function analytics(){
+    public function analytics()
+    {
         return view('admin.Performance');
     }
 
@@ -328,12 +329,21 @@ class DashboardController extends Controller
 
         $image_set = implode('|', $product_img_array);
         $ageRange = implode('|', $request->ageRange);
-        $ageGroup = implode('|', $request->ageGroup);
-        $sizeGroup = implode('|', $request->sizeGroup);
-        $colorGroup = implode('|', $request->colorGroup);
-        $quantityGroup = implode('|', $request->quantityGroup);
-        $imgVariationGroup = implode('|', $img_variation);
 
+        //product variation null safety
+        if (isset($request->ageGroup)) {
+            $ageGroup = implode('|', $request->ageGroup);
+            $sizeGroup = implode('|', $request->sizeGroup);
+            $colorGroup = implode('|', $request->colorGroup);
+            $quantityGroup = implode('|', $request->quantityGroup);
+        } else {
+            $ageGroup = '';
+            $sizeGroup = '';
+            $colorGroup = '';
+            $quantityGroup = '';
+        }
+        $imgVariationGroup = implode('|', $img_variation);
+        // end of null safety
 
         $category_id = $request->product_category_id;
         $subcategory_id = $request->product_subcategory_id;
@@ -459,7 +469,7 @@ class DashboardController extends Controller
             'product_id' => 'required',
             'product_name' => 'required|string|max:255',
             'price' => 'required',
-            'compare_price'=> 'required',
+            'compare_price' => 'required',
             'quantity' => 'required|integer',
             'product_short_description' => 'required|string',
             'product_long_description' => 'required|string',
@@ -493,10 +503,21 @@ class DashboardController extends Controller
         }
 
         $ageRange = implode('|', $request->ageRange);
-        $ageGroup = implode('|', $request->ageGroup);
-        $sizeGroup = implode('|', $request->sizeGroup);
-        $colorGroup = implode('|', $request->colorGroup);
-        $quantityGroup = implode('|', $request->quantityGroup);
+
+        //product variation null safety
+        if (isset($request->ageGroup)) {
+            $ageGroup = implode('|', $request->ageGroup);
+            $sizeGroup = implode('|', $request->sizeGroup);
+            $colorGroup = implode('|', $request->colorGroup);
+            $quantityGroup = implode('|', $request->quantityGroup);
+        } else {
+            $ageGroup = '';
+            $sizeGroup = '';
+            $colorGroup = '';
+            $quantityGroup = '';
+        }
+        $imgVariationGroup = implode('|', $img_variation);
+        // end of null safety
 
         // handle out of stock selling and other tic marks
         $continue_selling = $request->continue_selling;
@@ -531,7 +552,7 @@ class DashboardController extends Controller
             if ($preCategoryId != 0) {
                 Category::where('id', $preCategoryId)->decrement('product_count', 1);
             }
-        }else{
+        } else {
             Category::where('id', $preCategoryId)->decrement('product_count', 1);
         }
 
@@ -541,7 +562,7 @@ class DashboardController extends Controller
             if ($preSubcategoryId != 0) {
                 SubCategory::where('id', $preSubcategoryId)->decrement('product_count', 1);
             }
-        }else{
+        } else {
             SubCategory::where('id', $preSubcategoryId)->decrement('product_count', 1);
         }
 
@@ -549,7 +570,7 @@ class DashboardController extends Controller
             'product_name' => $validatedData['product_name'],
             'price' => $validatedData['price'],
             'quantity' => $validatedData['quantity'],
-            'compare_price'=> $request->compare_price,
+            'compare_price' => $request->compare_price,
             'product_short_description' => $validatedData['product_short_description'],
             'product_long_description' => $validatedData['product_long_description'],
             'product_category_name' => $category_name,
