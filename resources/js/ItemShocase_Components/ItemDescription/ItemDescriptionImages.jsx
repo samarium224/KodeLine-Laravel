@@ -17,39 +17,55 @@ const ItemDescriptionImages = ({ itemData }) => {
     };
 
     return (
-        <Box display="flex" width="55%" justifyContent="space-between">
+        <Box
+            display="flex"
+            sx={{
+                flexDirection: { lg: "row", xs: "column-reverse" },
+                width: { md: "60%", xs: "100%" },
+                mb: { xs: 5, md: 15 },
+            }}
+            justifyContent="space-between"
+        >
+            {itemData.imgURL.secondary.length > 0 && (
+                <Box
+                    className="inactive-item-images"
+                    display="flex"
+                    sx={{ flexDirection: { lg: "column", xs: "row" } }}
+                    justifyContent="flex-start"
+                >
+                    {itemData.imgURL.secondary.map((image, i) => (
+                        <Box
+                            key={i}
+                            className="active-item-image"
+                            sx={{
+                                backgroundImage: `url(${
+                                    image ? image : "./assets/blank.jpg"
+                                })`,
+                                backgroundPosition: "center",
+                                backgroundSize: "cover",
+                                backgroundRepeat: "no-repeat",
+                                cursor: "pointer",
+                                height: {
+                                    xs: "120px",
+                                    lg: "calc(100% / 4)",
+                                },
+                                width: { xs: "calc(100% / 4)", lg: "180px" },
+                                mb: { lg: 1, xs: 0 },
+                                mx: { lg: 0, xs: "4px" },
+                                mt: { lg: 0, xs: 1 },
+                            }}
+                            onClick={() => handleOpen(image)}
+                        />
+                    ))}
+                </Box>
+            )}
             <Box
-                className="inactive-item-images"
-                display="flex"
-                flexDirection="column"
-                justifyContent="flex-start"
-            >
-                {itemData.imgURL.secondary.map((image, i) => (
-                    <Box
-                        key={i}
-                        className="active-item-image"
-                        width="180px"
-                        height="calc(100% / 4)"
-                        mb={1}
-                        sx={{
-                            backgroundImage: `url(${
-                                image ? image : "./assets/blank.jpg"
-                            })`,
-                            backgroundPosition: "center",
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                            cursor: "pointer",
-                        }}
-                        onClick={() => handleOpen(image)}
-                    />
-                ))}
-            </Box>
-            <Box
-                ml="10px"
                 className="active-item-image"
-                width="100%"
-                height="100%"
+                maxHeight="1000px"
+                maxWidth="750px"
                 sx={{
+                    width: "100%",
+                    height: { xs: "60vw", md: "100%" },
                     backgroundImage: `url("${
                         itemData.imgURL.primary
                             ? itemData.imgURL.primary
@@ -59,6 +75,7 @@ const ItemDescriptionImages = ({ itemData }) => {
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     cursor: "pointer",
+                    mx: { lg: "10px", xs: "4px" },
                 }}
                 onClick={() => handleOpen(itemData.imgURL.primary)}
             />

@@ -79,7 +79,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         <>
                             <IconButton
                                 edge="start"
-                                color="inherit"
+                                color={navButtonStyle.color}
                                 aria-label="open drawer"
                                 onClick={toggleDrawer(true)}
                                 sx={{ mr: 2 }}

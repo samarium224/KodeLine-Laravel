@@ -62,7 +62,7 @@ const SliderComp = ({
                     height: {
                         xl: `calc(85vh - 56px)`,
                         md: `calc(85vh - 49px)`,
-                        xs: `calc(82.5vh - 28px + 1px)`,
+                        xs: `calc(82.5vh - 30px + 1px)`,
                         maxAllowableWidth: "700px",
                     },
                 }}
