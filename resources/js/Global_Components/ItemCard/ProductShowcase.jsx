@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import { useForm } from "@inertiajs/react";
 
@@ -13,10 +13,14 @@ const ProductShowcase = ({
     buttonText = "ADD TO CART",
 }) => {
     const theme = useTheme();
-
+    const [backgroundImage, setBackgroundImage] = useState("");
     const { data, setData, post, errors } = useForm({
         itemID: itemID,
     });
+
+    useEffect(() => {
+        setBackgroundImage(itemImage || "./assets/blank.jpg");
+    }, [itemImage]);
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -39,7 +43,7 @@ const ProductShowcase = ({
                 alignItems: "Center",
                 height: { xs: "232px", md: "270px", lg: "360px", xl: "400px" },
                 width: { xs: "174px", md: "242px", lg: "270px", xl: "300px" },
-                backgroundImage: `url(${itemImage || "./assets/blank.jpg"})`,
+                backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -89,13 +93,6 @@ const ProductShowcase = ({
                 text={buttonText}
                 onClick={handleClick}
                 sx={{
-                    // ...(buttonText !== "ADD TO CART"
-                    //     ? {
-                    //           backgroundColor: theme.palette.primary.main,
-                    //           fontWeight: "500",
-                    //           color: theme.palette.text.white[500],
-                    //       }
-                    //     : {}),
                     opacity: { xs: "100", md: "0" },
                     transition: ".33s",
                     mb: { xs: "0", md: "-10px" },

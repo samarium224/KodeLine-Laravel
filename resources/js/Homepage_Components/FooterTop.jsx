@@ -1,76 +1,67 @@
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, Button, Container, Typography, useTheme } from "@mui/material";
-import Banner from "@/Global_Components/Banner";
+import { Box, Button, Container, useTheme } from "@mui/material";
 
-const SliderContent = ({ theme, image }) => (
-    <Box
-        sx={{
-            backgroundImage: {
-                xs: `url("${image}")`,
-                sm: `url("${image}")`,
-            },
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            width: { xs: "100%", maxAllowableWidth: "1920px" },
-            height: {
-                xs: "600px",
-                lg: "80vh",
-                maxAllowableWidth: "1100px",
-            },
-            mx: "auto",
-        }}
-    >
-        <Container maxWidth="xl" sx={{ position: "relative" }}>
-            {/* <Typography
-                variant="headline"
-                sx={{
-                    position: "absolute",
-                    color: theme.palette.text.grey[500],
-                    transform: { xs: "translate(-50%, -50%)", md: "initial" },
-                    top: { xs: "120px", md: "25vh", xl: "250px" },
-                    left: { xs: "50%", md: "37.5%" },
-                    textAlign: { md: "left", xs: "center" },
-                    fontWeight: "700",
-                    width: "100%",
-                }}
-            >
-                Simplifying Choices <br /> Maximizing Convenience
-            </Typography> */}
-            <Button
-                sx={{
-                    position: "absolute",
-                    transform: "translate(-50%, -50%)",
-                    top: {
-                        xs: "480px",
-                        xl: "600px",
-                        maxAllowableWidth: "800px",
-                    },
-                    left: "50%",
-                    color: theme.palette.text.white[500],
-                    backgroundColor: "transparent",
-                    border: `2px solid ${theme.palette.text.white[500]}`,
-                    fontWeight: "500",
-                    fontSize: {
-                        xl: "1.25rem",
-                        md: "1rem",
-                        xs: "0.9rem",
-                    },
-                    px: { xl: 9, md: 6, xs: 4 },
-                    py: { xl: 1.66, md: 1.2, xs: 1 },
-                    "&:hover": {
-                        backgroundColor: theme.palette.text.white[500],
-                        color: theme.palette.text.grey[500],
-                    },
-                }}
-            >
-                SHOP NOW
-            </Button>
-        </Container>
-    </Box>
-);
+const SliderContent = ({ theme, image }) => {
+    const [backgroundImage, setBackgroundImage] = useState("");
+    useEffect(() => {
+        setBackgroundImage(image || "./assets/blank.jpg");
+    }, [image]);
+    return (
+        <Box
+            sx={{
+                backgroundImage: {
+                    xs: `url("${backgroundImage}")`,
+                    sm: `url("${backgroundImage}")`,
+                },
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                width: { xs: "100%", maxAllowableWidth: "1920px" },
+                height: {
+                    xs: "600px",
+                    lg: "80vh",
+                    maxAllowableWidth: "1100px",
+                },
+                mx: "auto",
+            }}
+        >
+            <Container maxWidth="xl" sx={{ position: "relative" }}>
+                <Button
+                    sx={{
+                        position: "absolute",
+                        transform: "translate(-50%, -50%)",
+                        top: {
+                            xs: "480px",
+                            xl: "600px",
+                            maxAllowableWidth: "800px",
+                        },
+                        left: "50%",
+                        color: theme.palette.text.white[500],
+                        backgroundColor: "transparent",
+                        border: `2px solid ${theme.palette.text.white[500]}`,
+                        fontWeight: "500",
+                        fontSize: {
+                            xl: "1.25rem",
+                            md: "1rem",
+                            xs: "0.9rem",
+                        },
+                        px: { xl: 9, md: 6, xs: 4 },
+                        py: { xl: 1.66, md: 1.2, xs: 1 },
+                        "&:hover": {
+                            backgroundColor: theme.palette.text.white[500],
+                            color: theme.palette.text.grey[500],
+                        },
+                    }}
+                >
+                    SHOP NOW
+                </Button>
+            </Container>
+        </Box>
+    );
+};
 
 const FooterTop = () => {
     const theme = useTheme();
