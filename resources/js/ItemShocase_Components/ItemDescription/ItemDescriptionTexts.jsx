@@ -1,11 +1,12 @@
+import { useState } from "react";
 import sanitizeHtml from "sanitize-html";
 import { Box, Button, Typography, useTheme } from "@mui/material";
+
 // import ItemShopQuantity from "../../Global_Components/Navigationbar/ItemShopQuantity";
 // import { itemData } from "./data";
 
 const ItemDescriptionTexts = ({ itemData }) => {
     const theme = useTheme();
-    console.log(itemData);
     const sanitizedDescription = sanitizeHtml(itemData.itemDescription.desc, {
         allowedTags: [
             "b",
@@ -33,8 +34,17 @@ const ItemDescriptionTexts = ({ itemData }) => {
         },
     });
 
+    const [selectedIndex, setSelectedIndex] = useState({ color: 0, size: 0 });
+
+    const onChangeSize = (sizeIndex) => {
+        setSelectedIndex({ ...selectedIndex, size: sizeIndex });
+    };
+    const onChangeColor = (colorIndex) => {
+        setSelectedIndex({ ...selectedIndex, color: colorIndex });
+    };
+
     return (
-        <Box width="40%">
+        <Box sx={{ width: { xs: "100%", md: "35%" } }} mb={15}>
             <Box>
                 <Typography
                     variant="secondaryTitle"
@@ -71,10 +81,16 @@ const ItemDescriptionTexts = ({ itemData }) => {
                         key={i}
                         sx={{
                             backgroundSize: "cover",
-                            border: `2px solid ${theme.palette.text.grey[500]}`,
+                            border: `2px solid ${
+                                selectedIndex.color === i
+                                    ? theme.palette.text.grey[800]
+                                    : theme.palette.text.grey[400]
+                            }`,
                             mr: 1,
+                            transition: "0.2s all ease",
                         }}
                         display="inline-block"
+                        onClick={() => onChangeColor(i)}
                     >
                         <img
                             src={
@@ -108,24 +124,29 @@ const ItemDescriptionTexts = ({ itemData }) => {
                     </Typography>
                 </Typography>
                 {itemData.sizes.map((size, i) => (
-                    <Typography
+                    <Button
                         key={i}
-                        variant="itemdescTitle"
-                        textTransform="initial"
-                        color={theme.palette.text.white[100]}
-                        backgroundColor={theme.palette.text.grey[700]}
-                        py={1.5}
-                        px={3}
-                        mr={1}
                         sx={{
+                            textTransform: "initial",
+                            color: theme.palette.text.white[100],
+                            backgroundColor:
+                                selectedIndex.size === i
+                                    ? theme.palette.text.grey[800]
+                                    : theme.palette.text.grey[500],
+                            py: 1.5,
+                            mr: 1,
+                            mb: 1,
+                            width: "100px",
+                            textAlign: "center",
                             "&:hover": {
                                 backgroundColor: theme.palette.text.grey[800],
                                 cursor: "pointer",
                             },
                         }}
+                        onClick={() => onChangeSize(i)}
                     >
                         {size}
-                    </Typography>
+                    </Button>
                 ))}
             </Box>
             <Box className="shop-buttons" mt={5}>
@@ -153,12 +174,12 @@ const ItemDescriptionTexts = ({ itemData }) => {
                         sx={{
                             color: theme.palette.primary.main,
                             textTransform: "uppercase",
-                            width: "80%",
+                            width: { xs: "100%", lg: "80%" },
                             border: `1px solid ${theme.palette.primary.main}`,
                             my: 1,
                             py: 1.25,
                             "&:hover": {
-                                backgroundColor: theme.palette.primary.main,
+                                backgroundColor: theme.palette.text.grey[700],
                                 color: theme.palette.text.white[100],
                             },
                         }}
@@ -172,10 +193,10 @@ const ItemDescriptionTexts = ({ itemData }) => {
                         color: theme.palette.text.white[100],
                         textTransform: "uppercase",
                         my: 1,
-                        width: "80%",
+                        width: { xs: "100%", lg: "80%" },
                         py: 1.75,
                         "&:hover": {
-                            backgroundColor: theme.palette.primary.main,
+                            backgroundColor: theme.palette.text.grey[700],
                         },
                     }}
                 >

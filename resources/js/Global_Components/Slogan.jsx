@@ -7,14 +7,15 @@ const Slogan = () => {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            sx={{ height: { xl: "56px", md: "49px", xs: "28px" } }}
+            sx={{ height: { xl: "56px", md: "49px", xs: "30px" } }}
+            textAlign="center"
         >
             <Typography
                 variant="subtitle"
                 color="white"
                 sx={{
                     fontWeight: 600,
-                    fontSize: { xl: "1.1rem", md: "0.9rem", xs: "0.55rem" },
+                    fontSize: { xl: "1.1rem", md: "0.9rem", xs: "0.5rem" },
                 }}
             >
                 2000+ curated global designs, Free 48-hour shipping in Regina,
