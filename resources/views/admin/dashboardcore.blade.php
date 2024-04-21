@@ -44,7 +44,7 @@
             <nav class="navbar top-navbar navbar-expand-md navbar-dark" data-bs-theme="dark">
                 <!-- Logo -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{route('home')}}">
                         <!-- Logo icon -->
                         <b><img src="{{ asset('assets/Logo_White.png') }}" width="100px" alt="homepage"
                                 class="dark-logo" /></b>
@@ -84,7 +84,7 @@
                                 <ul class="dropdown-user">
                                     {{-- <li><a href="#"><i class="ti-user"></i> Profile</a></li>
                                     <li><a href="#"><i class="ti-settings"></i> Setting</a></li> --}}
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="{{route('dashboard')}}"><i class="fa fa-power-off"></i>Logout</a></li>
                                 </ul>
                             </div>
                         </li>
