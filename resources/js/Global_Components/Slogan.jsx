@@ -7,8 +7,12 @@ const Slogan = () => {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            sx={{ height: { xl: "56px", md: "49px", xs: "30px" } }}
+            sx={{
+                height: { xl: "56px", md: "49px", xs: "30px" },
+                width: { xs: "100vw", maxAllowableWidth: "1960px" },
+            }}
             textAlign="center"
+            mx="auto"
         >
             <Typography
                 variant="subtitle"
@@ -18,8 +22,8 @@ const Slogan = () => {
                     fontSize: { xl: "1.1rem", md: "0.9rem", xs: "0.5rem" },
                 }}
             >
-                2000+ curated global designs, Free 48-hour shipping in Regina,
-                Secure payments
+                Up to 30% Savings, Free 48-hour shipping in Regina, Secure
+                payment
             </Typography>
         </Box>
     );

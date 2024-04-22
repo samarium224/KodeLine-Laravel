@@ -1,5 +1,15 @@
+import React, { useState } from "react";
 import { Link } from "@inertiajs/react";
-import { Box, Container, Typography, useTheme } from "@mui/material";
+import {
+    Box,
+    Button,
+    Container,
+    Collapse,
+    Typography,
+    useTheme,
+    useMediaQuery,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 const SocialLinks = ({ collection }) => {
     const theme = useTheme();
@@ -8,117 +18,129 @@ const SocialLinks = ({ collection }) => {
     const socialMedias = ["Facebook", "Instagram", "Twitter", "LinkedIn"];
     const accountOptions = ["Login"];
 
-    return (
-        <Container
-            maxWidth="desktopMaxWidth"
-            sx={{
-                display: { xs: "none", md: "flex" },
-                justifyContent: "space-around",
-            }}
-        >
-            <Box>
+    const LinkList = ({ title, items }) => (
+        <Box>
+            <Typography
+                variant="subtitle"
+                color={theme.palette.text.grey[500]}
+                fontWeight={400}
+                mb={4}
+                display="block"
+            >
+                {title}
+            </Typography>
+            {items.map((item, i) => (
                 <Typography
-                    variant="subtitle"
+                    key={i}
                     color={theme.palette.text.grey[500]}
-                    fontWeight={400}
-                    mb={4}
+                    fontWeight={300}
                     display="block"
+                    mb={0.75}
+                    fontSize="1.11rem"
+                    sx={{ cursor: "pointer" }}
                 >
-                    Information
+                    {item}
                 </Typography>
-                {informations.map((information, i) => (
-                    <Typography
-                        key={i}
-                        color={theme.palette.text.grey[500]}
-                        fontWeight={400}
-                        display="block"
-                        mb={0.75}
-                        fontSize="1.25rem"
-                        sx={{ cursor: "pointer" }}
-                    >
-                        {information}
-                    </Typography>
-                ))}
-            </Box>
-            <Box>
-                <Typography
-                    variant="subtitle"
-                    color={theme.palette.text.grey[500]}
-                    fontWeight={400}
-                    mb={4}
-                    display="block"
-                >
-                    Collections
-                </Typography>{" "}
-                {collections.map((collection, i) => (
+            ))}
+        </Box>
+    );
+
+    const DesktopLinks = () => (
+        <Box display="flex" justifyContent="space-around">
+            <LinkList title="Information" items={informations} />
+            <LinkList
+                title="Collections"
+                items={collections.map((collection) => (
                     <Link
                         href={route("collection", {
                             id: collection.collection_id,
                         })}
-                        key={i}
+                        key={collection.collection_id}
                     >
-                        <Typography
-                            key={i}
-                            color={theme.palette.text.grey[500]}
-                            fontWeight={400}
-                            display="block"
-                            mb={0.75}
-                            fontSize="1.25rem"
-                            sx={{ cursor: "pointer" }}
-                        >
-                            {collection.collection_name} Collection
-                        </Typography>
+                        {collection.collection_name} Collection
                     </Link>
                 ))}
-            </Box>
-            <Box>
-                <Typography
-                    variant="subtitle"
-                    color={theme.palette.text.grey[500]}
-                    fontWeight={400}
-                    mb={4}
-                    display="block"
+            />
+            <LinkList title="Follow Us" items={socialMedias} />
+            <LinkList title="My Account" items={accountOptions} />
+        </Box>
+    );
+
+    const MobileLinkList = ({ title, items }) => {
+        const [expanded, setExpanded] = useState(false);
+        return (
+            <Box mb={1.75}>
+                <Button
+                    onClick={() => setExpanded(!expanded)}
+                    sx={{
+                        pl: 0,
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        "&:active": {
+                            backgroundColor: "transparent",
+                        },
+                    }}
                 >
-                    Follow Us
-                </Typography>{" "}
-                {socialMedias.map((socialMedia, i) => (
-                    <Typography
-                        key={i}
-                        color={theme.palette.text.grey[500]}
-                        fontWeight={400}
-                        display="block"
-                        mb={0.75}
-                        fontSize="1.25rem"
-                        sx={{ cursor: "pointer" }}
-                    >
-                        {socialMedia}
+                    <Typography variant="subtitle" display="block">
+                        {title}
                     </Typography>
-                ))}
+                    <CloseIcon
+                        fontSize="small"
+                        sx={{
+                            rotate: expanded ? "0deg" : "45deg",
+                            transition: "0.2s all ease",
+                            scale: "0.8",
+                        }}
+                    />
+                </Button>
+                <Collapse in={expanded} unmountOnExit>
+                    <Box sx={{ mt: 1 }}>
+                        {items.map((item, i) => (
+                            <Typography
+                                key={i}
+                                color={theme.palette.text.grey[500]}
+                                fontWeight={300}
+                                display="block"
+                                mb={0.75}
+                                fontSize="0.8rem"
+                                sx={{ cursor: "pointer" }}
+                            >
+                                {item}
+                            </Typography>
+                        ))}
+                    </Box>
+                </Collapse>
             </Box>
-            <Box>
-                <Typography
-                    variant="subtitle"
-                    color={theme.palette.text.grey[500]}
-                    fontWeight={400}
-                    mb={4}
-                    display="block"
-                >
-                    My Account
-                </Typography>
-                {accountOptions.map((accountOption, i) => (
-                    <Typography
-                        key={i}
-                        color={theme.palette.text.grey[500]}
-                        fontWeight={400}
-                        display="block"
-                        mb={0.75}
-                        fontSize="1.25rem"
-                        sx={{ cursor: "pointer" }}
+        );
+    };
+
+    const MobileLinks = () => (
+        <Box>
+            <MobileLinkList title="Information" items={informations} />
+            <MobileLinkList
+                title="Collections"
+                items={collections.map((collection) => (
+                    <Link
+                        href={route("collection", {
+                            id: collection.collection_id,
+                        })}
+                        key={collection.collection_id}
                     >
-                        {accountOption}
-                    </Typography>
+                        {collection.collection_name} Collection
+                    </Link>
                 ))}
-            </Box>
+            />
+            <MobileLinkList title="Follow Us" items={socialMedias} />
+            <MobileLinkList title="My Account" items={accountOptions} />
+        </Box>
+    );
+
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+    return (
+        <Container maxWidth="desktopMaxWidth">
+            {isMobile ? <MobileLinks /> : <DesktopLinks />}
         </Container>
     );
 };

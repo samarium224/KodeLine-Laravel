@@ -47,7 +47,7 @@ const SliderComp = ({
         : fadeFromLeft;
 
     return (
-        <Box backgroundColor={theme.palette.primary.main} width="100vw">
+        <Box width="100vw">
             <Box
                 sx={{
                     mx: "auto",
@@ -84,6 +84,7 @@ const SliderComp = ({
                         },
                         mx: { md: 15, xl: 25 },
                         pb: { xs: 0, md: 15 },
+                        pt: { xs: 20, md: 0 },
                     }}
                 >
                     <Typography
@@ -107,7 +108,7 @@ const SliderComp = ({
                         transition={{ duration: 0.4, delay: 0.25 }}
                         color={theme.palette.text.white[500]}
                         sx={{
-                            mb: { xl: 5, md: 3, xs: 20 },
+                            mb: { xl: 5, md: 3, xs: 10 },
                             width: { xs: "95%", md: "33%" },
                         }}
                         dangerouslySetInnerHTML={{ __html: subtitle }}

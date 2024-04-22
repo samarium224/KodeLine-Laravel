@@ -17,7 +17,11 @@ const Banner = ({ text, variant, sx = {} }) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                sx={{ height: { xs: "17.5vh", maxAllowableWidth: "150px" } }}
+                mx="auto"
+                sx={{
+                    height: { xs: "17.5vh", maxAllowableWidth: "150px" },
+                    width: { xs: "100vw", maxAllowableWidth: "1960px" },
+                }}
             >
                 <Typography
                     variant={variant}
