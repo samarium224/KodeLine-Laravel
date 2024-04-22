@@ -77,7 +77,7 @@ const theme_laptop = createTheme({
                 root: {
                     fontFamily: "'Poppins', sans-serif",
                     boxShadow: "none",
-                    fontSize: "0.85rem",
+                    fontSize: "0.66rem",
                     fontWeight: "400",
                     borderRadius: "0px",
                 },

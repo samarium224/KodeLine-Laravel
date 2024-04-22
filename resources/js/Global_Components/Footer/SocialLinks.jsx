@@ -139,7 +139,7 @@ const SocialLinks = ({ collection }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
-        <Container maxWidth="desktopMaxWidth">
+        <Container maxWidth="desktopMaxWidth" sx={{ zIndex: 100 }}>
             {isMobile ? <MobileLinks /> : <DesktopLinks />}
         </Container>
     );
