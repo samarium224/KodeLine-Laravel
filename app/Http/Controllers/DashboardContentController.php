@@ -12,6 +12,11 @@ class DashboardContentController extends Controller
         return view("admin.content.PreOrder");
     }
 
+    public function ContentView(){
+        $contents = Content::latest()->get();
+        return view("admin.content.view", compact("contents"));
+    }
+
     public function UpdatePreOrderContent(Request $request)
     {
         $request->validate([
@@ -62,9 +67,18 @@ class DashboardContentController extends Controller
             ]);
         }
 
-        return redirect()->route('allcategory')->with(
+        return redirect()->route('content.all')->with(
             'message',
             'Pre Order Content Updated Successfully'
+        );
+    }
+
+    public function destroy($id){
+        Content::findOrFail($id)->delete();
+
+        return redirect()->route('content.all')->with(
+            'message',
+            'Content Deleted Successfully'
         );
     }
 }
