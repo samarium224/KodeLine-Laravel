@@ -15,7 +15,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 
 import { Collections } from "@/Global_data/Collections";
 
-const DrawerContent = ({ toggleDrawer, auth, theme, collections }) => {
+const DrawerContent = ({ toggleDrawer, auth, collections }) => {
     const [collectionOpen, setCollectionOpen] = useState(false);
 
     const handleCollectionClick = () => {

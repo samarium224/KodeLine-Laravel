@@ -128,11 +128,18 @@ const ItemDescriptionTexts = ({ itemData }) => {
                         key={i}
                         sx={{
                             textTransform: "initial",
-                            color: theme.palette.text.white[100],
+                            color:
+                                selectedIndex.size === i
+                                    ? theme.palette.text.white[100]
+                                    : theme.palette.text.grey[500],
                             backgroundColor:
                                 selectedIndex.size === i
-                                    ? theme.palette.text.grey[800]
-                                    : theme.palette.text.grey[500],
+                                    ? theme.palette.text.grey[500]
+                                    : "transparent",
+
+                            border:
+                                selectedIndex.size !== i &&
+                                `1px solid ${theme.palette.primary.main}`,
                             py: 1.5,
                             mr: 1,
                             mb: 1,

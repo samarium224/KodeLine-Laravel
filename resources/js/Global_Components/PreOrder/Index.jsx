@@ -41,7 +41,8 @@ const PreOrder = ({ items, content }) => {
             display="flex"
             sx={{
                 flexDirection: { xs: "column", md: "row" },
-                width: "100vw",
+                width: { xs: "100vw", maxAllowableWidth: "1960px" },
+                mx: "auto",
                 justifyContent: "center",
                 backgroundColor: theme.palette.primary.main,
             }}
@@ -78,11 +79,11 @@ const PreOrder = ({ items, content }) => {
                         border: `2px solid ${theme.palette.text.white[500]}`,
                         fontWeight: "500",
                         fontSize: {
-                            xl: "1.25rem",
-                            md: "1rem",
-                            xs: "0.9rem",
+                            xl: "1rem",
+                            md: "0.85rem",
+                            xs: "0.8rem",
                         },
-                        px: { xl: 9, md: 6, xs: 4 },
+                        px: { xl: 8, md: 5, xs: 3 },
                         py: { xl: 1.66, md: 1.2, xs: 1 },
                         "&:hover": {
                             backgroundColor: theme.palette.text.white[500],

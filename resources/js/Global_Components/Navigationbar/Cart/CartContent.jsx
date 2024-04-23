@@ -184,7 +184,7 @@ const QuantityControls = ({
 const CartFooter = ({ subtotal, theme }) => (
     <Box
         position="fixed"
-        top="100vh"
+        top="100svh"
         sx={{
             transform: "translate(-100%, -100%)",
             width: { xs: "100vw", md: "550px" },

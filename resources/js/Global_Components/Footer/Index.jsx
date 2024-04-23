@@ -4,7 +4,7 @@ import SocialLinks from "./SocialLinks";
 import { motion, useInView, useAnimation } from "framer-motion";
 import Copyright from "./Copyright";
 
-const Footer = ({collections}) => {
+const Footer = ({ collections }) => {
     const theme = useTheme();
     const fadeFromBottom = {
         hidden: { opacity: 0, y: 30 },
@@ -19,7 +19,7 @@ const Footer = ({collections}) => {
     }, [isInView]);
     return (
         <Box mt={5}>
-            <Box
+            {/* <Box
                 ref={ref}
                 textAlign="center"
                 display="flex"
@@ -97,7 +97,7 @@ const Footer = ({collections}) => {
                         Subscribe
                     </Button>
                 </Box>
-            </Box>
+            </Box> */}
             <Box
                 component={motion.div}
                 variants={fadeFromBottom}

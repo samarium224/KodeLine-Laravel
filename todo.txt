@@ -1,26 +1,26 @@
-========== TO DO ==========
-working view all button best-selling section
-Lazyload
-
 ========== Suggestions ==========
 reduce size of footer top image
 
 ========== Query ==========
-    remove filter
-    age
-    subcategory
+Services Fontsize
+Cart item type description
+items left in stock
+BestSelling, SignatureItems filter button
+remove 'none' from array
+Lines after footer headers
+footer links
+Services Mobile fix
 
-catergoty page
-line side of header
-footer bottom
-
-RESPONSIVE FIX
-
+========== Completed Query ==========
+/ Preorder shop btn size /
+/ backgroundFix /
+/ Mobile footer fix /
+/ Navlinks background /
+/ fix slogan text XD /
+/ fix background Colors /
 
 ======== Functional Problem =========
 you may also like section
-cart item remove after order
 prompt phone number and address
-footer is not dynamic
-pre order btn not dynamic
 product variation logic need work
+
