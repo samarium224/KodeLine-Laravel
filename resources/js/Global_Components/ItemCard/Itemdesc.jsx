@@ -36,7 +36,7 @@ const Itemdesc = ({
                     mx={0.75}
                     color={theme.palette.text.grey[500]}
                     fontWeight="400"
-                    sx={{ fontSize: { xs: "1rem", md: "1.5rem" } }}
+                    sx={{ fontSize: { xs: "1rem", md: "1.25rem" } }}
                 >
                     ${currentPrice.toFixed(2)}
                 </Typography>
@@ -47,7 +47,7 @@ const Itemdesc = ({
                         fontWeight="400"
                         sx={{
                             textDecoration: "line-through",
-                            fontSize: { xs: "1rem", md: "1.5rem" },
+                            fontSize: { xs: "1rem", md: "1.25rem" },
                         }}
                     >
                         ${oldPrice.toFixed(2)}

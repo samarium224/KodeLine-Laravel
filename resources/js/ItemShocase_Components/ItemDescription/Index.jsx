@@ -1,6 +1,6 @@
 import { Container, useTheme } from "@mui/material";
 import ItemDescriptionImages from "./ItemDescriptionImages";
-import ItemDescriptionTexts from "./ItemDescriptionTexts";
+import ItemDescriptionTexts from "./ItemDescription/Index";
 
 const ItemDescription = ({ product }) => {
     const theme = useTheme();

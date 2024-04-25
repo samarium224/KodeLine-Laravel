@@ -95,7 +95,7 @@ const SocialLinks = ({ collection }) => {
                     />
                 </Button>
                 <Collapse in={expanded} unmountOnExit>
-                    <Box sx={{ mt: 1 }}>
+                    <Box sx={{ mt: 0.25 }}>
                         {items.map((item, i) => (
                             <Typography
                                 key={i}

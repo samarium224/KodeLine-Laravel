@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, Button, Container, useTheme } from "@mui/material";
+import { Box, Button, Typography, Container, useTheme } from "@mui/material";
 
 const SliderContent = ({ theme, image }) => {
     const [backgroundImage, setBackgroundImage] = useState("");
@@ -29,6 +29,17 @@ const SliderContent = ({ theme, image }) => {
             }}
         >
             <Container maxWidth="xl" sx={{ position: "relative" }}>
+                <Box
+                    component="img"
+                    src="./assets/Logo_White.png"
+                    alt="Logo"
+                    position="absolute"
+                    sx={{
+                        height: "90px",
+                        top: "45px",
+                        left: { xs: "90px", xl: "-90px" },
+                    }}
+                />
                 <Button
                     sx={{
                         position: "absolute",
@@ -58,6 +69,24 @@ const SliderContent = ({ theme, image }) => {
                 >
                     SHOP NOW
                 </Button>
+                <Typography
+                    variant="secondaryTitle"
+                    display="block"
+                    position="absolute"
+                    color={theme.palette.text.white[500]}
+                    sx={{
+                        fontWeight: 700,
+                        right: "-90px",
+                        scale: "1.2",
+                        top: {
+                            xs: "510px",
+                            lg: "calc(80vh - 90px)",
+                            maxAllowableWidth: "710px",
+                        },
+                    }}
+                >
+                    Love Loud, Live Liberated.
+                </Typography>
             </Container>
         </Box>
     );

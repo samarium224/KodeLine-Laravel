@@ -40,15 +40,15 @@ const theme_desktop = createTheme({
             lineHeight: "3.33rem",
         },
         title: {
-            fontSize: "2.25rem",
+            fontSize: "2rem",
             fontWeight: "500",
         },
         secondaryTitle: {
             fontWeight: "500",
-            fontSize: "1.75rem",
+            fontSize: "1.5rem",
         },
         subtitle: {
-            fontSize: "1.125rem",
+            fontSize: "1.1rem",
             fontWeight: "300",
             lineHeight: "1.75rem",
         },
@@ -56,10 +56,10 @@ const theme_desktop = createTheme({
             fontSize: "1rem",
             fontWeight: "500",
             textTransform: "uppercase",
-            lineHeight: "1.5rem",
+            lineHeight: "1.25rem",
         },
         itemdescSubtitle: {
-            fontSize: "0.9rem",
+            fontSize: "0.8rem",
             fontWeight: "400",
         },
     },
@@ -80,7 +80,7 @@ const theme_desktop = createTheme({
                 root: {
                     fontFamily: "'Poppins', sans-serif",
                     boxShadow: "none",
-                    fontSize: "0.85rem",
+                    fontSize: "0.8rem",
                     fontWeight: "400",
                     borderRadius: "0px",
                 },

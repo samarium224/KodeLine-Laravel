@@ -6,9 +6,17 @@ import BestSellingHeader from "./BestSellingHeader";
 
 const BestSellingItems = ({ bestSellingItemsList, collections }) => {
     const theme = useTheme();
-    const [viewingAll, setViewingAll] = useState(
-        bestSellingItemsList.length < 8
-    );
+
+    const [currentCollectionID, setCurrentCollectionID] = useState(-1);
+
+    const filteredItemsList =
+        currentCollectionID === -1
+            ? bestSellingItemsList
+            : bestSellingItemsList.filter(
+                  (item) => item.collection_id === currentCollectionID
+              );
+
+    const [viewingAll, setViewingAll] = useState(filteredItemsList.length < 8);
 
     if (bestSellingItemsList.length > 0)
         return (
@@ -17,6 +25,7 @@ const BestSellingItems = ({ bestSellingItemsList, collections }) => {
                     <BestSellingHeader
                         title="Best Selling Items"
                         collections={collections}
+                        setCurrentCollectionID={setCurrentCollectionID}
                     />
                     <Box
                         height="50%"
@@ -27,10 +36,10 @@ const BestSellingItems = ({ bestSellingItemsList, collections }) => {
                         mt={5}
                     >
                         {(viewingAll
-                            ? bestSellingItemsList
-                            : bestSellingItemsList.slice(
+                            ? filteredItemsList
+                            : filteredItemsList.slice(
                                   0,
-                                  Math.min(bestSellingItemsList.length, 8)
+                                  Math.min(filteredItemsList.length, 8)
                               )
                         ).map((signatureItem, i) => (
                             <Box

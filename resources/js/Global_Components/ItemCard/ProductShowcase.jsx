@@ -41,8 +41,8 @@ const ProductShowcase = ({
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "Center",
-                height: { xs: "232px", md: "270px", lg: "360px", xl: "400px" },
-                width: { xs: "174px", md: "242px", lg: "270px", xl: "300px" },
+                height: { xs: "232px", md: "270px", lg: "320px", xl: "360px" },
+                width: { xs: "174px", md: "242px", lg: "240px", xl: "270px" },
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -75,7 +75,11 @@ const ProductShowcase = ({
                     >
                         <Typography
                             sx={{
-                                fontSize: { xs: "0.55rem", md: "0.75rem" },
+                                fontSize: {
+                                    xs: "0.55rem",
+                                    md: "0.6rem",
+                                    xl: "0.7rem",
+                                },
                                 px: { xs: 1, md: 1.5 },
                                 py: { xs: 0.66, md: 1 },
                                 fontWeight: "400",
