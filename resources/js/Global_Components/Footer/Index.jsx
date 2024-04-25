@@ -1,7 +1,15 @@
 import React, { useEffect, useRef } from "react";
-import { Box, Typography, TextField, Button, useTheme } from "@mui/material";
-import SocialLinks from "./SocialLinks";
+import { Box, Typography, useTheme, Container } from "@mui/material";
+import { Link } from "@inertiajs/react";
 import { motion, useInView, useAnimation } from "framer-motion";
+
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+
+import SocialLinks from "./SocialLinks";
 import Copyright from "./Copyright";
 
 const Footer = ({ collections }) => {
@@ -14,11 +22,48 @@ const Footer = ({ collections }) => {
     const isInView = useInView(ref, { once: true });
     const mainControls = useAnimation();
 
+    const socialMediaLinks = [
+        { icon: <FacebookIcon />, label: "Facebook" },
+        { icon: <InstagramIcon />, label: "Instagram" },
+        { icon: <TwitterIcon />, label: "Twitter" },
+        { icon: <LinkedInIcon />, label: "LinkedIn" },
+        { icon: <YouTubeIcon />, label: "Youtube" },
+    ];
+
     useEffect(() => {
         if (isInView) mainControls.start("visible");
     }, [isInView]);
     return (
-        <Box mt={5}>
+        <Box mt={2.5} ref={ref}>
+            <Container maxWidth="desktopMaxWidth" sx={{ px: 0 }}>
+                <Box
+                    display="flex"
+                    sx={{
+                        justifyContent: { xs: "space-around", sm: "flex-end" },
+                    }}
+                    mb={8}
+                >
+                    {socialMediaLinks.map((link, index) => (
+                        <Box
+                            key={index}
+                            component={Link}
+                            color={theme.palette.text.grey[500]}
+                            textAlign="center"
+                            display="flex"
+                            alignItems="center"
+                            sx={{
+                                flexDirection: { xs: "column", sm: "row" },
+                                ml: { xs: 0, sm: 4 },
+                            }}
+                        >
+                            {link.icon}
+                            <Typography variant="subtitle" ml={0.5}>
+                                {link.label}
+                            </Typography>
+                        </Box>
+                    ))}
+                </Box>
+            </Container>
             {/* <Box
                 ref={ref}
                 textAlign="center"
@@ -103,7 +148,7 @@ const Footer = ({ collections }) => {
                 variants={fadeFromBottom}
                 initial="hidden"
                 animate={mainControls}
-                transition={{ duration: 0.75, delay: 0.6 }}
+                transition={{ duration: 0.5, delay: 0 }}
             >
                 <SocialLinks collection={collections} />
             </Box>

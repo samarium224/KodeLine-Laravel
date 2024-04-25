@@ -95,7 +95,7 @@ const SocialLinks = ({ collection }) => {
                     />
                 </Button>
                 <Collapse in={expanded} unmountOnExit>
-                    <Box sx={{ mt: 1 }}>
+                    <Box sx={{ mt: 0.25 }}>
                         {items.map((item, i) => (
                             <Typography
                                 key={i}
@@ -139,7 +139,7 @@ const SocialLinks = ({ collection }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
-        <Container maxWidth="desktopMaxWidth" sx={{ zIndex: 100 }}>
+        <Container maxWidth="desktopMaxWidth">
             {isMobile ? <MobileLinks /> : <DesktopLinks />}
         </Container>
     );

@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Container } from "@mui/material";
 import SignatureItemsHeader from "./SignatureItemsHeader";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
-// import { collections, signatureItemsList } from "./data";
 import SignatureItemsSlider from "./SignatureItemsSlider";
 
+// import { collections, signatureItemsList } from "./data";
+
 const SignatureItems = ({ signatureItemsList, collections }) => {
+    const [currentCollectionID, setCurrentCollectionID] = useState(-1);
+
+    const filteredItemsList =
+        currentCollectionID === -1
+            ? signatureItemsList
+            : signatureItemsList.filter(
+                  (item) => item.collection_id === currentCollectionID
+              );
+
     if (signatureItemsList.length > 0)
         return (
             <Container maxWidth="desktopMaxWidth">
@@ -13,9 +23,10 @@ const SignatureItems = ({ signatureItemsList, collections }) => {
                     <SignatureItemsHeader
                         title="Shop our must-have picks!"
                         categoryList={collections}
+                        setCurrentCollectionID={setCurrentCollectionID}
                     />
                     <SignatureItemsSlider>
-                        {signatureItemsList.map((signatureItem, i) => (
+                        {filteredItemsList.map((signatureItem, i) => (
                             <ItemCard
                                 key={i}
                                 itemID={signatureItem.itemID}

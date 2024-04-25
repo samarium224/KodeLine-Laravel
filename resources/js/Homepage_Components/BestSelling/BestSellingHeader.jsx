@@ -2,10 +2,16 @@ import CustomButton from "@/Global_Components/CustomButton";
 import Header from "@/Global_Components/Header";
 import { Box } from "@mui/material";
 
-const BestSellingHeader = ({ title, collections }) => {
-    const filteredCollections = collections.filter(
-        (category) => category.collection_name !== "none"
-    );
+const BestSellingHeader = ({ title, collections, setCurrentCollectionID }) => {
+    const filteredCollections = [...collections];
+
+    if (
+        filteredCollections.length > 0 &&
+        filteredCollections[filteredCollections.length - 1].collection_name ===
+            "none"
+    )
+        filteredCollections.pop();
+    filteredCollections.unshift({ collection_name: "All", collection_id: -1 });
 
     return (
         <Box display="flex" flexDirection="column" alignItems="center">
@@ -22,6 +28,9 @@ const BestSellingHeader = ({ title, collections }) => {
                             fontWeight: "300",
                             textTransform: "initial",
                         }}
+                        onClick={() =>
+                            setCurrentCollectionID(category.collection_id)
+                        }
                     />
                 ))}
             </Box>

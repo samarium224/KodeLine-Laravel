@@ -26,7 +26,7 @@ export const CartContent = ({
             totalQuantity={totalQuantity}
             theme={theme}
         />
-        <Box display="flex" flexDirection="column" mt={6} px={2}>
+        <Box display="flex" flexDirection="column" px={2}>
             {checkoutRequestItems.map((requestItem, i) => (
                 <CartItem
                     key={i}
@@ -43,32 +43,35 @@ export const CartContent = ({
 );
 
 const CartHeader = ({ toggleCart, totalQuantity, theme }) => (
-    <Box
-        pt={3}
-        pb={2}
-        pl={1}
-        display="flex"
-        justifyContent="space-between"
-        width="100%"
-    >
-        <div onClick={toggleCart(false)} style={{ cursor: "pointer" }}>
-            <ClearIcon />
-        </div>
-        <div>
-            <Typography
-                variant="itemdescTitle"
-                width={"100%"}
-                letterSpacing="2px"
-            >
-                My Cart
-                <span style={{ color: theme.palette.text.grey[400] }}>
-                    {" "}
-                    ({totalQuantity})
-                </span>
-            </Typography>
-        </div>
-        <div />
-    </Box>
+    <>
+        <Box
+            p="8px 0px 0px 8px"
+            display="flex"
+            justifyContent="space-between"
+            width="100%"
+        >
+            <div onClick={toggleCart(false)} style={{ cursor: "pointer" }}>
+                <ClearIcon />
+            </div>
+            <div>
+                <Typography
+                    variant="itemdescTitle"
+                    width={"100%"}
+                    letterSpacing="2px"
+                >
+                    My Cart
+                    <span style={{ color: theme.palette.text.grey[400] }}>
+                        {" "}
+                        ({totalQuantity})
+                    </span>
+                </Typography>
+            </div>
+            <div />
+        </Box>
+        <hr
+            style={{ width: "calc(100% + 64px)", margin: "16px 0 24px -32px" }}
+        />
+    </>
 );
 
 const CartItem = ({
@@ -78,44 +81,71 @@ const CartItem = ({
     removeItem,
     theme,
 }) => (
-    <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={4}
-    >
-        <img src={requestItem.itemImgURL} height="80" width="60" />
-        <Box flex={1} ml={2.5}>
-            <Typography display="block" variant="itemdescTitle">
-                {requestItem.itemTitle}
-            </Typography>
-            <Typography variant="itemdescSubtitle">
-                ${requestItem.currentPrice.toFixed(2)}
-            </Typography>
+    <>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+            <img
+                src={requestItem.itemImgURL}
+                style={{
+                    minHeight: "100px",
+                    minWidth: "75px",
+                    maxHeight: "100px",
+                    maxWidth: "75px",
+                }}
+            />
+            <Box flex={1} ml={2.5}>
+                <Typography display="block" variant="itemdescTitle" mb={0.6}>
+                    {requestItem.itemTitle}
+                </Typography>
+                <Typography
+                    display="block"
+                    fontWeight={200}
+                    variant="itemdescSubtitle"
+                >
+                    Size: 3 Years
+                </Typography>
+                <Typography
+                    display="block"
+                    fontWeight={200}
+                    variant="itemdescSubtitle"
+                    mb={1.2}
+                >
+                    Color: Sky Blue
+                </Typography>
+                <Typography variant="itemdescSubtitle">
+                    ${requestItem.currentPrice.toFixed(2)}
+                </Typography>
+            </Box>
+            <QuantityControls
+                quantity={requestItem.quantity}
+                onDecrease={async () => {
+                    handleQuantityChange(
+                        index,
+                        Math.max(requestItem.quantity - 1, 1)
+                    );
+                    await axios.get(
+                        `/updateCartDec?itemId=${requestItem.itemID}`
+                    );
+                }}
+                onIncrease={async () => {
+                    handleQuantityChange(
+                        index,
+                        Math.min(requestItem.quantity + 1, requestItem.on_stock) //Q U A N T I T Y
+                    );
+                    await axios.get(
+                        `/updateCartInc?itemId=${requestItem.itemID}`
+                    );
+                }}
+                index={index}
+                maxQuantity={requestItem.on_stock} //Q U A N T I T Y
+                itemID={requestItem.itemID}
+                removeItem={removeItem}
+                theme={theme}
+            />
         </Box>
-        <QuantityControls
-            quantity={requestItem.quantity}
-            onDecrease={async () => {
-                handleQuantityChange(
-                    index,
-                    Math.max(requestItem.quantity - 1, 1)
-                );
-                await axios.get(`/updateCartDec?itemId=${requestItem.itemID}`);
-            }}
-            onIncrease={async () => {
-                handleQuantityChange(
-                    index,
-                    Math.min(requestItem.quantity + 1, requestItem.on_stock) //Q U A N T I T Y
-                );
-                await axios.get(`/updateCartInc?itemId=${requestItem.itemID}`);
-            }}
-            index={index}
-            maxQuantity={requestItem.on_stock} //Q U A N T I T Y
-            itemID={requestItem.itemID}
-            removeItem={removeItem}
-            theme={theme}
+        <hr
+            style={{ width: "calc(100% + 64px)", margin: "24px 0 24px -32px" }}
         />
-    </Box>
+    </>
 );
 
 const QuantityControls = ({

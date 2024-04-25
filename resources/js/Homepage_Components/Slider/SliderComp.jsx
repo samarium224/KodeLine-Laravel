@@ -85,6 +85,7 @@ const SliderComp = ({
                         mx: { md: 15, xl: 25 },
                         pb: { xs: 0, md: 15 },
                         pt: { xs: 20, md: 0 },
+                        position: "relative",
                     }}
                 >
                     <Typography
@@ -141,7 +142,6 @@ const SliderComp = ({
                                 },
                             }}
                             onClick={() => {
-                                console.log("hello");
                                 const targetElement =
                                     document.getElementById("collection-id-0");
                                 if (targetElement)
@@ -153,6 +153,21 @@ const SliderComp = ({
                             Shop now
                         </Button>
                     </Box>
+                    <Typography
+                        variant="secondaryTitle"
+                        display="block"
+                        position="absolute"
+                        color={theme.palette.text.white[500]}
+                        sx={{
+                            transform: "translateX(50%)",
+                            fontWeight: 700,
+                            right: "75px",
+                            bottom: "45px",
+                            scale: "1.2",
+                        }}
+                    >
+                        Love Loud, Live Liberated.
+                    </Typography>
                 </Box>
             </Box>
         </Box>
