@@ -161,6 +161,7 @@
                             <i class="fa fa-database"></i>
                             <span class="hide-menu">Content</span></a>
                         <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{route('content.all')}}">Contents</a></li>
                             <li><a href="{{route('content.preorder')}}">Pre Order Section</a></li>
                         </ul>
                     </li>

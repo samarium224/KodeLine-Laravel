@@ -110,6 +110,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         //content
         Route::get('/admin/ContentpreOrder', 'PreOrderContent')->name('content.preorder');
         Route::post('/admin/ContentpreOrder/edit', 'UpdatePreOrderContent')->name('content.preorder.store');
+        Route::get('/admin/contentview', 'ContentView')->name('content.all');
+        Route::get('/admin/content/delete/{id}', 'destroy')->name('content.delete');
     });
 
     // product utilities
