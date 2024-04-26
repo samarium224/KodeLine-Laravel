@@ -33,7 +33,7 @@ export default function Welcome({ auth }) {
         bestsellingItems,
         bestsellingCollection,
         preOrderContent,
-        preOrderItems
+        preOrderItems,
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -50,9 +50,7 @@ export default function Welcome({ auth }) {
                 <Navigation collections={collections} auth={auth} />
                 <SliderComponent></SliderComponent>
                 <Banner
-                    text="Kidsline is your trusted companion, offering a lovingly curated range of top-notch children's products. With swift, free delivery, we
-                    make every purchase a joy. Our commitment to uncompromising quality strengthens the bond between you and your little ones,
-                    creating cherished moments filled with laughter, warmth, and unforgettable memories."
+                    text="Step into a world where parenting feels effortless and full of love! <br/> With top-notch products and pocket-friendly prices, let's navigate parenthood together, hassle-free."
                     variant="subtitle"
                     sx={{ textTransform: "initial" }}
                 />
@@ -67,7 +65,9 @@ export default function Welcome({ auth }) {
                     collections={bestsellingCollection}
                 />
                 <TopCategories RestCategories={collections} />
-                {preOrderContent && <PreOrder items={preOrderItems} content={preOrderContent} />}
+                {preOrderContent && (
+                    <PreOrder items={preOrderItems} content={preOrderContent} />
+                )}
                 <Testimonials />
                 <FooterTop />
                 <Footer collections={collections} />

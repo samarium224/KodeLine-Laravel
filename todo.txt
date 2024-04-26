@@ -6,6 +6,7 @@ laptop_view
 Lines after footer headers
 footer links
 Services Mobile fix
+move slider continuosly
 
 ========== Completed Query ==========
 # Services Fontsize #

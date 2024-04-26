@@ -6,22 +6,25 @@ const Services = () => {
         <Container
             maxWidth="desktopMaxWidth"
             sx={{
-                mt: { md: 12.5, xs: 7.5 },
-                mb: { md: 15, xs: 7.5 },
+                mt: { md: 6, xs: 7.5 },
+                mb: { md: 4, xs: 7.5 },
                 display: "flex",
                 justifyContent: "space-between",
                 flexDirection: { md: "row", xs: "column" },
             }}
         >
             <ServiceComponent
+                imgURL="./assets/Curated.png"
                 text="Curated with Care"
                 subText="Discover handpicked kids items <br/> featuring captivating designs, perfect for loved ones."
             />
             <ServiceComponent
+                imgURL="./assets/Decured Transaction.png"
                 text="Effortless Solutions"
                 subText="Enjoy hasslefree shopping experience with fast delivery, because your convenience matters to us!"
             />
             <ServiceComponent
+                imgURL="./assets/Effortless.png"
                 text="Trustworthy Transactions"
                 subText="As a registered Saskatchewan business, we guarantee secure payments for your peace of mind."
             />

@@ -32,22 +32,22 @@ const theme_laptop = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "2.25rem",
-            lineHeight: "2.5rem",
+            fontSize: "2.75rem",
+            lineHeight: "2.85rem",
             fontWeight: "600",
         },
         title: {
-            fontSize: "2.1rem",
+            fontSize: "1.75rem",
             fontWeight: "500",
         },
         secondaryTitle: {
             fontWeight: "500",
-            fontSize: "1.8rem",
+            fontSize: "1.25rem",
         },
         subtitle: {
-            fontSize: "0.9rem",
+            fontSize: "1.05rem",
             fontWeight: "300",
-            lineHeight: "1.45rem",
+            lineHeight: "1.55rem",
         },
         itemdescTitle: {
             fontSize: "1rem",
