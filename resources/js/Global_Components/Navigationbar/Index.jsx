@@ -116,7 +116,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         src={
                             alternativeColor
                                 ? "./assets/Logo_Black.png"
-                                : "./assets/Kodeline Kids Logo.png"
+                                : "./assets/Logo.svg"
                         }
                         alt="Logo"
                         sx={{ height: { md: "48px", xl: "60px" } }}
@@ -144,6 +144,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         <Button sx={navButtonStyle}>Log In</Button>
                     </Link>
                 )}
+                <Button sx={navButtonStyle}>Contact us</Button>
             </Box>
         </>
     );
@@ -159,10 +160,10 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                     left: "47.5%",
                     top: { md: 8, xs: 4 },
                     mx: "2.5%",
-                    width: "90vw",
+                    width: { xs: "90vw", maxAllowableWidth: "1750px" },
                 }}
             >
-                <Toolbar sx={{ mt: 1 }}>
+                <Toolbar>
                     {isMobile ? <MobileToolbar /> : <DesktopToolbar />}
                     <NavigationCheckout
                         cartOpen={cartOpen}

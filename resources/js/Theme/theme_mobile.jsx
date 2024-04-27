@@ -5,6 +5,9 @@ const theme_mobile = createTheme({
         primary: {
             main: "#53555a",
         },
+        secondary: {
+            main: "#1d1d1b",
+        },
         text: {
             grey: {
                 100: "#e1e1e3",

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Box, Typography, useTheme, Container } from "@mui/material";
+import { Box, Button, Typography, useTheme, TextField } from "@mui/material";
 import { Link } from "@inertiajs/react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
@@ -11,6 +11,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 
 import SocialLinks from "./SocialLinks";
 import Copyright from "./Copyright";
+import Header from "../Header";
 
 const Footer = ({ collections }) => {
     const theme = useTheme();
@@ -35,7 +36,7 @@ const Footer = ({ collections }) => {
     }, [isInView]);
     return (
         <Box mt={2.5} ref={ref}>
-            <Container maxWidth="desktopMaxWidth" sx={{ px: 0 }}>
+            {/* <Container maxWidth="desktopMaxWidth" sx={{ px: 0 }}>
                 <Box
                     display="flex"
                     sx={{
@@ -63,16 +64,16 @@ const Footer = ({ collections }) => {
                         </Box>
                     ))}
                 </Box>
-            </Container>
-            {/* <Box
+            </Container> */}
+            <Box
                 ref={ref}
                 textAlign="center"
                 display="flex"
                 flexDirection="column"
                 alignItems="center"
-                sx={{ my: { xs: 7.5, md: 10 } }}
+                sx={{ my: { xs: 7.5, md: 6 } }}
             >
-                <Typography
+                {/* <Typography
                     textTransform="uppercase"
                     fontWeight="500"
                     color={theme.palette.text.grey[500]}
@@ -88,7 +89,8 @@ const Footer = ({ collections }) => {
                     }}
                 >
                     Subscribe
-                </Typography>
+                </Typography> */}
+                <Header title="Subscribe" />
                 <Typography
                     variant="itemdescSubtitle"
                     component={motion.div}
@@ -101,7 +103,7 @@ const Footer = ({ collections }) => {
                     mb={4}
                 >
                     Get the latest updates and special offers by signing up for
-                    emails of following us on social media!
+                    emails or following us on social media!
                 </Typography>
                 <Box
                     component={motion.div}
@@ -129,30 +131,40 @@ const Footer = ({ collections }) => {
                     />
                     <Button
                         variant="contained"
-                        color="primary"
                         sx={{
                             height: "56px",
                             borderRadius: "0px",
                             marginLeft: "12px",
                             px: 5,
                             color: theme.palette.text.white[500],
+                            backgroundColor: theme.palette.secondary.main,
                             fontWeight: { xs: 700, md: 600 },
                         }}
                     >
                         Subscribe
                     </Button>
                 </Box>
-            </Box> */}
+            </Box>
             <Box
                 component={motion.div}
                 variants={fadeFromBottom}
                 initial="hidden"
                 animate={mainControls}
                 transition={{ duration: 0.5, delay: 0 }}
+                backgroundColor={theme.palette.secondary.main}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
             >
                 <SocialLinks collection={collections} />
+                <hr
+                    style={{
+                        color: theme.palette.text.white[900],
+                        width: "100vw",
+                    }}
+                />
+                <Copyright />
             </Box>
-            <Copyright />
         </Box>
     );
 };

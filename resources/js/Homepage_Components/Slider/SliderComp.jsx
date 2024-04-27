@@ -96,7 +96,11 @@ const SliderComp = ({
                         animate={isActive ? "visible" : "hidden"}
                         color={theme.palette.text.white[500]}
                         transition={{ duration: 0.4, delay: 0 }}
-                        sx={{ mb: 1, width: "95%" }}
+                        sx={{
+                            mb: 1,
+                            width: "95%",
+                            textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
+                        }}
                         dangerouslySetInnerHTML={{ __html: title }}
                     />
 
@@ -106,11 +110,12 @@ const SliderComp = ({
                         variants={animationVariants}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
-                        transition={{ duration: 0.4, delay: 0.25 }}
+                        transition={{ duration: 0.4, delay: 0 }}
                         color={theme.palette.text.white[500]}
                         sx={{
                             mb: { xl: 5, md: 3, xs: 10 },
                             width: { xs: "95%", md: "100%" },
+                            textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
                         }}
                         dangerouslySetInnerHTML={{ __html: subtitle }}
                     />
@@ -120,7 +125,7 @@ const SliderComp = ({
                         variants={animationVariants}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
-                        transition={{ duration: 0.4, delay: 0.66 }}
+                        transition={{ duration: 0.4, delay: 0 }}
                     >
                         <Button
                             sx={{
@@ -161,7 +166,7 @@ const SliderComp = ({
                         sx={{
                             transform: "translateX(50%)",
                             fontWeight: 700,
-                            right: { md: "120px", xl: "75px" },
+                            right: "120px",
                             bottom: "30px",
                             scale: "1",
                         }}

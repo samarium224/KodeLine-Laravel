@@ -2,11 +2,10 @@
 reduce size of footer top image
 
 ========== Query ==========
-laptop_view
 Lines after footer headers
 footer links
 Services Mobile fix
-move slider continuosly
+grid everything
 
 ========== Completed Query ==========
 # Services Fontsize #

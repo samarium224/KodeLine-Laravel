@@ -40,7 +40,7 @@ const theme_desktop = createTheme({
             lineHeight: "3.66rem",
         },
         title: {
-            fontSize: "2rem",
+            fontSize: "1.33rem",
             fontWeight: "500",
         },
         secondaryTitle: {
@@ -54,7 +54,7 @@ const theme_desktop = createTheme({
         },
         itemdescTitle: {
             fontSize: "1rem",
-            fontWeight: "500",
+            fontWeight: "600",
             textTransform: "uppercase",
             lineHeight: "1.25rem",
         },

@@ -30,10 +30,16 @@ const Header = ({ title, subTitle }) => {
                     justifyContent="space-between"
                     width="100%"
                     alignItems="center"
+                    mb={2.5}
                 >
                     <Box
+                        component={motion.div}
+                        variants={fadeFromBottom}
+                        initial="hidden"
+                        animate={mainControls}
+                        transition={{ duration: 0.66, delay: 0.15 }}
                         backgroundColor={theme.palette.secondary.main}
-                        height="5px"
+                        height="1px"
                         width="100%"
                     />
                     <Typography
@@ -46,14 +52,20 @@ const Header = ({ title, subTitle }) => {
                         color={theme.palette.text.white[500]}
                         backgroundColor={theme.palette.secondary.main}
                         whiteSpace="nowrap"
-                        px={2.5}
+                        px={4}
                         py={0.5}
+                        textTransform="capitalize"
                     >
                         {title}
                     </Typography>
                     <Box
+                        component={motion.div}
+                        variants={fadeFromBottom}
+                        initial="hidden"
+                        animate={mainControls}
+                        transition={{ duration: 0.66, delay: 0.15 }}
                         backgroundColor={theme.palette.secondary.main}
-                        height="5px"
+                        height="1px"
                         width="100%"
                     />
                 </Box>
@@ -78,7 +90,7 @@ const Header = ({ title, subTitle }) => {
                     display="block"
                     variant="subtitle"
                     color={theme.palette.text.grey[500]}
-                    mb={subTitle && { md: 10, xs: 5 }}
+                    mb={subTitle && 8}
                 >
                     {subTitle}
                 </Typography>

@@ -29,19 +29,20 @@ const Products = ({ CollectionItemsList }) => {
     );
 
     return (
-        <Container maxWidth="desktopMaxWidth" sx={{ mt: 10, mb: 20 }}>
+        <Container maxWidth="desktopMaxWidth" sx={{ mt: 6, mb: 6 }}>
             <Typography
-                variant="itemdescTitle"
+                variant="secondaryTitle"
                 textTransform="initial"
-                color={theme.palette.text.grey[500]}
+                color={theme.palette.secondary.main}
+                fontWeight={600}
             >
-                Filter
+                Sort By
             </Typography>
             {/* Price Filter */}
             <Box mb={2}>
                 <hr />
             </Box>
-            <Box mb={7.5} display="flex" justifyContent="center">
+            <Box mb={2} display="flex" justifyContent="flex-start">
                 <PriceFilter
                     priceRange={priceRange}
                     setPriceRange={setPriceRange}

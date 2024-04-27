@@ -1,5 +1,5 @@
 import { Box, Button, IconButton, Drawer } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from "@mui/icons-material/Person";
 import { checkoutItems } from "../data";
 import { CartContent } from "./CartContent";
 
@@ -46,17 +46,33 @@ export const NavigationCheckout = ({
                 aria-controls="currency-menu"
                 aria-haspopup="true"
             >
-                Currency: $CAD
+                Currency:{" "}
+                <img
+                    src="./assets/Canada Flag.svg"
+                    style={{ height: "16px", marginLeft: "8px" }}
+                />
             </Button>
+            |
             <IconButton
                 sx={{
                     color: navButtonStyle.color,
-                    ml: 4,
+                    ml: "12px",
+                    "&:hover": { backgroundColor: "transparent" },
+                    scale: "1.1",
+                }}
+                onClick={toggleCart(true)}
+            >
+                <PersonIcon />
+            </IconButton>
+            <IconButton
+                sx={{
+                    color: navButtonStyle.color,
+                    ml: 1,
                     "&:hover": { backgroundColor: "transparent" },
                 }}
                 onClick={toggleCart(true)}
             >
-                <ShoppingCartIcon />
+                <img src="./assets/Bucket.svg" style={{ height: "20px" }} />
             </IconButton>
             <Drawer
                 anchor="right"

@@ -67,6 +67,9 @@ const DrawerContent = ({ toggleDrawer, auth, collections }) => {
                         <ListItemText primary="Log In" />
                     </ListItem>
                 )}
+                <ListItem button>
+                    <ListItemText primary="Contact us" />
+                </ListItem>
             </List>
             <Divider />
         </Box>

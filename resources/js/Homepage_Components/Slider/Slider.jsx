@@ -19,7 +19,9 @@ const SliderComponent = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 4000,
+        pauseOnHover: false,
+        pauseOnDotsHover: true,
+        autoplaySpeed: 10000,
         fade: true,
         afterChange: (current) => setCurrentSlide(current),
         appendDots: (dots) => (

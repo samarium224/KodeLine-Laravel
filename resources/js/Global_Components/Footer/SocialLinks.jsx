@@ -10,43 +10,73 @@ import {
     useMediaQuery,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const SocialLinks = ({ collection }) => {
     const theme = useTheme();
     const informations = ["About us", "Contact us", "Terms and Conditions"];
     const collections = collection;
     const socialMedias = ["Facebook", "Instagram", "Twitter", "LinkedIn"];
+    const socialMediaLinks = [
+        { icon: <FacebookIcon fontSize="small" />, label: "Facebook" },
+        { icon: <InstagramIcon fontSize="small" />, label: "Instagram" },
+        { icon: <TwitterIcon fontSize="small" />, label: "Twitter" },
+        { icon: <LinkedInIcon fontSize="small" />, label: "LinkedIn" },
+    ];
     const accountOptions = ["Login"];
 
-    const LinkList = ({ title, items }) => (
-        <Box>
-            <Typography
-                variant="subtitle"
-                color={theme.palette.text.grey[500]}
-                fontWeight={400}
-                mb={4}
-                display="block"
-            >
-                {title}
-            </Typography>
-            {items.map((item, i) => (
+    const LinkList = ({ title, items }) => {
+        return (
+            <Box>
                 <Typography
-                    key={i}
-                    color={theme.palette.text.grey[500]}
-                    fontWeight={300}
+                    variant="subtitle"
+                    color={theme.palette.text.white[500]}
+                    fontWeight={600}
+                    mb={2}
                     display="block"
-                    mb={0.75}
-                    fontSize="1.11rem"
-                    sx={{ cursor: "pointer" }}
                 >
-                    {item}
+                    {title}
                 </Typography>
-            ))}
-        </Box>
-    );
+                {items.map((item, i) => (
+                    <Typography
+                        key={i}
+                        color={theme.palette.text.white[500]}
+                        fontWeight={300}
+                        display="block"
+                        fontSize="1.11rem"
+                        sx={{ cursor: "pointer" }}
+                    >
+                        {typeof item === "string" ? (
+                            item
+                        ) : (
+                            <>
+                                {item.icon}
+                                <span style={{ marginLeft: 12 }}>
+                                    {item.label}
+                                </span>
+                            </>
+                        )}
+                    </Typography>
+                ))}
+            </Box>
+        );
+    };
 
     const DesktopLinks = () => (
-        <Box display="flex" justifyContent="space-around">
+        <Box display="flex" justifyContent="space-around" py={6}>
+            <Link href={route("home")}>
+                <Box display="flex" height="100%" alignItems="center">
+                    <Box
+                        component="img"
+                        src="./assets/Logo.svg"
+                        alt="Logo"
+                        sx={{ height: { md: "48px", xl: "60px" }, py: "auto" }}
+                    />
+                </Box>
+            </Link>
             <LinkList title="Information" items={informations} />
             <LinkList
                 title="Collections"
@@ -61,7 +91,7 @@ const SocialLinks = ({ collection }) => {
                     </Link>
                 ))}
             />
-            <LinkList title="Follow Us" items={socialMedias} />
+            <LinkList title="Follow Us" items={socialMediaLinks} />
             <LinkList title="My Account" items={accountOptions} />
         </Box>
     );
@@ -99,7 +129,7 @@ const SocialLinks = ({ collection }) => {
                         {items.map((item, i) => (
                             <Typography
                                 key={i}
-                                color={theme.palette.text.grey[500]}
+                                color={theme.palette.text.white[500]}
                                 fontWeight={300}
                                 display="block"
                                 mb={0.75}

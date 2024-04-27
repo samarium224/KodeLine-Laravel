@@ -7,7 +7,7 @@ const Services = () => {
             maxWidth="desktopMaxWidth"
             sx={{
                 mt: { md: 6, xs: 7.5 },
-                mb: { md: 4, xs: 7.5 },
+                mb: { md: 6, xs: 7.5 },
                 display: "flex",
                 justifyContent: "space-between",
                 flexDirection: { md: "row", xs: "column" },
