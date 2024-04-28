@@ -20,7 +20,7 @@ const ItemDescriptionTexts = ({ itemData }) => {
     };
 
     return (
-        <Box sx={{ width: { xs: "100%", md: "35%" } }} mb={15}>
+        <Box sx={{ width: { xs: "100%", md: "35%" } }}>
             <ItemNameAndPrice
                 itemName={itemData.itemName}
                 price={itemData.price}

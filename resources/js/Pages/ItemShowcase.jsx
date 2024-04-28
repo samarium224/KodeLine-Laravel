@@ -13,12 +13,8 @@ import Footer from "@/Global_Components/Footer/Index";
 import { usePage } from "@inertiajs/react";
 
 export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
-    const {
-        collections,
-        product,
-        preOrderContent,
-        preOrderItems
-    } = usePage().props;
+    const { collections, product, preOrderContent, preOrderItems } =
+        usePage().props;
 
     // const preorderItems = [
     //     {
@@ -46,9 +42,28 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
                     alternativeColor={true}
                 />
                 <ItemDescription product={product} />
-                <Header title="You may also like" />
+                {/* <Header title="You may also like" /> */}
+                {/* <BestSellingItems
+                    bestSellingItemsList={bestsellingItems}
+                    collections={bestsellingCollection}
+                /> */}
                 <Box my={5}></Box>
-                {preOrderContent && <PreOrder items={preOrderItems} content={preOrderContent} />}
+                {preOrderContent && (
+                    <PreOrder
+                        items={[
+                            {
+                                itemID: 1,
+                                imgURL: "uploads/17141611675949_7340f380d3.jpg",
+                                itemTitle: "Demo",
+                                ageRange: ["2", "4"],
+                                currentPrice: 40,
+                                oldPrice: 45,
+                                buttonText: "PRE ORDER",
+                            },
+                        ]}
+                        content={preOrderContent}
+                    />
+                )}
                 <Testimonials />
                 <Footer collections={collections} />
             </ThemeProvider>

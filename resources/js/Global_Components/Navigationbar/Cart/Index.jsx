@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Drawer } from "@mui/material";
+import { Box, Button, IconButton, Drawer, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import { checkoutItems } from "../data";
 import { CartContent } from "./CartContent";
@@ -10,6 +10,7 @@ export const NavigationCheckout = ({
     theme,
     cartData,
     setcartData,
+    bucketImgUrl,
 }) => {
     const totalQuantity = cartData.reduce(
         (total, item) => total + item.quantity,
@@ -52,7 +53,7 @@ export const NavigationCheckout = ({
                     style={{ height: "16px", marginLeft: "8px" }}
                 />
             </Button>
-            |
+            <Typography color={navButtonStyle.color}>|</Typography>
             <IconButton
                 sx={{
                     color: navButtonStyle.color,
@@ -72,7 +73,7 @@ export const NavigationCheckout = ({
                 }}
                 onClick={toggleCart(true)}
             >
-                <img src="./assets/Bucket.svg" style={{ height: "20px" }} />
+                <img src={bucketImgUrl} style={{ height: "20px" }} />
             </IconButton>
             <Drawer
                 anchor="right"

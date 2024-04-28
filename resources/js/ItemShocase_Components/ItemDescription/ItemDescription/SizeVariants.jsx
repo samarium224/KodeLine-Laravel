@@ -4,17 +4,19 @@ const SizeVariants = ({ sizes, selectedIndex, onChangeSize }) => {
     const theme = useTheme();
 
     return (
-        <Box className="sizes" mt={5}>
+        <Box className="sizes" mt={3}>
             <Typography
                 variant="itemdescTitle"
                 display="block"
+                textTransform="initial"
                 color={theme.palette.text.grey[500]}
                 mb={1.5}
             >
-                Size <span style={{ fontWeight: "200" }}>|</span>{" "}
+                Age <span style={{ fontWeight: "200" }}>|</span>{" "}
                 <Typography
                     variant="itemdescSubtitle"
                     color={theme.palette.text.grey[500]}
+                    fontSize="0.9rem"
                     textTransform="initial"
                     fontWeight="300"
                 >
@@ -42,8 +44,10 @@ const SizeVariants = ({ sizes, selectedIndex, onChangeSize }) => {
                         mb: 1,
                         width: "100px",
                         textAlign: "center",
+                        fontSize: "0.9rem",
                         "&:hover": {
                             backgroundColor: theme.palette.text.grey[800],
+                            color: theme.palette.text.white[500],
                             cursor: "pointer",
                         },
                     }}

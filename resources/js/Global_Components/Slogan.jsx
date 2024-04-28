@@ -22,8 +22,7 @@ const Slogan = () => {
                     fontSize: { xl: "1.1rem", md: "0.9rem", xs: "0.5rem" },
                 }}
             >
-                Up to 30% Savings, Free 48-hour shipping in Regina, Secure
-                payment
+                Up to 30% Savings, Free shipping in Regina within 48 hours
             </Typography>
         </Box>
     );
