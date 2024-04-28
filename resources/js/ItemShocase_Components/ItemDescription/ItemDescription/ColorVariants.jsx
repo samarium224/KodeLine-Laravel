@@ -12,10 +12,11 @@ const ColorVariants = ({
     if (colorVariants[0] == "") colorVariants.shift();
     if (colorVariants.length > 0)
         return (
-            <Box className="colors" mt={5}>
+            <Box className="colors" mt={3}>
                 <Typography
                     variant="itemdescTitle"
                     display="block"
+                    textTransform="initial"
                     color={theme.palette.text.grey[500]}
                     mb={1.5}
                 >
@@ -23,6 +24,7 @@ const ColorVariants = ({
                     <Typography
                         variant="itemdescSubtitle"
                         color={theme.palette.text.grey[500]}
+                        fontSize="0.9rem"
                         textTransform="initial"
                         fontWeight="300"
                     >

@@ -61,11 +61,11 @@ const ItemDescriptionImages = ({ itemData }) => {
             )}
             <Box
                 className="active-item-image"
-                maxHeight="1000px"
+                // maxHeight="1000px"
                 maxWidth="750px"
                 sx={{
                     width: "100%",
-                    height: { xs: "60vw", md: "100%" },
+                    height: { xs: "60vw", md: "800px" },
                     backgroundImage: `url("${
                         itemData.imgURL.primary
                             ? itemData.imgURL.primary

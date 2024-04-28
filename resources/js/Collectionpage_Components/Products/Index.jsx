@@ -29,7 +29,7 @@ const Products = ({ CollectionItemsList }) => {
     );
 
     return (
-        <Container maxWidth="desktopMaxWidth" sx={{ mt: 6, mb: 6 }}>
+        <Container maxWidth="desktopMaxWidth" sx={{ mt: 6, mb: 7 }}>
             <Typography
                 variant="secondaryTitle"
                 textTransform="initial"

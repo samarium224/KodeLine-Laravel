@@ -115,7 +115,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         component="img"
                         src={
                             alternativeColor
-                                ? "./assets/Logo_Black.png"
+                                ? "./assets/Kodeline kids_Black Logo.svg"
                                 : "./assets/Logo.svg"
                         }
                         alt="Logo"
@@ -172,6 +172,11 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         theme={theme}
                         cartData={cartData}
                         setcartData={setcartData}
+                        bucketImgUrl={
+                            alternativeColor
+                                ? "./assets/Bucket_Black.svg"
+                                : "./assets/Bucket.svg"
+                        }
                     />
                 </Toolbar>
             </AppBar>

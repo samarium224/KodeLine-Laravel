@@ -8,16 +8,15 @@ const ItemNameAndPrice = ({ itemName, price }) => {
             <Typography
                 variant="secondaryTitle"
                 className="item-name"
-                fontWeight="500"
+                fontWeight="700"
                 display="block"
-                textTransform="uppercase"
                 color={theme.palette.text.grey[500]}
-                mb={2}
+                fontSize="1.75rem"
             >
                 {itemName}
             </Typography>
             <Typography
-                variant="subtitle"
+                variant="title"
                 className="item-price"
                 fontWeight="500"
                 display="block"
