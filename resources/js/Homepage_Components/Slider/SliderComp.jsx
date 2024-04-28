@@ -60,9 +60,9 @@ const SliderComp = ({
                     backgroundRepeat: "no-repeat",
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
                     height: {
-                        xl: `calc(85vh - 56px)`,
-                        md: `calc(85vh - 49px)`,
-                        xs: `calc(82.5vh - 30px + 1px)`,
+                        xl: `calc(86vh - 56px)`,
+                        md: `calc(86vh - 49px)`,
+                        xs: `calc(86vh - 30px + 1px)`,
                         maxAllowableWidth: "700px",
                     },
                 }}
@@ -82,7 +82,7 @@ const SliderComp = ({
                             xs: "center",
                             md: reverseAlign ? "right" : "left",
                         },
-                        mx: { md: 15, xl: 25 },
+                        mx: { md: 12.5, xl: 15 },
                         pb: { xs: 0, md: 15 },
                         pt: { xs: 20, md: 0 },
                         position: "relative",
@@ -96,7 +96,11 @@ const SliderComp = ({
                         animate={isActive ? "visible" : "hidden"}
                         color={theme.palette.text.white[500]}
                         transition={{ duration: 0.4, delay: 0 }}
-                        sx={{ mb: 2, width: "95%" }}
+                        sx={{
+                            mb: 1,
+                            width: "95%",
+                            textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
+                        }}
                         dangerouslySetInnerHTML={{ __html: title }}
                     />
 
@@ -106,11 +110,12 @@ const SliderComp = ({
                         variants={animationVariants}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
-                        transition={{ duration: 0.4, delay: 0.25 }}
+                        transition={{ duration: 0.4, delay: 0 }}
                         color={theme.palette.text.white[500]}
                         sx={{
                             mb: { xl: 5, md: 3, xs: 10 },
-                            width: { xs: "95%", md: "33%" },
+                            width: { xs: "95%", md: "100%" },
+                            textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
                         }}
                         dangerouslySetInnerHTML={{ __html: subtitle }}
                     />
@@ -120,7 +125,7 @@ const SliderComp = ({
                         variants={animationVariants}
                         initial="hidden"
                         animate={isActive ? "visible" : "hidden"}
-                        transition={{ duration: 0.4, delay: 0.66 }}
+                        transition={{ duration: 0.4, delay: 0 }}
                     >
                         <Button
                             sx={{
@@ -129,12 +134,12 @@ const SliderComp = ({
                                 border: `2px solid ${theme.palette.text.white[500]}`,
                                 fontWeight: "500",
                                 fontSize: {
-                                    xl: "1rem",
+                                    xl: "1.1rem",
                                     md: "0.85rem",
                                     xs: "0.8rem",
                                 },
-                                px: { xl: 8, md: 5, xs: 3 },
-                                py: { xl: 1.66, md: 1.2, xs: 1 },
+                                px: { xl: 5, md: 5, xs: 3 },
+                                py: { xl: 1.5, md: 1.2, xs: 1 },
                                 "&:hover": {
                                     backgroundColor:
                                         theme.palette.text.white[500],
@@ -161,9 +166,9 @@ const SliderComp = ({
                         sx={{
                             transform: "translateX(50%)",
                             fontWeight: 700,
-                            right: "75px",
-                            bottom: "45px",
-                            scale: "1.2",
+                            right: "120px",
+                            bottom: "30px",
+                            scale: "1",
                         }}
                     >
                         Love Loud, Live Liberated.

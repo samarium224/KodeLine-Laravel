@@ -20,24 +20,27 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
 
     const getStars = () => {
         return (
-            <Box textAlign="center" mb={2.5}>
+            <Box textAlign="center" mb={1}>
                 {Array(fullStars)
                     .fill(0)
                     .map((_, index) => (
-                        <StarIcon key={`full-${index}`} />
+                        <StarIcon fontSize="small" key={`full-${index}`} />
                     ))}
-                {hasHalfStar && <StarHalfIcon />}
+                {hasHalfStar && <StarHalfIcon fontSize="small" />}
                 {Array(emptyStars)
                     .fill(0)
                     .map((_, index) => (
-                        <StarBorderIcon key={`empty-${index}`} />
+                        <StarBorderIcon
+                            fontSize="small"
+                            key={`empty-${index}`}
+                        />
                     ))}
             </Box>
         );
     };
 
     return (
-        <Box position="relative" height="400px" sx={{ mx: { xs: 2, md: 10 } }}>
+        <Box position="relative" height="300px" sx={{ mx: { xs: 2, md: 10 } }}>
             <Box
                 position="absolute"
                 top="47.5%"
@@ -46,13 +49,14 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
                 flexDirection="column"
                 justifyContent="center"
                 color={theme.palette.text.grey[800]}
+                textAlign="center"
             >
                 {getStars()}
-                <Box mb={3} textAlign="center">
+                <Box mb={2} textAlign="center">
                     <Typography
                         fontFamily="'Poppins', sans-serif"
-                        fontWeight="500"
-                        color={theme.palette.text.grey[500]}
+                        fontWeight="600"
+                        color={theme.palette.secondary.main}
                         sx={{ fontSize: { xs: "1.1rem", md: "1.3rem" } }}
                     >
                         <Typography component={"span"} sx={quotationStyle}>

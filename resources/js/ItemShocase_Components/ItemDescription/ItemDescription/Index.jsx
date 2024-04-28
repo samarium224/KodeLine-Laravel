@@ -20,7 +20,7 @@ const ItemDescriptionTexts = ({ itemData }) => {
     };
 
     return (
-        <Box sx={{ width: { xs: "100%", md: "35%" } }} mb={15}>
+        <Box sx={{ width: { xs: "100%", md: "35%" } }}>
             <ItemNameAndPrice
                 itemName={itemData.itemName}
                 price={itemData.price}
@@ -29,13 +29,19 @@ const ItemDescriptionTexts = ({ itemData }) => {
                 colorVariants={itemData.colorVariants}
                 selectedIndex={selectedIndex}
                 onChangeColor={onChangeColor}
+                colorIndex={selectedIndex.color}
             />
             <SizeVariants
                 sizes={itemData.sizes}
                 selectedIndex={selectedIndex}
                 onChangeSize={onChangeSize}
+                sizeIndex={selectedIndex.size}
             />
-            <ShopButtonsAndQuantity itemType={itemData.itemType} stock={itemData.stock} />
+            <ShopButtonsAndQuantity
+                itemType={itemData.itemType}
+                itemID={itemData.itemID}
+                stock={itemData.stock}
+            />
             <DescriptionText itemDescription={itemData.itemDescription} />
         </Box>
     );

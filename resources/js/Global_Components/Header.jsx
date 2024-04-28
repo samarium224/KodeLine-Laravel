@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Container, Typography, useTheme } from "@mui/material";
 import { motion, useInView, useAnimation } from "framer-motion";
 
 const Header = ({ title, subTitle }) => {
@@ -17,25 +17,59 @@ const Header = ({ title, subTitle }) => {
     }, [isInView]);
 
     return (
-        <Box
-            ref={ref}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            textAlign="center"
-        >
-            <Typography
-                component={motion.div}
-                variants={fadeFromBottom}
-                initial="hidden"
-                animate={mainControls}
-                transition={{ duration: 0.66, delay: 0.15 }}
-                variant="title"
-                color={theme.palette.text.grey[500]}
-            >
-                {title}
-            </Typography>
+        <Container maxWidth="desktopMaxWidth">
             <Box
+                ref={ref}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                textAlign="center"
+            >
+                <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    width="100%"
+                    alignItems="center"
+                    mb={2.5}
+                >
+                    <Box
+                        component={motion.div}
+                        variants={fadeFromBottom}
+                        initial="hidden"
+                        animate={mainControls}
+                        transition={{ duration: 0.66, delay: 0.15 }}
+                        backgroundColor={theme.palette.secondary.main}
+                        height="1px"
+                        width="100%"
+                    />
+                    <Typography
+                        component={motion.div}
+                        variants={fadeFromBottom}
+                        initial="hidden"
+                        animate={mainControls}
+                        transition={{ duration: 0.66, delay: 0.15 }}
+                        variant="title"
+                        color={theme.palette.text.white[500]}
+                        backgroundColor={theme.palette.secondary.main}
+                        whiteSpace="nowrap"
+                        px={4}
+                        py={0.5}
+                        textTransform="capitalize"
+                    >
+                        {title}
+                    </Typography>
+                    <Box
+                        component={motion.div}
+                        variants={fadeFromBottom}
+                        initial="hidden"
+                        animate={mainControls}
+                        transition={{ duration: 0.66, delay: 0.15 }}
+                        backgroundColor={theme.palette.secondary.main}
+                        height="1px"
+                        width="100%"
+                    />
+                </Box>
+                {/* <Box
                 component={motion.div}
                 variants={fadeFromBottom}
                 initial="hidden"
@@ -46,21 +80,22 @@ const Header = ({ title, subTitle }) => {
                 width="100px"
                 mb={2}
                 mt={1}
-            ></Box>
-            <Typography
-                component={motion.div}
-                variants={fadeFromBottom}
-                initial="hidden"
-                animate={mainControls}
-                transition={{ duration: 0.66, delay: 0.5 }}
-                display="block"
-                variant="subtitle"
-                color={theme.palette.text.grey[500]}
-                mb={subTitle && { md: 10, xs: 5 }}
-            >
-                {subTitle}
-            </Typography>
-        </Box>
+            /> */}
+                <Typography
+                    component={motion.div}
+                    variants={fadeFromBottom}
+                    initial="hidden"
+                    animate={mainControls}
+                    transition={{ duration: 0.66, delay: 0.5 }}
+                    display="block"
+                    variant="subtitle"
+                    color={theme.palette.text.grey[500]}
+                    mb={subTitle && 8}
+                >
+                    {subTitle}
+                </Typography>
+            </Box>
+        </Container>
     );
 };
 

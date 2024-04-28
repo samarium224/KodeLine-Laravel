@@ -29,22 +29,21 @@ const DescriptionText = ({ itemDescription }) => {
     });
 
     return (
-        <Box className="description-text" mt={5}>
+        <Box className="description-text" mt={3}>
             <Typography
                 variant="itemdescTitle"
                 display="block"
                 textTransform="initial"
                 color={theme.palette.text.grey[600]}
-                my={1}
             >
                 {itemDescription.title}
             </Typography>
             <Typography
-                variant="itemdescTitle"
+                variant="itemdescSubtitle"
                 display="block"
                 textTransform="initial"
                 color={theme.palette.text.grey[500]}
-                my={2}
+                my={1}
                 dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
             />
         </Box>

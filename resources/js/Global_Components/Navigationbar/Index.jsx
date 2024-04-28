@@ -28,7 +28,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
             ? theme.palette.text.grey[500]
             : theme.palette.text.white[500],
         mx: { xs: 1, md: 1.5 },
-        fontSize: { xs: "0.66rem", md: "0.9rem" },
+        fontSize: { xs: "0.66rem", md: "0.95rem", xl: "1.2rem" },
         fontWeight: "500",
         textTransform: "initial",
         "&:hover": { backgroundColor: "transparent" },
@@ -111,14 +111,15 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                 }}
             >
                 <Link href={route("home")}>
-                    <img
+                    <Box
+                        component="img"
                         src={
                             alternativeColor
-                                ? "./assets/Logo_Black.png"
-                                : "./assets/Logo_White.png"
+                                ? "./assets/Kodeline kids_Black Logo.svg"
+                                : "./assets/Logo.svg"
                         }
                         alt="Logo"
-                        style={{ height: "60px" }}
+                        sx={{ height: { md: "48px", xl: "60px" } }}
                     />
                 </Link>
             </IconButton>
@@ -143,12 +144,13 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         <Button sx={navButtonStyle}>Log In</Button>
                     </Link>
                 )}
+                <Button sx={navButtonStyle}>Contact us</Button>
             </Box>
         </>
     );
 
     return (
-        <Container maxWidth="xl" sx={{ position: "relative" }}>
+        <Container sx={{ position: "relative" }}>
             <AppBar
                 position="absolute"
                 sx={{
@@ -156,11 +158,12 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                     boxShadow: "none",
                     transform: "translateX(-50%)",
                     left: "47.5%",
-                    top: { md: 10, xs: 4 },
+                    top: { md: 8, xs: 4 },
                     mx: "2.5%",
+                    width: { xs: "90vw", maxAllowableWidth: "1750px" },
                 }}
             >
-                <Toolbar sx={{ mt: 1 }}>
+                <Toolbar>
                     {isMobile ? <MobileToolbar /> : <DesktopToolbar />}
                     <NavigationCheckout
                         cartOpen={cartOpen}
@@ -169,6 +172,11 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         theme={theme}
                         cartData={cartData}
                         setcartData={setcartData}
+                        bucketImgUrl={
+                            alternativeColor
+                                ? "./assets/Bucket_Black.svg"
+                                : "./assets/Bucket.svg"
+                        }
                     />
                 </Toolbar>
             </AppBar>

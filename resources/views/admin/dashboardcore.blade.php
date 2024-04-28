@@ -46,7 +46,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{route('home')}}">
                         <!-- Logo icon -->
-                        <b><img src="{{ asset('assets/Logo_White.png') }}" width="100px" alt="homepage"
+                        <b><img src="{{ asset('assets/Logo.svg') }}" width="100px" alt="homepage"
                                 class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -61,8 +61,8 @@
                         <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  "
                                 href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  "
-                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        {{-- <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  "
+                                href="javascript:void(0)"><i class="ti-menu"></i></a> </li> --}}
                         <!-- Messages -->
 
                         <!-- End Messages -->
@@ -78,7 +78,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"><img
-                                    src="{{ asset('assets/K logo.png') }}" alt="user"
+                                    src="{{ asset('assets/K Logo.jpg') }}" alt="user"
                                     class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
