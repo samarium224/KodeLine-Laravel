@@ -35,7 +35,7 @@ const ItemDescriptionTexts = ({ itemData }) => {
                 selectedIndex={selectedIndex}
                 onChangeSize={onChangeSize}
             />
-            <ShopButtonsAndQuantity itemType={itemData.itemType} />
+            <ShopButtonsAndQuantity itemType={itemData.itemType} stock={itemData.stock} />
             <DescriptionText itemDescription={itemData.itemDescription} />
         </Box>
     );

@@ -30,6 +30,8 @@
                     </th>
                     <th scope="col" class="border-0">Category</th>
                     <th scope="col" class="border-0">Quantity</th>
+                    <th scope="col" class="border-0">Color</th>
+                    <th scope="col" class="border-0">Size</th>
                     <th scope="col" class="border-0">Unit Price</th>
                     <th scope="col" class="border-0 w-10">
                         <a class="text-dark"
@@ -61,6 +63,8 @@
                         <td>{{ $product->product_category_name }}</td>
                         <td>{{ $product->product_subcategory_name }}</td>
                         <td>{{ $product->quantity }}</td>
+                        <td>{{ $product->color }}</td>
+                        <td>{{ $product->size }}</td>
                         <td>{{ $product->price }}</td>
                         @php
                             if ($product->continue_selling == null) {

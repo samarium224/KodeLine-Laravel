@@ -1,6 +1,6 @@
 import { Button, Typography, Box, useTheme } from "@mui/material";
 
-const ShopButtonsAndQuantity = ({ itemType }) => {
+const ShopButtonsAndQuantity = ({ itemType, stock }) => {
     const theme = useTheme();
 
     return (
@@ -30,7 +30,7 @@ const ShopButtonsAndQuantity = ({ itemType }) => {
                 color={theme.palette.text.grey[500]}
                 my={1}
             >
-                Only 14 Left in Stock
+                Only {stock} Left in Stock
             </Typography>
             {itemType !== "PreordereItem" && (
                 <Button

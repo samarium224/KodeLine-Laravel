@@ -26,3 +26,6 @@ prompt phone number and address
 product variation logic need work
 send collection_id
 
+
+======== hosting ========
+update bootstrap's style.css

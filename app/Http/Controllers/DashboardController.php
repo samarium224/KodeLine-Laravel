@@ -286,18 +286,21 @@ class DashboardController extends Controller
             'price' => 'required',
             'compare_price' => 'required',
             'quantity' => 'required|integer',
+            'color' => 'required',
+            'size' => 'required',
             'product_short_description' => 'required|string',
-            'product_long_description' => 'required|string',
+            'product_long_description' => 'nullable',
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
             'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'ageRange.*' => 'required',
-            'ageGroup.*' => 'nullable',
             'sizeGroup.*' => 'nullable',
             'colorGroup.*' => 'nullable',
             'quantityGroup.*' => 'nullable|integer',
             'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
+
+        // dd($validatedData);
 
         $product_img_array = array();
         if ($files = $request->file('product_img')) {
@@ -331,17 +334,27 @@ class DashboardController extends Controller
         $ageRange = implode('|', $request->ageRange);
 
         //product variation null safety
-        if (isset($request->ageGroup)) {
-            $ageGroup = implode('|', $request->ageGroup);
-            $sizeGroup = implode('|', $request->sizeGroup);
-            $colorGroup = implode('|', $request->colorGroup);
-            $quantityGroup = implode('|', $request->quantityGroup);
+        if (isset($request->sizeGroup)) {
+            //group all the variations
+            $primary_size = explode('|', $request->size);
+            $primary_color = explode('|', $request->color);
+            $primary_stock = explode('|', $request->quantity);
+
+            $sizeGroup = array_merge($primary_size, $request->sizeGroup);
+            $sizeGroup = implode('|', $sizeGroup);
+
+            $colorGroup = array_merge($primary_color, $request->colorGroup);
+            $colorGroup = implode('|', $colorGroup);
+
+            $quantityGroup = array_merge($primary_stock, $request->quantityGroup);
+            $quantityGroup = implode('|', $quantityGroup);
         } else {
-            $ageGroup = '';
-            $sizeGroup = '';
-            $colorGroup = '';
-            $quantityGroup = '';
+            $sizeGroup = $request->size;
+            $colorGroup = $request->color;
+            $quantityGroup = $request->quantity;
         }
+
+        $img_variation = array_merge($product_img_array, $img_variation);
         $imgVariationGroup = implode('|', $img_variation);
         // end of null safety
 
@@ -369,7 +382,9 @@ class DashboardController extends Controller
             'compare_price' => $validatedData['compare_price'],
             'quantity' => $validatedData['quantity'],
             'product_short_description' => $validatedData['product_short_description'],
-            'product_long_description' => $validatedData['product_long_description'],
+            'product_long_description' => $request->product_long_description,
+            'color'=> $validatedData['color'],
+            'size' => $validatedData['size'],
             'product_category_name' => $category_name,
             'product_category_id' => $category_id,
             'product_subcategory_name' => $subcategory_name,
@@ -377,7 +392,6 @@ class DashboardController extends Controller
             'product_img' => $image_set,
             'slug' => strtolower(str_replace(' ', '-', $request->product_name)),
             'ageRange' => $ageRange,
-            'ageGroup' => $ageGroup,
             'sizeGroup' => $sizeGroup,
             'colorGroup' => $colorGroup,
             'quantityGroup' => $quantityGroup,
@@ -471,6 +485,8 @@ class DashboardController extends Controller
             'price' => 'required',
             'compare_price' => 'required',
             'quantity' => 'required|integer',
+            'color' => 'required',
+            'size' => 'required',
             'product_short_description' => 'required|string',
             'product_long_description' => 'required|string',
             'product_category_id' => 'required',
@@ -483,6 +499,7 @@ class DashboardController extends Controller
             'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
+        dd($validatedData);
 
         if ($request->file('imageVariations') != null) {
             $img_variation = array();
