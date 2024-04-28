@@ -9,7 +9,7 @@ const SizeVariants = ({ sizes, selectedIndex, onChangeSize }) => {
                 variant="itemdescTitle"
                 display="block"
                 color={theme.palette.text.grey[500]}
-                mb={3}
+                mb={1.5}
             >
                 Size <span style={{ fontWeight: "200" }}>|</span>{" "}
                 <Typography
@@ -18,7 +18,7 @@ const SizeVariants = ({ sizes, selectedIndex, onChangeSize }) => {
                     textTransform="initial"
                     fontWeight="300"
                 >
-                    Age
+                    3 Years
                 </Typography>
             </Typography>
             {sizes.map((size, i) => (

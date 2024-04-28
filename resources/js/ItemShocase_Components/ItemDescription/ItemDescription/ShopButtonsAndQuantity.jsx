@@ -1,7 +1,11 @@
 import { Button, Typography, Box, useTheme } from "@mui/material";
+import { useForm } from "@inertiajs/react";
 
-const ShopButtonsAndQuantity = ({ itemType }) => {
+const ShopButtonsAndQuantity = ({ itemType, itemID }) => {
     const theme = useTheme();
+    const { data, setData, post, errors } = useForm({
+        itemID: itemID,
+    });
 
     return (
         <Box className="shop-buttons" mt={5}>
@@ -46,6 +50,7 @@ const ShopButtonsAndQuantity = ({ itemType }) => {
                             color: theme.palette.text.white[100],
                         },
                     }}
+                    onClick={() => post(route("addtocart"))}
                 >
                     Add to cart
                 </Button>

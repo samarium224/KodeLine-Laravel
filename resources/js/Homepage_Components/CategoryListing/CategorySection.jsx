@@ -23,8 +23,8 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
             maxWidth="desktopMaxWidth"
             sx={{
                 display: "flex",
-                justifyContent: "space-between",
-                mb: { md: 20, xs: 10 },
+                justifyContent: "center",
+                mb: { md: 8, xs: 8 },
                 flexDirection: {
                     md: reverse ? "row-reverse" : "row",
                     xs: "column",
@@ -54,12 +54,38 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                         sx={{
                             display: "flex",
                             flexDirection: "column",
-                            justifyContent: "flex-end",
+                            justifyContent: "center",
                             alignItems: "center",
                             py: 15,
                             height: "100%",
                         }}
                     >
+                        <Box></Box>
+                        <Box mb={6}>
+                            <Typography
+                                display="block"
+                                variant="secondaryTitle"
+                                color={theme.palette.text.white[500]}
+                                sx={{
+                                    textShadow: "0px 0px 10px rgba(0,0,0,0.25)",
+                                    fontWeight: 600,
+                                }}
+                            >
+                                Girl’s Summer Collection
+                            </Typography>
+                            <Typography
+                                display="block"
+                                variant="headline"
+                                fontSize="2.5rem"
+                                lineHeight="2.5rem"
+                                color={theme.palette.text.white[500]}
+                                sx={{
+                                    textShadow: "0px 0px 10px rgba(0,0,0,0.25)",
+                                }}
+                            >
+                                Sun-kissed style for every little princess!
+                            </Typography>
+                        </Box>
                         <Link
                             href={route("collection", {
                                 id: category.categoryID,
@@ -67,8 +93,9 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                         >
                             <Button
                                 sx={{
-                                    color: theme.palette.text.white[500],
-                                    backgroundColor: "transparent",
+                                    color: theme.palette.text.grey[500],
+                                    backgroundColor:
+                                        theme.palette.text.white[500],
                                     border: `2px solid ${theme.palette.text.white[500]}`,
                                     fontWeight: "500",
                                     fontSize: {
@@ -76,7 +103,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                                         md: "0.85rem",
                                         xs: "0.8rem",
                                     },
-                                    px: { xl: 8, md: 5, xs: 3 },
+                                    px: { xl: 10, md: 5, xs: 3 },
                                     py: { xl: 1.66, md: 1.2, xs: 1 },
                                     "&:hover": {
                                         backgroundColor:
@@ -85,20 +112,11 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                                     },
                                 }}
                             >
-                                Explore
+                                View All
                             </Button>
                         </Link>
                     </Box>
                 </Box>
-                <Typography
-                    variant="secondaryTitle"
-                    color={theme.palette.text.grey[500]}
-                    textTransform="uppercase"
-                    display="block"
-                    sx={{ mb: { md: 1, xs: 8 } }}
-                >
-                    {category.categoryTitle} Collection
-                </Typography>
             </Box>
             <Box
                 height="100%"
@@ -139,20 +157,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                     {category.categoryItemList
                         .slice(2)
                         .map((CategoryItem, i) => (
-                            <Box
-                                key={i}
-                                width={
-                                    category.categoryItemList.length === 3
-                                        ? "100%"
-                                        : "48%"
-                                }
-                                display="flex"
-                                justifyContent={
-                                    category.categoryItemList.length === 3
-                                        ? "center"
-                                        : "flex-start"
-                                }
-                            >
+                            <Box key={i} width="48%">
                                 <ItemCard
                                     itemID={CategoryItem.itemID}
                                     itemImage={CategoryItem.imgURL}

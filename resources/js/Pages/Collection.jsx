@@ -18,8 +18,12 @@ import Slogan from "@/Global_Components/Slogan";
 import { usePage } from "@inertiajs/react";
 
 export default function Collection({ auth }) {
-    const { collections, collection_info, collectionItemList, preOrderContent,
-        preOrderItems
+    const {
+        collections,
+        collection_info,
+        collectionItemList,
+        preOrderContent,
+        preOrderItems,
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -45,7 +49,22 @@ export default function Collection({ auth }) {
                     }}
                 /> */}
                 <Products CollectionItemsList={collectionItemList} />
-                {preOrderContent && <PreOrder items={preOrderItems} content={preOrderContent} />}
+                {preOrderContent && (
+                    <PreOrder
+                        items={[
+                            {
+                                itemID: 1,
+                                imgURL: "uploads/17141611675949_7340f380d3.jpg",
+                                itemTitle: "Demo",
+                                ageRange: ["2", "4"],
+                                currentPrice: 40,
+                                oldPrice: 45,
+                                buttonText: "PRE ORDER",
+                            },
+                        ]}
+                        content={preOrderContent}
+                    />
+                )}
                 <Testimonials />
                 <Footer collections={collections} />
             </ThemeProvider>

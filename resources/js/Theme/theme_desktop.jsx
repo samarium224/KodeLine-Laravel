@@ -6,7 +6,7 @@ const theme_desktop = createTheme({
             main: "#53555a",
         },
         secondary: {
-            main: "#CD864A",
+            main: "#1d1d1b",
         },
         text: {
             grey: {
@@ -35,12 +35,12 @@ const theme_desktop = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "3rem",
+            fontSize: "3.5rem",
             fontWeight: "600",
-            lineHeight: "3.33rem",
+            lineHeight: "3.66rem",
         },
         title: {
-            fontSize: "2rem",
+            fontSize: "1.33rem",
             fontWeight: "500",
         },
         secondaryTitle: {
@@ -48,18 +48,18 @@ const theme_desktop = createTheme({
             fontSize: "1.5rem",
         },
         subtitle: {
-            fontSize: "1.1rem",
+            fontSize: "1.25rem",
             fontWeight: "300",
             lineHeight: "1.75rem",
         },
         itemdescTitle: {
             fontSize: "1rem",
-            fontWeight: "500",
+            fontWeight: "600",
             textTransform: "uppercase",
             lineHeight: "1.25rem",
         },
         itemdescSubtitle: {
-            fontSize: "0.8rem",
+            fontSize: "1.025rem",
             fontWeight: "400",
         },
     },

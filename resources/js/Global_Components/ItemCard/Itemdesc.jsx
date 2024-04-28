@@ -19,7 +19,7 @@ const Itemdesc = ({
             <Typography
                 display="block"
                 variant="itemdescTitle"
-                color={theme.palette.text.grey[500]}
+                color={theme.palette.secondary.main}
             >
                 {mainText}
             </Typography>
@@ -27,15 +27,15 @@ const Itemdesc = ({
                 display="block"
                 variant="itemdescSubtitle"
                 color={theme.palette.text.grey[500]}
-                my={1}
+                my={0.5}
             >
                 Age: {ageRange[0]}-{ageRange[1]} Years
             </Typography>
             <Box display="flex" justifyContent="center">
                 <Typography
                     mx={0.75}
-                    color={theme.palette.text.grey[500]}
-                    fontWeight="400"
+                    color={theme.palette.secondary.main}
+                    fontWeight="600"
                     sx={{ fontSize: { xs: "1rem", md: "1.25rem" } }}
                 >
                     ${currentPrice.toFixed(2)}
@@ -44,7 +44,7 @@ const Itemdesc = ({
                     <Typography
                         mx={0.75}
                         color={theme.palette.text.grey[200]}
-                        fontWeight="400"
+                        fontWeight="600"
                         sx={{
                             textDecoration: "line-through",
                             fontSize: { xs: "1rem", md: "1.25rem" },

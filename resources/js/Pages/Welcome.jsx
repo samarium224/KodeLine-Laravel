@@ -33,7 +33,7 @@ export default function Welcome({ auth }) {
         bestsellingItems,
         bestsellingCollection,
         preOrderContent,
-        preOrderItems
+        preOrderItems,
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -42,7 +42,6 @@ export default function Welcome({ auth }) {
         else if (width > 900) return theme_laptop;
         else return theme_mobile;
     };
-
     return (
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
@@ -50,9 +49,7 @@ export default function Welcome({ auth }) {
                 <Navigation collections={collections} auth={auth} />
                 <SliderComponent></SliderComponent>
                 <Banner
-                    text="Kidsline is your trusted companion, offering a lovingly curated range of top-notch children's products. With swift, free delivery, we
-                    make every purchase a joy. Our commitment to uncompromising quality strengthens the bond between you and your little ones,
-                    creating cherished moments filled with laughter, warmth, and unforgettable memories."
+                    text="Step into a world where online shopping feels effortless and full of love! <br/> With top-notch products and pocket-friendly prices, let's navigate parenthood together, hassle-free."
                     variant="subtitle"
                     sx={{ textTransform: "initial" }}
                 />
@@ -67,7 +64,23 @@ export default function Welcome({ auth }) {
                     collections={bestsellingCollection}
                 />
                 <TopCategories RestCategories={collections} />
-                {preOrderContent && <PreOrder items={preOrderItems} content={preOrderContent} />}
+
+                {preOrderContent && (
+                    <PreOrder
+                        items={[
+                            {
+                                itemID: 1,
+                                imgURL: "uploads/17141611675949_7340f380d3.jpg",
+                                itemTitle: "Demo",
+                                ageRange: ["2", "4"],
+                                currentPrice: 40,
+                                oldPrice: 45,
+                                buttonText: "PRE ORDER",
+                            },
+                        ]}
+                        content={preOrderContent}
+                    />
+                )}
                 <Testimonials />
                 <FooterTop />
                 <Footer collections={collections} />

@@ -1,6 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 
-const ServiceComponent = ({ text, subText, animationDelay }) => {
+const ServiceComponent = ({ text, subText, imgURL }) => {
     const theme = useTheme();
     return (
         <Box
@@ -10,9 +10,14 @@ const ServiceComponent = ({ text, subText, animationDelay }) => {
             alignItems="center"
             sx={{ width: { md: "28.5%", xs: "100%" }, mb: { md: 0, xs: 2.5 } }}
         >
+            <Box
+                component={"img"}
+                src={imgURL}
+                sx={{ height: "60px", marginBottom: 2 }}
+            />
             <Typography
                 variant="secondaryTitle"
-                color={theme.palette.text.grey[500]}
+                color={"1d1d1b"}
                 display="block"
             >
                 {text}
@@ -22,7 +27,7 @@ const ServiceComponent = ({ text, subText, animationDelay }) => {
                 display="block"
                 color={theme.palette.text.grey[500]}
                 sx={{
-                    mt: { md: 2, xs: 0.5 },
+                    mt: { md: 1, xs: 0.5 },
                     width: { xs: "75%", md: "100%" },
                 }}
                 dangerouslySetInnerHTML={{ __html: subText }}

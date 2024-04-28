@@ -31,11 +31,11 @@ const SliderContent = ({ theme, image }) => {
             <Container maxWidth="xl" sx={{ position: "relative" }}>
                 <Box
                     component="img"
-                    src="./assets/Logo_White.png"
+                    src="./assets/Logo.svg"
                     alt="Logo"
                     position="absolute"
                     sx={{
-                        height: "90px",
+                        height: "60px",
                         top: "45px",
                         left: { xs: "90px", xl: "-90px" },
                     }}
@@ -45,9 +45,9 @@ const SliderContent = ({ theme, image }) => {
                         position: "absolute",
                         transform: "translate(-50%, -50%)",
                         top: {
-                            xs: "480px",
-                            xl: "600px",
-                            maxAllowableWidth: "650px",
+                            xs: "420px",
+                            xl: "550px",
+                            maxAllowableWidth: "600px",
                         },
                         left: "50%",
                         color: theme.palette.text.white[500],
@@ -55,12 +55,13 @@ const SliderContent = ({ theme, image }) => {
                         border: `2px solid ${theme.palette.text.white[500]}`,
                         fontWeight: "500",
                         fontSize: {
-                            xl: "1rem",
+                            xl: "1.1rem",
                             md: "0.85rem",
                             xs: "0.8rem",
                         },
                         px: { xl: 8, md: 5, xs: 3 },
-                        py: { xl: 1.66, md: 1.2, xs: 1 },
+                        py: { xl: 1.5, md: 1.2, xs: 1 },
+                        mt: 5,
                         "&:hover": {
                             backgroundColor: theme.palette.text.white[500],
                             color: theme.palette.text.grey[500],
@@ -79,9 +80,9 @@ const SliderContent = ({ theme, image }) => {
                         right: "-90px",
                         scale: "1.2",
                         top: {
-                            xs: "510px",
-                            lg: "calc(80vh - 90px)",
-                            maxAllowableWidth: "710px",
+                            xs: "530px",
+                            lg: "calc(80vh - 70px)",
+                            maxAllowableWidth: "730px",
                         },
                     }}
                 >
@@ -103,6 +104,7 @@ const FooterTop = () => {
         autoplay: true,
         autoplaySpeed: 4000,
         fade: true,
+        pauseOnHover: false,
         appendDots: (dots) => (
             <Box
                 sx={{
@@ -148,15 +150,15 @@ const FooterTop = () => {
             <Slider {...settings}>
                 <SliderContent
                     theme={theme}
-                    image="./assets/Curated Design_1960_1080.png"
+                    image="./assets/Best Value_1960_800.png"
                 />
                 <SliderContent
                     theme={theme}
-                    image="./assets/Fast Delivery_1960_1080.png"
+                    image="./assets/Fast Delivery_1960_800.png"
                 />
                 <SliderContent
                     theme={theme}
-                    image="./assets/Best Value_1960_1080.png"
+                    image="./assets/Curated Design.png"
                 />
             </Slider>
         </Box>

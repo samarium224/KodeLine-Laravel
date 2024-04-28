@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
-import { Box, Button, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { PrevArrow, NextArrow } from "./SliderArrows";
 
 const PreOrder = ({ items, content }) => {
@@ -44,7 +44,7 @@ const PreOrder = ({ items, content }) => {
                 width: { xs: "100vw", maxAllowableWidth: "1960px" },
                 mx: "auto",
                 justifyContent: "center",
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: "#dadada",
             }}
         >
             <Box
@@ -66,12 +66,42 @@ const PreOrder = ({ items, content }) => {
                         lg: "75vh",
                         maxAllowableWidth: "700px",
                     },
-                    pb: 15,
+                    py: 35,
                     display: "flex",
-                    alignItems: "flex-end",
-                    justifyContent: "center",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                    flexDirection: "column",
                 }}
             >
+                <Box></Box>
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    textAlign="center"
+                >
+                    <Typography
+                        display="block"
+                        variant="headline"
+                        color={theme.palette.text.white[500]}
+                        sx={{
+                            textShadow: "0px 0px 10px rgba(0,0,0,0.25)",
+                        }}
+                    >
+                        Coming Soon!
+                    </Typography>
+                    <Typography
+                        variant="subtitle"
+                        color={theme.palette.text.white[500]}
+                        sx={{
+                            mb: { xl: 5, md: 3, xs: 10 },
+                            width: { xs: "95%", md: "100%" },
+                            textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
+                        }}
+                    >
+                        Sample Text
+                    </Typography>
+                </Box>
                 <Button
                     sx={{
                         color: theme.palette.text.white[500],
@@ -91,7 +121,7 @@ const PreOrder = ({ items, content }) => {
                         },
                     }}
                 >
-                    SHOP NOW
+                    Explore
                 </Button>
             </Box>
             <Box
@@ -118,7 +148,7 @@ const PreOrder = ({ items, content }) => {
                             pt: 0.5,
                             pb: 1,
                             px: 0.5,
-                            scale: { xs: "0.7", md: "0.8", xl: "1" },
+                            scale: { xs: "0.7", md: "0.8", xl: "1.05" },
                         }}
                     >
                         <Slider {...settings}>

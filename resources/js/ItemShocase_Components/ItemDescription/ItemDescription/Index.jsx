@@ -29,13 +29,18 @@ const ItemDescriptionTexts = ({ itemData }) => {
                 colorVariants={itemData.colorVariants}
                 selectedIndex={selectedIndex}
                 onChangeColor={onChangeColor}
+                colorIndex={selectedIndex.color}
             />
             <SizeVariants
                 sizes={itemData.sizes}
                 selectedIndex={selectedIndex}
                 onChangeSize={onChangeSize}
+                sizeIndex={selectedIndex.size}
             />
-            <ShopButtonsAndQuantity itemType={itemData.itemType} />
+            <ShopButtonsAndQuantity
+                itemType={itemData.itemType}
+                itemID={itemData.itemID}
+            />
             <DescriptionText itemDescription={itemData.itemDescription} />
         </Box>
     );
