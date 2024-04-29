@@ -8,7 +8,7 @@ const SignatureItemsSlider = ({ children }) => {
     const theme = useTheme();
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const handleBeforeChange = (newIndex) => {
+    const handleAfterChange = (newIndex) => {
         setCurrentSlide(newIndex);
     };
 
@@ -76,7 +76,7 @@ const SignatureItemsSlider = ({ children }) => {
         autoplay: false,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
-        beforeChange: handleBeforeChange,
+        afterChange: handleAfterChange,
         responsive: [
             {
                 breakpoint: 1024,

@@ -49,16 +49,7 @@ const SocialLinks = ({ collection }) => {
                         fontSize="1.11rem"
                         sx={{ cursor: "pointer" }}
                     >
-                        {typeof item === "string" ? (
-                            item
-                        ) : (
-                            <>
-                                {item.icon}
-                                <span style={{ marginLeft: 12 }}>
-                                    {item.label}
-                                </span>
-                            </>
-                        )}
+                        {item}
                     </Typography>
                 ))}
             </Box>
@@ -80,18 +71,28 @@ const SocialLinks = ({ collection }) => {
             <LinkList title="Information" items={informations} />
             <LinkList
                 title="Collections"
-                items={collections.map((collection) => (
+                items={collections.map((collection_item) => (
                     <Link
+                        key={collection_item.collection_id}
                         href={route("collection", {
-                            id: collection.collection_id,
+                            id: collection_item.collection_id,
                         })}
-                        key={collection.collection_id}
                     >
-                        {collection.collection_name} Collection
+                        {collection_item.collection_name} Collection
                     </Link>
                 ))}
             />
-            <LinkList title="Follow Us" items={socialMediaLinks} />
+            <LinkList
+                title="Follow Us"
+                items={socialMediaLinks.map((socialMediaLink, index) => (
+                    <Link key={index}>
+                        {socialMediaLink.icon}
+                        <span style={{ marginLeft: 12 }}>
+                            {socialMediaLink.label}
+                        </span>
+                    </Link>
+                ))}
+            />
             <LinkList title="My Account" items={accountOptions} />
         </Box>
     );
@@ -152,16 +153,26 @@ const SocialLinks = ({ collection }) => {
                 title="Collections"
                 items={collections.map((collection) => (
                     <Link
+                        key={collection.collection_id}
                         href={route("collection", {
                             id: collection.collection_id,
                         })}
-                        key={collection.collection_id}
                     >
                         {collection.collection_name} Collection
                     </Link>
                 ))}
             />
-            <MobileLinkList title="Follow Us" items={socialMedias} />
+            <LinkList
+                title="Follow Us"
+                items={socialMediaLinks.map((socialMediaLink, index) => (
+                    <Link key={index}>
+                        {socialMediaLink.icon}
+                        <span style={{ marginLeft: 12 }}>
+                            {socialMediaLink.label}
+                        </span>
+                    </Link>
+                ))}
+            />
             <MobileLinkList title="My Account" items={accountOptions} />
         </Box>
     );

@@ -46,6 +46,7 @@ const PreOrder = ({ items, content }) => {
                 justifyContent: "center",
                 backgroundColor: "#dadada",
             }}
+            className="preOrder"
         >
             <Box
                 sx={{
@@ -144,10 +145,15 @@ const PreOrder = ({ items, content }) => {
                 {items.length > 0 && (
                     <Box
                         sx={{
+                            width: {
+                                xs: "190px",
+                                md: "258px",
+                                lg: "286px",
+                                xl: "316px",
+                            },
                             backgroundColor: { xs: "white", md: "white" },
                             pt: 0.5,
                             pb: 1,
-                            px: 0.5,
                             scale: { xs: "0.7", md: "0.8", xl: "1.05" },
                         }}
                     >
@@ -173,3 +179,17 @@ const PreOrder = ({ items, content }) => {
 };
 
 export default PreOrder;
+
+{
+    /* <Box>
+    <ItemCard
+        itemID={items[0].itemID}
+        itemImage={items[0].imgURL}
+        itemTitle={items[0].itemTitle}
+        ageRange={items[0].ageRange}
+        currentPrice={items[0].currentPrice}
+        oldPrice={items[0].oldPrice}
+        buttonText="PRE ORDER"
+    />
+</Box>; */
+}

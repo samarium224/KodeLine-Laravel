@@ -27,7 +27,7 @@ const SignatureItems = ({ signatureItemsList, collections }) => {
                         currentCollectionID={currentCollectionID}
                         setCurrentCollectionID={setCurrentCollectionID}
                     />
-                    <Box sx={{ mx: { md: 6, xl: 3 } }}>
+                    <Box>
                         <SignatureItemsSlider>
                             {filteredItemsList.map((signatureItem, i) => (
                                 <ItemCard

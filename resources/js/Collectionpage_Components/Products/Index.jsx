@@ -1,4 +1,11 @@
-import { Box, Container, Grid, Typography, useTheme } from "@mui/material";
+import {
+    Box,
+    Button,
+    Container,
+    Grid,
+    Typography,
+    useTheme,
+} from "@mui/material";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import React, { useState } from "react";
 import PriceFilter from "./PriceFilter";
@@ -9,15 +16,21 @@ import AgeFilter from "./AgeFilter";
 const Products = ({ CollectionItemsList }) => {
     const theme = useTheme();
 
-    const [priceRange, setPriceRange] = useState([
-        Math.min(...CollectionItemsList.map((item) => item.currentPrice)),
-        Math.max(...CollectionItemsList.map((item) => item.currentPrice)),
-    ]);
+    const minPrice = Math.min(
+        ...CollectionItemsList.map((item) => item.currentPrice)
+    );
+    const maxPrice = Math.max(
+        ...CollectionItemsList.map((item) => item.currentPrice)
+    );
+    const minAge = Math.min(
+        ...CollectionItemsList.map((item) => item.ageRange[0])
+    );
+    const maxAge = Math.max(
+        ...CollectionItemsList.map((item) => item.ageRange[1])
+    );
 
-    const [ageRange, setAgeRange] = useState([
-        Math.min(...CollectionItemsList.map((item) => item.ageRange[0])),
-        Math.max(...CollectionItemsList.map((item) => item.ageRange[1])),
-    ]);
+    const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
+    const [ageRange, setAgeRange] = useState([minAge, maxAge]);
 
     // Filter items based on price range
     const filteredItems = CollectionItemsList.filter(
@@ -27,6 +40,11 @@ const Products = ({ CollectionItemsList }) => {
             item.ageRange[0] >= ageRange[0] &&
             item.ageRange[1] <= ageRange[1]
     );
+
+    const clearFilter = () => {
+        setPriceRange([minPrice, maxPrice]);
+        setAgeRange([minAge, maxAge]);
+    };
 
     return (
         <Container maxWidth="desktopMaxWidth" sx={{ mt: 6, mb: 7 }}>
@@ -42,20 +60,34 @@ const Products = ({ CollectionItemsList }) => {
             <Box mb={2}>
                 <hr />
             </Box>
-            <Box mb={2} display="flex" justifyContent="flex-start">
-                <PriceFilter
-                    priceRange={priceRange}
-                    setPriceRange={setPriceRange}
-                    minPrice={priceRange[0]}
-                    maxPrice={priceRange[1]}
-                />
+            <Box mb={2} display="flex" justifyContent="space-between">
+                <Box>
+                    <PriceFilter
+                        priceRange={priceRange}
+                        setPriceRange={setPriceRange}
+                        minPrice={minPrice}
+                        maxPrice={maxPrice}
+                    />
 
-                <AgeFilter
-                    ageRange={ageRange}
-                    setAgeRange={setAgeRange}
-                    minAge={ageRange[0]}
-                    maxAge={ageRange[1]}
-                />
+                    <AgeFilter
+                        ageRange={ageRange}
+                        setAgeRange={setAgeRange}
+                        minAge={minAge}
+                        maxAge={maxAge}
+                    />
+                </Box>
+
+                <Button sx={{ p: 0 }}>
+                    <Typography
+                        variant="itemdescTitle"
+                        textTransform="initial"
+                        color={theme.palette.text.grey[500]}
+                        onClick={clearFilter}
+                        sx={{ cursor: "pointer" }}
+                    >
+                        Clear Filter
+                    </Typography>
+                </Button>
             </Box>
             <Grid container>
                 {filteredItems.map((item, i) => (

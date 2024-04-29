@@ -10,21 +10,27 @@ const PriceFilter = ({ priceRange, setPriceRange, minPrice, maxPrice }) => {
     const handleMinPriceChange = (event) => {
         const newMinPrice = parseFloat(event.target.value);
         if (
-            !isNaN(newMinPrice) &&
-            newMinPrice >= minPrice &&
-            newMinPrice <= maxPrice
-        )
-            setPriceRange([newMinPrice, priceRange[1]]);
+            isNaN(newMinPrice) ||
+            (newMinPrice >= minPrice && newMinPrice <= maxPrice)
+        ) {
+            setPriceRange([
+                isNaN(newMinPrice) ? minPrice : newMinPrice,
+                priceRange[1],
+            ]);
+        }
     };
 
     const handleMaxPriceChange = (event) => {
         const newMaxPrice = parseFloat(event.target.value);
         if (
-            !isNaN(newMaxPrice) &&
-            newMaxPrice >= minPrice &&
-            newMaxPrice <= maxPrice
-        )
-            setPriceRange([priceRange[0], newMaxPrice]);
+            isNaN(newMaxPrice) ||
+            (newMaxPrice >= minPrice && newMaxPrice <= maxPrice)
+        ) {
+            setPriceRange([
+                priceRange[0],
+                isNaN(newMaxPrice) ? maxPrice : newMaxPrice,
+            ]);
+        }
     };
 
     const handleDropdownClick = (event) => setAnchorEl(event.currentTarget);
@@ -59,6 +65,7 @@ const PriceFilter = ({ priceRange, setPriceRange, minPrice, maxPrice }) => {
                     "& > .MuiPaper-root": {
                         boxShadow: "none",
                         transition: "none !important",
+                        backgroundColor: "transparent",
                     },
                 }}
             >

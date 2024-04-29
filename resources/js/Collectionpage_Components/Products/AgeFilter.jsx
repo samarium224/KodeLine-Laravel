@@ -9,14 +9,16 @@ const AgeFilter = ({ ageRange, setAgeRange, minAge, maxAge }) => {
 
     const handleMinAgeChange = (event) => {
         const newMinAge = parseFloat(event.target.value);
-        if (!isNaN(newMinAge) && newMinAge >= minAge && newMinAge <= maxAge)
-            setAgeRange([newMinAge, ageRange[1]]);
+        if (isNaN(newMinAge) || (newMinAge >= minAge && newMinAge <= maxAge)) {
+            setAgeRange([isNaN(newMinAge) ? minAge : newMinAge, ageRange[1]]);
+        }
     };
 
     const handleMaxAgeChange = (event) => {
         const newMaxAge = parseFloat(event.target.value);
-        if (!isNaN(newMaxAge) && newMaxAge >= minAge && newMaxAge <= maxAge)
-            setAgeRange([ageRange[0], newMaxAge]);
+        if (isNaN(newMaxAge) || (newMaxAge >= minAge && newMaxAge <= maxAge)) {
+            setAgeRange([ageRange[0], isNaN(newMaxAge) ? maxAge : newMaxAge]);
+        }
     };
 
     const handleDropdownClick = (event) => setAnchorEl(event.currentTarget);
@@ -51,6 +53,7 @@ const AgeFilter = ({ ageRange, setAgeRange, minAge, maxAge }) => {
                     "& > .MuiPaper-root": {
                         boxShadow: "none",
                         transition: "none !important",
+                        backgroundColor: "transparent",
                     },
                 }}
             >
