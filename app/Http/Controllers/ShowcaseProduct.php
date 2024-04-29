@@ -18,7 +18,10 @@ class ShowcaseProduct extends Controller
         ]);
 
         $id = $request->get('id');
-        try {
+
+        // $product = Products::with('attributes')->where('id', $id)->first();
+        // dd($product->attributes);
+        // try {
             //code...
             $collections = Category::all()->map(function ($item) {
                 return [
@@ -27,13 +30,27 @@ class ShowcaseProduct extends Controller
                 ];
             });
 
-            $ProductItem = Products::where('id', $id)->get()->map(function ($item) {
+            $ProductItem = Products::with('attributes')->where('id', $id)->get()->map(function ($item) {
                 // Assuming 'ageRange' is a string like "3|6", we split it into an array.
                 $ageRangeArray = explode('|', $item->ageRange);
                 $product_img = explode('|', $item->product_img);
-                $colorGroup = explode('|', $item->colorGroup);
-                $sizeGroup = explode('|', $item->sizeGroup);
-                $imgvariation = explode('|', $item->imageVariations);
+                $colorGroup = [];
+                $sizeGroup = [];
+                $imgvariation = [];
+                // Accessing colorGroup and sizeGroup from attributes relationship
+                if (count($item->attributes)!=0) {
+                    foreach ($item->attributes as $attribute) {
+                        $imgvariation[] = $attribute->imageUrls;
+                        if ($attribute->attribute == 'color') {
+                            $colorGroup[] = $attribute->value;
+                        } elseif ($attribute->attribute == 'size') {
+                            $sizeGroup[] = $attribute->value;
+                        }
+                    }
+                }else{
+                    $imgvariation = array_slice($product_img, 1);
+                }
+
                 return [
                     'itemName' => $item->product_name,
                     'imgURL' => [
@@ -44,6 +61,7 @@ class ShowcaseProduct extends Controller
                     'colorVariants' => $colorGroup,
                     'stock' => $item->quantity,
                     'sizes' => $sizeGroup,
+                    'attributes' => $item->attributes,
                     'itemDescription' => [
                         'title' => $item->product_short_description,
                         'desc' => $item->product_long_description,
@@ -71,10 +89,10 @@ class ShowcaseProduct extends Controller
                 'preOrderContent' => $preOrderContent,
                 'preOrderItems' => $preOrderItems,
             ]);
-        } catch (\Throwable $th) {
+        // } catch (\Throwable $th) {
             //throw $th;
-            return redirect()->route('home');
-        }
+            // return redirect()->route('home');
+        // }
     }
 
     public function ShowPreorderItem(Request $request)

@@ -24,13 +24,12 @@ class Products extends Model
         'quantity',
         'slug',
         'ageRange',
-        // 'ageGroup',
-        'sizeGroup',
-        'colorGroup',
-        'quantityGroup',
-        'imageVariations',
         'continue_selling',
         'featured',
         'best_selling'
     ];
+
+    public function attributes(){
+        return $this->hasMany(ProductAttributes::class,'product_id', 'id');
+    }
 }

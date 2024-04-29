@@ -28,11 +28,6 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('slug');
             $table->string('ageRange');
-            // $table->string('ageGroup');
-            $table->string('sizeGroup');
-            $table->string('colorGroup');
-            $table->string('quantityGroup');
-            $table->text('imageVariations');
             $table->string('continue_selling')->default('false')->nullable();
             $table->string('featured')->default('false')->nullable();
             $table->string('best_selling')->default('false')->nullable();
