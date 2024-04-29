@@ -71,7 +71,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                                     fontWeight: 600,
                                 }}
                             >
-                                Girl’s Summer Collection
+                                {category.categoryTitle} Collection
                             </Typography>
                             <Typography
                                 display="block"

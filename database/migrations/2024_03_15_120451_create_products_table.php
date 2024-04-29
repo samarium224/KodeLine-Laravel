@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->text('product_short_description');
-            $table->text('product_long_description');
+            $table->text('product_long_description')->nullable();
             $table->double('price');
             $table->double('compare_price');
+            $table->string('color');
+            $table->string('size');
             $table->string('product_category_name');
             $table->integer('product_category_id');
             $table->string('product_subcategory_name');
@@ -26,7 +28,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('slug');
             $table->string('ageRange');
-            $table->string('ageGroup');
+            // $table->string('ageGroup');
             $table->string('sizeGroup');
             $table->string('colorGroup');
             $table->string('quantityGroup');

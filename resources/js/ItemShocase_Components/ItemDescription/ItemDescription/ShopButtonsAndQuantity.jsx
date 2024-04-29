@@ -1,7 +1,7 @@
 import { Button, Typography, Box, useTheme } from "@mui/material";
 import { useForm } from "@inertiajs/react";
 
-const ShopButtonsAndQuantity = ({ itemType, itemID }) => {
+const ShopButtonsAndQuantity = ({ itemType, itemID, stock }) => {
     const theme = useTheme();
     const { data, setData, post, errors } = useForm({
         itemID: itemID,
@@ -16,7 +16,7 @@ const ShopButtonsAndQuantity = ({ itemType, itemID }) => {
                 fontWeight="700"
                 my={1}
             >
-                Only 14 Left in Stock
+                Only {stock} Left in Stock
             </Typography>
             {itemType !== "PreordereItem" && (
                 <Button

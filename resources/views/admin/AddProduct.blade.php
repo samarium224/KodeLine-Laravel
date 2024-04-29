@@ -114,11 +114,29 @@
 
                     <div class="card">
                         <div class="card-body">
+                            <div class="card-subtitle text-dark"><b>Size and Color</b></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card-subtitle mt-3">Size</div>
+                                    <input type="text" id="size" name="size" placeholder="3 years"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-subtitle mt-3">Color</div>
+                                    <input type="text" id="color" name="color" placeholder="Warm Vanilla"
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
                             <div class="card-subtitle text-dark"><b>Inventory</b></div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Quantity</div>
+                                        <div class="card-subtitle mt-3">In Stock</div>
                                         <input type="number" id="quantity" name="quantity" placeholder="1000"
                                             class="form-control">
                                     </div>
@@ -160,7 +178,7 @@
                                         Variation</button>
                                 </div>
                             </div>
-                            <div class="variation row" id="variationTemplate">
+                            <div class="variation row my-3 border-bottom" id="variationTemplate">
                                 <div class="col-md-2 mb-3 pr-0">
                                     <div class="upload-img-icon" style="position: relative;">
                                         <input type="file" name="imageVariations[]" accept="image/*"
@@ -170,21 +188,25 @@
                                             style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: #999;"></i>
                                     </div>
                                 </div>
-                                <div class="col-md-2 mb-3 pr-0">
+                                {{-- <div class="col-md-2 mb-3 pr-0">
                                     <input type="text" name="ageGroup[]" class="form-control" placeholder="Age">
+                                </div> --}}
+                                <div class="col-md-3 mb-3 pr-0">
+                                    <label class="mx-1 card-subtitle" for="size">Size</label>
+                                    <input type="text" name="sizeGroup[]" class="form-control"
+                                        placeholder="4 years">
                                 </div>
-                                <div class="col-md-2 mb-3 pr-0">
-                                    <input type="text" name="sizeGroup[]" class="form-control" placeholder="Size">
+                                <div class="col-md-3 mb-3 pr-0">
+                                    <label class="mx-1 card-subtitle" for="size">Color</label>
+                                    <input type="text" name="colorGroup[]" class="form-control" placeholder="Light blue">
                                 </div>
-                                <div class="col-md-2 mb-3 pr-0">
-                                    <input type="text" name="colorGroup[]" class="form-control" placeholder="Color">
-                                </div>
-                                <div class="col-md-2 mb-3 pr-0">
+                                <div class="col-md-3 mb-3 pr-0">
+                                    <label class="mx-1 card-subtitle" for="size">Stock</label>
                                     <input type="number" name="quantityGroup[]" min="1" class="form-control"
-                                        placeholder="Quantity">
+                                        placeholder="in stock">
                                 </div>
                                 <!-- Delete Button -->
-                                <div class="col-md-1 mb-3 ml-5">
+                                <div class="col-md-1 mb-3">
                                     <i class="fa fa-trash-o delete-variation mt-2"
                                         style="font-size: 24px; color: #999; cursor: pointer;"></i>
                                 </div>

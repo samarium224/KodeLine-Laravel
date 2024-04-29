@@ -41,6 +41,7 @@ const ItemDescriptionTexts = ({ itemData }) => {
             <ShopButtonsAndQuantity
                 itemType={itemData.itemType}
                 itemID={itemData.itemID}
+                stock={itemData.stock}
             />
             <DescriptionText itemDescription={itemData.itemDescription} />
         </Box>

@@ -42,7 +42,8 @@ class ShowcaseProduct extends Controller
                     ],
                     'price' => $item->price,
                     'colorVariants' => $colorGroup,
-                    'sizes' => ["3 Years", "4 Years", "5 years"],
+                    'stock' => $item->quantity,
+                    'sizes' => $sizeGroup,
                     'itemDescription' => [
                         'title' => $item->product_short_description,
                         'desc' => $item->product_long_description,

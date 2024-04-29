@@ -8,7 +8,6 @@ const BestSellingItems = ({ bestSellingItemsList, collections }) => {
     const theme = useTheme();
 
     const [currentCollectionID, setCurrentCollectionID] = useState(-1);
-
     const filteredItemsList =
         currentCollectionID === -1
             ? bestSellingItemsList

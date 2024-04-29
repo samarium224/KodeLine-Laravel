@@ -30,7 +30,8 @@ class HomepageController extends Controller
                 'itemTitle' => $item->product_name,
                 'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]
                 'currentPrice' => $item->price,
-                'oldPrice' => $item->compare_price, // Assuming you have a separate column for old price
+                'oldPrice' => $item->compare_price,
+                'collection_id' => $item->product_category_id,
             ];
         });
 
@@ -105,6 +106,7 @@ class HomepageController extends Controller
                 'ageRange' => $ageRangeArray,
                 'currentPrice' => $item->price,
                 'oldPrice' => $item->compare_price,
+                'collection_id' => $item->product_category_id,
             ];
         });
 
