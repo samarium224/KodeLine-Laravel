@@ -53,13 +53,12 @@ const theme_desktop = createTheme({
             lineHeight: "1.75rem",
         },
         itemdescTitle: {
-            fontSize: "1rem",
+            fontSize: "1.15rem",
             fontWeight: "600",
-            textTransform: "uppercase",
             lineHeight: "1.25rem",
         },
         itemdescSubtitle: {
-            fontSize: "1.025rem",
+            fontSize: "1rem",
             fontWeight: "400",
         },
     },
