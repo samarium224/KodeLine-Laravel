@@ -40,7 +40,7 @@ const theme_laptop = createTheme({
             fontWeight: "600",
         },
         title: {
-            fontSize: "1.75rem",
+            fontSize: "1.25rem",
             fontWeight: "500",
         },
         secondaryTitle: {

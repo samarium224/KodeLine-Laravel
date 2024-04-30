@@ -166,9 +166,13 @@ const SliderComp = ({
                         sx={{
                             transform: "translateX(50%)",
                             fontWeight: 700,
+                            fontSize: {
+                                xl: "1.5rem",
+                                md: "1.25rem",
+                                xs: "1rem",
+                            },
                             right: "120px",
                             bottom: "30px",
-                            scale: "1",
                         }}
                     >
                         Love Loud, Live Liberated.

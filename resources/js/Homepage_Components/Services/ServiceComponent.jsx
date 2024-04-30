@@ -13,7 +13,7 @@ const ServiceComponent = ({ text, subText, imgURL }) => {
             <Box
                 component={"img"}
                 src={imgURL}
-                sx={{ height: "60px", marginBottom: 2 }}
+                sx={{ height: { xs: "40px", md: "60px" }, marginBottom: 2 }}
             />
             <Typography
                 variant="secondaryTitle"

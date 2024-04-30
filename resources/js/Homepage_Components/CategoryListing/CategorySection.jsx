@@ -134,7 +134,16 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                     {category.categoryItemList
                         .slice(0, 2)
                         .map((CategoryItem, i) => (
-                            <Box key={i} width="48%">
+                            <Box
+                                key={i}
+                                sx={{
+                                    width: {
+                                        xs: "48%",
+                                        md: "46.5%",
+                                        xl: "48%",
+                                    },
+                                }}
+                            >
                                 <ItemCard
                                     itemID={CategoryItem.itemID}
                                     itemImage={CategoryItem.imgURL}
@@ -157,7 +166,16 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                     {category.categoryItemList
                         .slice(2)
                         .map((CategoryItem, i) => (
-                            <Box key={i} width="48%">
+                            <Box
+                                key={i}
+                                sx={{
+                                    width: {
+                                        xs: "48%",
+                                        md: "46.5%",
+                                        xl: "48%",
+                                    },
+                                }}
+                            >
                                 <ItemCard
                                     itemID={CategoryItem.itemID}
                                     itemImage={CategoryItem.imgURL}
@@ -170,7 +188,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                             </Box>
                         ))}
                 </Box>
-                <Link
+                {/* <Link
                     href={route("collection", {
                         id: category.categoryID,
                     })}
@@ -195,7 +213,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                     >
                         EXPLORE MORE
                     </Button>
-                </Link>
+                </Link> */}
             </Box>
         </Container>
     );

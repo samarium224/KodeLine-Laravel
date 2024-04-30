@@ -154,7 +154,7 @@ const PreOrder = ({ items, content }) => {
                             backgroundColor: { xs: "white", md: "white" },
                             pt: 0.5,
                             pb: 1,
-                            scale: { xs: "0.7", md: "0.8", xl: "1.05" },
+                            scale: { xs: "0.9", md: "0.8", xl: "1.05" },
                         }}
                     >
                         <Slider {...settings}>
