@@ -38,7 +38,7 @@ const AgeFilter = ({ ageRange, setAgeRange, minAge, maxAge }) => {
                 aria-controls="age-filter"
                 aria-haspopup="true"
                 onClick={handleDropdownClick}
-                sx={{ cursor: "pointer", ml: 6 }}
+                sx={{ cursor: "pointer", ml: { xs: 3, md: 6 } }}
             >
                 Age{" "}
                 {anchorEl ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
