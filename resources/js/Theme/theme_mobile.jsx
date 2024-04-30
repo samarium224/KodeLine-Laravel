@@ -40,11 +40,11 @@ const theme_mobile = createTheme({
             lineHeight: "2.25rem",
         },
         title: {
-            fontSize: "1.5rem",
+            fontSize: "1rem",
             fontWeight: "600",
         },
         secondaryTitle: {
-            fontSize: "1.5rem",
+            fontSize: "1.25rem",
             fontWeight: "600",
         },
         subtitle: {

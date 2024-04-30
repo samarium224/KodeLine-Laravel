@@ -108,12 +108,18 @@ const SocialLinks = ({ collection }) => {
                         width: "100%",
                         display: "flex",
                         justifyContent: "space-between",
+                        color: theme.palette.text.white[500],
                         "&:active": {
                             backgroundColor: "transparent",
                         },
                     }}
                 >
-                    <Typography variant="subtitle" display="block">
+                    <Typography
+                        variant="subtitle"
+                        textTransform="initial"
+                        fontWeight={600}
+                        display="block"
+                    >
                         {title}
                     </Typography>
                     <CloseIcon
@@ -147,7 +153,7 @@ const SocialLinks = ({ collection }) => {
     };
 
     const MobileLinks = () => (
-        <Box>
+        <Box mt={1.75}>
             <MobileLinkList title="Information" items={informations} />
             <MobileLinkList
                 title="Collections"
@@ -162,7 +168,7 @@ const SocialLinks = ({ collection }) => {
                     </Link>
                 ))}
             />
-            <LinkList
+            <MobileLinkList
                 title="Follow Us"
                 items={socialMediaLinks.map((socialMediaLink, index) => (
                     <Link key={index}>
