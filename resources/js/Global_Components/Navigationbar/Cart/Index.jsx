@@ -57,7 +57,7 @@ export const NavigationCheckout = ({
                 </Typography>
                 <Box
                     component="img"
-                    src="./assets/Canada Flag.svg"
+                    src="../assets/Canada Flag.svg"
                     sx={{
                         height: { xs: "12px", md: "16px" },
                         marginLeft: { xs: "16px", md: "8px" },

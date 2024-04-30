@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\Auth;
 
@@ -107,7 +108,10 @@ class OrderController extends Controller
 
             Cart::where('user_id', $usercart)->delete();
             Products::where('id', $product_id)->decrement('quantity',$order_count);
-            return view('test.success', compact('customer'));
+            
+            return Inertia::render('ThankYou', [
+                'customer'=> $customer,
+            ]);
         } catch (\Throwable $th) {
             throw new NotFoundHttpException;
         }

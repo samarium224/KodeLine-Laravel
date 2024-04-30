@@ -69,7 +69,7 @@ const theme_mobile = createTheme({
             sm: 600,
             md: 900,
             lg: 1200,
-            xl: 1536,
+            xl: 1800,
             desktopMaxWidth: 1420,
             maxAllowableWidth: 1960,
         },

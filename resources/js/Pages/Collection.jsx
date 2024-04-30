@@ -28,7 +28,7 @@ export default function Collection({ auth }) {
     const { width } = useWindowSize();
 
     const getTheme = () => {
-        if (width > 1536) return theme_desktop;
+        if (width > 1800) return theme_desktop;
         else if (width > 900) return theme_laptop;
         else return theme_mobile;
     };

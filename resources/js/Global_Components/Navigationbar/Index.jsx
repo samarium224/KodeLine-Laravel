@@ -88,8 +88,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                     <img
                         src={
                             alternativeColor
-                                ? "./assets/Kodeline kids_Black Logo.svg"
-                                : "./assets/Logo.svg"
+                                ? "../assets/Kodeline kids_Black Logo.svg"
+                                : "../assets/Logo.svg"
                         }
                         alt="Logo"
                         style={{ height: "30px" }}
@@ -115,8 +115,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         component="img"
                         src={
                             alternativeColor
-                                ? "./assets/Kodeline kids_Black Logo.svg"
-                                : "./assets/Logo.svg"
+                                ? "../assets/Kodeline kids_Black Logo.svg"
+                                : "../assets/Logo.svg"
                         }
                         alt="Logo"
                         sx={{ height: { md: "48px", xl: "60px" } }}
@@ -174,8 +174,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         setcartData={setcartData}
                         bucketImgUrl={
                             alternativeColor
-                                ? "./assets/Bucket_Black.svg"
-                                : "./assets/Bucket.svg"
+                                ? "../assets/Bucket_Black.svg"
+                                : "../assets/Bucket.svg"
                         }
                     />
                 </Toolbar>
