@@ -37,7 +37,7 @@ const theme_mobile = createTheme({
         headline: {
             fontSize: "1.5rem",
             fontWeight: "700",
-            lineHeight: "2.25rem",
+            lineHeight: "1.66rem",
         },
         title: {
             fontSize: "1rem",
