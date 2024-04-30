@@ -316,9 +316,9 @@ class DashboardController extends Controller
             }
         }
 
-        if(isset($validatedData['variation_option'])){
+        if (isset($validatedData['variation_option'])) {
             $product_id = Products::max('id') + 1;
-            foreach($validatedData['variation_option'] as $i => $attributes){
+            foreach ($validatedData['variation_option'] as $i => $attributes) {
                 //handle image here
                 if ($request->file('imageVariations') != null) {
                     if ($vfiles = $request->file('imageVariations')) {
@@ -383,7 +383,7 @@ class DashboardController extends Controller
             'quantity' => $validatedData['quantity'],
             'product_short_description' => $validatedData['product_short_description'],
             'product_long_description' => $request->product_long_description,
-            'color'=> $validatedData['color'],
+            'color' => $validatedData['color'],
             'size' => $validatedData['size'],
             'product_category_name' => $category_name,
             'product_category_id' => $category_id,
@@ -454,7 +454,8 @@ class DashboardController extends Controller
     {
         $categories = Category::latest()->get();
         $subcategories = Subcategory::latest()->get();
-        $productinfo = Products::findOrFail($id);
+        $productinfo = Products::with('attributes')->where('id', $id)->first();
+        // dd($productinfo);
         return view('admin.EditProduct', compact('productinfo', 'categories', 'subcategories'));
     }
 
@@ -484,61 +485,69 @@ class DashboardController extends Controller
             'color' => 'required',
             'size' => 'required',
             'product_short_description' => 'required|string',
-            'product_long_description' => 'required|string',
+            'product_long_description' => 'nullable|string',
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
             'ageRange.*' => 'required',
-            'ageGroup.*' => 'nullable',
-            'sizeGroup.*' => 'nullable',
-            'colorGroup.*' => 'nullable',
+            'variation_option.*' => 'nullable',
+            'attribute_id.*' => 'nullable',
+            'valueGroup.*' => 'nullable',
             'quantityGroup.*' => 'nullable|integer',
+            'priceGroup.*' => 'nullable|integer',
             'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
-        dd($validatedData);
+        // dd($validatedData);
+        //get the product id
+        $product_id = $request->product_id;
 
-        if ($request->file('imageVariations') != null) {
-            $img_variation = array();
-            if ($vfiles = $request->file('imageVariations')) {
-                foreach ($vfiles as $vfile) {
-                    $timestamp = microtime(true) * 10000; // High resolution timestamp
-                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                    $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
-                    $vfile->move(public_path('uploads'), $vimage_name);
-                    $vimg_url = 'uploads/' . $vimage_name;
-                    $img_variation[] = $vimg_url;
+        if (isset($validatedData['variation_option'])) {
+            foreach ($validatedData['variation_option'] as $i => $attributes) {
+                // current attribute id
+                $attribute_id = $request->attribute_id[$i];
+                //handle image here
+                if ($request->file('imageVariations') != null) {
+                    if ($vfiles = $request->file('imageVariations')) {
+                        if (isset($vfiles[$i])) {
+                            $vfile = $vfiles[$i];
+                            $timestamp = microtime(true) * 10000; // High resolution timestamp
+                            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+                            $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
+                            $vfile->move(public_path('uploads'), $vimage_name);
+                            $vimg_url = 'uploads/' . $vimage_name;
+                            $img_variation = $vimg_url;
+                        }else{
+                            $img_variation = "";
+                        }
+                    }
+                } else {
+                    $img_variation = ProductAttributes::where('product_id', $product_id)->value('imageUrls');
                 }
+
+                //handle attributes
+                $attribute = $attributes;
+                $value = $request->valueGroup[$i];
+                $stock = $request->quantityGroup[$i];
+                $price = $request->priceGroup[$i];
+
+                // handle database
+                ProductAttributes::findOrFail($attribute_id)->update([
+                    'product_id' => $product_id,
+                    'attribute' => $attribute,
+                    'value' => $value,
+                    'imageUrls' => $img_variation,
+                    'stock' => $stock,
+                    'price' => $price
+                ]);
             }
-            // implode here for the condition safety
-            $imgVariationGroup = implode('|', $img_variation);
-        } else {
-            $imgVariationGroup = Products::where('id', $request->product_id)->value('imageVariations');
         }
 
         $ageRange = implode('|', $request->ageRange);
-
-        //product variation null safety
-        if (isset($request->ageGroup)) {
-            $ageGroup = implode('|', $request->ageGroup);
-            $sizeGroup = implode('|', $request->sizeGroup);
-            $colorGroup = implode('|', $request->colorGroup);
-            $quantityGroup = implode('|', $request->quantityGroup);
-        } else {
-            $ageGroup = '';
-            $sizeGroup = '';
-            $colorGroup = '';
-            $quantityGroup = '';
-        }
-        $imgVariationGroup = implode('|', $img_variation);
-        // end of null safety
 
         // handle out of stock selling and other tic marks
         $continue_selling = $request->continue_selling;
         $featured = $request->featured;
         $best_selling = $request->best_selling;
-
-        //get the product id
-        $product_id = $request->product_id;
 
         $category_id = $request->product_category_id;
         $subcategory_id = $request->product_subcategory_id;
@@ -584,6 +593,8 @@ class DashboardController extends Controller
             'price' => $validatedData['price'],
             'quantity' => $validatedData['quantity'],
             'compare_price' => $request->compare_price,
+            'color' => $request->color,
+            'size' => $request->size,
             'product_short_description' => $validatedData['product_short_description'],
             'product_long_description' => $validatedData['product_long_description'],
             'product_category_name' => $category_name,
@@ -592,11 +603,6 @@ class DashboardController extends Controller
             'product_subcategory_id' => $subcategory_id,
             'slug' => strtolower(str_replace(' ', '-', $request->product_name)),
             'ageRange' => $ageRange,
-            'ageGroup' => $ageGroup,
-            'sizeGroup' => $sizeGroup,
-            'colorGroup' => $colorGroup,
-            'quantityGroup' => $quantityGroup,
-            'imageVariations' => $imgVariationGroup,
             'continue_selling' => $continue_selling,
             'featured' => $featured,
             'best_selling' => $best_selling,
