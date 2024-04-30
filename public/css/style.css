@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300i,400,600,700,800');
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url(../icons/font-awesome/css/font-awesome.min.css);
 @import url(../icons/simple-line-icons/css/simple-line-icons.css);
 @import url(../icons/weather-icons/css/weather-icons.min.css);
@@ -97,7 +97,7 @@
 
 body {
     background: #fff;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     margin: 0;
     overflow-x: hidden;
     color: #67757c;
@@ -243,7 +243,7 @@ h6 {
 }
 
 .page-wrapper {
-    background: #fafafa;
+    background: #e4e4e4;
     padding-bottom: 60px;
 }
 
@@ -840,7 +840,7 @@ li {
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     color: #99abb4;
 }
 
@@ -855,6 +855,7 @@ h3,
 h4,
 h5,
 h6.h1 {
+    font-family: 'Philosopher', sans-serif;
     color: #455a64;
 }
 
@@ -2772,9 +2773,9 @@ textarea {
     background: #ffffff none repeat scroll 0 0;
     margin: 15px 0;
     padding: 20px;
-    border: 0 solid #e7e7e7;
+    border: 1px solid #bfbfbf;
     border-radius: 5px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.05);
 }
 
 .card-subtitle {
@@ -2796,7 +2797,7 @@ textarea {
 }
 
 .card-title p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     margin-bottom: 12px;
 }
 
@@ -3198,7 +3199,7 @@ table.dataTable thead .sorting::after {
 }
 
 .panel-body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
 
 .panel-primary {
@@ -4696,19 +4697,19 @@ table.dataTable thead .sorting::after {
 }
 
 .chat-sidebar .user-name {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
 
 .chat-sidebar .content {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
 
 .chat-sidebar .textarea {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
 
 .chat-sidebar .seen {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
 
 .chat-sidebar.is-active {
@@ -4919,7 +4920,7 @@ table.dataTable thead .sorting::after {
 }
 
 .testimonial-widget-one .testimonial-author-position {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     position: relative;
     top: -5px;
     margin-top: 5px;
@@ -5809,7 +5810,7 @@ footer p {
     right: 0;
     top: 0;
     color: #455a64;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     font-size: 12px;
 }
 
@@ -5819,7 +5820,7 @@ footer p {
 
 .comment-action .badge {
     text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
 
 .comment-action i {
@@ -5874,11 +5875,11 @@ footer p {
 }
 
 .form-control {
-    height: 42px;
+    height: 35px;
     border-radius: 0;
     box-shadow: none;
     border-color: #e7e7e7;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
 
 .form-control:hover {
@@ -6293,7 +6294,7 @@ label {
 }
 
 .mail-list a {
-    font-family: "Roboto", sans-serif;
+    font-family: "Philosopher", sans-serif;
     vertical-align: middle;
     color: #797979;
     padding: 10px 15px;
@@ -6427,7 +6428,7 @@ label {
 
 .tdl-holder li span {
     margin-left: 30px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     vertical-align: middle;
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
@@ -6509,7 +6510,7 @@ label {
 
 .datamap-sales-hover-tooltip {
     background: #444c67;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     padding: 5px 10px;
     color: #ffffff;
     font-weight: 400;
@@ -6529,12 +6530,12 @@ thead tr th:last-child {
 
 tbody tr th {
     color: #455a64;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     font-weight: normal;
 }
 
 tbody tr td {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Philosopher', sans-serif;
     color: #99abb4;
 }
 

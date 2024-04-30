@@ -117,6 +117,24 @@
 
                     <div class="card">
                         <div class="card-body">
+                            <div class="card-subtitle text-dark"><b>Size and Color</b></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card-subtitle mt-3">Size</div>
+                                    <input type="text" id="size" name="size" placeholder="3 years" value="{{$productinfo->size}}"
+                                        class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card-subtitle mt-3">Color</div>
+                                    <input type="text" id="color" name="color" placeholder="Warm Vanilla" value="{{$productinfo->color}}"
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
                             <div class="card-subtitle text-dark"><b>Inventory</b></div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -164,24 +182,21 @@
                                 </div>
                             </div>
                             @php
-                                $ageGroup = explode('|', $productinfo->ageGroup);
-                                $sizeGroup = explode('|', $productinfo->sizeGroup);
-                                $colorGroup = explode('|', $productinfo->colorGroup);
-                                $quantityGroup = explode('|', $productinfo->quantityGroup);
-                                $imgVariationGroup = explode('|', $productinfo->imageVariations);
+
                             @endphp
                             <div class="card">
                                 <div class="card-title">Image Variations</div>
                                 <div class="row">
-                                    @foreach ($imgVariationGroup as $imges)
+                                    @foreach ($productinfo->attributes as $attribute)
                                         <div class="col-3">
-                                            <img class="img-thumbnail" src="{{ asset($imges) }}" alt="">
+                                            <img class="img-thumbnail" src="{{ asset($attribute->imageUrls) }}" alt="">
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
 
-                            @foreach ($sizeGroup as $i => $size)
+                            @foreach ($productinfo->attributes as $i => $attribute)
+                                <input type="hidden" name="attribute_id[]" value="{{$attribute->id}}">
                                 <div class="variation row" id="variationTemplate">
                                     <div class="col-md-2 mb-3 pr-0">
                                         <div class="upload-img-icon" style="position: relative;">
@@ -193,23 +208,32 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-3 pr-0">
-                                        <input type="text" name="ageGroup[]" class="form-control"
-                                            value="{{ $ageGroup[$i] ?? '' }}" placeholder="Age">
+                                        <label class="mx-1 card-subtitle" for="size">Variation Option</label>
+                                        <select name="variation_option[]" id="variation_option" class="form-control">
+                                            <option value="size" {{ $attribute->attribute == 'size' ? 'selected' : '' }}>
+                                                Size
+                                            </option>
+                                            <option value="color" {{ $attribute->attribute == 'color' ? 'selected' : '' }}>
+                                                Color
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mb-3 pr-0">
+                                        <label class="mx-1 card-subtitle" for="size">Value</label>
+                                        <input type="text" name="valueGroup[]" value="{{$attribute->value}}" class="form-control" placeholder="Light blue">
                                     </div>
                                     <div class="col-md-2 mb-3 pr-0">
-                                        <input type="text" name="sizeGroup[]" class="form-control"
-                                            value="{{ $size }}" placeholder="Size">
+                                        <label class="mx-1 card-subtitle" for="size">Stock</label>
+                                        <input type="number" name="quantityGroup[]" value="{{$attribute->stock}}" min="1" class="form-control"
+                                            placeholder="in stock">
                                     </div>
                                     <div class="col-md-2 mb-3 pr-0">
-                                        <input type="text" name="colorGroup[]" class="form-control"
-                                            value="{{ $colorGroup[$i] ?? '' }}" placeholder="Color">
-                                    </div>
-                                    <div class="col-md-2 mb-3 pr-0">
-                                        <input type="number" name="quantityGroup[]" min="1" class="form-control"
-                                            value="{{ $quantityGroup[$i] ?? '' }}" placeholder="Quantity">
+                                        <label class="mx-1 card-subtitle" for="size">Price</label>
+                                        <input type="number" name="priceGroup[]" value="{{$attribute->price}}" min="1" class="form-control"
+                                            placeholder="100">
                                     </div>
                                     <!-- Delete Button -->
-                                    <div class="col-md-1 mb-3 ml-5">
+                                    <div class="col-md-1 mb-3">
                                         <i class="fa fa-trash-o delete-variation mt-2"
                                             style="font-size: 24px; color: #999; cursor: pointer;"></i>
                                     </div>

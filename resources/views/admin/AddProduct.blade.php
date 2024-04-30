@@ -191,19 +191,32 @@
                                 {{-- <div class="col-md-2 mb-3 pr-0">
                                     <input type="text" name="ageGroup[]" class="form-control" placeholder="Age">
                                 </div> --}}
-                                <div class="col-md-3 mb-3 pr-0">
-                                    <label class="mx-1 card-subtitle" for="size">Size</label>
-                                    <input type="text" name="sizeGroup[]" class="form-control"
-                                        placeholder="4 years">
+                                <div class="col-md-2 mb-3 pr-0">
+                                    <label class="mx-1 card-subtitle" for="size">Variation Option</label>
+                                    <select name="variation_option[]" id="variation_option" class="form-control">
+                                        <option value="size">
+                                            Size
+                                        </option>
+                                        <option value="color">
+                                            Color
+                                        </option>
+                                    </select>
+                                    {{-- <input type="text" name="sizeGroup[]" class="form-control"
+                                        placeholder="4 years"> --}}
                                 </div>
                                 <div class="col-md-3 mb-3 pr-0">
-                                    <label class="mx-1 card-subtitle" for="size">Color</label>
-                                    <input type="text" name="colorGroup[]" class="form-control" placeholder="Light blue">
+                                    <label class="mx-1 card-subtitle" for="size">Value</label>
+                                    <input type="text" name="valueGroup[]" class="form-control" placeholder="Light blue">
                                 </div>
-                                <div class="col-md-3 mb-3 pr-0">
+                                <div class="col-md-2 mb-3 pr-0">
                                     <label class="mx-1 card-subtitle" for="size">Stock</label>
                                     <input type="number" name="quantityGroup[]" min="1" class="form-control"
                                         placeholder="in stock">
+                                </div>
+                                <div class="col-md-2 mb-3 pr-0">
+                                    <label class="mx-1 card-subtitle" for="size">Price</label>
+                                    <input type="number" name="priceGroup[]" min="1" class="form-control"
+                                        placeholder="100">
                                 </div>
                                 <!-- Delete Button -->
                                 <div class="col-md-1 mb-3">
