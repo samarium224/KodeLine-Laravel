@@ -47,19 +47,30 @@ export const NavigationCheckout = ({
                 aria-controls="currency-menu"
                 aria-haspopup="true"
             >
-                Currency:{" "}
-                <img
+                <Typography
+                    sx={{
+                        fontSize: navButtonStyle.fontSize,
+                        display: { xs: "none", md: "inline" },
+                    }}
+                >
+                    Currency:{" "}
+                </Typography>
+                <Box
+                    component="img"
                     src="./assets/Canada Flag.svg"
-                    style={{ height: "16px", marginLeft: "8px" }}
+                    sx={{
+                        height: { xs: "12px", md: "16px" },
+                        marginLeft: { xs: "16px", md: "8px" },
+                    }}
                 />
             </Button>
             <Typography color={navButtonStyle.color}>|</Typography>
             <IconButton
                 sx={{
                     color: navButtonStyle.color,
-                    ml: "12px",
+                    ml: { xs: "6px", md: "12px" },
                     "&:hover": { backgroundColor: "transparent" },
-                    scale: "1.1",
+                    scale: { xs: "0.825", md: "1.1" },
                 }}
                 onClick={toggleCart(true)}
             >
@@ -68,12 +79,16 @@ export const NavigationCheckout = ({
             <IconButton
                 sx={{
                     color: navButtonStyle.color,
-                    ml: 1,
+                    ml: { xs: 0.5, md: 1 },
                     "&:hover": { backgroundColor: "transparent" },
                 }}
                 onClick={toggleCart(true)}
             >
-                <img src={bucketImgUrl} style={{ height: "20px" }} />
+                <Box
+                    component="img"
+                    src={bucketImgUrl}
+                    sx={{ height: { xs: "15px", md: "20px" } }}
+                />
             </IconButton>
             <Drawer
                 anchor="right"

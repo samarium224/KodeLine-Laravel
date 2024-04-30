@@ -2,7 +2,7 @@ export const HomeSliderData = [
     {
         collectionID: 2,
         imgURL: "./assets/Final Edit_1_Black Shadow.png",
-        mobileImgURL: "./assets/Final Edit_1_Mobile Version.png.jpg",
+        mobileImgURL: "./assets/Final Edit_1_Mobile Version.png",
         title: "Hassle-Free Shopping. <br/> Delivered With Love.",
         subtitle:
             "Explore Top-Quality Children's Products, With Swift <br/> Delivery And No Shipping Costs.",

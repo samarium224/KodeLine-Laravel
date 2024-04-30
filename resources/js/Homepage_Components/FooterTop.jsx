@@ -35,9 +35,9 @@ const SliderContent = ({ theme, image }) => {
                     alt="Logo"
                     position="absolute"
                     sx={{
-                        height: "60px",
+                        height: { xs: "45px", md: "60px" },
                         top: "45px",
-                        left: { xs: "90px", xl: "-90px" },
+                        left: { xs: "30px", xl: "-90px" },
                     }}
                 />
                 <Button
@@ -77,10 +77,15 @@ const SliderContent = ({ theme, image }) => {
                     color={theme.palette.text.white[500]}
                     sx={{
                         fontWeight: 700,
-                        right: "-90px",
+                        right: { xs: "45px", md: "-90px" },
                         scale: "1.2",
+                        fontSize: {
+                            xl: "1.5rem",
+                            md: "1.25rem",
+                            xs: "1rem",
+                        },
                         top: {
-                            xs: "530px",
+                            xs: "550px",
                             lg: "calc(80vh - 70px)",
                             maxAllowableWidth: "730px",
                         },

@@ -46,7 +46,7 @@ const BestSellingItems = ({ bestSellingItemsList, collections }) => {
                                 key={i}
                                 display="flex"
                                 justifyContent="center"
-                                sx={{ width: { xs: "50%", md: "25%" } }}
+                                sx={{ width: { xs: "48%", md: "24%" } }}
                                 mb={5}
                             >
                                 <ItemCard

@@ -76,6 +76,7 @@ const Header = ({ CollectionHeaderData }) => {
                         },
                         mx: { md: 5, xl: 15 },
                         pb: { xs: 0, md: 10 },
+                        mt: { xs: 10, md: 0 },
                     }}
                 >
                     <Typography

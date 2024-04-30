@@ -40,7 +40,7 @@ const SignatureItemsHeader = ({
                             mx: 1,
                             px: { xs: 2, md: 2 },
                             py: 0.75,
-                            fontSize: { xs: "0.825rem", md: "1rem" },
+                            fontSize: { md: "0.825rem", xl: "1rem" },
                             fontWeight: "400",
                             backgroundColor:
                                 currentCollectionID ===

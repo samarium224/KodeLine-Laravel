@@ -88,8 +88,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                     <img
                         src={
                             alternativeColor
-                                ? "./assets/Logo_Black.png"
-                                : "./assets/Logo_White.png"
+                                ? "./assets/Kodeline kids_Black Logo.svg"
+                                : "./assets/Logo.svg"
                         }
                         alt="Logo"
                         style={{ height: "30px" }}
