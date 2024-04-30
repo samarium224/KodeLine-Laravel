@@ -59,7 +59,7 @@ class OrderController extends Controller
                 'username' => $username,
                 'user_id' => $user_id,
                 'session_id' => $checkout_session->id,
-                'product_id' => $product->id,
+                'product_id' => $product->product_id,
                 'product_name' => $product->product_name,
                 'product_quantity' => $product->product_quantity,
                 'total_price' => $totalPrice,
@@ -99,11 +99,14 @@ class OrderController extends Controller
 
                     //remove the cart items
                     $usercart = $order->user_id;
+                    // reduce product count
+                    $product_id = $order->product_id;
+                    $order_count = $order->product_quantity;
                 }
             }
-            
-            Cart::where('user_id', $usercart)->delete();
 
+            Cart::where('user_id', $usercart)->delete();
+            Products::where('id', $product_id)->decrement('quantity',$order_count);
             return view('test.success', compact('customer'));
         } catch (\Throwable $th) {
             throw new NotFoundHttpException;

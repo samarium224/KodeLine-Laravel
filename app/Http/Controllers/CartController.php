@@ -74,7 +74,7 @@ class CartController extends Controller
         $productImg = explode('|', $product_info->product_img);
         $productImg = count($productImg) > 1 ? $productImg[0] : $product_info->product_img;
 
-        if ($product_quantity < $current_stock) {
+        if ($product_quantity <= $current_stock) {
             Cart::insert([
                 'username' => $username,
                 'user_id' => $user_id,
