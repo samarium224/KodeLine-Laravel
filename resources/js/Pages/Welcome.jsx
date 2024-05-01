@@ -1,7 +1,9 @@
 import { ThemeProvider } from "@mui/material/styles";
 import theme_desktop from "@/Theme/theme_desktop";
 import theme_laptop from "@/Theme/theme_laptop";
+import theme_laptop_sm from "@/Theme/theme_laptop_sm";
 import theme_mobile from "@/Theme/theme_mobile";
+import { breakpoint_values } from "@/Theme/breakpoints";
 
 import useWindowSize from "@/Util/useWindowSize";
 
@@ -19,10 +21,7 @@ import PreOrder from "@/Global_Components/PreOrder/Index";
 import FooterTop from "@/Homepage_Components/FooterTop";
 import Slogan from "@/Global_Components/Slogan";
 
-// import { preorderItems} from "@/Global_data/PreorderItems";
-
 import { usePage } from "@inertiajs/react";
-import { Category } from "@mui/icons-material";
 
 export default function Welcome({ auth }) {
     const {
@@ -38,10 +37,12 @@ export default function Welcome({ auth }) {
     const { width } = useWindowSize();
 
     const getTheme = () => {
-        if (width > 1800) return theme_desktop;
-        else if (width > 900) return theme_laptop;
+        if (width > breakpoint_values.xl) return theme_desktop;
+        else if (width > breakpoint_values.lg) return theme_laptop;
+        else if (width > breakpoint_values.md) return theme_laptop_sm;
         else return theme_mobile;
     };
+
     return (
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>

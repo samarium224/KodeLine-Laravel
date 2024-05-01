@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { breakpoint_values } from "./breakpoints";
 
 const theme_mobile = createTheme({
     palette: {
@@ -64,15 +65,7 @@ const theme_mobile = createTheme({
         },
     },
     breakpoints: {
-        values: {
-            xs: 0,
-            sm: 600,
-            md: 900,
-            lg: 1200,
-            xl: 1800,
-            desktopMaxWidth: 1420,
-            maxAllowableWidth: 1960,
-        },
+        values: breakpoint_values,
     },
     components: {
         MuiButton: {

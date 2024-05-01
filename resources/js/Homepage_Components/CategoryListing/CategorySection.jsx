@@ -47,7 +47,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                         backgroundImage: `url(${backgroundImage})`,
                         backgroundPosition: "center",
                         backgroundSize: "cover",
-                        height: { xs: "750px", md: "1000px" },
+                        height: { xs: "750px", md: "875px", lg: "1000px" },
                     }}
                 >
                     <Box
@@ -130,63 +130,32 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                     width="100%"
                     display="flex"
                     justifyContent="center"
+                    flexWrap="wrap"
                 >
-                    {category.categoryItemList
-                        .slice(0, 2)
-                        .map((CategoryItem, i) => (
-                            <Box
-                                key={i}
-                                sx={{
-                                    width: {
-                                        xs: "48%",
-                                        md: "46.5%",
-                                        xl: "48%",
-                                    },
-                                }}
-                            >
-                                <ItemCard
-                                    itemID={CategoryItem.itemID}
-                                    itemImage={CategoryItem.imgURL}
-                                    itemTitle={CategoryItem.itemTitle}
-                                    ageRange={CategoryItem.ageRange}
-                                    currentPrice={CategoryItem.currentPrice}
-                                    oldPrice={CategoryItem.oldPrice}
-                                    animationDelay={0.2 + (i % 2) * 0.15}
-                                />
-                            </Box>
-                        ))}
-                </Box>
-                <Box
-                    height="50%"
-                    width="100%"
-                    display="flex"
-                    justifyContent="center"
-                    mt={5}
-                >
-                    {category.categoryItemList
-                        .slice(2)
-                        .map((CategoryItem, i) => (
-                            <Box
-                                key={i}
-                                sx={{
-                                    width: {
-                                        xs: "48%",
-                                        md: "46.5%",
-                                        xl: "48%",
-                                    },
-                                }}
-                            >
-                                <ItemCard
-                                    itemID={CategoryItem.itemID}
-                                    itemImage={CategoryItem.imgURL}
-                                    itemTitle={CategoryItem.itemTitle}
-                                    ageRange={CategoryItem.ageRange}
-                                    currentPrice={CategoryItem.currentPrice}
-                                    oldPrice={CategoryItem.oldPrice}
-                                    animationDelay={0.2 + (i % 2) * 0.15}
-                                />
-                            </Box>
-                        ))}
+                    {category.categoryItemList.map((CategoryItem, i) => (
+                        <Box
+                            key={i}
+                            sx={{
+                                width: {
+                                    xs: "48%",
+                                    sm: "24%",
+                                    md: "46.5%",
+                                    xl: "48%",
+                                },
+                                mb: 4,
+                            }}
+                        >
+                            <ItemCard
+                                itemID={CategoryItem.itemID}
+                                itemImage={CategoryItem.imgURL}
+                                itemTitle={CategoryItem.itemTitle}
+                                ageRange={CategoryItem.ageRange}
+                                currentPrice={CategoryItem.currentPrice}
+                                oldPrice={CategoryItem.oldPrice}
+                                animationDelay={0.2 + (i % 2) * 0.15}
+                            />
+                        </Box>
+                    ))}
                 </Box>
                 {/* <Link
                     href={route("collection", {

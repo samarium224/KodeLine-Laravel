@@ -82,8 +82,8 @@ const SliderComp = ({
                             xs: "center",
                             md: reverseAlign ? "right" : "left",
                         },
-                        mx: { md: 12.5, xl: 15 },
-                        pb: { xs: 0, md: 15 },
+                        mx: { md: 10, lg: 12.5, xl: 15 },
+                        pb: { xs: 0, md: 12.5, lg: 15 },
                         pt: { xs: 20, md: 0 },
                         position: "relative",
                     }}
@@ -135,8 +135,8 @@ const SliderComp = ({
                                 fontWeight: "500",
                                 fontSize: {
                                     xl: "1.1rem",
-                                    md: "0.85rem",
-                                    xs: "0.8rem",
+                                    lg: "0.85rem",
+                                    xs: "0.75rem",
                                 },
                                 px: { xl: 5, md: 5, xs: 3 },
                                 py: { xl: 1.5, md: 1.2, xs: 1 },

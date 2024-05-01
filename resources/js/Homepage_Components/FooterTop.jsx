@@ -28,71 +28,66 @@ const SliderContent = ({ theme, image }) => {
                 mx: "auto",
             }}
         >
-            <Container maxWidth="xl" sx={{ position: "relative" }}>
-                <Box
-                    component="img"
-                    src="./assets/Logo.svg"
-                    alt="Logo"
-                    position="absolute"
-                    sx={{
-                        height: { xs: "45px", md: "60px" },
-                        top: "45px",
-                        left: { xs: "30px", xl: "-90px" },
-                    }}
-                />
-                <Button
-                    sx={{
-                        position: "absolute",
-                        transform: "translate(-50%, -50%)",
-                        top: {
-                            xs: "420px",
-                            xl: "550px",
-                            maxAllowableWidth: "600px",
-                        },
-                        left: "50%",
-                        color: theme.palette.text.white[500],
-                        backgroundColor: "transparent",
-                        border: `2px solid ${theme.palette.text.white[500]}`,
-                        fontWeight: "500",
-                        fontSize: {
-                            xl: "1.1rem",
-                            md: "0.85rem",
-                            xs: "0.8rem",
-                        },
-                        px: { xl: 8, md: 5, xs: 3 },
-                        py: { xl: 1.5, md: 1.2, xs: 1 },
-                        mt: 5,
-                        "&:hover": {
-                            backgroundColor: theme.palette.text.white[500],
-                            color: theme.palette.text.grey[500],
-                        },
-                    }}
-                >
-                    SHOP NOW
-                </Button>
-                <Typography
-                    variant="secondaryTitle"
-                    display="block"
-                    position="absolute"
-                    color={theme.palette.text.white[500]}
-                    sx={{
-                        fontWeight: 700,
-                        right: { xs: "45px", md: "-90px" },
-                        scale: "1.2",
-                        fontSize: {
-                            xl: "1.5rem",
-                            md: "1.25rem",
-                            xs: "1rem",
-                        },
-                        top: {
-                            xs: "550px",
-                            lg: "calc(80vh - 70px)",
-                            maxAllowableWidth: "730px",
-                        },
-                    }}
-                >
-                    Love Loud, Live Liberated.
-                </Typography>
+            <Container
+                maxWidth="xl"
+                sx={{
+                    position: "relative",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    height: "100%",
+                    py: 4,
+                }}
+            >
+                <Box sx={{ ml: 10 }}>
+                    <Box
+                        component="img"
+                        src="./assets/Logo.svg"
+                        alt="Logo"
+                        sx={{ height: { md: "36px", lg: "45px", xl: "60px" } }}
+                    />
+                </Box>
+                <Box display="flex" justifyContent="center" mt={30}>
+                    <Button
+                        sx={{
+                            color: theme.palette.text.white[500],
+                            backgroundColor: "transparent",
+                            border: `2px solid ${theme.palette.text.white[500]}`,
+                            fontWeight: "500",
+                            fontSize: {
+                                xl: "1.1rem",
+                                md: "0.85rem",
+                                xs: "0.8rem",
+                            },
+                            px: { xl: 8, md: 5, xs: 3 },
+                            py: { xl: 1.5, md: 1.2, xs: 1 },
+                            mt: 5,
+                            "&:hover": {
+                                backgroundColor: theme.palette.text.white[500],
+                                color: theme.palette.text.grey[500],
+                            },
+                        }}
+                    >
+                        SHOP NOW
+                    </Button>
+                </Box>
+                <Box display="flex" justifyContent="end" sx={{ mr: 10 }}>
+                    <Typography
+                        variant="secondaryTitle"
+                        display="block"
+                        color={theme.palette.text.white[500]}
+                        sx={{
+                            fontWeight: 700,
+                            fontSize: {
+                                xl: "1.5rem",
+                                md: "1.25rem",
+                                xs: "1rem",
+                            },
+                        }}
+                    >
+                        Love Loud, Live Liberated.
+                    </Typography>{" "}
+                </Box>
             </Container>
         </Box>
     );

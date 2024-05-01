@@ -27,8 +27,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
         color: alternativeColor
             ? theme.palette.text.grey[500]
             : theme.palette.text.white[500],
-        mx: { xs: 1, md: 1.5 },
-        fontSize: { xs: "0.66rem", md: "0.95rem", xl: "1.2rem" },
+        mx: { xs: 1, md: 0.75, lg: 1.5 },
+        fontSize: { xs: "0.66rem", md: "0.8rem", lg: "0.95rem", xl: "1.2rem" },
         fontWeight: "500",
         textTransform: "initial",
         "&:hover": { backgroundColor: "transparent" },
@@ -119,7 +119,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                                 : "../assets/Logo.svg"
                         }
                         alt="Logo"
-                        sx={{ height: { md: "48px", xl: "60px" } }}
+                        sx={{ height: { md: "36px", lg: "45px", xl: "60px" } }}
                     />
                 </Link>
             </IconButton>
