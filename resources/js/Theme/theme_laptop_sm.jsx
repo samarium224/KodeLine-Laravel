@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 import { breakpoint_values } from "./breakpoints";
 
-const theme_desktop = createTheme({
+const theme_laptop = createTheme({
     palette: {
         primary: {
             main: "#53555a",
@@ -36,30 +36,31 @@ const theme_desktop = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "3.5rem",
+            fontSize: "2.25rem",
+            lineHeight: "2.3rem",
             fontWeight: "600",
-            lineHeight: "3.66rem",
         },
         title: {
-            fontSize: "1.33rem",
+            fontSize: "1.25rem",
             fontWeight: "500",
         },
         secondaryTitle: {
             fontWeight: "500",
-            fontSize: "1.5rem",
+            fontSize: "1.25rem",
         },
         subtitle: {
-            fontSize: "1.25rem",
+            fontSize: ".9rem",
             fontWeight: "300",
-            lineHeight: "1.75rem",
-        },
-        itemdescTitle: {
-            fontSize: "1.15rem",
-            fontWeight: "600",
             lineHeight: "1.25rem",
         },
-        itemdescSubtitle: {
+        itemdescTitle: {
             fontSize: "1rem",
+            fontWeight: "500",
+            textTransform: "uppercase",
+            lineHeight: "1.5rem",
+        },
+        itemdescSubtitle: {
+            fontSize: "0.9rem",
             fontWeight: "400",
         },
     },
@@ -72,7 +73,7 @@ const theme_desktop = createTheme({
                 root: {
                     fontFamily: "'Poppins', sans-serif",
                     boxShadow: "none",
-                    fontSize: "0.8rem",
+                    fontSize: "0.66rem",
                     fontWeight: "400",
                     borderRadius: "0px",
                 },
@@ -95,4 +96,4 @@ const theme_desktop = createTheme({
     },
 });
 
-export default theme_desktop;
+export default theme_laptop;

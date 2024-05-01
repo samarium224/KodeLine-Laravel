@@ -43,7 +43,7 @@ export const NavigationCheckout = ({
             sx={{ display: "flex", alignItems: "center", position: "relative" }}
         >
             <Button
-                sx={navButtonStyle}
+                sx={{ mx: 0, ...navButtonStyle }}
                 aria-controls="currency-menu"
                 aria-haspopup="true"
             >
@@ -59,7 +59,7 @@ export const NavigationCheckout = ({
                     component="img"
                     src="../assets/Canada Flag.svg"
                     sx={{
-                        height: { xs: "12px", md: "16px" },
+                        height: { xs: "12px", md: "12px", lg: "16px" },
                         marginLeft: { xs: "16px", md: "8px" },
                     }}
                 />
@@ -68,9 +68,9 @@ export const NavigationCheckout = ({
             <IconButton
                 sx={{
                     color: navButtonStyle.color,
-                    ml: { xs: "6px", md: "12px" },
+                    ml: { xs: "0px", lg: "12px" },
                     "&:hover": { backgroundColor: "transparent" },
-                    scale: { xs: "0.825", md: "1.1" },
+                    scale: { xs: "0.825", lg: "1.1" },
                 }}
                 onClick={toggleCart(true)}
             >
@@ -79,7 +79,7 @@ export const NavigationCheckout = ({
             <IconButton
                 sx={{
                     color: navButtonStyle.color,
-                    ml: { xs: 0.5, md: 1 },
+                    ml: { xs: 0, lg: 1 },
                     "&:hover": { backgroundColor: "transparent" },
                 }}
                 onClick={toggleCart(true)}
@@ -87,7 +87,7 @@ export const NavigationCheckout = ({
                 <Box
                     component="img"
                     src={bucketImgUrl}
-                    sx={{ height: { xs: "15px", md: "20px" } }}
+                    sx={{ height: { xs: "15px", lg: "20px" } }}
                 />
             </IconButton>
             <Drawer

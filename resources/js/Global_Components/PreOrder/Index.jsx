@@ -147,7 +147,7 @@ const PreOrder = ({ items, content }) => {
                         sx={{
                             width: {
                                 xs: "190px",
-                                md: "258px",
+                                md: "256px",
                                 lg: "286px",
                                 xl: "316px",
                             },

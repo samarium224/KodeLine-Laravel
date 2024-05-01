@@ -30,7 +30,7 @@ const Header = ({ title, subTitle }) => {
                     justifyContent="space-between"
                     width="100%"
                     alignItems="center"
-                    mb={2.5}
+                    sx={{ mb: { xs: 1.5, lg: 2.5 } }}
                 >
                     <Box
                         component={motion.div}
@@ -90,7 +90,7 @@ const Header = ({ title, subTitle }) => {
                     display="block"
                     variant="subtitle"
                     color={theme.palette.text.grey[500]}
-                    mb={subTitle && 8}
+                    mb={subTitle && 6}
                 >
                     {subTitle}
                 </Typography>
