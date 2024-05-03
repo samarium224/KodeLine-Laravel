@@ -171,7 +171,7 @@ const SliderComp = ({
                                 md: "1.25rem",
                                 xs: "1rem",
                             },
-                            right: "120px",
+                            right: { sm: "120px", xs: "50%" },
                             bottom: "30px",
                         }}
                     >

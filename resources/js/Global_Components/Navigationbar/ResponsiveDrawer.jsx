@@ -28,14 +28,16 @@ const DrawerContent = ({ toggleDrawer, auth, collections }) => {
                 <ClearIcon /> Close
             </Box>
             <hr />
-            <List>
+            <List sx={{ py: 0 }}>
                 <ListItem button component={Link} href={route("home")}>
                     <ListItemText primary="Home" />
                 </ListItem>
+                <Divider />
                 <ListItem button onClick={handleCollectionClick}>
                     <ListItemText primary="Collections" />
                     {collectionOpen ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
+                <Divider />
                 <Collapse in={collectionOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         {collections.map((collection, i) => (
@@ -58,6 +60,7 @@ const DrawerContent = ({ toggleDrawer, auth, collections }) => {
                 <ListItem button>
                     <ListItemText primary="About Us" />
                 </ListItem>
+                <Divider />
                 {auth.user ? (
                     <ListItem button component={Link} href={route("dashboard")}>
                         <ListItemText primary="My Account" />
@@ -67,11 +70,12 @@ const DrawerContent = ({ toggleDrawer, auth, collections }) => {
                         <ListItemText primary="Log In" />
                     </ListItem>
                 )}
+                <Divider />
                 <ListItem button>
                     <ListItemText primary="Contact us" />
                 </ListItem>
+                <Divider />
             </List>
-            <Divider />
         </Box>
     );
 };

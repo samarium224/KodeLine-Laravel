@@ -36,9 +36,9 @@ const theme_mobile = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "1.5rem",
+            fontSize: "1.8rem",
             fontWeight: "700",
-            lineHeight: "1.66rem",
+            lineHeight: "1.9rem",
         },
         title: {
             fontSize: "1rem",
@@ -49,7 +49,7 @@ const theme_mobile = createTheme({
             fontWeight: "600",
         },
         subtitle: {
-            fontSize: "0.75rem",
+            fontSize: "14px",
             fontWeight: "400",
             lineHeight: "1rem",
         },

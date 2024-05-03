@@ -39,12 +39,18 @@ const SliderContent = ({ theme, image }) => {
                     py: 4,
                 }}
             >
-                <Box sx={{ ml: 10 }}>
+                <Box
+                    sx={{
+                        ml: { xs: 0, md: 10 },
+                        display: "flex",
+                        justifyContent: { xs: "center", md: "flex-start" },
+                    }}
+                >
                     <Box
                         component="img"
                         src="./assets/Logo.svg"
                         alt="Logo"
-                        sx={{ height: { md: "36px", lg: "45px", xl: "60px" } }}
+                        sx={{ height: { xs: "36px", lg: "45px", xl: "60px" } }}
                     />
                 </Box>
                 <Box display="flex" justifyContent="center" mt={30}>
@@ -71,7 +77,13 @@ const SliderContent = ({ theme, image }) => {
                         SHOP NOW
                     </Button>
                 </Box>
-                <Box display="flex" justifyContent="end" sx={{ mr: 10 }}>
+                <Box
+                    display="flex"
+                    sx={{
+                        mr: { xs: 0, md: 10 },
+                        justifyContent: { xs: "center", md: "end" },
+                    }}
+                >
                     <Typography
                         variant="secondaryTitle"
                         display="block"
