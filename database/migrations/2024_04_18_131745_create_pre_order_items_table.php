@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->text('product_short_description');
-            $table->text('product_long_description');
+            $table->text('product_long_description')->nullable();
             $table->double('price');
             $table->double('compare_price');
             $table->text('product_img');

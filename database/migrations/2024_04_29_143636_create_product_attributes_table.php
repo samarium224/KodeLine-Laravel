@@ -16,9 +16,10 @@ return new class extends Migration
             $table->integer('product_id');
             $table->string('attribute');
             $table->string('value');
-            $table->string('imageUrls');
-            $table->double('stock');
-            $table->integer('price');
+            $table->string('sizes')->nullable();
+            $table->string('imageUrls')->nullable();
+            $table->string('stock')->nullable();
+            $table->string('price')->nullable();
             $table->timestamps();
         });
     }

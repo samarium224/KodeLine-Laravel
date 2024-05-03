@@ -41,8 +41,8 @@ class DashboardController extends Controller
             'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            // 'category_title'=> 'required',
-            // 'category_subtitle'=> 'required',
+            'category_title' => 'required',
+            'category_subtitle' => 'required',
         ]);
 
         if ($file = $request->file('category_img')) {
@@ -74,8 +74,8 @@ class DashboardController extends Controller
             'category_img' => $img_url,
             'cat_headerImg_PC' => $header_url,
             'cat_headerImg_mobile' => $mobileHeader_url,
-            'category_title' => 'Wrap Your Little Ones in Love',
-            'category_subtitle' => "Simplify parenting decisions with our thoughtfully curated kid's fashion",
+            'category_title' => $request->category_title,
+            'category_subtitle' => $request->category_subtitle,
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
 
@@ -101,8 +101,8 @@ class DashboardController extends Controller
             'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            // 'category_title'=> 'required',
-            // 'category_subtitle'=> 'required',
+            'category_title' => 'required',
+            'category_subtitle' => 'required',
         ]);
 
         if ($file = $request->file('category_img')) {
@@ -138,6 +138,8 @@ class DashboardController extends Controller
             'category_img' => $img_url,
             'cat_headerImg_PC' => $header_url,
             'cat_headerImg_mobile' => $mobileHeader_url,
+            'category_title' => $request->category_title,
+            'category_subtitle' => $request->category_subtitle,
             'slug' => strtolower(str_replace(' ', '-', $request->category_name))
         ]);
 
@@ -295,11 +297,6 @@ class DashboardController extends Controller
             'product_subcategory_id' => 'required',
             'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'ageRange.*' => 'required',
-            'variation_option.*' => 'nullable',
-            'valueGroup.*' => 'nullable',
-            'quantityGroup.*' => 'nullable|integer',
-            'priceGroup.*' => 'nullable|integer',
-            'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
         // dd($validatedData);
@@ -313,44 +310,6 @@ class DashboardController extends Controller
                 $file->move(public_path('uploads'), $image_name);
                 $img_url = 'uploads/' . $image_name;
                 $product_img_array[] = $img_url;
-            }
-        }
-
-        if (isset($validatedData['variation_option'])) {
-            $product_id = Products::max('id') + 1;
-            foreach ($validatedData['variation_option'] as $i => $attributes) {
-                //handle image here
-                if ($request->file('imageVariations') != null) {
-                    if ($vfiles = $request->file('imageVariations')) {
-                        if (isset($vfiles[$i])) {
-                            $vfile = $vfiles[$i];
-                            $timestamp = microtime(true) * 10000; // High resolution timestamp
-                            $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                            $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
-                            $vfile->move(public_path('uploads'), $vimage_name);
-                            $vimg_url = 'uploads/' . $vimage_name;
-                            $img_variation = $vimg_url;
-                        }
-                    }
-                } else {
-                    $img_variation = "none";
-                }
-
-                //handle attributes
-                $attribute = $attributes;
-                $value = $request->valueGroup[$i];
-                $stock = $request->quantityGroup[$i];
-                $price = $request->priceGroup[$i];
-
-                // handle database
-                ProductAttributes::create([
-                    'product_id' => $product_id,
-                    'attribute' => $attribute,
-                    'value' => $value,
-                    'imageUrls' => $img_variation,
-                    'stock' => $stock,
-                    'price' => $price
-                ]);
             }
         }
 
@@ -516,7 +475,7 @@ class DashboardController extends Controller
                             $vfile->move(public_path('uploads'), $vimage_name);
                             $vimg_url = 'uploads/' . $vimage_name;
                             $img_variation = $vimg_url;
-                        }else{
+                        } else {
                             $img_variation = "";
                         }
                     }
@@ -641,6 +600,60 @@ class DashboardController extends Controller
             'message',
             'Product Deleted Successfully'
         );
+    }
+
+
+    //handle product variant here
+    public function ConfigVariant($id)
+    {
+
+        $product = Products::with('attributes')->where('id', $id)->first();
+        // dd(count($product->attributes));
+        return view('admin.Variations', compact('product'));
+    }
+
+    public function StoreVariant(Request $request)
+    {
+        $validatedData = $request->validate([
+            'product_id' => 'required|integer',
+            'variation_option' => 'required',
+            'ColorValues.*' => 'required',
+        ]);
+
+        // dd($validatedData);
+        $id = $request->product_id;
+        // handle database
+        foreach ($request->ColorValues as $colors) {
+            ProductAttributes::create([
+                'product_id' => $id,
+                'attribute' => $request->variation_option,
+                'value' => $colors,
+            ]);
+        }
+
+
+        $product = Products::findOrFail($id);
+        return view('admin.Variations', compact('product'));
+    }
+
+    public function StoreVariantItems(Request $request){
+        $validatedata = $request->validate([
+            'attribute_id.*' => 'required|integer',
+            'sizes.*' => 'required',
+            'price.*' => 'required',
+            'stocks.*' => 'required',
+        ]);
+
+
+        foreach($request->sizes as $i => $size){
+            $id = $request->attribute_id[$i];
+            ProductAttributes::findOrFail($id)->update([
+                'sizes' => $size,
+                'stock' => $request->stocks[$i],
+                'price' => $request->price[$i],
+            ]);
+        }
+        dd($validatedata);
     }
 
 }

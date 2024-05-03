@@ -25,7 +25,6 @@ grid everything
 you may also like section
 prompt phone number and address
 product variation logic need work
-send collection_id
 
 
 ======== hosting ========

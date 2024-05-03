@@ -58,18 +58,18 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-subtitle text-dark">
-                                <b>Product Name</b>
+                                <b>Product Name</b> <span class="text-danger">*</span>
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" id="product_name" name="product_name"
-                                    placeholder="Short sleeve t-shirt" class="form-control">
+                                    placeholder="Short sleeve t-shirt" class="form-control" required>
                             </div>
                             <div class="card-subtitle text-dark mt-4">
                                 <b>Short Description</b>
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" id="product_name" name="product_short_description"
-                                    placeholder="Write a short description of your product" class="form-control">
+                                    placeholder="Write a short description of your product" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -98,14 +98,15 @@
                         <div class="card-body">
                             <div class="card-subtitle text-dark"><b>Pricing</b></div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card-subtitle mt-3">Price</div>
-                                    <input type="number" min="0" step="0.01" id="price" name="price"
-                                        placeholder="0.00" class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-subtitle mt-3">Compare at price</div>
+
+                                <div class="col-md-12">
+                                    <div class="card-subtitle mt-3">Product Price</div>
                                     <input type="number" min="0" step="0.01" id="price" name="compare_price"
+                                        placeholder="0.00" class="form-control" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card-subtitle mt-3">Discounted Price</div>
+                                    <input type="number" min="0" step="0.01" id="price" name="price"
                                         placeholder="0.00" class="form-control">
                                 </div>
                             </div>
@@ -114,7 +115,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-subtitle text-dark"><b>Size and Color</b></div>
+                            <div class="card-subtitle text-dark"><b>Size and Color and Age</b></div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card-subtitle mt-3">Size</div>
@@ -125,6 +126,22 @@
                                     <div class="card-subtitle mt-3">Color</div>
                                     <input type="text" id="color" name="color" placeholder="Warm Vanilla"
                                         class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <div class="card-subtitle mt-3">Age range (min)</div>
+                                        <input type="number" id="quantity" name="ageRange[]" placeholder="2"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <div class="card-subtitle mt-3">Age range (max)</div>
+                                        <input type="number" id="quantity" name="ageRange[]" placeholder="6"
+                                            class="form-control" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -138,23 +155,10 @@
                                     <div class="form-group mb-3">
                                         <div class="card-subtitle mt-3">In Stock</div>
                                         <input type="number" id="quantity" name="quantity" placeholder="1000"
-                                            class="form-control">
+                                            class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Age range (min)</div>
-                                        <input type="number" id="quantity" name="ageRange[]" placeholder="2"
-                                            class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Age range (max)</div>
-                                        <input type="number" id="quantity" name="ageRange[]" placeholder="6"
-                                            class="form-control">
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="px-3 mt-3">
@@ -166,66 +170,7 @@
                         </div>
                     </div>
 
-                    <div class="card variation-section">
-                        <div class="card-body">
-                            <div class="row mb-2">
-                                <div class="col-md-9">
-                                    <div class="card-subtitle text-dark"><b>Add variation</b></div>
-                                </div>
-                                <div class="col-md-3 text-right">
-                                    <button class="btn btn-dark btn-sm" type="button" id="addVariation"><i
-                                            class="fa fa-plus"></i> Add
-                                        Variation</button>
-                                </div>
-                            </div>
-                            <div class="variation row my-3 border-bottom" id="variationTemplate">
-                                <div class="col-md-2 mb-3 pr-0">
-                                    <div class="upload-img-icon" style="position: relative;">
-                                        <input type="file" name="imageVariations[]" accept="image/*"
-                                            class="form-control image-upload"
-                                            style="opacity: 0; position: absolute; width: 100%; height: 100%; cursor: pointer;">
-                                        <i class="fa fa-upload"
-                                            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: #999;"></i>
-                                    </div>
-                                </div>
-                                {{-- <div class="col-md-2 mb-3 pr-0">
-                                    <input type="text" name="ageGroup[]" class="form-control" placeholder="Age">
-                                </div> --}}
-                                <div class="col-md-2 mb-3 pr-0">
-                                    <label class="mx-1 card-subtitle" for="size">Variation Option</label>
-                                    <select name="variation_option[]" id="variation_option" class="form-control">
-                                        <option value="size">
-                                            Size
-                                        </option>
-                                        <option value="color">
-                                            Color
-                                        </option>
-                                    </select>
-                                    {{-- <input type="text" name="sizeGroup[]" class="form-control"
-                                        placeholder="4 years"> --}}
-                                </div>
-                                <div class="col-md-3 mb-3 pr-0">
-                                    <label class="mx-1 card-subtitle" for="size">Value</label>
-                                    <input type="text" name="valueGroup[]" class="form-control" placeholder="Light blue">
-                                </div>
-                                <div class="col-md-2 mb-3 pr-0">
-                                    <label class="mx-1 card-subtitle" for="size">Stock</label>
-                                    <input type="number" name="quantityGroup[]" min="1" class="form-control"
-                                        placeholder="in stock">
-                                </div>
-                                <div class="col-md-2 mb-3 pr-0">
-                                    <label class="mx-1 card-subtitle" for="size">Price</label>
-                                    <input type="number" name="priceGroup[]" min="1" class="form-control"
-                                        placeholder="100">
-                                </div>
-                                <!-- Delete Button -->
-                                <div class="col-md-1 mb-3">
-                                    <i class="fa fa-trash-o delete-variation mt-2"
-                                        style="font-size: 24px; color: #999; cursor: pointer;"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="col-md-4">
                     <div class="card">
@@ -270,7 +215,6 @@
         </form>
     </div>
     <script src="{{ asset('js/dropimage.js') }}"></script>
-    <script src="{{ asset('js/addvariation.js') }}"></script>
     <script>
         document.getElementById('product_category_id').addEventListener('change', function() {
             var categoryId = this.value;

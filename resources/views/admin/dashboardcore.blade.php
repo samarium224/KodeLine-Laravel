@@ -127,11 +127,10 @@
                             <span class="hide-menu">Orders</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{ route('order.viewOrders') }}">Order list</a></li>
-                            <li><a href="{{ route('order.preOrderItem') }}">Add Pre Order Items</a></li>
-                            <li><a href="{{ route('order.preOrderItem.view') }}">Pre Order Items</a></li>
                             <li><a href="{{ route('order.unpaid') }}">Unpaid Orders</a></li>
                             <li><a href="{{ route('order.pending') }}">Pending Orders</a></li>
                             <li><a href="{{ route('order.complete') }}">Completed Orders</a></li>
+                            <li><a href="{{ route('order.returned') }}">Returned Orders</a></li>
                         </ul>
                     </li>
                     <hr class="side-hr">
@@ -140,11 +139,21 @@
                             <i class="fa fa-shopping-cart"></i>
                             <span class="hide-menu">Products</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="{{ route('addproducts') }}">Add Product</a></li>
-                            <li><a href="{{ route('allproducts') }}">Inventory</a></li>
-                            <li><a href="{{ route('addcategory') }}">Add Collection</a></li>
                             <li><a href="{{ route('allcategory') }}">Collections</a></li>
                             <li><a href="{{ route('addsubcategory') }}">Category</a></li>
+                            <li><a href="{{ route('allproducts') }}">Inventory</a></li>
+                            {{-- <li><a href="{{ route('addproducts') }}">Add Product</a></li>
+                            <li><a href="{{ route('addcategory') }}">Add Collection</a></li> --}}
+                        </ul>
+                    </li>
+                    <hr class="side-hr">
+                    <li>
+                        <a class="has-arrow" href="#preorder" aria-expanded="false">
+                            <i class="fa fa-cart-plus"></i>
+                            <span class="hide-menu">Pre Order</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{ route('order.preOrderItem') }}">Add Pre Order Items</a></li>
+                            <li><a href="{{ route('order.preOrderItem.view') }}">Pre Order Items</a></li>
                         </ul>
                     </li>
                     <hr class="side-hr">

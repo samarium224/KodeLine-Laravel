@@ -67,7 +67,23 @@
                 </div>
                 <div class="form-group">
                     <input type="text" id="category_name" name="category_name" class="form-control"
-                        placeholder="e.g. Summer collection">
+                        placeholder="e.g. Summer collection" required>
+                </div>
+                <div class="card-title text-secondary mb-3">
+                    <b>Collection Short Title</b>
+                    <p class="my-2 card-subtitle">Short title will appear in the home page in front of the collection image</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="category_title" name="category_title" class="form-control"
+                        placeholder="e.g. Sun-kissed style for every little princess!" required>
+                </div>
+                <div class="card-title text-secondary mb-3">
+                    <b>Collection Description</b>
+                    <p class="my-2 card-subtitle">Description will appear in the collection page above the collection Header image</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="category_description" name="category_subtitle" class="form-control"
+                        placeholder="e.g. Simplify parenting decisions with our thoughtfully curated kid's fashion" required>
                 </div>
                 <div>
                     <div class="card-title text-secondary"><b>Collection Image</b></div>
