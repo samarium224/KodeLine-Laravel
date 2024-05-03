@@ -123,6 +123,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/customers/sort/{sortID}', [HelpersController::class, 'SortCustomer'])->name('customers.sort');
     //ajax subcategory
     Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
+    Route::get('/itemshowcase?id=${id}?color=${colorIndex}', [ShowcaseProduct::class, 'getVarient']);
 });
 
 require __DIR__ . '/auth.php';

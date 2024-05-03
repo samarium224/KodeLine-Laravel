@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
+import axios from "axios";
 
 import ItemNameAndPrice from "./ItemNameAndPrice";
 import ColorVariants from "./ColorVariants";
@@ -10,7 +11,6 @@ import DescriptionText from "./DescriptionTexts";
 // import { itemData } from "./data";
 
 const ItemDescriptionTexts = ({ itemData }) => {
-    console.log(itemData);
     const [selectedIndex, setSelectedIndex] = useState({ color: 0, size: 0 });
 
     const onChangeSize = (sizeIndex) => {
@@ -18,6 +18,15 @@ const ItemDescriptionTexts = ({ itemData }) => {
     };
     const onChangeColor = (colorIndex) => {
         setSelectedIndex({ ...selectedIndex, color: colorIndex });
+
+        axios
+            .get(`/itemshowcase?id=${itemData.itemID}?color=${colorIndex}`)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
     };
 
     return (

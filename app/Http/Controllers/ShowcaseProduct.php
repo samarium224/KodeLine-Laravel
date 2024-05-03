@@ -58,6 +58,7 @@ class ShowcaseProduct extends Controller
             }
 
             return [
+                'itemID' => $item->id,
                 'itemName' => $item->product_name,
                 'imgURL' => [
                     'primary' => $product_img[0],
@@ -165,5 +166,9 @@ class ShowcaseProduct extends Controller
             //throw $th;
             return redirect()->route('home');
         }
+    }
+
+    public function getVarient(Request $request){
+
     }
 }
