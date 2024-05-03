@@ -50,7 +50,7 @@ class DashboardOrderController extends Controller
             'compare_price' => 'required',
             'quantity' => 'required|integer',
             'product_short_description' => 'required|string',
-            'product_long_description' => 'required|string',
+            'product_long_description' => 'nullable|string',
             'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'ageRange.*' => 'required',
             'ageGroup.*' => 'nullable',

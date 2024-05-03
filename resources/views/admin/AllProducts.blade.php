@@ -6,27 +6,37 @@
 @section('page-active-heading', 'Products')
 
 @section('dashboard-content')
-    @if (session()->has('message'))
-        <div class="alert alert-info">
-            {{ session()->get('message') }}
-        </div>
-    @endif
     <div class="card">
+        <div class="card-title text-dark mb-3">
+            <b>Add a new product</b>
+            <hr>
+            <a href="{{ route('addproducts') }}">
+                <button class="btn btn-sm btn-dark px-2">
+                    Add new product
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        @if (session()->has('message'))
+            <div class="alert alert-info">
+                {{ session()->get('message') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="border-0"><a class="text-dark"
-                        href="{{ route('product.sort', 'id') }}">
-                        ID </a>
+                    <th scope="col" class="border-0"><a class="text-dark" href="{{ route('product.sort', 'id') }}">
+                            ID </a>
                     </th>
                     <th scope="col" class="border-0">Product Image</th>
                     <th scope="col" class="border-0"><a class="text-dark"
-                        href="{{ route('product.sort', 'product_name') }}">
-                        Product Name </a>
+                            href="{{ route('product.sort', 'product_name') }}">
+                            Product Name </a>
                     </th>
                     <th scope="col" class="border-0"><a class="text-dark"
-                        href="{{ route('product.sort', 'product_category_id') }}">
-                        Collection</a>
+                            href="{{ route('product.sort', 'product_category_id') }}">
+                            Collection</a>
                     </th>
                     <th scope="col" class="border-0">Category</th>
                     <th scope="col" class="border-0">Quantity</th>
@@ -34,9 +44,8 @@
                     <th scope="col" class="border-0">Size</th>
                     <th scope="col" class="border-0">Unit Price</th>
                     <th scope="col" class="border-0 w-10">
-                        <a class="text-dark"
-                        href="{{ route('product.sort', 'continue_selling') }}">
-                        Continue selling
+                        <a class="text-dark" href="{{ route('product.sort', 'continue_selling') }}">
+                            Continue selling
                         </a>
                     </th>
                     <th scope="col" class="border-0">Action</th>
@@ -77,13 +86,14 @@
                         <td>
                             <a href="{{ route('editproduct', $product->id) }}" class="btn btn-secondary btn-sm">edit</a>
                             <a href="{{ route('deleteproduct', $product->id) }}" class="btn btn-dark btn-sm">delete</a>
+                            <a href="{{ route('config.variant', $product->id) }}" class="btn btn-info btn-sm">configure variant</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
         <div class="my-5 d-flex justify-content-center">
-                {{$products->onEachSide(1)->links()}}
+            {{ $products->onEachSide(1)->links() }}
         </div>
     </div>
 @endsection

@@ -7,6 +7,17 @@
 
 @section('dashboard-content')
     <div class="card">
+        <div class="card-title text-dark mb-3">
+            <b>Add a new collection</b>
+            <hr>
+            <a href="{{ route('addcategory') }}">
+                <button class="btn btn-sm btn-dark px-2">
+                    Add new collection
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="card">
         @if (session()->has('message'))
             <div class="alert alert-info">
                 {{ session()->get('message') }}

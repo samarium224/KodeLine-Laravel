@@ -5876,21 +5876,21 @@ footer p {
 
 .form-control {
     height: 35px;
-    border-radius: 0;
+    border-radius: 15px;
     box-shadow: none;
-    border-color: #e7e7e7;
+    border-color: #1b1b1b;
     font-family: 'Philosopher', sans-serif;
 }
 
 .form-control:hover {
     box-shadow: none;
-    border-color: #e7e7e7;
+    border-color: #1a1a1a;
 }
 
 .form-control.active,
 .form-control:focus {
     box-shadow: none;
-    border-color: #878787;
+    border-color: #1a1a1a;
 }
 
 .input-default {
@@ -6551,6 +6551,7 @@ tbody tr td:last-child {
 .table>thead>tr>th {
     line-height: 32px;
     vertical-align: top;
+    text-align: center;
 }
 
 .table>thead>tr>th {

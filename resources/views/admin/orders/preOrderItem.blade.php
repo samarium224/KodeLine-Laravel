@@ -62,14 +62,14 @@
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" id="product_name" name="product_name"
-                                    placeholder="Short sleeve t-shirt" class="form-control">
+                                    placeholder="Short sleeve t-shirt" class="form-control" required>
                             </div>
                             <div class="card-subtitle text-dark mt-4">
                                 <b>Short Description</b>
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" id="product_name" name="product_short_description"
-                                    placeholder="Write a short description of your product" class="form-control">
+                                    placeholder="Write a short description of your product" class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -101,12 +101,12 @@
                                 <div class="col-md-6">
                                     <div class="card-subtitle mt-3">Price</div>
                                     <input type="number" min="0" step="0.01" id="price" name="price"
-                                        placeholder="0.00" class="form-control">
+                                        placeholder="0.00" class="form-control" required>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-subtitle mt-3">Compare at price</div>
                                     <input type="number" min="0" step="0.01" id="price" name="compare_price"
-                                        placeholder="0.00" class="form-control">
+                                        placeholder="0.00" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -120,21 +120,21 @@
                                     <div class="form-group mb-3">
                                         <div class="card-subtitle mt-3">Quantity</div>
                                         <input type="number" id="quantity" name="quantity" placeholder="1000"
-                                            class="form-control">
+                                            class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group mb-3">
                                         <div class="card-subtitle mt-3">Age range (min)</div>
                                         <input type="number" id="quantity" name="ageRange[]" placeholder="2"
-                                            class="form-control">
+                                            class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group mb-3">
                                         <div class="card-subtitle mt-3">Age range (max)</div>
                                         <input type="number" id="quantity" name="ageRange[]" placeholder="6"
-                                            class="form-control">
+                                            class="form-control" required>
                                     </div>
                                 </div>
                             </div>

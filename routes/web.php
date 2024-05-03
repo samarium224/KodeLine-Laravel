@@ -83,6 +83,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/edit-product/{id}', 'EditProduct')->name('editproduct');
         Route::post('admin/update-product', 'UpdateProduct')->name('updateproduct');
         Route::get('admin/delete-product/{id}', 'DeleteProduct')->name('deleteproduct');
+        Route::get('admin/product-variant-configure/{id}', 'ConfigVariant')->name('config.variant');
+        Route::post('admin/product-variant-store', 'StoreVariant')->name('variant.store');
+        Route::post('admin/product-variant-items-store', 'StoreVariantItems')->name('variant.nextstep.store');
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
     });
 
@@ -94,6 +97,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/orders/unpaid', 'OrderUnpaid')->name('order.unpaid');
         Route::get('/admin/orders/pending', 'OrderPending')->name('order.pending');
         Route::get('/admin/orders/complete', 'OrderComplete')->name('order.complete');
+        Route::get('/admin/orders/returned', 'OrderReturned')->name('order.returned');
         Route::post('/admin/preorder/store', 'StorePreOrder')->name('preorder.store');
         Route::get('/admin/preorder/edit/{id}', 'editPreOrder')->name('preorder.edit');
         Route::post('/admin/preorder/update', 'updatePreOrder')->name('preorder.update');

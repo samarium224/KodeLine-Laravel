@@ -68,7 +68,23 @@
                 <div class="form-group">
                     <input type="hidden" name="category_id" value="{{ $category->id }}">
                     <input type="text" id="category_name" name="category_name" class="form-control"
-                        placeholder="e.g. Summer collection" value="{{ $category->category_name }}">
+                        placeholder="e.g. Summer collection" value="{{ $category->category_name }}" required>
+                </div>
+                <div class="card-title text-secondary mb-3">
+                    <b>Collection Short Title</b>
+                    <p class="my-2 card-subtitle">Short title will appear in the home page in front of the collection image</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="category_title" value="{{ $category->category_title }}" name="category_title" class="form-control"
+                        placeholder="e.g. Sun-kissed style for every little princess!" required>
+                </div>
+                <div class="card-title text-secondary mb-3">
+                    <b>Collection Description</b>
+                    <p class="my-2 card-subtitle">Description will appear in the collection page above the collection Header image</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="category_description" value="{{ $category->category_subtitle }}" name="category_subtitle" class="form-control"
+                        placeholder="e.g. Simplify parenting decisions with our thoughtfully curated kid's fashion" required>
                 </div>
                 <div>
                     <div class="card-title text-secondary"><b>Collection Image</b></div>
@@ -78,7 +94,7 @@
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
                             <input type="file" id="product_img1" name="category_img" accept="image/*"
-                                style="opacity: 0;">
+                                style="opacity: 0;" required>
                         </div>
                         <div class="col-md-4">
                             <!-- Display existing image -->
@@ -100,7 +116,7 @@
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
                             <input type="file" id="product_img2" name="cat_headerImg_PC" accept="image/*"
-                                style="opacity: 0;">
+                                style="opacity: 0;" required>
                         </div>
                         <div class="col-md-4">
                             <!-- Display existing image -->
@@ -122,7 +138,7 @@
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
                             <input type="file" id="product_img3" name="cat_headerImg_mobile" accept="image/*"
-                                style="opacity: 0;">
+                                style="opacity: 0;" required>
                         </div>
                         <div class="col-md-4">
                             <!-- Display existing image -->

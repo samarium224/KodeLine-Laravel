@@ -13,6 +13,7 @@ class ProductAttributes extends Model
         'product_id',
         'attribute',
         'value',
+        'sizes',
         'imageUrls',
         'stock',
         'price',
