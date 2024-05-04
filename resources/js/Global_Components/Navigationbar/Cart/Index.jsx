@@ -1,5 +1,8 @@
 import { Box, Button, IconButton, Drawer, Typography } from "@mui/material";
+import { Link } from "@inertiajs/react";
+
 import PersonIcon from "@mui/icons-material/Person";
+
 import { checkoutItems } from "../data";
 import { CartContent } from "./CartContent";
 
@@ -66,13 +69,14 @@ export const NavigationCheckout = ({
             </Button>
             <Typography color={navButtonStyle.color}>|</Typography>
             <IconButton
+                component={Link}
+                href={route("dashboard")}
                 sx={{
                     color: navButtonStyle.color,
                     ml: { xs: "0px", lg: "12px" },
                     "&:hover": { backgroundColor: "transparent" },
                     scale: { xs: "0.825", lg: "1.1" },
                 }}
-                onClick={toggleCart(true)}
             >
                 <PersonIcon />
             </IconButton>

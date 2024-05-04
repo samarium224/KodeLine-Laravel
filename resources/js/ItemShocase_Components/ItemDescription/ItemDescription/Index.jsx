@@ -10,16 +10,12 @@ import DescriptionText from "./DescriptionTexts";
 // import { itemData } from "./data";
 
 const ItemDescriptionTexts = ({ itemData }) => {
-    console.log(itemData);
     const [selectedIndex, setSelectedIndex] = useState({ color: 0, size: 0 });
+    console.log(itemData);
 
     const onChangeSize = (sizeIndex) => {
         setSelectedIndex({ ...selectedIndex, size: sizeIndex });
     };
-    const onChangeColor = (colorIndex) => {
-        setSelectedIndex({ ...selectedIndex, color: colorIndex });
-    };
-
     return (
         <Box sx={{ width: { xs: "100%", md: "35%" } }}>
             <ItemNameAndPrice
@@ -27,10 +23,9 @@ const ItemDescriptionTexts = ({ itemData }) => {
                 price={itemData.price}
             />
             <ColorVariants
+                itemID={itemData.itemID}
                 colorVariants={itemData.colorVariants}
-                selectedIndex={selectedIndex}
-                onChangeColor={onChangeColor}
-                colorIndex={selectedIndex.color}
+                colorIndex={itemData.colorID}
             />
             <SizeVariants
                 sizes={itemData.sizes}

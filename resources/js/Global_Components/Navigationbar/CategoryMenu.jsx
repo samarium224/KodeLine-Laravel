@@ -3,15 +3,17 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import { Link } from "@inertiajs/react";
 // import { Collections } from "@/Global_data/Collections";
 
-const CategoryMenu = ({ sx, collections }) => {
+const CategoryMenu = ({ sx, collections, setCollectionOpen }) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
+        setCollectionOpen(true);
     };
 
     const handleMenuClose = () => {
         setAnchorEl(null);
+        setCollectionOpen(false);
     };
 
     useEffect(() => {
@@ -38,6 +40,11 @@ const CategoryMenu = ({ sx, collections }) => {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
                 sx={{
+                    width: "100vw",
+                    height: "300px",
+                    backgroundColor: "white",
+                    zIndex: 0,
+                    top: { xl: "56px", md: "49px", xs: "30px" },
                     "& .MuiPaper-elevation": {
                         borderRadius: "0px",
                         boxShadow: "none",

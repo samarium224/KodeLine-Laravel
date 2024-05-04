@@ -18,14 +18,9 @@ const SignatureItemsHeader = ({
     const isInView = useInView(ref, { once: true });
     const mainControls = useAnimation();
 
-    const filteredCollections = [...categoryList];
-
-    if (
-        filteredCollections.length > 0 &&
-        filteredCollections[filteredCollections.length - 1].collection_name ===
-            "none"
-    )
-        filteredCollections.pop();
+    const filteredCollections = [...categoryList].filter(
+        (item) => item.collection_name !== "none"
+    );
     filteredCollections.unshift({ collection_name: "All", collection_id: -1 });
 
     return (

@@ -32,7 +32,7 @@ const ProductShowcase = ({
             component={Link}
             href={
                 buttonText == "ADD TO CART"
-                    ? route("itemshowcase", { id: itemID })
+                    ? route("itemshowcase", { id: itemID, color: 0 })
                     : route("preordershowcase", { id: itemID })
             }
             sx={{
@@ -100,6 +100,7 @@ const ProductShowcase = ({
                     opacity: { xs: "100", md: "0" },
                     transition: ".33s",
                     mb: { xs: "0", md: "-10px" },
+                    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.15)",
                 }}
             />
         </Box>

@@ -8,6 +8,8 @@ const Itemdesc = ({
     alternativeCard,
 }) => {
     const theme = useTheme();
+    oldPrice = oldPrice > currentPrice ? oldPrice : false;
+
     return (
         <Box
             sx={{

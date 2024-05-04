@@ -2,10 +2,8 @@
 reduce size of footer top image
 
 ========== Query ==========
-Lines after footer headers
-footer links
-Services Mobile fix
-grid everything
+subcategories section in collection page
+add to cart background shadow
 
 ========== Completed Query ==========
 # Services Fontsize #
@@ -25,7 +23,6 @@ grid everything
 you may also like section
 prompt phone number and address
 product variation logic need work
-
 
 ======== hosting ========
 update bootstrap's style.css

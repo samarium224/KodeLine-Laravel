@@ -6,6 +6,10 @@ const ItemDescriptionImages = ({ itemData }) => {
     const [open, setOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState("");
 
+    itemData.imgURL.secondary = itemData.imgURL.secondary.filter(
+        (url) => url !== null
+    );
+
     const handleOpen = (image) => {
         setSelectedImage(image);
         setOpen(true);
