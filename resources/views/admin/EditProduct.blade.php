@@ -168,80 +168,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="card variation-section">
-                        <div class="card-body">
-                            <div class="row mb-2">
-                                <div class="col-md-9">
-                                    <div class="card-subtitle text-dark"><b>Add variation</b></div>
-                                </div>
-                                <div class="col-md-3 text-right">
-                                    <button class="btn btn-dark btn-sm" type="button" id="addVariation"><i
-                                            class="fa fa-plus"></i> Add
-                                        Variation</button>
-                                </div>
-                            </div>
-                            @php
-
-                            @endphp
-                            <div class="card">
-                                <div class="card-title">Image Variations</div>
-                                <div class="row">
-                                    @foreach ($productinfo->attributes as $attribute)
-                                        <div class="col-3">
-                                            <img class="img-thumbnail" src="{{ asset($attribute->imageUrls) }}" alt="">
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            @foreach ($productinfo->attributes as $i => $attribute)
-                                <input type="hidden" name="attribute_id[]" value="{{$attribute->id}}">
-                                <div class="variation row" id="variationTemplate">
-                                    <div class="col-md-2 mb-3 pr-0">
-                                        <div class="upload-img-icon" style="position: relative;">
-                                            <input type="file" name="imageVariations[]" accept="image/*"
-                                                class="form-control image-upload"
-                                                style="opacity: 0; position: absolute; width: 100%; height: 100%; cursor: pointer;">
-                                            <img src="" alt=""
-                                                style="max-width: 100%; max-height: 100%; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2 mb-3 pr-0">
-                                        <label class="mx-1 card-subtitle" for="size">Variation Option</label>
-                                        <select name="variation_option[]" id="variation_option" class="form-control">
-                                            <option value="size" {{ $attribute->attribute == 'size' ? 'selected' : '' }}>
-                                                Size
-                                            </option>
-                                            <option value="color" {{ $attribute->attribute == 'color' ? 'selected' : '' }}>
-                                                Color
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3 mb-3 pr-0">
-                                        <label class="mx-1 card-subtitle" for="size">Value</label>
-                                        <input type="text" name="valueGroup[]" value="{{$attribute->value}}" class="form-control" placeholder="Light blue">
-                                    </div>
-                                    <div class="col-md-2 mb-3 pr-0">
-                                        <label class="mx-1 card-subtitle" for="size">Stock</label>
-                                        <input type="number" name="quantityGroup[]" value="{{$attribute->stock}}" min="1" class="form-control"
-                                            placeholder="in stock">
-                                    </div>
-                                    <div class="col-md-2 mb-3 pr-0">
-                                        <label class="mx-1 card-subtitle" for="size">Price</label>
-                                        <input type="number" name="priceGroup[]" value="{{$attribute->price}}" min="1" class="form-control"
-                                            placeholder="100">
-                                    </div>
-                                    <!-- Delete Button -->
-                                    <div class="col-md-1 mb-3">
-                                        <i class="fa fa-trash-o delete-variation mt-2"
-                                            style="font-size: 24px; color: #999; cursor: pointer;"></i>
-                                    </div>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
@@ -295,5 +221,4 @@
         </form>
     </div>
     <script src="{{ asset('js/dropimage.js') }}"></script>
-    <script src="{{ asset('js/addvariation.js') }}"></script>
 @endsection

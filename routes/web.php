@@ -92,6 +92,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('admin/product-variant-items-store', 'StoreVariantItems')->name('variant.nextstep.store');
         Route::get('admin/product-variant-images/{id}', 'SetVariantImages')->name('setVarientImage');
         Route::post('admin/product-variant-images-store', 'VariantImageStore')->name('varientImage.store');
+        Route::get('admin/product-variant-delete/{id}', 'DeleteVariant')->name('variant.delete');
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
     });
 

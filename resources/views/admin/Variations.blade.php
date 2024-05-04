@@ -60,6 +60,7 @@
                                     Price
                                 </th>
                                 <th scope="col" class="border-0">Available</th>
+                                <th scope="col" class="border-0"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -81,13 +82,19 @@
                                     </th>
                                     <th scope="row">{{ $attribute->value }}</th>
                                     <td>
-                                        <input type="text" name="sizes[]" value="{{ $attribute->sizes }}" class="form-control" placeholder="e.g. 3 years, 4 years, 5 years"
-                                            required>
+                                        <input type="text" name="sizes[]" value="{{ $attribute->sizes }}"
+                                            class="form-control" placeholder="e.g. 3 years, 4 years, 5 years" required>
                                     </td>
                                     <td><input type="text" name="price[]" value="{{ $product->price }}"
                                             class="form-control" required></td>
                                     <td><input type="text" name="stocks[]" value="{{ $product->quantity }}"
                                             class="form-control" required></td>
+                                    <td>
+                                        <a href="{{ route('variant.delete', $attribute->id) }}">
+                                            <i class="fa fa-trash-o delete-variation mt-2"
+                                                style="font-size: 20px; color: #4d4d4d; cursor: pointer;"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

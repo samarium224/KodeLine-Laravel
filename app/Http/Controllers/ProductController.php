@@ -190,58 +190,11 @@ class ProductController extends Controller
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
             'ageRange.*' => 'required',
-            'variation_option.*' => 'nullable',
-            'attribute_id.*' => 'nullable',
-            'valueGroup.*' => 'nullable',
-            'quantityGroup.*' => 'nullable|integer',
-            'priceGroup.*' => 'nullable|integer',
-            'imageVariations.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
         ]);
 
         // dd($validatedData);
         //get the product id
         $product_id = $request->product_id;
-
-        if (isset($validatedData['variation_option'])) {
-            foreach ($validatedData['variation_option'] as $i => $attributes) {
-                // current attribute id
-                $attribute_id = $request->attribute_id[$i];
-                //handle image here
-                if ($request->file('imageVariations') != null) {
-                    if ($vfiles = $request->file('imageVariations')) {
-                        if (isset($vfiles[$i])) {
-                            $vfile = $vfiles[$i];
-                            $timestamp = microtime(true) * 10000; // High resolution timestamp
-                            $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                            $vimage_name = $timestamp . '_' . $randomString . '.' . $vfile->getClientOriginalExtension();
-                            $vfile->move(public_path('uploads'), $vimage_name);
-                            $vimg_url = 'uploads/' . $vimage_name;
-                            $img_variation = $vimg_url;
-                        } else {
-                            $img_variation = "";
-                        }
-                    }
-                } else {
-                    $img_variation = ProductAttributes::where('product_id', $product_id)->value('imageUrls');
-                }
-
-                //handle attributes
-                $attribute = $attributes;
-                $value = $request->valueGroup[$i];
-                $stock = $request->quantityGroup[$i];
-                $price = $request->priceGroup[$i];
-
-                // handle database
-                ProductAttributes::findOrFail($attribute_id)->update([
-                    'product_id' => $product_id,
-                    'attribute' => $attribute,
-                    'value' => $value,
-                    'imageUrls' => $img_variation,
-                    'stock' => $stock,
-                    'price' => $price
-                ]);
-            }
-        }
 
         $ageRange = implode('|', $request->ageRange);
 
