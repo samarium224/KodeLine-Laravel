@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\HelpersController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowcaseProduct;
 use App\Http\Controllers\SubCategoryController;
@@ -31,7 +32,7 @@ use Inertia\Inertia;
 Route::get('/', [HomepageController::class, 'Index'])->name('home');
 
 //user dashboard
-Route::get('/dashboard', [UserDashboardController::class,'Index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserDashboardController::class, 'Index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //payment routes
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
@@ -75,6 +76,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/edit-subcategory/{id}', 'Edit_SubCategory')->name('editsubcategory');
         Route::post('admin/update-subcategory', 'SubCategory_Update')->name('updatesubcategory');
         Route::get('admin/delete-subcategory/{id}', 'Delete_SubCategory')->name('deletesubcategory');
+    });
+
+    Route::controller(ProductController::class)->group(function () {
         // products
         Route::get('/admin/all-products', 'All_Products')->name('allproducts');
         Route::get('/admin/add-products', 'Add_Products')->name('addproducts');
@@ -87,6 +91,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('admin/product-variant-configure/{id}', 'ConfigVariant')->name('config.variant');
         Route::post('admin/product-variant-store', 'StoreVariant')->name('variant.store');
         Route::post('admin/product-variant-items-store', 'StoreVariantItems')->name('variant.nextstep.store');
+        Route::get('admin/product-variant-images/{id}', 'SetVariantImages')->name('setVarientImage');
+        Route::post('admin/product-variant-images-store', 'VariantImageStore')->name('varientImage.store');
         Route::get('admin/product-details/{id}', 'productDetails')->name('productdetails');
     });
 

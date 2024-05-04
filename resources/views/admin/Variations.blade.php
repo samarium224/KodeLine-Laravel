@@ -48,6 +48,9 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="border-0">
+                                    Image
+                                </th>
+                                <th scope="col" class="border-0">
                                     Variant
                                 </th>
                                 <th scope="col" class="border-0">
@@ -63,9 +66,22 @@
                             @foreach ($product->attributes as $attribute)
                                 <tr>
                                     <input type="hidden" value="{{ $attribute->id }}" name="attribute_id[]">
+                                    <th scope="row">
+                                        <a href="{{ route('setVarientImage', $attribute->id) }}">
+                                            @php
+                                                $variant_img = explode('|', $attribute->imageUrls);
+                                            @endphp
+                                            @if ($variant_img[0] != null)
+                                                <img src="{{ asset($variant_img[0]) }}" alt="" width="60px">
+                                            @else
+                                                <i class="fa fa-picture-o mt-2" style="font-size: 24px"
+                                                    aria-hidden="true"></i>
+                                            @endif
+                                        </a>
+                                    </th>
                                     <th scope="row">{{ $attribute->value }}</th>
                                     <td>
-                                        <input type="text" name="sizes[]" class="form-control" placeholder="e.g. 3 years"
+                                        <input type="text" name="sizes[]" value="{{ $attribute->sizes }}" class="form-control" placeholder="e.g. 3 years, 4 years, 5 years"
                                             required>
                                     </td>
                                     <td><input type="text" name="price[]" value="{{ $product->price }}"
