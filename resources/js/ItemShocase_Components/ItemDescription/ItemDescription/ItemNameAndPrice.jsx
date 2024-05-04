@@ -22,7 +22,7 @@ const ItemNameAndPrice = ({ itemName, price }) => {
                 display="block"
                 color={theme.palette.text.grey[500]}
             >
-                ${price.toFixed(2)}
+                ${price}
             </Typography>
         </Box>
     );

@@ -43,18 +43,25 @@ class ShowcaseProduct extends Controller
             $colorGroup = [];
             $imgvariation = [];
             $sizeGroup = [];
-
+            $stockGroup = [];
+            $priceGroup = [];
             // Accessing colorGroup and sizeGroup from attributes relationship
             if (count($item->attributes) != 0) {
                 foreach ($item->attributes as $key => $attribute) {
                     if ($key == $color_id) {
                         $sizeGroup = explode(',', $attribute->sizes);
-                        $imgvariation[] = $attribute->imageUrls;
+                        $stockGroup = explode(',', $attribute->stock);
+                        $priceGroup = explode(',', $attribute->price);
+                        $imgvariation = explode('|',$attribute->imageUrls);
+                        $product_img = $imgvariation[0];
                     }
                     $colorGroup[] = $attribute->value;
                 }
+                $imgvariation = array_slice($imgvariation, 1);
             } else {
                 $imgvariation = array_slice($product_img, 1);
+                $stockGroup = $item->quantity;
+                $priceGroup = $item->price;
             }
 
             return [
@@ -62,12 +69,12 @@ class ShowcaseProduct extends Controller
                 'colorID' => (int)$color_id,
                 'itemName' => $item->product_name,
                 'imgURL' => [
-                    'primary' => $product_img[0],
+                    'primary' => $product_img,
                     'secondary' => $imgvariation,
                 ],
-                'price' => $item->price,
+                'price' => $priceGroup,
                 'colorVariants' => $colorGroup,
-                'stock' => $item->quantity,
+                'stock' => $stockGroup,
                 'sizes' => $sizeGroup,
                 'attributes' => $item->attributes,
                 'itemDescription' => [
