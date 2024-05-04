@@ -1,13 +1,10 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
+import { Link } from "@inertiajs/react";
 
-const ColorVariants = ({
-    colorVariants,
-    selectedIndex,
-    onChangeColor,
-    colorIndex,
-}) => {
+const ColorVariants = ({ itemID, colorVariants, colorIndex }) => {
     const theme = useTheme();
+    console.log(colorIndex);
 
     if (colorVariants[0] == "") colorVariants.shift();
     if (colorVariants.length > 0)
@@ -33,11 +30,13 @@ const ColorVariants = ({
                 </Typography>
                 {colorVariants.map((colorVariant, i) => (
                     <Box
+                        component={Link}
+                        href={route("itemshowcase", { id: itemID, color: i })}
                         key={i}
                         sx={{
                             backgroundSize: "cover",
                             border: `2px solid ${
-                                selectedIndex.color === i
+                                colorIndex === i
                                     ? theme.palette.text.grey[800]
                                     : theme.palette.text.grey[400]
                             }`,
@@ -45,7 +44,6 @@ const ColorVariants = ({
                             transition: "0.2s all ease",
                         }}
                         display="inline-block"
-                        onClick={() => onChangeColor(i)}
                     >
                         <img
                             src={
