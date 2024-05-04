@@ -41,6 +41,7 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
+// Route::get('/itemshowcase?id=${id}?color=${colorIndex}', [ShowcaseProduct::class, 'getVarient']);
 Route::get('/preordershowcase', [ShowcaseProduct::class, 'ShowPreorderItem'])->name('preordershowcase');
 
 // cart route
@@ -123,7 +124,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/customers/sort/{sortID}', [HelpersController::class, 'SortCustomer'])->name('customers.sort');
     //ajax subcategory
     Route::get('/getSubcategories/{categoryId}', [SubCategoryController::class, 'getSubcategories']);
-    Route::get('/itemshowcase?id=${id}?color=${colorIndex}', [ShowcaseProduct::class, 'getVarient']);
 });
 
 require __DIR__ . '/auth.php';

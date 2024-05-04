@@ -8,6 +8,7 @@ import {
     Typography,
     useTheme,
     useMediaQuery,
+    Divider,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -131,6 +132,7 @@ const SocialLinks = ({ collection }) => {
                         }}
                     />
                 </Button>
+                {/* <Divider sx={{ borderColor: theme.palette.text.white[900] }} /> */}
                 <Collapse in={expanded} unmountOnExit>
                     <Box sx={{ mt: 0.25 }}>
                         {items.map((item, i) => (
@@ -148,6 +150,7 @@ const SocialLinks = ({ collection }) => {
                         ))}
                     </Box>
                 </Collapse>
+                {/* <Divider sx={{ borderColor: theme.palette.text.white[900] }} /> */}
             </Box>
         );
     };

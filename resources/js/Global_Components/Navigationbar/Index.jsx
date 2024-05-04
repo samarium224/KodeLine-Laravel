@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CategoryMenu from "./CategoryMenu";
-import DrawerContent from "./ResponsiveDrawer";
+import DrawerContent from "./ResponsiveDrawer/ResponsiveDrawer";
 import { NavigationCheckout } from "./Cart/Index";
 
 const Navigation = ({ collections, auth, alternativeColor = false }) => {
@@ -22,6 +22,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
     const [cartData, setcartData] = useState([]);
+    const [collectionOpen, setCollectionOpen] = useState(false);
+    if (collectionOpen) alternativeColor = true;
 
     const navButtonStyle = {
         color: alternativeColor
@@ -133,7 +135,11 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                 <Link href={route("home")}>
                     <Button sx={navButtonStyle}>Home</Button>
                 </Link>
-                <CategoryMenu sx={navButtonStyle} collections={collections} />
+                <CategoryMenu
+                    sx={navButtonStyle}
+                    collections={collections}
+                    setCollectionOpen={setCollectionOpen}
+                />
                 <Button sx={navButtonStyle}>About us</Button>
                 {auth.user ? (
                     <Link href={route("dashboard")}>

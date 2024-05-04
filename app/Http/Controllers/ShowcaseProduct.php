@@ -15,7 +15,7 @@ class ShowcaseProduct extends Controller
     {
         $validatedData = $request->validate([
             'id' => 'required|integer',
-            'color' => 'nullable'
+            'color' => 'required|integer'
         ]);
 
         $id = $request->get('id');
@@ -59,6 +59,7 @@ class ShowcaseProduct extends Controller
 
             return [
                 'itemID' => $item->id,
+                'colorID' => (int)$color_id,
                 'itemName' => $item->product_name,
                 'imgURL' => [
                     'primary' => $product_img[0],
