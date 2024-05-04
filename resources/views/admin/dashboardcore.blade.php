@@ -152,7 +152,6 @@
                             <i class="fa fa-cart-plus"></i>
                             <span class="hide-menu">Pre Order</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <li><a href="{{ route('order.preOrderItem') }}">Add Pre Order Items</a></li>
                             <li><a href="{{ route('order.preOrderItem.view') }}">Pre Order Items</a></li>
                         </ul>
                     </li>

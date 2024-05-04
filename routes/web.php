@@ -42,7 +42,6 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
-// Route::get('/itemshowcase?id=${id}?color=${colorIndex}', [ShowcaseProduct::class, 'getVarient']);
 Route::get('/preordershowcase', [ShowcaseProduct::class, 'ShowPreorderItem'])->name('preordershowcase');
 
 // cart route

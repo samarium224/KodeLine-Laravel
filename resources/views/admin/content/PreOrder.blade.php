@@ -62,6 +62,24 @@
         <form action="{{ route('content.preorder.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
+                <div class="card-title text-secondary mb-3">
+                    <b>Pre Order Title</b>
+                    <p class="my-2 card-subtitle">Title will appear in the home page in front of the image</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="category_title" name="title" class="form-control"
+                        placeholder="e.g. Coming Soon!" required>
+                </div>
+                <div class="card-title text-secondary mb-3">
+                    <b>Pre Order Subtitle</b>
+                    <p class="my-2 card-subtitle">subtitle will appear bellow the title</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="category_description" name="subtitle" class="form-control"
+                        placeholder="e.g. Simplify parenting decisions with our thoughtfully curated kid's fashion" required>
+                </div>
+            </div>
+            <div class="card">
                 <div>
                     <div class="card-title text-secondary"><b>Home Page Image</b></div>
                     <div class="row">

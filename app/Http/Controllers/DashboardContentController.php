@@ -23,8 +23,8 @@ class DashboardContentController extends Controller
             'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            // 'category_title'=> 'required',
-            // 'category_subtitle'=> 'required',
+            'title'=> 'nullable',
+            'subtitle'=> 'nullable',
         ]);
 
         if ($file = $request->file('category_img')) {
@@ -55,12 +55,16 @@ class DashboardContentController extends Controller
         if ($content == null) {
             Content::create([
                 'content_name' => 'preordercontent',
+                'title' => $request->title,
+                'subtitle' => $request->subtitle,
                 'HomePageImg' => $img_url,
                 'MobileImg' => $header_url,
                 'viewPageImg' => $mobileHeader_url,
             ]);
         } else {
             Content::where('content_name', 'preordercontent')->update([
+                'title' => $request->title,
+                'subtitle' => $request->subtitle,
                 'HomePageImg' => $img_url,
                 'MobileImg' => $header_url,
                 'viewPageImg' => $mobileHeader_url,

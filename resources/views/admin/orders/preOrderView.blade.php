@@ -6,6 +6,17 @@
 @section('page-active-heading', 'Pre Order Products')
 
 @section('dashboard-content')
+    <div class="card">
+        <div class="card-title text-dark mb-3">
+            <b>Add a pre-order product</b>
+            <hr>
+            <a href="{{ route('order.preOrderItem') }}">
+                <button class="btn btn-sm btn-dark px-2">
+                    Add new pre-order product
+                </button>
+            </a>
+        </div>
+    </div>
     @if (session()->has('message'))
         <div class="alert alert-info">
             {{ session()->get('message') }}
@@ -15,21 +26,19 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="border-0"><a class="text-dark"
-                        href="{{ route('product.sort', 'id') }}">
-                        ID </a>
+                    <th scope="col" class="border-0"><a class="text-dark" href="{{ route('product.sort', 'id') }}">
+                            ID </a>
                     </th>
                     <th scope="col" class="border-0">Product Image</th>
                     <th scope="col" class="border-0"><a class="text-dark"
-                        href="{{ route('product.sort', 'product_name') }}">
-                        Product Name </a>
+                            href="{{ route('product.sort', 'product_name') }}">
+                            Product Name </a>
                     </th>
                     <th scope="col" class="border-0">Quantity</th>
                     <th scope="col" class="border-0">Unit Price</th>
                     <th scope="col" class="border-0 w-10">
-                        <a class="text-dark"
-                        href="{{ route('product.sort', 'continue_selling') }}">
-                        Continue selling
+                        <a class="text-dark" href="{{ route('product.sort', 'continue_selling') }}">
+                            Continue selling
                         </a>
                     </th>
                     <th scope="col" class="border-0">Action</th>
@@ -72,7 +81,7 @@
             </tbody>
         </table>
         <div class="my-5 d-flex justify-content-center">
-                {{$products->onEachSide(1)->links()}}
+            {{ $products->onEachSide(1)->links() }}
         </div>
     </div>
 @endsection

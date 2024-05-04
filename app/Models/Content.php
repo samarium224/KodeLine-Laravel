@@ -11,6 +11,8 @@ class Content extends Model
 
     protected $fillable = [
         "content_name",
+        "title",
+        "subtitle",
         "HomePageImg",
         "MobileImg",
         "viewPageImg",
