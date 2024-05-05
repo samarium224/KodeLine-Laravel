@@ -1,10 +1,18 @@
 import { Button, Typography, Box, useTheme } from "@mui/material";
 import { useForm } from "@inertiajs/react";
 
-const ShopButtonsAndQuantity = ({ itemType, itemID, stock }) => {
+const ShopButtonsAndQuantity = ({
+    color,
+    sizeIndex,
+    itemType,
+    itemID,
+    stock,
+}) => {
     const theme = useTheme();
     const { data, setData, post, errors } = useForm({
         itemID: itemID,
+        color: color,
+        sizeIndex: sizeIndex,
     });
 
     return (

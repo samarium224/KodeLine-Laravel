@@ -24,7 +24,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
             sx={{
                 display: "flex",
                 justifyContent: "center",
-                mb: { md: 8, xs: 8 },
+                mb: 2,
                 flexDirection: {
                     md: reverse ? "row-reverse" : "row",
                     xs: "column",
@@ -76,8 +76,6 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                             <Typography
                                 display="block"
                                 variant="headline"
-                                fontSize="2.5rem"
-                                lineHeight="2.5rem"
                                 color={theme.palette.text.white[500]}
                                 sx={{
                                     textShadow: "0px 0px 10px rgba(0,0,0,0.25)",
@@ -93,18 +91,17 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                         >
                             <Button
                                 sx={{
-                                    color: theme.palette.text.grey[500],
-                                    backgroundColor:
-                                        theme.palette.text.white[500],
+                                    color: theme.palette.text.white[500],
+                                    backgroundColor: "transparent",
                                     border: `2px solid ${theme.palette.text.white[500]}`,
                                     fontWeight: "500",
                                     fontSize: {
-                                        xl: "1rem",
-                                        md: "0.85rem",
-                                        xs: "0.8rem",
+                                        xl: "1.1rem",
+                                        lg: "1rem",
+                                        xs: "0.75rem",
                                     },
-                                    px: { xl: 10, md: 5, xs: 3 },
-                                    py: { xl: 1.66, md: 1.2, xs: 1 },
+                                    px: { xl: 5, md: 5, xs: 4 },
+                                    py: { xl: 1.5, md: 1.2, xs: 1 },
                                     "&:hover": {
                                         backgroundColor:
                                             theme.palette.text.white[500],

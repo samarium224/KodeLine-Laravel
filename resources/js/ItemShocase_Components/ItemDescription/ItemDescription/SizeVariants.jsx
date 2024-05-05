@@ -20,7 +20,7 @@ const SizeVariants = ({ sizes, selectedIndex, onChangeSize }) => {
                     textTransform="initial"
                     fontWeight="300"
                 >
-                    3 Years
+                    {sizes[selectedIndex.size]}
                 </Typography>
             </Typography>
             {sizes.map((size, i) => (

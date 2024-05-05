@@ -29,8 +29,8 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
         color: alternativeColor
             ? theme.palette.text.grey[500]
             : theme.palette.text.white[500],
-        mx: { xs: 1, md: 0.75, lg: 1.5 },
-        fontSize: { xs: "0.66rem", md: "0.8rem", lg: "0.95rem", xl: "1.2rem" },
+        mx: { xs: 1, md: 0.75, lg: 1.1, xl: 1.5 },
+        fontSize: { xs: "0.66rem", md: "0.8rem", lg: "1.1rem", xl: "1.2rem" },
         fontWeight: "500",
         textTransform: "initial",
         "&:hover": { backgroundColor: "transparent" },
@@ -78,26 +78,6 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
             >
                 <MenuIcon />
             </IconButton>
-            <Box
-                sx={{
-                    flexGrow: 1,
-                    display: "flex",
-                    justifyContent: "center",
-                    "&:hover": { backgroundColor: "transparent" },
-                }}
-            >
-                <Link href={route("home")}>
-                    <img
-                        src={
-                            alternativeColor
-                                ? "../assets/Kodeline kids_Black Logo.svg"
-                                : "../assets/Logo.svg"
-                        }
-                        alt="Logo"
-                        style={{ height: "30px" }}
-                    />
-                </Link>
-            </Box>
         </>
     );
 
@@ -121,7 +101,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                                 : "../assets/Logo.svg"
                         }
                         alt="Logo"
-                        sx={{ height: { md: "36px", lg: "45px", xl: "60px" } }}
+                        sx={{ height: { md: "36px", lg: "72px", xl: "80px" } }}
                     />
                 </Link>
             </IconButton>
@@ -169,7 +149,9 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                     width: { xs: "90vw", maxAllowableWidth: "1750px" },
                 }}
             >
-                <Toolbar>
+                <Toolbar
+                    sx={{ px: 1, mt: -1, justifyContent: "space-between" }}
+                >
                     {isMobile ? <MobileToolbar /> : <DesktopToolbar />}
                     <NavigationCheckout
                         cartOpen={cartOpen}
@@ -185,6 +167,29 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                         }
                     />
                 </Toolbar>
+                {isMobile && (
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                            "&:hover": { backgroundColor: "transparent" },
+                            marginTop: "-16px",
+                        }}
+                    >
+                        <Link href={route("home")}>
+                            <img
+                                src={
+                                    alternativeColor
+                                        ? "../assets/Kodeline kids_Black Logo.svg"
+                                        : "../assets/Logo.svg"
+                                }
+                                alt="Logo"
+                                style={{ height: "54px" }}
+                            />
+                        </Link>
+                    </Box>
+                )}
             </AppBar>
             <Drawer
                 anchor="left"

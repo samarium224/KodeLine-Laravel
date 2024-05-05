@@ -113,29 +113,28 @@ const Footer = ({ collections }) => {
                     transition={{ duration: 0.5, delay: 0.45 }}
                     display="flex"
                     alignItems="center"
-                    sx={{ flexDirection: { xs: "column", md: "row" } }}
                 >
                     <TextField
                         variant="outlined"
                         width="400px"
                         sx={{
                             "& .MuiOutlinedInput-root": {
+                                "& input": { py: { xs: 1.25, md: "16.5px" } },
                                 "& fieldset": {
                                     borderColor: theme.palette.primary.main,
                                     borderRadius: "0px",
                                 },
-                                width: { xs: "300px", md: "400px" },
-                                mb: { md: 0, xs: 2 },
+                                width: { xs: "200px", md: "400px" },
                             },
                         }}
                     />
                     <Button
                         variant="contained"
                         sx={{
-                            height: "56px",
+                            height: { xs: "45px", md: "56px" },
                             borderRadius: "0px",
                             marginLeft: "12px",
-                            px: 5,
+                            px: { xs: 3, md: 5 },
                             color: theme.palette.text.white[500],
                             backgroundColor: theme.palette.secondary.main,
                             fontWeight: { xs: 700, md: 600 },

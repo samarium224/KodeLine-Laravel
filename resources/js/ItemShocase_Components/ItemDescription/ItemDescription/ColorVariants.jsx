@@ -2,12 +2,16 @@ import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { Link } from "@inertiajs/react";
 
-const ColorVariants = ({ itemID, colorVariants, colorIndex }) => {
+const ColorVariants = ({
+    itemID,
+    colorVariants,
+    colorIndex,
+    primaryImgURL,
+}) => {
     const theme = useTheme();
-    console.log(colorIndex);
 
     if (colorVariants[0] == "") colorVariants.shift();
-    if (colorVariants.length > 0)
+    if (colorVariants.colorName.length > 0)
         return (
             <Box className="colors" mt={3}>
                 <Typography
@@ -25,10 +29,10 @@ const ColorVariants = ({ itemID, colorVariants, colorIndex }) => {
                         textTransform="initial"
                         fontWeight="300"
                     >
-                        {colorVariants[colorIndex]}
+                        {colorVariants.colorName[colorIndex]}
                     </Typography>
                 </Typography>
-                {colorVariants.map((colorVariant, i) => (
+                {colorVariants.colorName.map((colorVariant, i) => (
                     <Box
                         component={Link}
                         href={route("itemshowcase", { id: itemID, color: i })}
@@ -47,13 +51,15 @@ const ColorVariants = ({ itemID, colorVariants, colorIndex }) => {
                     >
                         <img
                             src={
-                                colorVariant.imgURL
-                                    ? colorVariant.imgURL
+                                colorVariants.colorImg[i]
+                                    ? colorVariants.colorImg[i]
                                     : "./assets/blank.jpg"
                             }
-                            height="40"
-                            width="40"
-                            style={{ margin: "2px" }}
+                            style={{
+                                margin: "2px",
+                                height: "40px",
+                                width: "40px",
+                            }}
                         />
                     </Box>
                 ))}

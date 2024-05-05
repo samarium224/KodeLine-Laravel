@@ -37,14 +37,13 @@ class ShowcaseProduct extends Controller
             if($color_id == null){
                 $color_id = 0;
             }
-            // Assuming 'ageRange' is a string like "3|6", we split it into an array.
-            $ageRangeArray = explode('|', $item->ageRange);
             $product_img = explode('|', $item->product_img);
             $colorGroup = [];
             $imgvariation = [];
             $sizeGroup = [];
             $stockGroup = [];
             $priceGroup = [];
+            $colorImg = [];
             // Accessing colorGroup and sizeGroup from attributes relationship
             if (count($item->attributes) != 0) {
                 foreach ($item->attributes as $key => $attribute) {
@@ -56,6 +55,8 @@ class ShowcaseProduct extends Controller
                         $product_img = $imgvariation[0];
                     }
                     $colorGroup[] = $attribute->value;
+                    $tempImg = explode('|',$attribute->imageUrls);
+                    $colorImg[] = $tempImg[0];
                 }
                 $imgvariation = array_slice($imgvariation, 1);
             } else {
@@ -73,7 +74,10 @@ class ShowcaseProduct extends Controller
                     'secondary' => $imgvariation,
                 ],
                 'price' => $priceGroup,
-                'colorVariants' => $colorGroup,
+                'colorVariants' => [
+                   'colorName' => $colorGroup,
+                   'colorImg' => $colorImg,
+                ],
                 'stock' => $stockGroup,
                 'sizes' => $sizeGroup,
                 'attributes' => $item->attributes,
