@@ -1,5 +1,6 @@
 import { Button, Typography, Box, useTheme } from "@mui/material";
 import { useForm } from "@inertiajs/react";
+import { useEffect } from "react";
 
 const ShopButtonsAndQuantity = ({
     color,
@@ -14,6 +15,14 @@ const ShopButtonsAndQuantity = ({
         color: color,
         sizeIndex: sizeIndex,
     });
+
+    useEffect(() => {
+        setData({
+            itemID: itemID,
+            color: color,
+            sizeIndex: sizeIndex,
+        });
+    }, [sizeIndex]);
 
     return (
         <Box className="shop-buttons" mt={3}>

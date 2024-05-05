@@ -7,14 +7,12 @@ import SizeVariants from "./SizeVariants";
 import ShopButtonsAndQuantity from "./ShopButtonsAndQuantity";
 import DescriptionText from "./DescriptionTexts";
 
-// import { itemData } from "./data";
-
 const ItemDescriptionTexts = ({ itemData }) => {
-    console.log(itemData);
     const [selectedIndex, setSelectedIndex] = useState({ size: 0 });
     const onChangeSize = (sizeIndex) => {
         setSelectedIndex({ ...selectedIndex, size: sizeIndex });
     };
+    console.log(selectedIndex.size);
     return (
         <Box sx={{ width: { xs: "100%", md: "35%" } }}>
             <ItemNameAndPrice
@@ -34,7 +32,7 @@ const ItemDescriptionTexts = ({ itemData }) => {
                 sizeIndex={selectedIndex.size}
             />
             <ShopButtonsAndQuantity
-                color={itemData.colorVariants[itemData.colorID]}
+                color={itemData.colorVariants.colorName[itemData.colorID]}
                 sizeIndex={selectedIndex.size}
                 itemType={itemData.itemType}
                 itemID={itemData.itemID}

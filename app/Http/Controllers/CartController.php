@@ -41,7 +41,11 @@ class CartController extends Controller
     {
         $validate = $request->validate([
             'itemID' => 'required|integer',
+            'color' => 'nullable',
+            'sizeIndex' => 'nullable',
         ]);
+
+        dd($validate);
 
         // dd(session()->getId());
         // Get the authenticated user's ID
