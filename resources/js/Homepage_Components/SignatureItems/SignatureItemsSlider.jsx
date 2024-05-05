@@ -74,20 +74,28 @@ const SignatureItemsSlider = ({ children }) => {
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: false,
+        centerMode: false,
+        draggable: false,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
         afterChange: handleAfterChange,
         responsive: [
             {
                 breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                },
+                settings: { slidesToShow: 3, draggable: false },
+                draggable: false,
             },
             {
                 breakpoint: 768,
+                settings: { slidesToShow: 2, draggable: false },
+            },
+            {
+                breakpoint: 600,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
+                    centerMode: true,
+                    centerPadding: "100px",
+                    draggable: false,
                 },
             },
         ],

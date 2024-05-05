@@ -19,7 +19,12 @@ const Slogan = () => {
                 color="white"
                 sx={{
                     fontWeight: 600,
-                    fontSize: { xl: "1.1rem", md: "0.9rem", xs: "0.5rem" },
+                    fontSize: {
+                        xl: "1.1rem",
+                        lg: "1rem",
+                        md: "0.9rem",
+                        xs: "0.5rem",
+                    },
                 }}
             >
                 Up to 30% Savings, Free shipping in Regina within 48 hours

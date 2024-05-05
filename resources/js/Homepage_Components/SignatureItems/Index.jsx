@@ -19,15 +19,19 @@ const SignatureItems = ({ signatureItemsList, collections }) => {
 
     if (signatureItemsList.length > 0)
         return (
-            <Container maxWidth="desktopMaxWidth" sx={{ px: 1 }}>
-                <Box sx={{ mb: { md: 6, xs: 10 } }}>
+            <Container maxWidth="desktopMaxWidth" sx={{ px: 0 }}>
+                <Box sx={{ mb: 6 }}>
                     <SignatureItemsHeader
                         title="Shop our must-have picks!"
                         categoryList={collections}
                         currentCollectionID={currentCollectionID}
                         setCurrentCollectionID={setCurrentCollectionID}
                     />
-                    <Box sx={{ mx: { md: 6, xl: 3 } }}>
+                    <Box
+                        sx={{
+                            mx: { md: 6, xl: 3 },
+                        }}
+                    >
                         <SignatureItemsSlider>
                             {filteredItemsList.map((signatureItem, i) => (
                                 <ItemCard

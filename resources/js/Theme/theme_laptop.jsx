@@ -36,8 +36,8 @@ const theme_laptop = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "2.75rem",
-            lineHeight: "2.85rem",
+            fontSize: "3.2rem",
+            lineHeight: "3.2rem",
             fontWeight: "600",
         },
         title: {
@@ -49,7 +49,7 @@ const theme_laptop = createTheme({
             fontSize: "1.25rem",
         },
         subtitle: {
-            fontSize: "1.05rem",
+            fontSize: "1.15rem",
             fontWeight: "300",
             lineHeight: "1.55rem",
         },

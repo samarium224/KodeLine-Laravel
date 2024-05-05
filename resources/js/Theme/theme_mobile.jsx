@@ -36,9 +36,9 @@ const theme_mobile = createTheme({
     },
     typography: {
         headline: {
-            fontSize: "1.8rem",
+            fontSize: "2rem",
             fontWeight: "700",
-            lineHeight: "1.9rem",
+            lineHeight: "2rem",
         },
         title: {
             fontSize: "1rem",
@@ -49,14 +49,13 @@ const theme_mobile = createTheme({
             fontWeight: "600",
         },
         subtitle: {
-            fontSize: "14px",
+            fontSize: "15px",
             fontWeight: "400",
-            lineHeight: "1rem",
+            lineHeight: "18px",
         },
         itemdescTitle: {
             fontSize: "0.875rem",
-            fontWeight: "400",
-            textTransform: "uppercase",
+            fontWeight: "600",
             lineHeight: "1.33rem",
         },
         itemdescSubtitle: {

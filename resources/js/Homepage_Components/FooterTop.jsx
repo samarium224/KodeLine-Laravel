@@ -50,10 +50,10 @@ const SliderContent = ({ theme, image }) => {
                         component="img"
                         src="./assets/Logo.svg"
                         alt="Logo"
-                        sx={{ height: { xs: "36px", lg: "45px", xl: "60px" } }}
+                        sx={{ height: { xs: "54px", lg: "45px", xl: "60px" } }}
                     />
                 </Box>
-                <Box display="flex" justifyContent="center" mt={30}>
+                <Box display="flex" justifyContent="center" mt={40}>
                     <Button
                         sx={{
                             color: theme.palette.text.white[500],

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import { useForm } from "@inertiajs/react";
 
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 
 import CustomButton from "../CustomButton";
+
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const ProductShowcase = ({
     itemID,
@@ -14,6 +16,7 @@ const ProductShowcase = ({
 }) => {
     const theme = useTheme();
     const [backgroundImage, setBackgroundImage] = useState("");
+    const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
     const { data, setData, post, errors } = useForm({
         itemID: itemID,
     });
@@ -43,6 +46,7 @@ const ProductShowcase = ({
                 alignItems: "Center",
                 height: { xs: "232px", md: "320px", lg: "360px", xl: "400px" },
                 width: { xs: "174px", md: "240px", lg: "270px", xl: "300px" },
+                maxWidth: { sm: "22.5vw", xs: "45vw" },
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -94,13 +98,19 @@ const ProductShowcase = ({
                 )}
             </Box>
             <CustomButton
-                text={buttonText}
+                text={
+                    isMobileScreen ? (
+                        <AddShoppingCartIcon fontSize="small" />
+                    ) : (
+                        buttonText
+                    )
+                }
                 onClick={handleClick}
                 sx={{
                     opacity: { xs: "100", md: "0" },
                     transition: ".33s",
                     mb: { xs: "0", md: "-10px" },
-                    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.15)",
+                    // boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.15)",
                 }}
             />
         </Box>

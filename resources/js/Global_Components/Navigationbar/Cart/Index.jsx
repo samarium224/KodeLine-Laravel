@@ -63,7 +63,7 @@ export const NavigationCheckout = ({
                     src="../assets/Canada Flag.svg"
                     sx={{
                         height: { xs: "12px", md: "12px", lg: "16px" },
-                        marginLeft: { xs: "16px", md: "8px" },
+                        ml: { xs: "16px", md: "8px" },
                     }}
                 />
             </Button>
