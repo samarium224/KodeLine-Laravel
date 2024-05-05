@@ -117,7 +117,7 @@
                                     @if ($order->delivery_status != 1)
                                         <span class="badge badge-danger px-2 py-1">pending</span>
                                         <br>
-                                        <a href="" class="btn btn-light btn-sm">mark as complete</a>
+                                        <a href="{{route('order.deliverycomplete')}}" class="btn btn-light btn-sm">mark as complete</a>
                                     @else
                                         <span class="badge badge-success px-2 py-1">completed</span>
                                     @endif

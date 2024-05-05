@@ -14,18 +14,16 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
-            $table->text('product_short_description');
+            $table->text('product_short_description')->nullable();
             $table->text('product_long_description')->nullable();
             $table->double('price');
-            $table->double('compare_price');
-            $table->string('color');
-            $table->string('size');
+            $table->double('compare_price')->nullable();
             $table->string('product_category_name');
             $table->integer('product_category_id');
             $table->string('product_subcategory_name');
             $table->integer('product_subcategory_id');
             $table->text('product_img');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->string('slug');
             $table->string('ageRange');
             $table->string('continue_selling')->default('false')->nullable();

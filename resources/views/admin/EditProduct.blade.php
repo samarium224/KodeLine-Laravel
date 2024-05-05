@@ -101,74 +101,24 @@
                         <div class="card-body">
                             <div class="card-subtitle text-dark"><b>Pricing</b></div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card-subtitle mt-3">Price</div>
+
+                                <div class="col-md-12">
+                                    <div class="card-subtitle mt-3">Product Price <span class="text-danger">*</span></div>
                                     <input type="number" min="0" step="0.01" id="price" name="price"
-                                        value="{{ $productinfo->price }}" placeholder="0.00" class="form-control">
+                                        placeholder="0.00" value="{{ $productinfo->price }}" class="form-control" required>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card-subtitle mt-3">Compare at price</div>
-                                    <input type="number" min="0" step="0.01" id="price" name="compare_price"
-                                        value="{{ $productinfo->compare_price }}" placeholder="0.00" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-subtitle text-dark"><b>Size and Color</b></div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card-subtitle mt-3">Size</div>
-                                    <input type="text" id="size" name="size" placeholder="3 years" value="{{$productinfo->size}}"
-                                        class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-subtitle mt-3">Color</div>
-                                    <input type="text" id="color" name="color" placeholder="Warm Vanilla" value="{{$productinfo->color}}"
-                                        class="form-control">
+                                <div class="col-md-12">
+                                    <div class="card-subtitle mt-3">Discounted Price</div>
+                                    <input type="number" min="0" step="0.01" id="price" name="discount_price"
+                                        placeholder="0.00" value="{{ $productinfo->compare_price }}" class="form-control">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-subtitle text-dark"><b>Inventory</b></div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Quantity</div>
-                                        <input type="number" id="quantity" name="quantity" placeholder="1000"
-                                            value="{{ $productinfo->quantity }}" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Age range (min)</div>
-                                        <input type="number" id="quantity" name="ageRange[]" placeholder="2"
-                                            value="{{ $productinfo->ageRange[0] }}" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Age range (max)</div>
-                                        <input type="number" id="quantity" name="ageRange[]" placeholder="6"
-                                            value="{{ $productinfo->ageRange[2] }}" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="px-3 mt-3">
-                                    <input type="checkbox" name="continue_selling" style="width: 15px; height: 15px;"
-                                        {{ $productinfo->continue_selling ? 'checked' : '' }}>
-                                    <span>Continue selling when out of stock</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
+                {{-- right side --}}
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
@@ -198,6 +148,52 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-subtitle text-dark"><b>Age range for product</b> <span class="text-danger">*</span></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <div class="card-subtitle mt-3">Age range (min) <span class="text-danger">*</span></div>
+                                        <input type="number" id="quantity"  value="{{ $productinfo->ageRange[0] }}" name="ageRange[]" placeholder="2"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <div class="card-subtitle mt-3">Age range (max) <span class="text-danger">*</span></div>
+                                        <input type="number" id="quantity"  value="{{ $productinfo->ageRange[2] }}" name="ageRange[]" placeholder="6"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-subtitle text-dark"><b>Inventory</b></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <div class="card-subtitle mt-3">In Stock</div>
+                                        <input type="number" id="quantity" value="{{ $productinfo->quantity }}" name="quantity" placeholder="1000"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="px-3 mt-3">
+                                    <input type="checkbox" value="true" name="continue_selling"
+                                        style="width: 15px; height: 15px;">
+                                    <span>Continue selling when out of stock</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card">
                         <div class="card-body">
                             <div class="card-subtitle text-dark">

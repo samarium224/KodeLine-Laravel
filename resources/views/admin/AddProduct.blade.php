@@ -69,7 +69,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <input type="text" id="product_name" name="product_short_description"
-                                    placeholder="Write a short description of your product" class="form-control" required>
+                                    placeholder="Write a short description of your product" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-subtitle text-dark"><b>Media</b></div>
+                            <div class="card-subtitle text-dark"><b>Media</b> <span class="text-danger">*</span></div>
                             <div id="dropzone" class="dropzone">Drag and drop up to 5 images here or click to select</div>
                             <input type="file" id="product_img" name="product_img[]" accept="image/*" multiple
                                 style="opacity: 0;" required>
@@ -100,78 +100,21 @@
                             <div class="row">
 
                                 <div class="col-md-12">
-                                    <div class="card-subtitle mt-3">Product Price</div>
-                                    <input type="number" min="0" step="0.01" id="price" name="compare_price"
+                                    <div class="card-subtitle mt-3">Product Price <span class="text-danger">*</span></div>
+                                    <input type="number" min="0" step="0.01" id="price" name="price"
                                         placeholder="0.00" class="form-control" required>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="card-subtitle mt-3">Discounted Price</div>
-                                    <input type="number" min="0" step="0.01" id="price" name="price"
+                                    <input type="number" min="0" step="0.01" id="price" name="discount_price"
                                         placeholder="0.00" class="form-control">
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-subtitle text-dark"><b>Size and Color and Age</b></div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="card-subtitle mt-3">Size</div>
-                                    <input type="text" id="size" name="size" placeholder="3 years"
-                                        class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-subtitle mt-3">Color</div>
-                                    <input type="text" id="color" name="color" placeholder="Warm Vanilla"
-                                        class="form-control">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Age range (min)</div>
-                                        <input type="number" id="quantity" name="ageRange[]" placeholder="2"
-                                            class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Age range (max)</div>
-                                        <input type="number" id="quantity" name="ageRange[]" placeholder="6"
-                                            class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-subtitle text-dark"><b>Inventory</b></div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">In Stock</div>
-                                        <input type="number" id="quantity" name="quantity" placeholder="1000"
-                                            class="form-control" required>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="px-3 mt-3">
-                                    <input type="checkbox" value="true" name="continue_selling"
-                                        style="width: 15px; height: 15px;">
-                                    <span>Continue selling when out of stock</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
+
+                {{-- right size --}}
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
@@ -192,6 +135,52 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-subtitle text-dark"><b>Age range for product</b> <span class="text-danger">*</span></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <div class="card-subtitle mt-3">Age range (min) <span class="text-danger">*</span></div>
+                                        <input type="number" id="quantity" name="ageRange[]" placeholder="2"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <div class="card-subtitle mt-3">Age range (max) <span class="text-danger">*</span></div>
+                                        <input type="number" id="quantity" name="ageRange[]" placeholder="6"
+                                            class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-subtitle text-dark"><b>Inventory</b></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <div class="card-subtitle mt-3">In Stock</div>
+                                        <input type="number" id="quantity" name="quantity" placeholder="1000"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="px-3 mt-3">
+                                    <input type="checkbox" value="true" name="continue_selling"
+                                        style="width: 15px; height: 15px;">
+                                    <span>Continue selling when out of stock</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card">
                         <div class="card-body">
                             <div class="card-subtitle text-dark">

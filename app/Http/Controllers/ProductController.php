@@ -29,11 +29,9 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'product_name' => 'required|string|max:255',
             'price' => 'required',
-            'compare_price' => 'required',
-            'quantity' => 'required|integer',
-            'color' => 'required',
-            'size' => 'required',
-            'product_short_description' => 'required|string',
+            'discount_price' => 'nullable',
+            'quantity' => 'nullable|integer',
+            'product_short_description' => 'nullable|string',
             'product_long_description' => 'nullable',
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
@@ -76,16 +74,26 @@ class ProductController extends Controller
         $continue_selling = $request->continue_selling;
         $featured = $request->featured;
         $best_selling = $request->best_selling;
+
+        //handle product price and stock
+        if($request->discount_price == null){
+            $compare_price = $request->price;
+        }else{
+            $compare_price = $request->discount_price;
+        }
+
+        if($request->quantity == null){
+            $request->quantity = 0;
+        }
+
         // Create a new product
         Products::insert([
             'product_name' => $validatedData['product_name'],
             'price' => $validatedData['price'],
-            'compare_price' => $validatedData['compare_price'],
-            'quantity' => $validatedData['quantity'],
+            'quantity' => $request->quantity,
+            'compare_price' => $compare_price,
             'product_short_description' => $validatedData['product_short_description'],
             'product_long_description' => $request->product_long_description,
-            'color' => $validatedData['color'],
-            'size' => $validatedData['size'],
             'product_category_name' => $category_name,
             'product_category_id' => $category_id,
             'product_subcategory_name' => $subcategory_name,
@@ -178,15 +186,13 @@ class ProductController extends Controller
     public function UpdateProduct(Request $request)
     {
         $validatedData = $request->validate([
-            'product_id' => 'required',
+            'product_id' => 'required|integer',
             'product_name' => 'required|string|max:255',
             'price' => 'required',
-            'compare_price' => 'required',
-            'quantity' => 'required|integer',
-            'color' => 'required',
-            'size' => 'required',
-            'product_short_description' => 'required|string',
-            'product_long_description' => 'nullable|string',
+            'discount_price' => 'nullable',
+            'quantity' => 'nullable|integer',
+            'product_short_description' => 'nullable|string',
+            'product_long_description' => 'nullable',
             'product_category_id' => 'required',
             'product_subcategory_id' => 'required',
             'ageRange.*' => 'required',
@@ -242,13 +248,22 @@ class ProductController extends Controller
             SubCategory::where('id', $preSubcategoryId)->decrement('product_count', 1);
         }
 
+        //handle product price and stock
+        if($request->discount_price == null){
+            $compare_price = $request->price;
+        }else{
+            $compare_price = $request->discount_price;
+        }
+
+        if($request->quantity == null){
+            $request->quantity = 0;
+        }
+
         Products::findOrFail($product_id)->update([
             'product_name' => $validatedData['product_name'],
             'price' => $validatedData['price'],
-            'quantity' => $validatedData['quantity'],
-            'compare_price' => $request->compare_price,
-            'color' => $request->color,
-            'size' => $request->size,
+            'quantity' => $request->quantity,
+            'compare_price' => $compare_price,
             'product_short_description' => $validatedData['product_short_description'],
             'product_long_description' => $validatedData['product_long_description'],
             'product_category_name' => $category_name,

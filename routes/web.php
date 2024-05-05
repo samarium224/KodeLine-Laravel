@@ -109,6 +109,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/preorder/edit/{id}', 'editPreOrder')->name('preorder.edit');
         Route::post('/admin/preorder/update', 'updatePreOrder')->name('preorder.update');
         Route::get('/admin/preorder/delete/{id}', 'deletePreOrder')->name('preorder.delete');
+        //delivery
+        Route::get('/admin/order/completedelivery/{id}', 'CompleteDelivery')->name('order.deliverycomplete');
     });
 
     Route::controller(DashboardCustomerController::class)->group(function () {

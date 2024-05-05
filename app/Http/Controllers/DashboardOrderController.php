@@ -214,4 +214,8 @@ class DashboardOrderController extends Controller
             'Product Deleted Successfully'
         );
     }
+
+    public function CompleteDelivery($id){
+        
+    }
 }
