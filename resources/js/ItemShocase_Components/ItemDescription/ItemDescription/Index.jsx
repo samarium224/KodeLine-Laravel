@@ -10,6 +10,7 @@ import DescriptionText from "./DescriptionTexts";
 // import { itemData } from "./data";
 
 const ItemDescriptionTexts = ({ itemData }) => {
+    console.log(itemData);
     const [selectedIndex, setSelectedIndex] = useState({ size: 0 });
     const onChangeSize = (sizeIndex) => {
         setSelectedIndex({ ...selectedIndex, size: sizeIndex });

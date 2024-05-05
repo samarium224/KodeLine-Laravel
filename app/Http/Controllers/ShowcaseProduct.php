@@ -62,8 +62,8 @@ class ShowcaseProduct extends Controller
             } else {
                 $imgvariation = array_slice($product_img, 1);
                 $product_img = $product_img[0];
-                $stockGroup = $item->quantity;
-                $priceGroup = $item->price;
+                $stockGroup = array($item->quantity);
+                $priceGroup = array($item->price);
             }
 
             return [

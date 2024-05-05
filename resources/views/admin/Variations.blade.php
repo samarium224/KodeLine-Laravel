@@ -44,6 +44,7 @@
             <div class="card">
                 <form action="{{ route('variant.nextstep.store') }}" method="post">
                     @csrf
+                    <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
                     <table class="table">
                         <thead>
                             <tr>
@@ -85,9 +86,9 @@
                                         <input type="text" name="sizes[]" value="{{ $attribute->sizes }}"
                                             class="form-control" placeholder="e.g. 3 years, 4 years, 5 years" required>
                                     </td>
-                                    <td><input type="text" name="price[]" value="{{ $product->price }}"
+                                    <td><input type="text" name="price[]" value="{{ $attribute->price }}"
                                             class="form-control" required></td>
-                                    <td><input type="text" name="stocks[]" value="{{ $product->quantity }}"
+                                    <td><input type="text" name="stocks[]" value="{{ $attribute->stock }}"
                                             class="form-control" required></td>
                                     <td>
                                         <a href="{{ route('variant.delete', $attribute->id) }}">

@@ -317,7 +317,6 @@ class ProductController extends Controller
     {
 
         $product = Products::with('attributes')->where('id', $id)->first();
-        // dd(count($product->attributes));
         return view('admin.Variations', compact('product'));
     }
 
@@ -347,6 +346,7 @@ class ProductController extends Controller
 
     public function StoreVariantItems(Request $request){
         $validatedata = $request->validate([
+            'product_id' => 'required',
             'attribute_id.*' => 'required|integer',
             'sizes.*' => 'required',
             'price.*' => 'required',
@@ -362,7 +362,9 @@ class ProductController extends Controller
                 'price' => $request->price[$i],
             ]);
         }
-        return redirect(route('allproducts'));
+
+        $product = Products::with('attributes')->where('id', $request->product_id)->first();
+        return view('admin.Variations', compact('product'));
     }
 
     public function SetVariantImages($id){
@@ -400,6 +402,8 @@ class ProductController extends Controller
             'imageUrls' => $productImages,
         ]);
 
-        return redirect(route('allproducts'));
+        $product_id = ProductAttributes::where('id', $attribute_id)->value('product_id');
+        $product = Products::with('attributes')->where('id', $product_id)->first();
+        return view('admin.Variations', compact('product'));
     }
 }
