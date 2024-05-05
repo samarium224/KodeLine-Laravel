@@ -284,7 +284,6 @@ class ProductController extends Controller
     {
 
         $product = Products::findOrFail($id);
-
         // Split the product image URLs into an array
         $imageUrls = explode('|', $product->product_img);
 

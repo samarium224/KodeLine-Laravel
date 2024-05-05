@@ -70,18 +70,15 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col" class="border-0"><a class="text-dark"
-                                    href="{{ route('product.sort', 'id') }}">
-                                    ID </a>
+                            <th scope="col" class="border-0">
+                                    ID
                             </th>
-                            <th scope="col" class="border-0"><a class="text-dark"
-                                    href="{{ route('product.sort', 'product_name') }}">
-                                    Order ID </a>
+                            <th scope="col" class="border-0">
+                                    Order ID
                             </th>
                             <th scope="col" class="border-0">Product Img</th>
-                            <th scope="col" class="border-0"><a class="text-dark"
-                                    href="{{ route('product.sort', 'product_category_id') }}">
-                                    Product</a>
+                            <th scope="col" class="border-0">
+                                    Product
                             </th>
                             <th scope="col" class="border-0">User</th>
                             <th scope="col" class="border-0">Phone Number</th>
@@ -117,7 +114,8 @@
                                     @if ($order->delivery_status != 1)
                                         <span class="badge badge-danger px-2 py-1">pending</span>
                                         <br>
-                                        <a href="{{route('order.deliverycomplete')}}" class="btn btn-light btn-sm">mark as complete</a>
+                                        <a href="{{ route('order.deliverycomplete', $order->id) }}"
+                                            class="btn btn-light btn-sm">mark as complete</a>
                                     @else
                                         <span class="badge badge-success px-2 py-1">completed</span>
                                     @endif

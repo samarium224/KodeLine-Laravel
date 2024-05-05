@@ -216,6 +216,6 @@ class DashboardOrderController extends Controller
     }
 
     public function CompleteDelivery($id){
-        
+        dd($id);
     }
 }
