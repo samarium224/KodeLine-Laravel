@@ -5,15 +5,7 @@ reduce size of footer top image
 subcategories section in collection page
 add to cart background shadow
 
-Fix headline size for phones
-Change Add to cart btn for mobile
-out of screen for slider mobile
-View all margin bottom fix
-mobile logo center
 banner text line break fix
-service gap reduce
-all mobile gap fix
-subscribe 1 line
 
 ========== Completed Query ==========
 # Services Fontsize #
@@ -28,6 +20,15 @@ subscribe 1 line
 / remove 'none' from array /
 / items left in stock /
 / Love Loud, Live Libarated /
+
+/ Change Add to cart btn for mobile /
+/ out of screen for slider mobile /
+/ View all margin bottom fix /
+/ mobile logo center /
+/ all mobile gap fix /
+/ subscribe 1 line /
+/ service gap reduce /
+/ Fix headline size for phones /
 
 ======== Functional Problem =========
 you may also like section

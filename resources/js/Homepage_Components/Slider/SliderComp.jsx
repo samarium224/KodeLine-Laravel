@@ -19,7 +19,7 @@ const SliderComp = ({
     isActive,
 }) => {
     const theme = useTheme();
-    const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+    const isMobileScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const [backgroundImage, setBackgroundImage] = useState("");
 
     useEffect(() => {
@@ -51,10 +51,7 @@ const SliderComp = ({
             <Box
                 sx={{
                     mx: "auto",
-                    backgroundImage: {
-                        xs: `url("${backgroundImage}")`,
-                        md: `url("${backgroundImage}")`,
-                    },
+                    backgroundImage: `url("${backgroundImage}")`,
                     backgroundPosition: backgroundPosition,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
@@ -64,6 +61,12 @@ const SliderComp = ({
                         md: `calc(86vh - 49px)`,
                         xs: `calc(86vh - 30px + 1px)`,
                         maxAllowableWidth: "700px",
+                    },
+                    maxHeight: {
+                        xl: "760px",
+                        lg: "680px",
+                        md: "600px",
+                        sm: "450px",
                     },
                 }}
             >
@@ -82,9 +85,9 @@ const SliderComp = ({
                             xs: "center",
                             md: reverseAlign ? "right" : "left",
                         },
-                        mx: { md: 10, lg: 12.5, xl: 15 },
+                        mx: "6.66vw",
                         pb: { xs: 0, md: 12.5, lg: 15 },
-                        pt: { xs: 20, md: 0 },
+                        pt: { xs: 15, md: 0 },
                         position: "relative",
                     }}
                 >
@@ -135,7 +138,7 @@ const SliderComp = ({
                                 fontWeight: "500",
                                 fontSize: {
                                     xl: "1.1rem",
-                                    lg: "0.85rem",
+                                    lg: "1rem",
                                     xs: "0.75rem",
                                 },
                                 px: { xl: 5, md: 5, xs: 4 },
@@ -167,12 +170,13 @@ const SliderComp = ({
                             transform: "translateX(50%)",
                             fontWeight: 700,
                             fontSize: {
-                                xl: "1.5rem",
+                                lg: "1.5rem",
                                 md: "1.25rem",
                                 xs: "1rem",
                             },
                             right: { sm: "120px", xs: "50%" },
-                            bottom: "30px",
+                            bottom: { xs: "40px", md: "30px" },
+                            textWrap: "nowrap",
                         }}
                     >
                         Love Loud, Live Liberated.

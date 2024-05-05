@@ -20,7 +20,7 @@ const BestSellingItems = ({ bestSellingItemsList, collections }) => {
     if (bestSellingItemsList.length > 0)
         return (
             <Container maxWidth="desktopMaxWidth" sx={{ p: "0px" }}>
-                <Box mx={theme.containerMarginWidth} mt={7.5} mb={6}>
+                <Box mx={theme.containerMarginWidth} mb={2}>
                     <BestSellingHeader
                         title="Best Selling Items"
                         collections={collections}
