@@ -49,14 +49,13 @@ const theme_mobile = createTheme({
             fontWeight: "600",
         },
         subtitle: {
-            fontSize: "14px",
+            fontSize: "16px",
             fontWeight: "400",
             lineHeight: "1rem",
         },
         itemdescTitle: {
             fontSize: "0.875rem",
-            fontWeight: "400",
-            textTransform: "uppercase",
+            fontWeight: "600",
             lineHeight: "1.33rem",
         },
         itemdescSubtitle: {

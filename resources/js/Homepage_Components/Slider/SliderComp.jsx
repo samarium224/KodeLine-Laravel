@@ -113,7 +113,7 @@ const SliderComp = ({
                         transition={{ duration: 0.4, delay: 0 }}
                         color={theme.palette.text.white[500]}
                         sx={{
-                            mb: { xl: 5, md: 3, xs: 10 },
+                            mb: { xl: 5, md: 5, xs: 5 },
                             width: { xs: "95%", md: "100%" },
                             textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
                         }}
@@ -138,7 +138,7 @@ const SliderComp = ({
                                     lg: "0.85rem",
                                     xs: "0.75rem",
                                 },
-                                px: { xl: 5, md: 5, xs: 3 },
+                                px: { xl: 5, md: 5, xs: 4 },
                                 py: { xl: 1.5, md: 1.2, xs: 1 },
                                 "&:hover": {
                                     backgroundColor:

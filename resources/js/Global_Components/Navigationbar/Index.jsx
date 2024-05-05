@@ -94,7 +94,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                                 : "../assets/Logo.svg"
                         }
                         alt="Logo"
-                        style={{ height: "30px" }}
+                        style={{ height: "72px", scale: "1.1" }}
                     />
                 </Link>
             </Box>
@@ -121,7 +121,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                                 : "../assets/Logo.svg"
                         }
                         alt="Logo"
-                        sx={{ height: { md: "36px", lg: "45px", xl: "60px" } }}
+                        sx={{ height: { md: "36px", lg: "45px", xl: "80px" } }}
                     />
                 </Link>
             </IconButton>
@@ -169,7 +169,7 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
                     width: { xs: "90vw", maxAllowableWidth: "1750px" },
                 }}
             >
-                <Toolbar>
+                <Toolbar sx={{ px: 1, mt: -1 }}>
                     {isMobile ? <MobileToolbar /> : <DesktopToolbar />}
                     <NavigationCheckout
                         cartOpen={cartOpen}
