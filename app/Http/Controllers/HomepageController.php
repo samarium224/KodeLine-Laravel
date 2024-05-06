@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Content;
 use App\Models\PreOrderItem;
 use App\Models\Products;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,9 +37,15 @@ class HomepageController extends Controller
         });
 
         $collections = Category::all()->map(function ($item) {
+            $subcategoryInfo = SubCategory::where('category_id', $item->id)->get();
+            $subcategory = [];
+            foreach($subcategoryInfo as $subcat){
+                $subcategory[] = $subcat->subcategory_name;
+            }
             return [
                 'collection_name' => $item->category_name,
                 'collection_id' => $item->id,
+                'subcategories' => $subcategory,
                 'ImgUrl' => $item->cat_headerImg_PC,
             ];
         });
