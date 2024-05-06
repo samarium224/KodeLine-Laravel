@@ -17,12 +17,12 @@ const ShopButtonsAndQuantity = ({
     });
 
     useEffect(() => {
-        setData({
-            itemID: itemID,
-            color: color,
-            sizeIndex: sizeIndex,
-        });
+        setData("sizeIndex", sizeIndex);
     }, [sizeIndex]);
+
+    const stockText =
+        stock <= 50 &&
+        (stock == 0 ? "Out of Stock" : `Only ${stock} Left in Stock`);
 
     return (
         <Box className="shop-buttons" mt={3}>
@@ -33,21 +33,23 @@ const ShopButtonsAndQuantity = ({
                 fontWeight="700"
                 my={1}
             >
-                Only {stock} Left in Stock
+                {stockText}
             </Typography>
             {itemType !== "PreordereItem" && (
                 <Button
                     sx={{
-                        color: theme.palette.primary.main,
-                        textTransform: "uppercase",
-                        width: { xs: "100%", lg: "80%" },
-                        border: `1px solid ${theme.palette.primary.main}`,
                         my: 1,
                         py: 1.25,
                         fontSize: "0.9rem",
+                        textTransform: "uppercase",
+                        opacity: stock == 0 && "0.5",
+                        width: { xs: "100%", lg: "80%" },
+                        color: theme.palette.primary.main,
+                        pointerEvents: stock == 0 && "none",
+                        border: `1px solid ${theme.palette.primary.main}`,
                         "&:hover": {
                             backgroundColor: theme.palette.text.grey[700],
-                            color: theme.palette.text.white[100],
+                            color: theme.palette.text.white[500],
                         },
                     }}
                     onClick={() => post(route("addtocart"))}
@@ -57,14 +59,16 @@ const ShopButtonsAndQuantity = ({
             )}
             <Button
                 sx={{
-                    backgroundColor: theme.palette.primary.main,
-                    color: theme.palette.text.white[100],
-                    textTransform: "uppercase",
+                    mb: 3,
                     my: 1,
-                    width: { xs: "100%", lg: "80%" },
                     py: 1.75,
                     fontSize: "0.9rem",
-                    mb: 3,
+                    textTransform: "uppercase",
+                    opacity: stock == 0 && "0.5",
+                    width: { xs: "100%", lg: "80%" },
+                    color: theme.palette.text.white[500],
+                    pointerEvents: stock == 0 && "none",
+                    backgroundColor: theme.palette.primary.main,
                     "&:hover": {
                         backgroundColor: theme.palette.text.grey[700],
                     },

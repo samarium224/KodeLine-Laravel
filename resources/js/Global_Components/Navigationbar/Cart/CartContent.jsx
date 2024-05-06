@@ -250,7 +250,7 @@ const CartFooter = ({ subtotal, theme }) => (
                 href={route("checkout")}
                 sx={{
                     backgroundColor: theme.palette.primary.main,
-                    color: theme.palette.text.white[100],
+                    color: theme.palette.text.white[500],
                     textTransform: "uppercase",
                     width: "60%",
                     py: 1.75,
