@@ -16,10 +16,13 @@ return new class extends Migration
             $table->string('username');
             $table->string('user_id');
             $table->integer('product_id');
+            $table->integer('attribute_id');
+            $table->integer('variantIndex');
             $table->string('product_name');
             $table->string('imgUrl');
-            $table->string('ageRange');
-            $table->integer('product_quantity');
+            $table->string('color');
+            $table->string('size');
+            $table->integer('product_quantity')->default(1);
             $table->double('product_price');
             $table->timestamps();
         });

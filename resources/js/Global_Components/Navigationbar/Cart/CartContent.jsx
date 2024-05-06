@@ -101,7 +101,7 @@ const CartItem = ({
                     fontWeight={200}
                     variant="itemdescSubtitle"
                 >
-                    Size: 3 Years
+                    Size: {requestItem.size}
                 </Typography>
                 <Typography
                     display="block"
@@ -109,7 +109,7 @@ const CartItem = ({
                     variant="itemdescSubtitle"
                     mb={1.2}
                 >
-                    Color: Sky Blue
+                    Color: {requestItem.color}
                 </Typography>
                 <Typography variant="itemdescSubtitle">
                     ${requestItem.currentPrice.toFixed(2)}
