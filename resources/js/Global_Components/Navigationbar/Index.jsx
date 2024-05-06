@@ -5,18 +5,20 @@ import {
     Toolbar,
     IconButton,
     Box,
-    Button,
     Container,
     useTheme,
     useMediaQuery,
     Drawer,
 } from "@mui/material";
+
 import MenuIcon from "@mui/icons-material/Menu";
+
 import CategoryMenu from "./CategoryMenu";
 import DrawerContent from "./ResponsiveDrawer/ResponsiveDrawer";
 import { NavigationCheckout } from "./Cart/Index";
+import DesktopToolbar from "./DesktopToolbar";
 
-const Navigation = ({ collections, auth, alternativeColor = false }) => {
+const Navigation = ({ auth, collections, alternativeColor = false }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -25,12 +27,14 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
     const [collectionOpen, setCollectionOpen] = useState(false);
     if (collectionOpen) alternativeColor = true;
 
+    console.log(collections);
+
     const navButtonStyle = {
         color: alternativeColor
             ? theme.palette.text.grey[500]
             : theme.palette.text.white[500],
         mx: { xs: 1, md: 0.75, lg: 1.1, xl: 1.5 },
-        fontSize: { xs: "0.66rem", md: "0.8rem", lg: "1.1rem", xl: "1.2rem" },
+        fontSize: { xs: "0.66rem", md: "0.8rem", lg: "1.05rem", xl: "1.2rem" },
         fontWeight: "500",
         textTransform: "initial",
         "&:hover": { backgroundColor: "transparent" },
@@ -81,130 +85,96 @@ const Navigation = ({ collections, auth, alternativeColor = false }) => {
         </>
     );
 
-    const DesktopToolbar = () => (
-        <>
-            <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="logo"
-                sx={{
-                    borderRadius: "0px",
-                    "&:hover": { backgroundColor: "transparent" },
-                }}
-            >
-                <Link href={route("home")}>
-                    <Box
-                        component="img"
-                        src={
-                            alternativeColor
-                                ? "../assets/Kodeline kids_Black Logo.svg"
-                                : "../assets/Logo.svg"
-                        }
-                        alt="Logo"
-                        sx={{ height: { md: "36px", lg: "72px", xl: "80px" } }}
-                    />
-                </Link>
-            </IconButton>
-            <Box
-                sx={{
-                    flexGrow: 1,
-                    display: "flex",
-                    justifyContent: "center",
-                }}
-            >
-                <Link href={route("home")}>
-                    <Button sx={navButtonStyle}>Home</Button>
-                </Link>
-                <CategoryMenu
-                    sx={navButtonStyle}
-                    collections={collections}
-                    setCollectionOpen={setCollectionOpen}
-                />
-                <Button sx={navButtonStyle}>About us</Button>
-                {auth.user ? (
-                    <Link href={route("dashboard")}>
-                        <Button sx={navButtonStyle}>My Account</Button>
-                    </Link>
-                ) : (
-                    <Link href={route("login")}>
-                        <Button sx={navButtonStyle}>Log In</Button>
-                    </Link>
-                )}
-                <Button sx={navButtonStyle}>Contact us</Button>
-            </Box>
-        </>
-    );
-
     return (
-        <Container sx={{ position: "relative" }}>
-            <AppBar
-                position="absolute"
-                sx={{
-                    backgroundColor: "transparent",
-                    boxShadow: "none",
-                    transform: "translateX(-50%)",
-                    left: "47.5%",
-                    top: { md: 8, xs: 4 },
-                    mx: "2.5%",
-                    width: { xs: "90vw", maxAllowableWidth: "1750px" },
-                }}
-            >
-                <Toolbar
-                    sx={{ px: 1, mt: -1, justifyContent: "space-between" }}
+        <Box>
+            <Container sx={{ position: "relative" }}>
+                <AppBar
+                    className="navbar"
+                    position="absolute"
+                    sx={{
+                        backgroundColor: collectionOpen
+                            ? "white"
+                            : "transparent",
+                        boxShadow: "none",
+                        transform: "translateX(-50%)",
+                        left: "50%",
+                        px: "5vw",
+                        width: { xs: "100vw", maxAllowableWidth: "1750px" },
+                    }}
                 >
-                    {isMobile ? <MobileToolbar /> : <DesktopToolbar />}
-                    <NavigationCheckout
-                        cartOpen={cartOpen}
-                        toggleCart={toggleCart}
-                        navButtonStyle={navButtonStyle}
-                        theme={theme}
-                        cartData={cartData}
-                        setcartData={setcartData}
-                        bucketImgUrl={
-                            alternativeColor
-                                ? "../assets/Bucket_Black.svg"
-                                : "../assets/Bucket.svg"
-                        }
-                    />
-                </Toolbar>
-                {isMobile && (
-                    <Box
-                        sx={{
-                            flexGrow: 1,
-                            display: "flex",
-                            justifyContent: "center",
-                            "&:hover": { backgroundColor: "transparent" },
-                            marginTop: "-16px",
-                        }}
+                    <Toolbar
+                        sx={{ px: 1, mt: -1, justifyContent: "space-between" }}
                     >
-                        <Link href={route("home")}>
-                            <img
-                                src={
-                                    alternativeColor
-                                        ? "../assets/Kodeline kids_Black Logo.svg"
-                                        : "../assets/Logo.svg"
-                                }
-                                alt="Logo"
-                                style={{ height: "54px" }}
+                        {isMobile ? (
+                            <MobileToolbar />
+                        ) : (
+                            <DesktopToolbar
+                                auth={auth}
+                                collectionOpen={collectionOpen}
+                                setCollectionOpen={setCollectionOpen}
+                                navButtonStyle={navButtonStyle}
+                                alternativeColor={alternativeColor}
                             />
-                        </Link>
-                    </Box>
-                )}
-            </AppBar>
-            <Drawer
-                anchor="left"
-                open={drawerOpen}
-                onClose={toggleDrawer(false)}
-                ModalProps={{ keepMounted: true }}
-            >
-                <DrawerContent
-                    toggleDrawer={toggleDrawer}
-                    auth={auth}
-                    collections={collections}
-                    theme={theme}
-                />
-            </Drawer>
-        </Container>
+                        )}
+                        <NavigationCheckout
+                            cartOpen={cartOpen}
+                            toggleCart={toggleCart}
+                            navButtonStyle={navButtonStyle}
+                            theme={theme}
+                            cartData={cartData}
+                            setcartData={setcartData}
+                            bucketImgUrl={
+                                alternativeColor
+                                    ? "../assets/Bucket_Black.svg"
+                                    : "../assets/Bucket.svg"
+                            }
+                        />
+                    </Toolbar>
+                    <CategoryMenu
+                        theme={theme}
+                        navButtonStyle={navButtonStyle}
+                        collections={collections}
+                        collectionOpen={collectionOpen}
+                    />
+                    {isMobile && (
+                        <Box
+                            sx={{
+                                flexGrow: 1,
+                                display: "flex",
+                                justifyContent: "center",
+                                "&:hover": { backgroundColor: "transparent" },
+                                marginTop: "-16px",
+                            }}
+                        >
+                            <Link href={route("home")}>
+                                <img
+                                    src={
+                                        alternativeColor
+                                            ? "../assets/Kodeline kids_Black Logo.svg"
+                                            : "../assets/Logo.svg"
+                                    }
+                                    alt="Logo"
+                                    style={{ height: "54px" }}
+                                />
+                            </Link>
+                        </Box>
+                    )}
+                </AppBar>
+                <Drawer
+                    anchor="left"
+                    open={drawerOpen}
+                    onClose={toggleDrawer(false)}
+                    ModalProps={{ keepMounted: true }}
+                >
+                    <DrawerContent
+                        toggleDrawer={toggleDrawer}
+                        auth={auth}
+                        collections={collections}
+                        theme={theme}
+                    />
+                </Drawer>
+            </Container>
+        </Box>
     );
 };
 

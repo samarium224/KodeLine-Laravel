@@ -14,6 +14,8 @@ class OrderController extends Controller
 {
     public function checkout(Request $request)
     {
+        return Inertia::render('Proceed');
+
         // Get the authenticated user's ID
         $user_id = Auth::id();
 

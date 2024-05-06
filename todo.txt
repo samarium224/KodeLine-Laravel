@@ -6,6 +6,12 @@ subcategories section in collection page
 add to cart background shadow
 
 banner text line break fix
+phone no. and address page
+
+featured item page
+
+COLLECTION MENU
+LAPTOP sm fix
 
 ========== Completed Query ==========
 # Services Fontsize #
@@ -28,6 +34,9 @@ banner text line break fix
 / all mobile gap fix /
 / subscribe 1 line /
 / service gap reduce /
+/ Stock text fix /
+/ cart size and color /
+/ add to cart disable on out of stock /
 / Fix headline size for phones /
 
 ======== Functional Problem =========

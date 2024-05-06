@@ -71,10 +71,11 @@ const SliderComp = ({
                 }}
             >
                 <Box
+                    className="blabla"
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: isMobileScreen ? "center" : "flex-end",
+                        justifyContent: { xs: "center", md: "flex-end" },
                         lineHeight: "50px",
                         height: "100%",
                         alignItems: {
@@ -87,7 +88,7 @@ const SliderComp = ({
                         },
                         mx: "6.66vw",
                         pb: { xs: 0, md: 12.5, lg: 15 },
-                        pt: { xs: 15, md: 0 },
+                        pt: { xs: 12.5, md: 0 },
                         position: "relative",
                     }}
                 >
