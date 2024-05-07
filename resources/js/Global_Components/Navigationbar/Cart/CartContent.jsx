@@ -247,7 +247,7 @@ const CartFooter = ({ subtotal, theme }) => (
                 ${subtotal.toFixed(2)}
             </Typography>
             <Button
-                href={route("checkout")}
+                href={route("ShippingAddress")}
                 sx={{
                     backgroundColor: theme.palette.primary.main,
                     color: theme.palette.text.white[500],

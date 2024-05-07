@@ -14,7 +14,14 @@ class OrderController extends Controller
 {
     public function checkout(Request $request)
     {
-        return Inertia::render('Proceed');
+        $validate = $request->validate([
+            'address' => 'required',
+            'city' => 'nullable',
+            'state' => 'nullable',
+            'postal_code' => 'nullable',
+            'phone' => 'required',
+
+        ]);
 
         // Get the authenticated user's ID
         $user_id = Auth::id();
@@ -61,13 +68,16 @@ class OrderController extends Controller
                 'order_id' => uniqid('order'),
                 'username' => $username,
                 'user_id' => $user_id,
+                'address' => $request->address,
+                'city' => $request->city,
+                'state' => $request->state,
+                'postal' =>$request->postal_code,
+                'phonenumber' => $request->phone,
                 'session_id' => $checkout_session->id,
                 'product_id' => $product->product_id,
                 'product_name' => $product->product_name,
                 'product_quantity' => $product->product_quantity,
                 'total_price' => $totalPrice,
-                'phonenumber' => '12324244',
-                'address' => 'myaddess',
                 'imgUrl' => $product->imgUrl,
             ]);
         }
@@ -110,7 +120,7 @@ class OrderController extends Controller
 
             Cart::where('user_id', $usercart)->delete();
             Products::where('id', $product_id)->decrement('quantity',$order_count);
-            
+
             return Inertia::render('ThankYou', [
                 'customer'=> $customer,
             ]);

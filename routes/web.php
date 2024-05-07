@@ -14,10 +14,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowcaseProduct;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserDashboardController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +35,7 @@ Route::get('/', [HomepageController::class, 'Index'])->name('home');
 Route::get('/dashboard', [UserDashboardController::class, 'Index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //payment routes
-Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::get('/checkout/success', [OrderController::class, 'payment_success'])->name('checkout.success');
 Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checkout.cancel');
 
@@ -44,7 +43,8 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
 Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
 Route::get('/preordershowcase', [ShowcaseProduct::class, 'ShowPreorderItem'])->name('preordershowcase');
-
+//shipping address
+Route::get('/shippingAddress', [UserAddressController::class, 'Index'])->name('ShippingAddress');
 // cart route
 Route::post('/cart', [CartController::class, 'store'])->name('addtocart');
 Route::get('/cartItems', [CartController::class, 'index'])->name('cartItems');

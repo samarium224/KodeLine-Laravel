@@ -25,7 +25,7 @@ export default function Login({ status }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("login"));
+        post(route("checkout"));
     };
 
     return (
@@ -135,7 +135,7 @@ export default function Login({ status }) {
 
                 <div className="flex items-center flex-col justify-center mt-4 w-full">
                     <Button
-                        href={route("checkout")}
+                        onClick={submit}
                         sx={{
                             mb: 3,
                             my: 1,
