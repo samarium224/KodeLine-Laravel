@@ -3,7 +3,7 @@
 @section('page-title', 'Dashboard | Products')
 
 @section('page-heading', 'Edit Product')
-@section('page-active-heading', 'Products')
+@section('page-active-heading', 'Edit Pre Order Item')
 
 @section('dashboard-content')
     <style>
@@ -122,35 +122,6 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-subtitle text-dark">
-                                <b>Product organization</b>
-                            </div>
-                            <div class="card-subtitle mt-3">Select collection for your product</div>
-                            <select id="product_category_id" name="product_category_id" class="form-control">
-                                <option value="0">Select collection</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ $productinfo->product_category_id == $category->id ? 'selected' : '' }}>
-                                        {{ $category->category_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                            <div class="card-subtitle mt-3">Select Category</div>
-                            <select id="product_subcategory_id" name="product_subcategory_id" class="form-control">
-                                <option value="0">Select category</option>
-                                @foreach ($subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}"
-                                        {{ $productinfo->product_subcategory_id == $subcategory->id ? 'selected' : '' }}>
-                                        {{ $subcategory->subcategory_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-body">
                             <div class="card-subtitle text-dark"><b>Age range for product</b> <span class="text-danger">*</span></div>
                             <div class="row">
                                 @php
@@ -197,23 +168,6 @@
                         </div>
                     </div>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-subtitle text-dark">
-                                <b>Product Display</b>
-                            </div>
-                            <div class="px-3 mt-3">
-                                <input type="checkbox" value="true" name="featured" style="width: 15px; height: 15px;"
-                                    {{ $productinfo->featured ? 'checked' : '' }}>
-                                <span>Featured Item</span>
-                            </div>
-                            <div class="px-3 mt-3">
-                                <input type="checkbox" value="true" name="best_selling"
-                                    style="width: 15px; height: 15px;" {{ $productinfo->best_selling ? 'checked' : '' }}>
-                                <span>Best Selling</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-dark btn-sm mt-3">Save Product</button>

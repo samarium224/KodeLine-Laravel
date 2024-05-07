@@ -9,6 +9,9 @@ use App\Models\PreOrderItem;
 class PreOrderItemController extends Controller
 {
     //handle pre-order items
+    public function PreOrderItem(){
+        return view('admin.PreOrder.preOrderItem');
+    }
 
     public function ViewPreOrderItem(){
         $products = PreOrderItem::paginate(10);
@@ -79,7 +82,7 @@ class PreOrderItemController extends Controller
 
     public function editPreOrder($id){
         $productinfo = PreOrderItem::findOrFail($id);
-        return view('admin.orders.preOrderEdit', compact('productinfo'));
+        return view('admin.PreOrder.preOrderEdit', compact('productinfo'));
     }
 
     public function updatePreOrder(Request $request)

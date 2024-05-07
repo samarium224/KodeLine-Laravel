@@ -14,10 +14,6 @@ class DashboardOrderController extends Controller
         return view('admin.AllOrders', compact('orders'));
     }
 
-    public function PreOrderItem(){
-        return view('admin.orders.preOrderItem');
-    }
-
     public function OrderUnpaid(){
         $title = "Unpaid Order List";
         $orders = Order::where('payment_status', 0)->get();

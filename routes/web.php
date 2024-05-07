@@ -45,6 +45,7 @@ Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemsho
 Route::get('/preordershowcase', [ShowcaseProduct::class, 'ShowPreorderItem'])->name('preordershowcase');
 //shipping address
 Route::get('/shippingAddress', [UserAddressController::class, 'Index'])->name('ShippingAddress');
+
 // cart route
 Route::post('/cart', [CartController::class, 'store'])->name('addtocart');
 Route::get('/cartItems', [CartController::class, 'index'])->name('cartItems');
@@ -102,7 +103,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(DashboardOrderController::class)->group(function () {
         // order
         Route::get('/admin/orders', 'Orders')->name('order.viewOrders');
-        Route::get('/admin/preOrdersItem', 'PreOrderItem')->name('order.preOrderItem');
         Route::get('/admin/orders/unpaid', 'OrderUnpaid')->name('order.unpaid');
         Route::get('/admin/orders/pending', 'OrderPending')->name('order.pending');
         Route::get('/admin/orders/complete', 'OrderComplete')->name('order.complete');
@@ -114,6 +114,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::controller(PreOrderItemController::class)->group(function () {
         //preorder items
+        Route::get('/admin/preOrdersItem', 'PreOrderItem')->name('order.preOrderItem');
         Route::get('/admin/viewpreOrdersItem', 'ViewPreOrderItem')->name('order.preOrderItem.view');
         Route::post('/admin/preorder/store', 'StorePreOrder')->name('preorder.store');
         Route::get('/admin/preorder/edit/{id}', 'editPreOrder')->name('preorder.edit');
