@@ -16,8 +16,11 @@ return new class extends Migration
             $table->string('order_id');
             $table->string('username');
             $table->string('user_id');
-            $table->string('phonenumber');
             $table->string('address');
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('postal')->nullable();
+            $table->string('phonenumber');
             $table->string('session_id');
             $table->string('product_id');
             $table->string('product_name');

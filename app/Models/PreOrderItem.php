@@ -19,10 +19,9 @@ class PreOrderItem extends Model
         'quantity',
         'slug',
         'ageRange',
-        'ageGroup',
-        'sizeGroup',
-        'colorGroup',
-        'quantityGroup',
-        'imageVariations',
     ];
+
+    public function attributes(){
+        return $this->hasMany(PreOrderAttributes::class,'product_id', 'id');
+    }
 }

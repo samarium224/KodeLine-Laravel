@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pre_order_items', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
-            $table->text('product_short_description');
+            $table->text('product_short_description')->nullable();
             $table->text('product_long_description')->nullable();
             $table->double('price');
             $table->double('compare_price');
@@ -22,11 +22,6 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('slug');
             $table->string('ageRange');
-            $table->string('ageGroup');
-            $table->string('sizeGroup');
-            $table->string('colorGroup');
-            $table->string('quantityGroup');
-            $table->text('imageVariations');
             $table->timestamps();
         });
     }

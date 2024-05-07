@@ -81,7 +81,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                                     textShadow: "0px 0px 10px rgba(0,0,0,0.25)",
                                 }}
                             >
-                                Sun-kissed style for every little princess!
+                                {category.categorySubtitle}
                             </Typography>
                         </Box>
                         <Link

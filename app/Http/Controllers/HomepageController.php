@@ -72,11 +72,8 @@ class HomepageController extends Controller
                 return [
                     'categoryID' => Products::where('product_category_name', $categoryName)->value('product_category_id'),
                     'categoryTitle' => $categoryName,
+                    'categorySubtitle' => Category::where('category_name', $categoryName)->value('category_title'),
                     'categoryImage' => Category::where('category_name', $categoryName)->value('category_img'),
-                    'categoryMobileQuote' => [
-                        'title' => "Sun-kissed Style",
-                        'subtitle' => "For Every Little Princess",
-                    ],
                     'categoryItemList' => $group->take(4)->map(function ($product) {
                         $ageRangeArray = explode('|', $product->ageRange);
                         $product_img = explode('|', $product->product_img);

@@ -94,7 +94,7 @@
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
                             <input type="file" id="product_img1" name="category_img" accept="image/*"
-                                style="opacity: 0;" required>
+                                style="opacity: 0;">
                         </div>
                         <div class="col-md-4">
                             <!-- Display existing image -->
@@ -116,7 +116,7 @@
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
                             <input type="file" id="product_img2" name="cat_headerImg_PC" accept="image/*"
-                                style="opacity: 0;" required>
+                                style="opacity: 0;">
                         </div>
                         <div class="col-md-4">
                             <!-- Display existing image -->
@@ -138,7 +138,7 @@
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
                             <input type="file" id="product_img3" name="cat_headerImg_mobile" accept="image/*"
-                                style="opacity: 0;" required>
+                                style="opacity: 0;">
                         </div>
                         <div class="col-md-4">
                             <!-- Display existing image -->

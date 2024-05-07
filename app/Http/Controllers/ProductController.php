@@ -317,7 +317,7 @@ class ProductController extends Controller
     {
 
         $product = Products::with('attributes')->where('id', $id)->first();
-        return view('admin.Variations', compact('product'));
+        return view('admin.variant.Variations', compact('product'));
     }
 
     public function StoreVariant(Request $request)
@@ -341,7 +341,7 @@ class ProductController extends Controller
 
 
         $product = Products::findOrFail($id);
-        return view('admin.Variations', compact('product'));
+        return view('admin.variant.Variations', compact('product'));
     }
 
     public function StoreVariantItems(Request $request){
@@ -364,7 +364,7 @@ class ProductController extends Controller
         }
 
         $product = Products::with('attributes')->where('id', $request->product_id)->first();
-        return view('admin.Variations', compact('product'));
+        return view('admin.variant.Variations', compact('product'));
     }
 
     public function SetVariantImages($id){
@@ -404,6 +404,6 @@ class ProductController extends Controller
 
         $product_id = ProductAttributes::where('id', $attribute_id)->value('product_id');
         $product = Products::with('attributes')->where('id', $product_id)->first();
-        return view('admin.Variations', compact('product'));
+        return view('admin.variant.Variations', compact('product'));
     }
 }

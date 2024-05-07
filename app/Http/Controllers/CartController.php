@@ -54,7 +54,7 @@ class CartController extends Controller
         ]);
 
         $product_id = $request->itemID;
-        $variantIndex = $request->sizeIndex;
+        $variantIndex = $request->sizeIndex == null ? 0 : $request->sizeIndex;
         $sizeName = null;
         $priceData = null;
         $attribute_id = null;

@@ -104,9 +104,9 @@ class DashboardController extends Controller
 
         $request->validate([
             'category_name' => 'required',
-            'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'category_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_PC' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_mobile' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'category_title' => 'required',
             'category_subtitle' => 'required',
         ]);
@@ -117,6 +117,8 @@ class DashboardController extends Controller
             $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/collections'), $image_name);
             $img_url = 'uploads/collections/' . $image_name;
+        }else{
+            $img_url = Category::where('id', $category_id)->value('category_img');
         }
 
         if ($file = $request->file('cat_headerImg_PC')) {
@@ -125,6 +127,8 @@ class DashboardController extends Controller
             $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/collections/contents'), $image_name);
             $header_url = 'uploads/collections/contents/' . $image_name;
+        }else{
+            $header_url = Category::where('id', $category_id)->value('cat_headerImg_PC');
         }
 
         if ($file = $request->file('cat_headerImg_mobile')) {
@@ -133,6 +137,8 @@ class DashboardController extends Controller
             $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/collections/contents'), $image_name);
             $mobileHeader_url = 'uploads/collections/contents/' . $image_name;
+        }else{
+            $mobileHeader_url = Category::where('id', $category_id)->value('cat_headerImg_mobile');
         }
 
         $category = Category::findOrFail($category_id);
