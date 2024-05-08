@@ -9,6 +9,9 @@ use App\Models\PreOrderItem;
 class PreOrderItemController extends Controller
 {
     //handle pre-order items
+    public function PreOrderItem(){
+        return view('admin.PreOrder.preOrderItem');
+    }
 
     public function ViewPreOrderItem(){
         $products = PreOrderItem::paginate(10);
@@ -79,7 +82,7 @@ class PreOrderItemController extends Controller
 
     public function editPreOrder($id){
         $productinfo = PreOrderItem::findOrFail($id);
-        return view('admin.orders.preOrderEdit', compact('productinfo'));
+        return view('admin.PreOrder.preOrderEdit', compact('productinfo'));
     }
 
     public function updatePreOrder(Request $request)
@@ -229,7 +232,7 @@ class PreOrderItemController extends Controller
     public function SetVariantImages($id){
         $variant = PreOrderAttributes::findOrFail($id);
 
-        return view('admin.variant.configImages', compact('variant'));
+        return view('admin.PreOrder.variant.configImages', compact('variant'));
     }
 
     public function VariantImageStore(Request $request){
@@ -263,6 +266,6 @@ class PreOrderItemController extends Controller
 
         $product_id = PreOrderAttributes::where('id', $attribute_id)->value('product_id');
         $product = PreOrderItem::with('attributes')->where('id', $product_id)->first();
-        return view('admin.Variations', compact('product'));
+        return view('admin.PreOrder.variant.Variations', compact('product'));
     }
 }

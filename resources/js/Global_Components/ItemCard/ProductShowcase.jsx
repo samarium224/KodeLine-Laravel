@@ -36,7 +36,7 @@ const ProductShowcase = ({
             href={
                 buttonText == "ADD TO CART"
                     ? route("itemshowcase", { id: itemID, color: 0 })
-                    : route("preordershowcase", { id: itemID })
+                    : route("preordershowcase", { id: itemID, color: 0 })
             }
             sx={{
                 scale: buttonText == "PRE ORDER" && "0.9",

@@ -46,7 +46,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{route('home')}}">
                         <!-- Logo icon -->
-                        <b><img src="{{ asset('assets/Logo.svg') }}" width="100px" alt="homepage"
+                        <b><img src="{{ asset('assets/Logo.svg') }}" width="150px" alt="homepage"
                                 class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->

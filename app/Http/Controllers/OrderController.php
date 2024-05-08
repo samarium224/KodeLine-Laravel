@@ -82,7 +82,7 @@ class OrderController extends Controller
             ]);
         }
 
-        return redirect($checkout_session->url);
+        return Inertia::location($checkout_session->url);
     }
 
     public function payment_success(Request $request)

@@ -1,9 +1,9 @@
 @extends('admin.dashboardcore')
 
-@section('page-title', 'Dashboard | Product Variants Image')
+@section('page-title', 'Dashboard | Pre Order Product Variants Image')
 
-@section('page-heading', 'Edit Product Variants Image')
-@section('page-active-heading', 'Product Variants Image')
+@section('page-heading', 'Edit Pre Order Variants Image')
+@section('page-active-heading', 'Pre Order Variants Image')
 
 @section('dashboard-content')
     <style>
@@ -51,7 +51,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('varientImage.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('preorder.varientImage.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-8">
