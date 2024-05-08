@@ -1,4 +1,4 @@
-<form action="{{ route('variant.store') }}" method="post">
+<form action="{{ route('preorder.variant.store') }}" method="post">
     @csrf
     <div class="card variation-section">
         <input type="hidden" value="{{ $product->id }}" name="product_id">

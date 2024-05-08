@@ -232,7 +232,7 @@ class PreOrderItemController extends Controller
     public function SetVariantImages($id){
         $variant = PreOrderAttributes::findOrFail($id);
 
-        return view('admin.variant.configImages', compact('variant'));
+        return view('admin.PreOrder.variant.configImages', compact('variant'));
     }
 
     public function VariantImageStore(Request $request){
@@ -266,6 +266,6 @@ class PreOrderItemController extends Controller
 
         $product_id = PreOrderAttributes::where('id', $attribute_id)->value('product_id');
         $product = PreOrderItem::with('attributes')->where('id', $product_id)->first();
-        return view('admin.Variations', compact('product'));
+        return view('admin.PreOrder.variant.Variations', compact('product'));
     }
 }

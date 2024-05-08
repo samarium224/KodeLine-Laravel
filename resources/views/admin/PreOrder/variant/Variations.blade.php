@@ -1,9 +1,9 @@
 @extends('admin.dashboardcore')
 
-@section('page-title', 'Dashboard | Products')
+@section('page-title', 'Dashboard | Pre Order Variations')
 
-@section('page-heading', 'Manage Variations')
-@section('page-active-heading', 'Manage Product Variations')
+@section('page-heading', 'Manage Pre Order Variations')
+@section('page-active-heading', 'Manage Pre Order Variations')
 
 @section('dashboard-content')
 
@@ -42,7 +42,7 @@
         </div>
         @if (count($product->attributes) != 0)
             <div class="card">
-                <form action="{{ route('variant.nextstep.store') }}" method="post">
+                <form action="{{ route('preorder.variant.nextstep.store') }}" method="post">
                     @csrf
                     <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
                     <table class="table">
@@ -69,7 +69,7 @@
                                 <tr>
                                     <input type="hidden" value="{{ $attribute->id }}" name="attribute_id[]">
                                     <th scope="row">
-                                        <a href="{{ route('setVarientImage', $attribute->id) }}">
+                                        <a href="{{ route('preorder.setVarientImage', $attribute->id) }}">
                                             @php
                                                 $variant_img = explode('|', $attribute->imageUrls);
                                             @endphp
@@ -91,7 +91,7 @@
                                     <td><input type="text" name="stocks[]" value="{{ $attribute->stock }}"
                                             class="form-control" required></td>
                                     <td>
-                                        <a href="{{ route('variant.delete', $attribute->id) }}">
+                                        <a href="{{ route('preorder.variant.delete', $attribute->id) }}">
                                             <i class="fa fa-trash-o delete-variation mt-2"
                                                 style="font-size: 20px; color: #4d4d4d; cursor: pointer;"></i>
                                         </a>
@@ -104,7 +104,7 @@
                 </form>
             </div>
         @else
-            @include('admin.variant.variantNewTable');
+            @include('admin.PreOrder.variant.variantNewTable');
             <script src="{{ asset('js/addvariation.js') }}"></script>
         @endif
 
