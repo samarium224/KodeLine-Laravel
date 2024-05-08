@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Content;
 use App\Models\PreOrderItem;
 use App\Models\Products;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,14 +15,33 @@ class CollectionController extends Controller
     public function Index(Request $request){
         $validatedData = $request->validate([
             "id"=> "required|integer",
+            "category_id" => "nullable"
         ]);
 
         $id = $request->get("id");
+        $selected_category_id = $request->get("category_id");
+
+        $SelectedCategories = SubCategory::where('category_id', $id)->get()->map(function ($item){
+            return [
+                'selectedSubCat' => $item->subcategory_name,
+                'selectedSubCatID' => $item->id
+            ];
+        });
 
         $collections = Category::all()->map(function ($item) {
+            $subcategoryInfo = SubCategory::where('category_id', $item->id)->get();
+            $subcategory = [];
+            $subcategory_id = [];
+            foreach($subcategoryInfo as $subcat){
+                $subcategory[] = $subcat->subcategory_name;
+                $subcategory_id[] = $subcat->id;
+            }
             return [
                 'collection_name' => $item->category_name,
-                'collection_id'=> $item->id,
+                'collection_id' => $item->id,
+                'subcategories' => $subcategory,
+                'subcategory_id' => $subcategory_id,
+                'ImgUrl' => $item->cat_headerImg_PC,
             ];
         });
 
@@ -40,7 +60,7 @@ class CollectionController extends Controller
                 ];
             });
 
-            $CollectionItemList = Products::where('product_category_id', $id)->take(30)->get()->map(function ($item) {
+            $CollectionItemList = Products::where('product_category_id', $id)->get()->map(function ($item) {
                 // Assuming 'ageRange' is a string like "3|6", we split it into an array.
                 $ageRangeArray = explode('|', $item->ageRange);
                 return [
@@ -50,6 +70,8 @@ class CollectionController extends Controller
                     'ageRange' => $ageRangeArray, // This will now be an array, e.g., [3, 6]
                     'currentPrice' => $item->price,
                     'oldPrice' => $item->compare_price,
+                    'categoryName' => $item->product_subcategory_name,
+                    'categoryID' => $item->product_subcategory_id
                 ];
             });
 
@@ -72,6 +94,8 @@ class CollectionController extends Controller
             return Inertia::render('Collection',[
                 'collections' => $collections,
                 'collection_info' => $collection_info[0],
+                'selectedCategoryID' => $selected_category_id,
+                'selectedCategories' => $SelectedCategories,
                 'collectionItemList'=> $CollectionItemList,
                 'preOrderContent' => $preOrderContent,
                 'preOrderItems' => $preOrderItems,

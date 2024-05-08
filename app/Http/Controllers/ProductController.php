@@ -12,7 +12,7 @@ class ProductController extends Controller
     //all the function related to products
     public function All_Products()
     {
-        $products = Products::paginate(10);
+        $products = Products::orderBy('id', 'desc')->paginate(10);
         return view('admin.AllProducts', compact('products'));
     }
 

@@ -77,6 +77,7 @@ const CategoryMenu = ({
                                 key={j}
                                 href={route("collection", {
                                     id: collection.collection_id,
+                                    category_id: collection.subcategory_id[j],
                                 })}
                             >
                                 <Typography

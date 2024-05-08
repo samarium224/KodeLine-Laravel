@@ -39,16 +39,22 @@ class HomepageController extends Controller
         $collections = Category::all()->map(function ($item) {
             $subcategoryInfo = SubCategory::where('category_id', $item->id)->get();
             $subcategory = [];
+            $subcategory_id = [];
             foreach($subcategoryInfo as $subcat){
                 $subcategory[] = $subcat->subcategory_name;
+                $subcategory_id[] = $subcat->id;
             }
             return [
                 'collection_name' => $item->category_name,
                 'collection_id' => $item->id,
                 'subcategories' => $subcategory,
+                'subcategory_id' => $subcategory_id,
                 'ImgUrl' => $item->cat_headerImg_PC,
             ];
+
+
         });
+
 
         $featuredcollections = Products::select('product_category_name', 'product_category_id')
             ->where('featured', 'true')

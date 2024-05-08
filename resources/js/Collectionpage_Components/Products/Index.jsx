@@ -21,8 +21,9 @@ import { FilterTextFields } from "./Filters/FilterTextFields";
 
 // import { CollectionItemsList } from "./data";
 
-const Products = ({ CollectionItemsList }) => {
-    console.log(CollectionItemsList);
+const Products = ({ CollectionItemsList , selectedCategories, selectedCategoryID }) => {
+    console.log(selectedCategories);
+    console.log(selectedCategoryID);
     const theme = useTheme();
 
     const minPrice = Math.min(
