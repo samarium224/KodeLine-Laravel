@@ -3,7 +3,6 @@ import { IconButton, Box, Button } from "@mui/material";
 
 const DesktopToolbar = ({
     auth,
-    collectionOpen,
     setCollectionOpen,
     navButtonStyle,
     alternativeColor,
@@ -43,7 +42,7 @@ const DesktopToolbar = ({
             </Link>
             <Button
                 sx={navButtonStyle}
-                onClick={() => setCollectionOpen(!collectionOpen)}
+                onMouseEnter={() => setCollectionOpen(true)}
             >
                 Collections
             </Button>

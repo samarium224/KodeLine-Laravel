@@ -27,8 +27,6 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
     const [collectionOpen, setCollectionOpen] = useState(false);
     if (collectionOpen) alternativeColor = true;
 
-    console.log(collections);
-
     const navButtonStyle = {
         color: alternativeColor
             ? theme.palette.text.grey[500]
@@ -93,14 +91,18 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
                     position="absolute"
                     sx={{
                         backgroundColor: collectionOpen
-                            ? "white"
-                            : "transparent",
+                            ? "rgba(255, 255, 255, 1)"
+                            : "rgba(255, 255, 255, 0)",
                         boxShadow: "none",
                         transform: "translateX(-50%)",
+                        transition: "0.2s",
                         left: "50%",
                         px: "5vw",
                         width: { xs: "100vw", maxAllowableWidth: "1750px" },
                     }}
+                    onMouseLeave={() =>
+                        collectionOpen && setCollectionOpen(false)
+                    }
                 >
                     <Toolbar
                         sx={{ px: 1, mt: -1, justifyContent: "space-between" }}
