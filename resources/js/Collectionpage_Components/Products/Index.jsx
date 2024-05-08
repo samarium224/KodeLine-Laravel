@@ -1,19 +1,28 @@
+import React, { useState } from "react";
+
 import {
     Box,
-    Button,
     Container,
+    Drawer,
+    Divider,
     Grid,
     Typography,
     useTheme,
+    Slider,
 } from "@mui/material";
+
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
-import React, { useState } from "react";
-import PriceFilter from "./PriceFilter";
-import AgeFilter from "./AgeFilter";
+
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import CloseIcon from "@mui/icons-material/Close";
+import { FilterHeader } from "./Filters/FilterHeader";
+import { SubcategoriesFilter } from "./Filters/SubcategoriesFilter";
+import { FilterTextFields } from "./Filters/FilterTextFields";
 
 // import { CollectionItemsList } from "./data";
 
 const Products = ({ CollectionItemsList }) => {
+    console.log(CollectionItemsList);
     const theme = useTheme();
 
     const minPrice = Math.min(
@@ -29,72 +38,198 @@ const Products = ({ CollectionItemsList }) => {
         ...CollectionItemsList.map((item) => item.ageRange[1])
     );
 
-    const [priceRange, setPriceRange] = useState([minPrice, maxPrice]);
-    const [ageRange, setAgeRange] = useState([minAge, maxAge]);
+    const [collectionOpen, setCollectionOpen] = useState(false);
+    const [filter, setFilter] = useState({
+        priceRange: [minPrice, maxPrice],
+        ageRange: [minAge, maxAge],
+        subcategories: [
+            { name: "Subcategory 1", active: true },
+            { name: "Subcategory 2", active: false },
+            { name: "Subcategory 3", active: false },
+            { name: "Subcategory 4", active: false },
+        ],
+    });
 
-    // Filter items based on price range
     const filteredItems = CollectionItemsList.filter(
         (item) =>
-            item.currentPrice >= priceRange[0] &&
-            item.currentPrice <= priceRange[1] &&
-            item.ageRange[0] >= ageRange[0] &&
-            item.ageRange[1] <= ageRange[1]
+            item.currentPrice >= filter.priceRange[0] &&
+            item.currentPrice <= filter.priceRange[1] &&
+            item.ageRange[0] >= filter.ageRange[0] &&
+            item.ageRange[1] <= filter.ageRange[1]
     );
 
-    const clearFilter = () => {
-        setPriceRange([minPrice, maxPrice]);
-        setAgeRange([minAge, maxAge]);
+    const handlescclick = (i) => {
+        setFilter((prevFilter) => {
+            const updatedFilter = {
+                ...prevFilter,
+                subcategories: prevFilter.subcategories.map(
+                    (subcategory, index) => {
+                        if (index === i) {
+                            return {
+                                ...subcategory,
+                                active: !subcategory.active,
+                            };
+                        }
+                        return subcategory;
+                    }
+                ),
+            };
+            return updatedFilter;
+        });
     };
+
+    const handlePriceSliderRangeChange = (event, newValue) => {
+        setFilter((prevFilter) => ({
+            ...prevFilter,
+            priceRange: newValue,
+        }));
+    };
+
+    const handlePriceRangeChange = (newValue) => {
+        setFilter((prevFilter) => ({
+            ...prevFilter,
+            priceRange: newValue,
+        }));
+    };
+
+    const handleAgeSliderRangeChange = (event, newValue) => {
+        setFilter((prevFilter) => ({
+            ...prevFilter,
+            ageRange: newValue,
+        }));
+    };
+
+    const handleAgeRangeChange = (newValue) => {
+        setFilter((prevFilter) => ({
+            ...prevFilter,
+            ageRange: newValue,
+        }));
+    };
+
+    // const clearFilter = () => {
+    //     setPriceRange([minPrice, maxPrice]);
+    //     setAgeRange([minAge, maxAge]);
+    // };
 
     return (
         <Container maxWidth="desktopMaxWidth" sx={{ mt: 6, mb: 7, px: 1 }}>
-            <Typography
-                variant="secondaryTitle"
-                textTransform="initial"
-                color={theme.palette.secondary.main}
-                fontWeight={600}
+            <Box
+                display="flex"
+                alignItems={"center"}
+                onClick={() => setCollectionOpen(true)}
+                sx={{
+                    cursor: "pointer",
+                    color: theme.palette.text.grey[500],
+                    "&:hover": { color: theme.palette.secondary.main },
+                    transition: "0.25s",
+                }}
             >
-                Sort By
-            </Typography>
-            {/* Price Filter */}
-            <Box mb={2}>
-                <hr />
+                <MenuOpenIcon />
+                <Typography
+                    variant="secondaryTitle"
+                    textTransform="initial"
+                    fontWeight={600}
+                    ml={1}
+                >
+                    Filter
+                </Typography>
             </Box>
-            <Box mb={2} display="flex" justifyContent="space-between">
-                <Box>
-                    <PriceFilter
-                        priceRange={priceRange}
-                        setPriceRange={setPriceRange}
-                        minPrice={minPrice}
-                        maxPrice={maxPrice}
-                    />
+            <Divider />
 
-                    <AgeFilter
-                        ageRange={ageRange}
-                        setAgeRange={setAgeRange}
-                        minAge={minAge}
-                        maxAge={maxAge}
-                    />
+            <Drawer
+                anchor="left"
+                open={collectionOpen}
+                onClose={() => setCollectionOpen(false)}
+            >
+                <Box
+                    sx={{ width: { xs: "100vw", sm: "400px" } }}
+                    height="100vh"
+                    p={4}
+                    className="filters"
+                >
+                    <Box
+                        width="100%"
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                    >
+                        <Typography
+                            variant="secondaryTitle"
+                            textTransform="initial"
+                            fontWeight={600}
+                            ml={1}
+                        >
+                            Filters
+                        </Typography>
+                        <CloseIcon
+                            sx={{ mr: 1, cursor: "pointer" }}
+                            onClick={() => setCollectionOpen(false)}
+                        />
+                    </Box>
+                    <Divider fontSize="large" sx={{ my: 1 }} />
+
+                    <Box mt={2}>
+                        <FilterHeader text={"Subcategories"} />
+                        <SubcategoriesFilter
+                            filter={filter}
+                            handlescclick={handlescclick}
+                        />
+                    </Box>
+
+                    <Box mt={2}>
+                        <FilterHeader text={"Price"} />
+                        <Box mx={2}>
+                            <Slider
+                                getAriaLabel={() => "Price"}
+                                value={filter.priceRange}
+                                onChange={handlePriceSliderRangeChange}
+                                valueLabelDisplay="auto"
+                                min={minPrice}
+                                max={maxPrice}
+                            />
+                        </Box>
+                        <FilterTextFields
+                            filter={filter}
+                            handleRangeChange={handlePriceRangeChange}
+                        />
+                    </Box>
+
+                    <Box mt={2}>
+                        <FilterHeader text={"Age"} />
+                        <Box mx={2}>
+                            <Slider
+                                getAriaLabel={() => "Age"}
+                                value={filter.ageRange}
+                                onChange={handleAgeSliderRangeChange}
+                                valueLabelDisplay="auto"
+                                min={minAge}
+                                max={maxAge}
+                            />
+                        </Box>
+                        <FilterTextFields
+                            filter={filter}
+                            handleRangeChange={handleAgeRangeChange}
+                        />
+                    </Box>
                 </Box>
 
-                <Button sx={{ p: 0 }}>
-                    <Typography
-                        variant="itemdescTitle"
-                        textTransform="initial"
-                        color={theme.palette.text.grey[500]}
-                        onClick={clearFilter}
-                        sx={{ cursor: "pointer" }}
-                    >
-                        Clear Filter
-                    </Typography>
-                </Button>
-            </Box>
+                <Box
+                    backgroundColor="white"
+                    position="fixed"
+                    top="100svh"
+                    sx={{
+                        transform: "translateY(-100%)",
+                        width: { xs: "100vw", md: "400px" },
+                    }}
+                ></Box>
+            </Drawer>
+
             <Grid container>
                 {filteredItems.map((item, i) => (
                     <Grid item xs={6} md={3} key={i} mt={5}>
                         <ItemCard
                             itemID={item.itemID}
-                            itemImage={item.imgURL}
+                            itemImage={item.imgURL.split("|")[0]}
                             itemTitle={item.itemTitle}
                             ageRange={item.ageRange}
                             currentPrice={item.currentPrice}

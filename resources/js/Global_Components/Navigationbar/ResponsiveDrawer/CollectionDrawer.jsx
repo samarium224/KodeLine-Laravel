@@ -16,11 +16,10 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
-import { Collections } from "@/Global_data/Collections";
-
 const DrawerCollectionContent = ({ toggleDrawer, collections }) => {
-    const ListItemLink = ({ primary, href }) => {
+    const ListItemLink = ({ collection, href }) => {
         const [collectionOpen, setCollectionOpen] = useState(false);
+        console.log(collection);
         return (
             <>
                 <ListItem
@@ -28,7 +27,7 @@ const DrawerCollectionContent = ({ toggleDrawer, collections }) => {
                     onClick={() => setCollectionOpen(!collectionOpen)}
                     href={href}
                 >
-                    <ListItemText primary={primary} />{" "}
+                    <ListItemText primary={collection.collection_name} />{" "}
                     {collectionOpen ? (
                         <KeyboardArrowUpIcon />
                     ) : (
@@ -38,19 +37,17 @@ const DrawerCollectionContent = ({ toggleDrawer, collections }) => {
                 <Divider />
                 <Collapse in={collectionOpen} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        {collections.map((collection, i) => (
+                        {collection.subcategories.map((subcategory, i) => (
                             <ListItem
                                 button
                                 key={i}
                                 component={Link}
-                                // href={route("collection", {
-                                //     id: collection.collection_id,
-                                // })}
                                 sx={{ pl: 4 }}
+                                href={route("collection", {
+                                    id: collection.collection_id,
+                                })}
                             >
-                                <ListItemText
-                                    primary={collection.collection_name}
-                                />
+                                <ListItemText primary={subcategory} />
                             </ListItem>
                         ))}
                     </List>
@@ -103,11 +100,11 @@ const DrawerCollectionContent = ({ toggleDrawer, collections }) => {
                 {collections.map((collection) => (
                     <ListItemLink
                         key={collection.collection_id}
-                        primary={collection.collection_name}
+                        collection={collection}
+                        sx={{ pl: 4 }}
                         href={route("collection", {
                             id: collection.collection_id,
                         })}
-                        sx={{ pl: 4 }}
                     />
                 ))}
             </List>

@@ -23,11 +23,6 @@ export default function Login({ status }) {
         };
     }, []);
 
-    const submit = (e) => {
-        e.preventDefault();
-        post(route("checkout"));
-    };
-
     return (
         <GuestLayout>
             <Head title="Shipping Address" />
@@ -38,140 +33,115 @@ export default function Login({ status }) {
                 </div>
             )}
 
-            <form onSubmit={submit}>
+            <div style={{ marginBottom: "8px" }}>
+                <InputLabel htmlFor="address" value="Address" />
+
+                <TextInput
+                    id="address"
+                    type="text"
+                    name="address"
+                    value={data.address}
+                    className="mt-1 block w-full"
+                    autoComplete="address"
+                    isFocused={true}
+                    onChange={(e) => setData("address", e.target.value)}
+                />
+
+                <InputError message={errors.address} className="mt-2" />
+            </div>
+            <div style={{ marginBottom: "8px" }}>
+                <InputLabel htmlFor="city" value="City" />
+
+                <TextInput
+                    id="city"
+                    type="text" // Change the type to "tel"
+                    name="city"
+                    value={data.city}
+                    className="mt-1 block w-full"
+                    autoComplete="city"
+                    isFocused={true}
+                    onChange={(e) => setData("city", e.target.value)}
+                />
+
+                <InputError message={errors.city} className="mt-2" />
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: "24px",
+                }}
+            >
                 <div style={{ marginBottom: "8px" }}>
-                    <InputLabel htmlFor="address" value="Address" />
+                    <InputLabel htmlFor="state" value="State" />
 
                     <TextInput
-                        id="address"
-                        type="text"
-                        name="address"
-                        value={data.address}
-                        className="mt-1 block w-full"
-                        autoComplete="address"
-                        isFocused={true}
-                        onChange={(e) => setData("address", e.target.value)}
-                    />
-
-                    <InputError message={errors.address} className="mt-2" />
-                </div>
-                <div style={{ marginBottom: "8px" }}>
-                    <InputLabel htmlFor="city" value="City" />
-
-                    <TextInput
-                        id="city"
+                        id="state"
                         type="text" // Change the type to "tel"
-                        name="city"
-                        value={data.city}
-                        className="mt-1 block w-full"
-                        autoComplete="city"
-                        isFocused={true}
-                        onChange={(e) => setData("city", e.target.value)}
-                    />
-
-                    <InputError message={errors.city} className="mt-2" />
-                </div>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        gap: "24px",
-                    }}
-                >
-                    <div style={{ marginBottom: "8px" }}>
-                        <InputLabel htmlFor="state" value="State" />
-
-                        <TextInput
-                            id="state"
-                            type="text" // Change the type to "tel"
-                            name="state"
-                            value={data.state}
-                            className="mt-1 block w-full"
-                            autoComplete="tel"
-                            isFocused={true}
-                            onChange={(e) => setData("state", e.target.value)}
-                        />
-
-                        <InputError message={errors.state} className="mt-2" />
-                    </div>
-                    <div style={{ marginBottom: "8px" }}>
-                        <InputLabel htmlFor="postal_code" value="Postal code" />
-
-                        <TextInput
-                            id="postal_code"
-                            type="tel" // Change the type to "tel"
-                            name="postal_code"
-                            value={data.postal_code}
-                            className="mt-1 block w-full"
-                            autoComplete="tel"
-                            isFocused={true}
-                            onChange={(e) =>
-                                setData("postal_code", e.target.value)
-                            }
-                        />
-
-                        <InputError
-                            message={errors.postal_code}
-                            className="mt-2"
-                        />
-                    </div>
-                </div>
-                <div style={{ marginBottom: "8px" }}>
-                    <InputLabel htmlFor="phone" value="Phone" />
-
-                    <TextInput
-                        id="phone"
-                        type="tel" // Change the type to "tel"
-                        name="phone"
-                        value={data.phone}
+                        name="state"
+                        value={data.state}
                         className="mt-1 block w-full"
                         autoComplete="tel"
                         isFocused={true}
-                        onChange={(e) => setData("phone", e.target.value)}
+                        onChange={(e) => setData("state", e.target.value)}
                     />
 
-                    <InputError message={errors.phone} className="mt-2" />
+                    <InputError message={errors.state} className="mt-2" />
                 </div>
+                <div style={{ marginBottom: "8px" }}>
+                    <InputLabel htmlFor="postal_code" value="Postal code" />
 
-                <div className="flex items-center flex-col justify-center mt-4 w-full">
-                    <Button
-                        onClick={submit}
-                        sx={{
-                            mb: 3,
-                            my: 1,
-                            py: 1.75,
-                            fontSize: "0.9rem",
-                            textTransform: "uppercase",
-                            color: "#fafafa",
-                            width: "100%",
-                            backgroundColor: "#53555a",
-                            "&:hover": {
-                                backgroundColor: "#3e4044",
-                            },
-                        }}
-                    >
-                        Proceed to Checkout
-                    </Button>
-                    {/* <Button
-                        sx={{
-                            my: 1,
-                            py: 1.25,
-                            fontSize: "0.9rem",
-                            textTransform: "uppercase",
-                            width: "100%",
-                            color: "#53555a",
-                            border: `1px solid #53555a`,
-                            "&:hover": {
-                                backgroundColor: "#3e4044",
-                                color: "#fafafa",
-                            },
-                        }}
-                        onClick={() => post(route("addtocart"))}
-                    >
-                        Add to cart
-                    </Button> */}
+                    <TextInput
+                        id="postal_code"
+                        type="tel" // Change the type to "tel"
+                        name="postal_code"
+                        value={data.postal_code}
+                        className="mt-1 block w-full"
+                        autoComplete="tel"
+                        isFocused={true}
+                        onChange={(e) => setData("postal_code", e.target.value)}
+                    />
+
+                    <InputError message={errors.postal_code} className="mt-2" />
                 </div>
-            </form>
+            </div>
+            <div style={{ marginBottom: "8px" }}>
+                <InputLabel htmlFor="phone" value="Phone" />
+
+                <TextInput
+                    id="phone"
+                    type="tel" // Change the type to "tel"
+                    name="phone"
+                    value={data.phone}
+                    className="mt-1 block w-full"
+                    autoComplete="tel"
+                    isFocused={true}
+                    onChange={(e) => setData("phone", e.target.value)}
+                />
+
+                <InputError message={errors.phone} className="mt-2" />
+            </div>
+
+            <div className="flex items-center flex-col justify-center mt-4 w-full">
+                <Button
+                    onClick={() => post(route("checkout"))}
+                    sx={{
+                        mb: 3,
+                        my: 1,
+                        py: 1.75,
+                        fontSize: "0.9rem",
+                        textTransform: "uppercase",
+                        color: "#fafafa",
+                        width: "100%",
+                        backgroundColor: "#53555a",
+                        "&:hover": {
+                            backgroundColor: "#3e4044",
+                        },
+                    }}
+                >
+                    Proceed to Checkout
+                </Button>
+            </div>
         </GuestLayout>
     );
 }

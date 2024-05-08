@@ -6,12 +6,9 @@ subcategories section in collection page
 add to cart background shadow
 
 banner text line break fix
-phone no. and address page
+img chepta
 
 featured item page
-
-COLLECTION MENU
-LAPTOP sm fix
 
 ========== Completed Query ==========
 # Services Fontsize #
@@ -37,6 +34,8 @@ LAPTOP sm fix
 / Stock text fix /
 / cart size and color /
 / add to cart disable on out of stock /
+/ COLLECTION MENU /
+/ phone no. and address page /
 / Fix headline size for phones /
 
 ======== Functional Problem =========
