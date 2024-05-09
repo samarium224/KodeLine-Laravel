@@ -33,11 +33,7 @@ const Header = ({ CollectionHeaderData }) => {
         : fadeFromLeft;
 
     return (
-        <Box
-            backgroundColor={theme.palette.primary.main}
-            display="flex"
-            justifyContent="center"
-        >
+        <Box display="flex" justifyContent="center">
             <Box
                 sx={{
                     backgroundImage: {
@@ -50,7 +46,9 @@ const Header = ({ CollectionHeaderData }) => {
 
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
                     height: {
-                        xs: `calc(60vh - 56px)`,
+                        xl: `calc(60vh - 56px)`,
+                        md: `calc(67.5vh - 49px)`,
+                        xs: `calc(60vh - 30px + 1px)`,
                         maxAllowableWidth: "700px",
                     },
                 }}
@@ -74,9 +72,10 @@ const Header = ({ CollectionHeaderData }) => {
                                 ? "right"
                                 : "left",
                         },
-                        mx: { md: 5, xl: 15 },
-                        pb: { xs: 0, md: 10 },
-                        mt: { xs: 10, md: 0 },
+                        mx: "6.66vw",
+                        pb: { xs: 0, md: 12.5, lg: 15 },
+                        pt: { xs: 12.5, md: 0 },
+                        position: "relative",
                     }}
                 >
                     <Typography
@@ -120,12 +119,12 @@ const Header = ({ CollectionHeaderData }) => {
                                 border: `2px solid ${theme.palette.text.white[500]}`,
                                 fontWeight: "500",
                                 fontSize: {
-                                    xl: "1rem",
-                                    md: "0.85rem",
-                                    xs: "0.8rem",
+                                    xl: "1.1rem",
+                                    lg: "1rem",
+                                    xs: "0.75rem",
                                 },
-                                px: { xl: 8, md: 5, xs: 3 },
-                                py: { xl: 1.66, md: 1.2, xs: 1 },
+                                px: { xl: 5, md: 5, xs: 4 },
+                                py: { xl: 1.5, md: 1.2, xs: 1 },
                                 "&:hover": {
                                     backgroundColor:
                                         theme.palette.text.white[500],

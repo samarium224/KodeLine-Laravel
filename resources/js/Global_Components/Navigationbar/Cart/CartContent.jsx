@@ -83,9 +83,10 @@ const CartItem = ({
 }) => (
     <>
         <Box display="flex" justifyContent="space-between" alignItems="center">
-            <img
-                src={requestItem.itemImgURL}
+            <div
                 style={{
+                    backgroundImage: `url(${requestItem.itemImgURL})`,
+                    backgroundSize: "cover",
                     minHeight: "100px",
                     minWidth: "75px",
                     maxHeight: "100px",

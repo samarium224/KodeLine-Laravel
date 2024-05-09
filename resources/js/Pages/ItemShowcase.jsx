@@ -43,10 +43,11 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
                 />
                 <ItemDescription product={product} />
                 {/* <Header title="You may also like" /> */}
-                {/* <BestSellingItems
+                <BestSellingItems
                     bestSellingItemsList={bestsellingItems}
                     collections={bestsellingCollection}
-                /> */}
+                    title="You May Also Like"
+                />
                 <Box my={5}></Box>
                 {preOrderContent && (
                     <PreOrder items={preOrderItems} content={preOrderContent} />

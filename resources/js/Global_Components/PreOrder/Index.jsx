@@ -36,113 +36,113 @@ const PreOrder = ({ items, content }) => {
         ],
     };
 
-    return (
-        <Box
-            display="flex"
-            sx={{
-                flexDirection: { xs: "column", md: "row" },
-                width: { xs: "100vw", maxAllowableWidth: "1960px" },
-                mx: "auto",
-                justifyContent: "center",
-                backgroundColor: "#dadada",
-            }}
-            className="preOrder"
-        >
+    if (items.length > 0)
+        return (
             <Box
+                display="flex"
                 sx={{
-                    backgroundImage: {
-                        xs: `url(${isLoaded && content.MobileImg})`,
-                        sm: `url(${isLoaded && content.HomePageImg})`,
-                    },
-                    backgroundPosition: "center bottom",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    width: {
-                        xs: "100%",
-                        md: "55%",
-                        maxAllowableWidth: "980px",
-                    },
-                    height: {
-                        xs: "550px",
-                        lg: "75vh",
-                        maxAllowableWidth: "700px",
-                    },
-                    py: 35,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-around",
-                    flexDirection: "column",
+                    flexDirection: { xs: "column", md: "row" },
+                    width: { xs: "100vw", maxAllowableWidth: "1960px" },
+                    mx: "auto",
+                    justifyContent: "center",
+                    backgroundColor: "#dadada",
                 }}
+                className="preOrder"
             >
-                <Box></Box>
                 <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="center"
-                    textAlign="center"
-                >
-                    <Typography
-                        display="block"
-                        variant="headline"
-                        color={theme.palette.text.white[500]}
-                        sx={{
-                            textShadow: "0px 0px 10px rgba(0,0,0,0.25)",
-                        }}
-                    >
-                        {content.title}
-                    </Typography>
-                    <Typography
-                        variant="subtitle"
-                        color={theme.palette.text.white[500]}
-                        sx={{
-                            mb: { xl: 5, md: 3, xs: 10 },
-                            width: { xs: "95%", md: "100%" },
-                            textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
-                        }}
-                    >
-                        {content.subtitle}
-                    </Typography>
-                </Box>
-                <Button
                     sx={{
-                        color: theme.palette.text.white[500],
-                        backgroundColor: "transparent",
-                        border: `2px solid ${theme.palette.text.white[500]}`,
-                        fontWeight: "500",
-                        fontSize: {
-                            xl: "1rem",
-                            md: "0.85rem",
-                            xs: "0.8rem",
+                        backgroundImage: {
+                            xs: `url(${isLoaded && content.MobileImg})`,
+                            sm: `url(${isLoaded && content.HomePageImg})`,
                         },
-                        px: { xl: 8, md: 5, xs: 3 },
-                        py: { xl: 1.66, md: 1.2, xs: 1 },
-                        "&:hover": {
-                            backgroundColor: theme.palette.text.white[500],
-                            color: theme.palette.text.grey[500],
+                        backgroundPosition: "center bottom",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: {
+                            xs: "100%",
+                            md: "55%",
+                            maxAllowableWidth: "980px",
+                        },
+                        height: {
+                            xs: "550px",
+                            lg: "75vh",
+                            maxAllowableWidth: "700px",
+                        },
+                        py: 35,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-around",
+                        flexDirection: "column",
+                    }}
+                >
+                    <Box></Box>
+                    <Box
+                        display="flex"
+                        flexDirection="column"
+                        alignItems="center"
+                        textAlign="center"
+                    >
+                        <Typography
+                            display="block"
+                            variant="headline"
+                            color={theme.palette.text.white[500]}
+                            sx={{
+                                textShadow: "0px 0px 10px rgba(0,0,0,0.25)",
+                            }}
+                        >
+                            {content.title}
+                        </Typography>
+                        <Typography
+                            variant="subtitle"
+                            color={theme.palette.text.white[500]}
+                            sx={{
+                                mb: { xl: 5, md: 3, xs: 10 },
+                                width: { xs: "95%", md: "100%" },
+                                textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
+                            }}
+                        >
+                            {content.subtitle}
+                        </Typography>
+                    </Box>
+                    <Button
+                        sx={{
+                            color: theme.palette.text.white[500],
+                            backgroundColor: "transparent",
+                            border: `2px solid ${theme.palette.text.white[500]}`,
+                            fontWeight: "500",
+                            fontSize: {
+                                xl: "1rem",
+                                md: "0.85rem",
+                                xs: "0.8rem",
+                            },
+                            px: { xl: 8, md: 5, xs: 3 },
+                            py: { xl: 1.66, md: 1.2, xs: 1 },
+                            "&:hover": {
+                                backgroundColor: theme.palette.text.white[500],
+                                color: theme.palette.text.grey[500],
+                            },
+                        }}
+                    >
+                        Explore
+                    </Button>
+                </Box>
+                <Box
+                    sx={{
+                        width: {
+                            xs: "100%",
+                            md: "45%",
+                            maxAllowableWidth: "980px",
+                        },
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        maxHeight: {
+                            xs: "550px",
+                            lg: "75vh",
+                            maxAllowableWidth: "700px",
                         },
                     }}
                 >
-                    Explore
-                </Button>
-            </Box>
-            <Box
-                sx={{
-                    width: {
-                        xs: "100%",
-                        md: "45%",
-                        maxAllowableWidth: "980px",
-                    },
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    maxHeight: {
-                        xs: "550px",
-                        lg: "75vh",
-                        maxAllowableWidth: "700px",
-                    },
-                }}
-            >
-                {items.length > 0 && (
                     <Box
                         sx={{
                             width: {
@@ -172,24 +172,9 @@ const PreOrder = ({ items, content }) => {
                             ))}
                         </Slider>
                     </Box>
-                )}
+                </Box>
             </Box>
-        </Box>
-    );
+        );
 };
 
 export default PreOrder;
-
-{
-    /* <Box>
-    <ItemCard
-        itemID={items[0].itemID}
-        itemImage={items[0].imgURL}
-        itemTitle={items[0].itemTitle}
-        ageRange={items[0].ageRange}
-        currentPrice={items[0].currentPrice}
-        oldPrice={items[0].oldPrice}
-        buttonText="PRE ORDER"
-    />
-</Box>; */
-}

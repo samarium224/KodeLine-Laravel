@@ -4,7 +4,11 @@ import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import BestSellingHeader from "./BestSellingHeader";
 // import { bestSellingItemsList, collections } from "./data";
 
-const BestSellingItems = ({ bestSellingItemsList, collections }) => {
+const BestSellingItems = ({
+    bestSellingItemsList,
+    collections,
+    title = "Best Selling Items",
+}) => {
     const theme = useTheme();
 
     const [currentCollectionID, setCurrentCollectionID] = useState(-1);
@@ -22,7 +26,7 @@ const BestSellingItems = ({ bestSellingItemsList, collections }) => {
             <Container maxWidth="desktopMaxWidth" sx={{ p: "0px" }}>
                 <Box mx={theme.containerMarginWidth} mb={2}>
                     <BestSellingHeader
-                        title="Best Selling Items"
+                        title={title}
                         collections={collections}
                         currentCollectionID={currentCollectionID}
                         setCurrentCollectionID={setCurrentCollectionID}
