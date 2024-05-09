@@ -11,9 +11,10 @@ import Testimonials from "@/Global_Components/Testimonials/Index";
 import Footer from "@/Global_Components/Footer/Index";
 
 import { usePage } from "@inertiajs/react";
+import BestSellingItems from "@/Homepage_Components/BestSelling/Index";
 
 export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
-    const { collections, product, preOrderContent, preOrderItems } =
+    const { collections, product, preOrderContent, preOrderItems, bestsellingItems, bestsellingCollection } =
         usePage().props;
 
     // const preorderItems = [

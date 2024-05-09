@@ -30,7 +30,7 @@ class ShowcaseProduct extends Controller
                 $subcategoryInfo = SubCategory::where('category_id', $item->id)->get();
                 $subcategory = [];
                 $subcategory_id = [];
-                foreach($subcategoryInfo as $subcat){
+                foreach ($subcategoryInfo as $subcat) {
                     $subcategory[] = $subcat->subcategory_name;
                     $subcategory_id[] = $subcat->id;
                 }
@@ -114,11 +114,45 @@ class ShowcaseProduct extends Controller
                 ];
             });
 
+
+            //bestselling
+            $bestsellingItems = Products::where('best_selling', 'true')->get()->map(function ($item) {
+                $ageRangeArray = explode('|', $item->ageRange);
+                $product_img = explode('|', $item->product_img);
+
+                if (count($product_img) != 1) {
+                    $product_img = $product_img[0];
+                }
+
+                return [
+                    'itemID' => $item->id,
+                    'imgURL' => $product_img,
+                    'itemTitle' => $item->product_name,
+                    'ageRange' => $ageRangeArray,
+                    'currentPrice' => $item->price,
+                    'oldPrice' => $item->compare_price,
+                    'collection_id' => $item->product_category_id,
+                ];
+            });
+
+            $bestsellingCategories = Products::select('product_category_name', 'product_category_id')
+                ->where('best_selling', 'true')
+                ->distinct('product_category_name')
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'collection_name' => $item->product_category_name,
+                        'collection_id' => $item->product_category_id,
+                    ];
+                });
+
             return Inertia::render('ItemShowcase', [
                 'collections' => $collections,
                 'product' => $ProductItem[0], //don't touch it works
                 'preOrderContent' => $preOrderContent,
                 'preOrderItems' => $preOrderItems,
+                'bestsellingItems' => $bestsellingItems,
+                'bestsellingCollection' => $bestsellingCategories,
             ]);
         } catch (\Throwable $th) {
             // throw $th;
