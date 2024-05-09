@@ -24,9 +24,11 @@ class CartController extends Controller
 
             $current_stock = Products::where('id', $item->product_id)->value('quantity');
 
-            if($item->attribute_id != null){
+            if ($item->attribute_id != 0) {
                 $current_stock = ProductAttributes::where('id', $item->attribute_id)->value('stock');
-                $current_stock = explode(',',$current_stock)[$item->variantIndex];
+                $current_stock = explode(',', $current_stock)[$item->variantIndex];
+            }else{
+                $current_stock = Products::where('id', $item->product_id)->value('quantity');
             }
 
             return [
@@ -55,6 +57,7 @@ class CartController extends Controller
 
         $product_id = $request->itemID;
         $variantIndex = $request->sizeIndex == null ? 0 : $request->sizeIndex;
+        $color = $request->color;
         $sizeName = null;
         $priceData = null;
         $attribute_id = null;
@@ -77,16 +80,22 @@ class CartController extends Controller
         $productImg = explode('|', $product_info->product_img);
         $productImg = count($productImg) > 1 ? $productImg[0] : $product_info->product_img;
 
-        foreach($product_info->attributes as $attribute){
-            if($attribute->value == $request->color){
-                $sizeName = explode(',', $attribute->sizes)[$variantIndex];
-                $current_stock = explode(',', $attribute->stock)[$variantIndex];
-                $priceData = explode(',',$attribute->price)[$variantIndex];
-                $productImg = explode('|',$attribute->imageUrls)[0];
-                $attribute_id = $attribute->id;
+        if (count($product_info->attributes) == 0) {
+            $color = 'primary';
+            $sizeName = 'primary';
+            $priceData = $product_info->price;
+            $attribute_id = 0;
+        } else {
+            foreach ($product_info->attributes as $attribute) {
+                if ($attribute->value == $color) {
+                    $sizeName = explode(',', $attribute->sizes)[$variantIndex];
+                    $current_stock = explode(',', $attribute->stock)[$variantIndex];
+                    $priceData = explode(',', $attribute->price)[$variantIndex];
+                    $productImg = explode('|', $attribute->imageUrls)[0];
+                    $attribute_id = $attribute->id;
+                }
             }
         }
-
         // Check if the product already exists in the user's cart
         // $existingCartItem = Cart::where('user_id', $user_id)
         // ->where('product_id', $product_id)
@@ -106,7 +115,7 @@ class CartController extends Controller
                 'variantIndex' => $variantIndex,
                 'product_name' => $product_info->product_name,
                 'imgUrl' => $productImg,
-                'color' => $request->color,
+                'color' => $color,
                 'size' => $sizeName,
                 'product_price' => $priceData,
             ]);
@@ -120,7 +129,7 @@ class CartController extends Controller
     public function updateCartItems(Request $request)
     {
         $request->validate([
-            'itemId'=> 'required|integer',
+            'itemId' => 'required|integer',
         ]);
 
         $itemId = $request->itemId;
@@ -139,9 +148,10 @@ class CartController extends Controller
         // return response()->json($request);
     }
 
-    public function DecCartItems(Request $request){
+    public function DecCartItems(Request $request)
+    {
         $request->validate([
-            'itemId'=> 'required|integer',
+            'itemId' => 'required|integer',
         ]);
 
         $itemId = $request->itemId;
@@ -158,9 +168,10 @@ class CartController extends Controller
         Cart::findOrFail($cart_id)->decrement('product_quantity', 1);
     }
 
-    public function RemoveCartItem(Request $request){
+    public function RemoveCartItem(Request $request)
+    {
         $request->validate([
-            'itemId'=> 'required|integer',
+            'itemId' => 'required|integer',
         ]);
 
         $itemId = $request->itemId;
