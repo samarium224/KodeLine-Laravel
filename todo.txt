@@ -2,13 +2,12 @@
 reduce size of footer top image
 
 ========== Query ==========
-subcategories section in collection page
-add to cart background shadow
-
 banner text line break fix
-img chepta
 
-featured item page
+successfully added message
+
+Custom container setup
+/ BestSelling in ItemShowcase /
 
 ========== Completed Query ==========
 # Services Fontsize #
@@ -36,6 +35,11 @@ featured item page
 / add to cart disable on out of stock /
 / COLLECTION MENU /
 / phone no. and address page /
+/ Add to cart fix /
+/ img chepta /
+/ subcategories section in collection page /
+/ Collectionpage header alignment fix /
+/ Collectionpage responsive Fix /
 / Fix headline size for phones /
 
 ======== Functional Problem =========

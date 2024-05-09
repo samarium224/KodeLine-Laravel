@@ -25,10 +25,10 @@ const ProductShowcase = ({
         setBackgroundImage(itemImage || "./assets/blank.jpg");
     }, [itemImage]);
 
-    const handleClick = (event) => {
-        event.preventDefault();
-        post(route("addtocart"));
-    };
+    // const handleClick = (event) => {
+    //     event.preventDefault();
+    //     post(route("addtocart"));
+    // };
 
     return (
         <Box
@@ -105,7 +105,7 @@ const ProductShowcase = ({
                         buttonText
                     )
                 }
-                onClick={handleClick}
+                // onClick={handleClick}
                 sx={{
                     opacity: { xs: "100", md: "0" },
                     transition: ".33s",

@@ -1,5 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { Box, Button, Typography, useTheme, TextField } from "@mui/material";
+import {
+    Box,
+    Button,
+    Typography,
+    useTheme,
+    TextField,
+    Container,
+} from "@mui/material";
 import { Link } from "@inertiajs/react";
 import { motion, useInView, useAnimation } from "framer-motion";
 
@@ -145,24 +152,31 @@ const Footer = ({ collections }) => {
                 </Box>
             </Box>
             <Box
-                component={motion.div}
-                variants={fadeFromBottom}
-                initial="hidden"
-                animate={mainControls}
-                transition={{ duration: 0.5, delay: 0 }}
-                backgroundColor={theme.palette.secondary.main}
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
+                sx={{
+                    width: { xs: "100%", maxAllowableWidth: "1960px" },
+                    mx: "auto",
+                }}
             >
-                <SocialLinks collection={collections} />
-                <hr
-                    style={{
-                        color: theme.palette.text.white[900],
-                        width: "100vw",
-                    }}
-                />
-                <Copyright />
+                <Box
+                    component={motion.div}
+                    variants={fadeFromBottom}
+                    initial="hidden"
+                    animate={mainControls}
+                    transition={{ duration: 0.5, delay: 0 }}
+                    backgroundColor={theme.palette.secondary.main}
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                >
+                    <SocialLinks collection={collections} />
+                    <hr
+                        style={{
+                            color: theme.palette.text.white[900],
+                            width: "100vw",
+                        }}
+                    />
+                    <Copyright />
+                </Box>
             </Box>
         </Box>
     );

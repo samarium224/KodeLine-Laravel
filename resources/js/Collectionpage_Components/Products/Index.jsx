@@ -21,9 +21,11 @@ import { FilterTextFields } from "./Filters/FilterTextFields";
 
 // import { CollectionItemsList } from "./data";
 
-const Products = ({ CollectionItemsList , selectedCategories, selectedCategoryID }) => {
-    console.log(selectedCategories);
-    console.log(selectedCategoryID);
+const Products = ({
+    CollectionItemsList,
+    selectedCategories,
+    selectedCategoryID,
+}) => {
     const theme = useTheme();
 
     const minPrice = Math.min(
@@ -43,21 +45,33 @@ const Products = ({ CollectionItemsList , selectedCategories, selectedCategoryID
     const [filter, setFilter] = useState({
         priceRange: [minPrice, maxPrice],
         ageRange: [minAge, maxAge],
-        subcategories: [
-            { name: "Subcategory 1", active: true },
-            { name: "Subcategory 2", active: false },
-            { name: "Subcategory 3", active: false },
-            { name: "Subcategory 4", active: false },
-        ],
+        subcategories: selectedCategories.map((category) => ({
+            name: category.selectedSubCat,
+            id: category.selectedSubCatID,
+            active: selectedCategoryID == category.selectedSubCatID,
+        })),
     });
 
-    const filteredItems = CollectionItemsList.filter(
-        (item) =>
-            item.currentPrice >= filter.priceRange[0] &&
-            item.currentPrice <= filter.priceRange[1] &&
-            item.ageRange[0] >= filter.ageRange[0] &&
-            item.ageRange[1] <= filter.ageRange[1]
+    const hasActiveSubcategory = filter.subcategories.some(
+        (subcategory) => subcategory.active
     );
+
+    const filteredItems = CollectionItemsList.filter((item) => {
+        const priceFilter =
+            item.currentPrice >= filter.priceRange[0] &&
+            item.currentPrice <= filter.priceRange[1];
+        const ageFilter =
+            item.ageRange[0] >= filter.ageRange[0] &&
+            item.ageRange[1] <= filter.ageRange[1];
+        const categoryFilter = hasActiveSubcategory
+            ? filter.subcategories.some(
+                  (subcategory) =>
+                      subcategory.active && subcategory.id === item.categoryID
+              )
+            : true;
+
+        return priceFilter && ageFilter && categoryFilter;
+    });
 
     const handlescclick = (i) => {
         setFilter((prevFilter) => {
@@ -191,6 +205,7 @@ const Products = ({ CollectionItemsList , selectedCategories, selectedCategoryID
                         </Box>
                         <FilterTextFields
                             filter={filter}
+                            field={"priceRange"}
                             handleRangeChange={handlePriceRangeChange}
                         />
                     </Box>
@@ -209,6 +224,7 @@ const Products = ({ CollectionItemsList , selectedCategories, selectedCategoryID
                         </Box>
                         <FilterTextFields
                             filter={filter}
+                            field={"ageRange"}
                             handleRangeChange={handleAgeRangeChange}
                         />
                     </Box>
