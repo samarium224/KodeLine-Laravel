@@ -22,13 +22,13 @@ class DashboardOrderController extends Controller
 
     public function OrderPending(){
         $title = "Pending Order List";
-        $orders = Order::where('delivery_status', 0);
+        $orders = Order::where('delivery_status', 0)->get();
         return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 
     public function OrderComplete(){
         $title = "Completed Delivery List";
-        $orders = Order::where('delivery_status', 1);
+        $orders = Order::where('delivery_status', 1)->get();
         return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 

@@ -101,7 +101,7 @@ class ShowcaseProduct extends Controller
             });
 
             $preOrderContent = Content::where('content_name', 'preordercontent')->first();
-            $preOrderItems = PreOrderItem::all()->map(function ($item) {
+            $preOrderItems = Products::where('product_type', 1)->get()->map(function ($item) {
                 $ageRangeArray = explode('|', $item->ageRange);
                 return [
                     'itemID' => $item->id,
@@ -179,7 +179,7 @@ class ShowcaseProduct extends Controller
                 ];
             });
 
-            $ProductItem = PreOrderItem::with('attributes')->where('id', $id)->get()->map(function ($item) use ($color_id) {
+            $ProductItem = Products::with('attributes')->where('id', $id)->get()->map(function ($item) use ($color_id) {
                 // dd($color_id);
                 if ($color_id == null) {
                     $color_id = 0;
@@ -237,7 +237,7 @@ class ShowcaseProduct extends Controller
             });
 
             $preOrderContent = Content::where('content_name', 'preordercontent')->first();
-            $preOrderItems = PreOrderItem::all()->map(function ($item) {
+            $preOrderItems = Products::where('product_type', 1)->get()->map(function ($item) {
                 $ageRangeArray = explode('|', $item->ageRange);
                 return [
                     'itemID' => $item->id,
@@ -250,12 +250,46 @@ class ShowcaseProduct extends Controller
                 ];
             });
 
+            //bestselling
+            $bestsellingItems = Products::where('best_selling', 'true')->get()->map(function ($item) {
+                $ageRangeArray = explode('|', $item->ageRange);
+                $product_img = explode('|', $item->product_img);
+
+                if (count($product_img) != 1) {
+                    $product_img = $product_img[0];
+                }
+
+                return [
+                    'itemID' => $item->id,
+                    'imgURL' => $product_img,
+                    'itemTitle' => $item->product_name,
+                    'ageRange' => $ageRangeArray,
+                    'currentPrice' => $item->price,
+                    'oldPrice' => $item->compare_price,
+                    'collection_id' => $item->product_category_id,
+                ];
+            });
+
+            $bestsellingCategories = Products::select('product_category_name', 'product_category_id')
+                ->where('best_selling', 'true')
+                ->distinct('product_category_name')
+                ->get()
+                ->map(function ($item) {
+                    return [
+                        'collection_name' => $item->product_category_name,
+                        'collection_id' => $item->product_category_id,
+                    ];
+                });
+
             return Inertia::render('ItemShowcase', [
                 'collections' => $collections,
                 'product' => $ProductItem[0], //don't touch it works
                 'preOrderContent' => $preOrderContent,
                 'preOrderItems' => $preOrderItems,
+                'bestsellingItems' => $bestsellingItems,
+                'bestsellingCollection' => $bestsellingCategories,
             ]);
+
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->route('home');

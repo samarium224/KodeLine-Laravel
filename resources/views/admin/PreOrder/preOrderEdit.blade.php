@@ -51,7 +51,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('updateproduct') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('preorder.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-8">

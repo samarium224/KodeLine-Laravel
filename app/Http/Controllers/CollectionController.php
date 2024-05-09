@@ -76,7 +76,7 @@ class CollectionController extends Controller
             });
 
             $preOrderContent = Content::where('content_name', 'preordercontent')->first();
-            $preOrderItems = PreOrderItem::all()->map(function ($item) {
+            $preOrderItems = Products::where('product_type', 1)->get()->map(function ($item) {
                 $ageRangeArray = explode('|', $item->ageRange);
                 return [
                     'itemID' => $item->id,
