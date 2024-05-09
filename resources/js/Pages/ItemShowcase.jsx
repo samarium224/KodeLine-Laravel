@@ -49,20 +49,7 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
                 /> */}
                 <Box my={5}></Box>
                 {preOrderContent && (
-                    <PreOrder
-                        items={[
-                            {
-                                itemID: 1,
-                                imgURL: "uploads/17141611675949_7340f380d3.jpg",
-                                itemTitle: "Demo",
-                                ageRange: ["2", "4"],
-                                currentPrice: 40,
-                                oldPrice: 45,
-                                buttonText: "PRE ORDER",
-                            },
-                        ]}
-                        content={preOrderContent}
-                    />
+                    <PreOrder items={preOrderItems} content={preOrderContent} />
                 )}
                 <Testimonials />
                 <Footer collections={collections} />

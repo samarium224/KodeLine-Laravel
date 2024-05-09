@@ -1,6 +1,6 @@
 import { Box, TextField } from "@mui/material";
 
-export const FilterTextFields = ({ filter, handleRangeChange }) => (
+export const FilterTextFields = ({ filter, field, handleRangeChange }) => (
     <Box
         mx={2}
         display="flex"
@@ -10,13 +10,10 @@ export const FilterTextFields = ({ filter, handleRangeChange }) => (
     >
         <TextField
             type="number"
-            label="Min Price"
-            value={filter.priceRange[0]}
+            label="Min"
+            value={filter[field][0]}
             onChange={(e) =>
-                handleRangeChange([
-                    Number(e.target.value),
-                    filter.priceRange[1],
-                ])
+                handleRangeChange([Number(e.target.value), filter[field][1]])
             }
             sx={{
                 width: "150px",
@@ -33,13 +30,10 @@ export const FilterTextFields = ({ filter, handleRangeChange }) => (
         />
         <TextField
             type="number"
-            label="Max Price"
-            value={filter.priceRange[1]}
+            label="Max"
+            value={filter[field][1]}
             onChange={(e) =>
-                handleRangeChange([
-                    filter.priceRange[0],
-                    Number(e.target.value),
-                ])
+                handleRangeChange([filter[field][0], Number(e.target.value)])
             }
             sx={{
                 width: "150px",

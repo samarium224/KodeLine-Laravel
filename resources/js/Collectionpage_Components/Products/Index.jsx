@@ -22,7 +22,6 @@ import { FilterTextFields } from "./Filters/FilterTextFields";
 // import { CollectionItemsList } from "./data";
 
 const Products = ({ CollectionItemsList }) => {
-    console.log(CollectionItemsList);
     const theme = useTheme();
 
     const minPrice = Math.min(
@@ -190,6 +189,7 @@ const Products = ({ CollectionItemsList }) => {
                         </Box>
                         <FilterTextFields
                             filter={filter}
+                            field={"priceRange"}
                             handleRangeChange={handlePriceRangeChange}
                         />
                     </Box>
@@ -208,6 +208,7 @@ const Products = ({ CollectionItemsList }) => {
                         </Box>
                         <FilterTextFields
                             filter={filter}
+                            field={"ageRange"}
                             handleRangeChange={handleAgeRangeChange}
                         />
                     </Box>

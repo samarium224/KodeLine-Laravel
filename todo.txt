@@ -7,6 +7,10 @@ add to cart background shadow
 
 banner text line break fix
 img chepta
+Collectionpage header alignment fix
+successfully added message
+BestSelling in ItemShowcase
+Add to cart fix
 
 featured item page
 
