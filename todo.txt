@@ -44,8 +44,7 @@ featured item page
 
 ======== Functional Problem =========
 you may also like section
-prompt phone number and address
-product variation logic need work
+product variation logic need upgrade*
 
 ======== hosting ========
 update bootstrap's style.css

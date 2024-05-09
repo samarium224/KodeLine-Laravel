@@ -25,6 +25,8 @@ export default function Collection({ auth }) {
         collectionItemList,
         preOrderContent,
         preOrderItems,
+        selectedCategories,
+        selectedCategoryID
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -50,7 +52,7 @@ export default function Collection({ auth }) {
                         wordSpacing: { xs: "12px", md: "15px;" },
                     }}
                 /> */}
-                <Products CollectionItemsList={collectionItemList} />
+                <Products CollectionItemsList={collectionItemList} selectedCategories={selectedCategories} selectedCategoryID={selectedCategoryID} />
                 {preOrderContent && (
                     <PreOrder items={preOrderItems} content={preOrderContent} />
                 )}

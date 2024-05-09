@@ -236,7 +236,7 @@ class DashboardController extends Controller
 
         return redirect()->route('addsubcategory')->with(
             'message',
-            'Sub Category Added Successfully'
+            'Category Added Successfully'
         );
     }
 
@@ -263,7 +263,7 @@ class DashboardController extends Controller
 
         return redirect()->route('addsubcategory')->with(
             'message',
-            'Sub Category Updated Successfully'
+            'Category Updated Successfully'
         );
     }
 
@@ -276,7 +276,7 @@ class DashboardController extends Controller
 
         return redirect()->route('addsubcategory')->with(
             'message',
-            'Sub Category Deleted Successfully'
+            'Category Deleted Successfully'
         );
     }
 
