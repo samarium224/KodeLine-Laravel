@@ -1,3 +1,4 @@
+import { scrollTo } from "@/Util/scrollTo";
 import { Link } from "@inertiajs/react";
 import { IconButton, Box, Button } from "@mui/material";
 
@@ -46,7 +47,9 @@ const DesktopToolbar = ({
             >
                 Collections
             </Button>
-            <Button sx={navButtonStyle}>About us</Button>
+            <Button sx={navButtonStyle} onClick={() => scrollTo("about-us")}>
+                About us
+            </Button>
             {auth.user ? (
                 <Link href={route("dashboard")}>
                     <Button sx={navButtonStyle}>My Account</Button>
@@ -56,7 +59,9 @@ const DesktopToolbar = ({
                     <Button sx={navButtonStyle}>Log In</Button>
                 </Link>
             )}
-            <Button sx={navButtonStyle}>Contact us</Button>
+            <Button sx={navButtonStyle} onClick={() => scrollTo("footer")}>
+                Contact us
+            </Button>
         </Box>
     </>
 );

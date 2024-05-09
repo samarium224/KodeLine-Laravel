@@ -7,6 +7,7 @@ import {
     useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
+import { scrollTo } from "@/Util/scrollTo";
 
 const SliderComp = ({
     collectionID,
@@ -150,14 +151,7 @@ const SliderComp = ({
                                     color: theme.palette.text.grey[500],
                                 },
                             }}
-                            onClick={() => {
-                                const targetElement =
-                                    document.getElementById("collection-id-0");
-                                if (targetElement)
-                                    targetElement.scrollIntoView({
-                                        behavior: "smooth",
-                                    });
-                            }}
+                            onClick={() => scrollTo("collection-id-0", 140)}
                         >
                             Shop now
                         </Button>

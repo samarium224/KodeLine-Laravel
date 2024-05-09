@@ -1,8 +1,6 @@
-import React, { useEffect, useRef } from "react";
 import CustomButton from "@/Global_Components/CustomButton";
 import Header from "@/Global_Components/Header";
 import { Box } from "@mui/material";
-import { motion, useInView, useAnimation } from "framer-motion";
 
 const SignatureItemsHeader = ({
     title,
@@ -10,14 +8,6 @@ const SignatureItemsHeader = ({
     currentCollectionID,
     setCurrentCollectionID,
 }) => {
-    const fadeFromBottom = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0 },
-    };
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-    const mainControls = useAnimation();
-
     const filteredCollections = [...categoryList].filter(
         (item) => item.collection_name !== "none"
     );
@@ -26,7 +16,7 @@ const SignatureItemsHeader = ({
     return (
         <Box display="flex" flexDirection="column" alignItems="center" mb={6}>
             <Header title={title} />
-            <Box display="flex" ref={ref}>
+            <Box display="flex">
                 {filteredCollections.map((category, i) => (
                     <CustomButton
                         key={i}

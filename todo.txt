@@ -36,7 +36,9 @@ Custom container setup
 / COLLECTION MENU /
 / phone no. and address page /
 / Add to cart fix /
+/ navigation /
 / img chepta /
+/ Remove none / 
 / subcategories section in collection page /
 / Collectionpage header alignment fix /
 / Collectionpage responsive Fix /

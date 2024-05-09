@@ -15,10 +15,12 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { scrollTo } from "@/Util/scrollTo";
 
 const SocialLinks = ({ collection }) => {
     const theme = useTheme();
     const informations = ["About us", "Contact us", "Terms and Conditions"];
+    const informations_ids = ["about-us", "footer", ""];
     const collections = collection;
     const socialMedias = ["Facebook", "Instagram", "Twitter", "LinkedIn"];
     const socialMediaLinks = [
@@ -29,7 +31,7 @@ const SocialLinks = ({ collection }) => {
     ];
     const accountOptions = ["Login"];
 
-    const LinkList = ({ title, items }) => {
+    const LinkList = ({ title, items, ids, link }) => {
         return (
             <Box>
                 <Typography
@@ -49,6 +51,7 @@ const SocialLinks = ({ collection }) => {
                         display="block"
                         fontSize="1.11rem"
                         sx={{ cursor: "pointer" }}
+                        onClick={ids ? () => scrollTo(ids[i]) : undefined}
                     >
                         {item}
                     </Typography>
@@ -69,7 +72,11 @@ const SocialLinks = ({ collection }) => {
                     />
                 </Box>
             </Link>
-            <LinkList title="Information" items={informations} />
+            <LinkList
+                title="Information"
+                items={informations}
+                ids={informations_ids}
+            />
             <LinkList
                 title="Collections"
                 items={collections.map((collection_item) => (
@@ -98,7 +105,7 @@ const SocialLinks = ({ collection }) => {
         </Box>
     );
 
-    const MobileLinkList = ({ title, items }) => {
+    const MobileLinkList = ({ title, items, ids, link }) => {
         const [expanded, setExpanded] = useState(false);
         return (
             <Box mb={1.75}>
@@ -144,6 +151,9 @@ const SocialLinks = ({ collection }) => {
                                 mb={0.75}
                                 fontSize="0.8rem"
                                 sx={{ cursor: "pointer" }}
+                                onClick={
+                                    ids ? () => scrollTo(ids[i]) : undefined
+                                }
                             >
                                 {item}
                             </Typography>
@@ -157,7 +167,11 @@ const SocialLinks = ({ collection }) => {
 
     const MobileLinks = () => (
         <Box mt={1.75}>
-            <MobileLinkList title="Information" items={informations} />
+            <MobileLinkList
+                title="Information"
+                items={informations}
+                ids={informations_ids}
+            />
             <MobileLinkList
                 title="Collections"
                 items={collections.map((collection) => (
