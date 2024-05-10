@@ -23,14 +23,18 @@ const BestSellingItems = ({
 
     if (bestSellingItemsList.length > 0)
         return (
-            <Container maxWidth="desktopMaxWidth" sx={{ p: "0px" }}>
-                <Box mx={theme.containerMarginWidth} mb={2}>
+            <>
+                <Container
+                    maxWidth="desktopMaxWidth"
+                    sx={{ px: { xs: "0px", md: 3 }, mb: 2 }}
+                >
                     <BestSellingHeader
                         title={title}
                         collections={collections}
                         currentCollectionID={currentCollectionID}
                         setCurrentCollectionID={setCurrentCollectionID}
                     />
+
                     <Box
                         height="50%"
                         width="100%"
@@ -48,10 +52,13 @@ const BestSellingItems = ({
                         ).map((signatureItem, i) => (
                             <Box
                                 key={i}
-                                display="flex"
-                                justifyContent="center"
-                                sx={{ width: { xs: "48%", md: "24%" } }}
-                                mb={5}
+                                sx={{
+                                    width: {
+                                        xs: "48%",
+                                        sm: "24%",
+                                    },
+                                    mb: 4,
+                                }}
                             >
                                 <ItemCard
                                     itemID={signatureItem.itemID}
@@ -93,8 +100,8 @@ const BestSellingItems = ({
                             </Button>
                         </Box>
                     )}
-                </Box>
-            </Container>
+                </Container>
+            </>
         );
 };
 

@@ -1,13 +1,9 @@
 ========== Suggestions ==========
-reduce size of footer top image
 
 ========== Query ==========
 banner text line break fix
 
 successfully added message
-
-Custom container setup
-/ BestSelling in ItemShowcase /
 
 ========== Completed Query ==========
 # Services Fontsize #
@@ -34,14 +30,21 @@ Custom container setup
 / cart size and color /
 / add to cart disable on out of stock /
 / COLLECTION MENU /
+/ Custom container setup /
 / phone no. and address page /
 / Add to cart fix /
 / navigation /
+/ iPad Fix /
+/ cart items /
 / img chepta /
 / Remove none / 
+/ 10 quantity left /
+/ item cart logo Change /
+/ BestSelling in ItemShowcase /
 / subcategories section in collection page /
 / Collectionpage header alignment fix /
 / Collectionpage responsive Fix /
+/ kodeline kids logo down big /
 / Fix headline size for phones /
 
 ======== Functional Problem =========

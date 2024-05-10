@@ -64,7 +64,10 @@ const theme_desktop = createTheme({
         },
     },
     breakpoints: {
-        values: breakpoint_values,
+        values: {
+            ...breakpoint_values,
+            desktopMaxWidth: 1420,
+        },
     },
     components: {
         MuiButton: {

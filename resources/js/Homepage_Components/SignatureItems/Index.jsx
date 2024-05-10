@@ -29,7 +29,7 @@ const SignatureItems = ({ signatureItemsList, collections }) => {
                     />
                     <Box
                         sx={{
-                            mx: { md: 6, xl: 3 },
+                            mx: { sm: 6, xl: 3 },
                         }}
                     >
                         <SignatureItemsSlider>

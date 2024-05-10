@@ -146,6 +146,7 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
                                 justifyContent: "center",
                                 "&:hover": { backgroundColor: "transparent" },
                                 marginTop: "-16px",
+                                mt: -1,
                             }}
                         >
                             <Link href={route("home")}>
@@ -156,7 +157,7 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
                                             : "../assets/Logo.svg"
                                     }
                                     alt="Logo"
-                                    style={{ height: "54px" }}
+                                    style={{ height: "72px" }}
                                 />
                             </Link>
                         </Box>

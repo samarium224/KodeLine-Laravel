@@ -65,7 +65,6 @@ const ItemDescriptionImages = ({ itemData }) => {
             )}
             <Box
                 className="active-item-image"
-                // maxHeight="1000px"
                 maxWidth="750px"
                 sx={{
                     width: "100%",
@@ -79,7 +78,7 @@ const ItemDescriptionImages = ({ itemData }) => {
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                     cursor: "pointer",
-                    mx: { lg: "10px", xs: "4px" },
+                    mx: { lg: "10px" },
                 }}
                 onClick={() => handleOpen(itemData.imgURL.primary)}
             />
@@ -88,7 +87,7 @@ const ItemDescriptionImages = ({ itemData }) => {
                 open={open}
                 onClose={handleClose}
                 BackdropProps={{
-                    style: { backgroundColor: "rgba(255, 255, 255, 0.98)" }, // Adjust the opacity as needed
+                    style: { backgroundColor: "rgba(255, 255, 255, 0.98)" },
                 }}
             >
                 <>

@@ -19,7 +19,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 const DrawerCollectionContent = ({ toggleDrawer, collections }) => {
     const ListItemLink = ({ collection, href }) => {
         const [collectionOpen, setCollectionOpen] = useState(false);
-        console.log(collection);
         return (
             <>
                 <ListItem
@@ -45,6 +44,7 @@ const DrawerCollectionContent = ({ toggleDrawer, collections }) => {
                                 sx={{ pl: 4 }}
                                 href={route("collection", {
                                     id: collection.collection_id,
+                                    category_id: collection.subcategory_id[i],
                                 })}
                             >
                                 <ListItemText primary={subcategory} />

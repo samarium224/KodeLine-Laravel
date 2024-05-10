@@ -4,6 +4,5 @@ export const breakpoint_values = {
     md: 900,
     lg: 1420,
     xl: 1800,
-    desktopMaxWidth: 1420,
     maxAllowableWidth: 1960,
 };

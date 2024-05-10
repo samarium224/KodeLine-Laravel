@@ -65,7 +65,10 @@ const theme_laptop = createTheme({
         },
     },
     breakpoints: {
-        values: breakpoint_values,
+        values: {
+            ...breakpoint_values,
+            desktopMaxWidth: 1320,
+        },
     },
     components: {
         MuiButton: {
