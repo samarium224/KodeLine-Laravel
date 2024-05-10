@@ -14,10 +14,11 @@ class DashboardController extends Controller
     public function Index()
     {
         $date_today = date("Y-m-d");
+        $next_month = date("Y-m-d", strtotime("+1 month", strtotime($date_today)));
         $prev_month = date("Y-m-d", strtotime("-1 month", strtotime($date_today)));
 
 
-        $orders = Order::whereBetween('created_at', [$prev_month, $date_today])
+        $orders = Order::whereBetween('created_at', [$prev_month, $next_month])
             ->paginate(5);
             // dd($orders);
         return view('admin.dashboard', compact('orders'));

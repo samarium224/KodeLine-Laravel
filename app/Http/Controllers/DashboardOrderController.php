@@ -35,7 +35,7 @@ class DashboardOrderController extends Controller
 
     public function OrderReturned(){
         $title = "Returned order List";
-        $orders = Order::where('Returned', 1)->paginate(25);
+        $orders = Order::where('Isreturned', 1)->paginate(25);
         return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 

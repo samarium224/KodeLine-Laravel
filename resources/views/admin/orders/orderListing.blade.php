@@ -16,14 +16,14 @@
             <thead>
                 <tr>
                     <th scope="col" class="border-0">
-                            ID
+                        ID
                     </th>
                     <th scope="col" class="border-0">
-                            Order ID
+                        Order ID
                     </th>
                     <th scope="col" class="border-0">Product Img</th>
                     <th scope="col" class="border-0">
-                            Product
+                        Product
                     </th>
                     <th scope="col" class="border-0">User</th>
                     <th scope="col" class="border-0">Phone Number</th>
@@ -67,7 +67,11 @@
 
                         </td>
                         <td>
-                            <a href="" class="btn btn-secondary btn-sm">requested</a>
+                            @if ($order->Isreturned != 1)
+                                <a href="{{ route('order.returnProduct', $order->id) }}" class="btn btn-secondary btn-sm">requested</a>
+                            @else
+                                this product has been returned
+                            @endif
                         </td>
                     </tr>
                 @endforeach
