@@ -26,5 +26,6 @@ class Order extends Model
         'total_price',
         'payment_status',
         'delivery_status',
+        'Isreturned'
     ];
 }

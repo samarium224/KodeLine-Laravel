@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=arial:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url(../icons/font-awesome/css/font-awesome.min.css);
 @import url(../icons/simple-line-icons/css/simple-line-icons.css);
 @import url(../icons/weather-icons/css/weather-icons.min.css);
@@ -97,7 +97,7 @@
 
 body {
     background: #fff;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     margin: 0;
     overflow-x: hidden;
     color: #67757c;
@@ -840,7 +840,7 @@ li {
 }
 
 p {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     color: #99abb4;
 }
 
@@ -855,7 +855,7 @@ h3,
 h4,
 h5,
 h6.h1 {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     color: #455a64;
 }
 
@@ -2797,7 +2797,7 @@ textarea {
 }
 
 .card-title p {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     margin-bottom: 12px;
 }
 
@@ -3199,7 +3199,7 @@ table.dataTable thead .sorting::after {
 }
 
 .panel-body {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
 }
 
 .panel-primary {
@@ -4697,19 +4697,19 @@ table.dataTable thead .sorting::after {
 }
 
 .chat-sidebar .user-name {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
 }
 
 .chat-sidebar .content {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
 }
 
 .chat-sidebar .textarea {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
 }
 
 .chat-sidebar .seen {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
 }
 
 .chat-sidebar.is-active {
@@ -4920,7 +4920,7 @@ table.dataTable thead .sorting::after {
 }
 
 .testimonial-widget-one .testimonial-author-position {
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     position: relative;
     top: -5px;
     margin-top: 5px;
@@ -5810,7 +5810,7 @@ footer p {
     right: 0;
     top: 0;
     color: #455a64;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     font-size: 12px;
 }
 
@@ -5820,7 +5820,7 @@ footer p {
 
 .comment-action .badge {
     text-transform: uppercase;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
 }
 
 .comment-action i {
@@ -5879,7 +5879,7 @@ footer p {
     border-radius: 15px;
     box-shadow: none;
     border-color: #1b1b1b;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
 }
 
 .form-control:hover {
@@ -6294,7 +6294,7 @@ label {
 }
 
 .mail-list a {
-    font-family: "Philosopher", sans-serif;
+    font-family: "arial", sans-serif;
     vertical-align: middle;
     color: #797979;
     padding: 10px 15px;
@@ -6428,7 +6428,7 @@ label {
 
 .tdl-holder li span {
     margin-left: 30px;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     vertical-align: middle;
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
@@ -6510,7 +6510,7 @@ label {
 
 .datamap-sales-hover-tooltip {
     background: #444c67;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     padding: 5px 10px;
     color: #ffffff;
     font-weight: 400;
@@ -6530,13 +6530,13 @@ thead tr th:last-child {
 
 tbody tr th {
     color: #455a64;
-    font-family: 'Philosopher', sans-serif;
+    font-family: 'arial', sans-serif;
     font-weight: normal;
 }
 
 tbody tr td {
-    font-family: 'Philosopher', sans-serif;
-    color: #99abb4;
+    font-family: 'arial', sans-serif;
+    color: #000;
 }
 
 tbody tr td:last-child {

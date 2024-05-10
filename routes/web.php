@@ -110,6 +110,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         //delivery
         Route::get('/admin/order/completedelivery/{id}', 'CompleteDelivery')->name('order.deliverycomplete');
+        Route::get('/admin/order/returnProduct/{id}', 'ReturnProduct')->name('order.returnProduct');
     });
 
     Route::controller(PreOrderItemController::class)->group(function () {

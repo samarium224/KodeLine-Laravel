@@ -29,6 +29,7 @@ return new class extends Migration
             $table->double('total_price');
             $table->boolean('payment_status')->default(0);
             $table->boolean('delivery_status')->default(0);
+            $table->boolean('Isreturned')->default(0);
             $table->timestamps();
         });
     }

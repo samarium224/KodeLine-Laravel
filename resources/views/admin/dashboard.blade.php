@@ -122,7 +122,11 @@
 
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-secondary btn-sm">requested</a>
+                                    @if ($order->Isreturned != 1)
+                                        <a href="{{ route('order.returnProduct', $order->id) }}" class="btn btn-secondary btn-sm">requested</a>
+                                    @else
+                                        this product has been returned
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

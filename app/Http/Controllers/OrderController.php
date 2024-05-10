@@ -63,9 +63,11 @@ class OrderController extends Controller
             'cancel_url' => route('checkout.cancel', [], true),
         ]);
 
+        $unique_orderID = 'KL' . bin2hex(random_bytes(3));
+
         foreach ($Cartproducts as $product) {
             $order = Order::create([
-                'order_id' => uniqid('order'),
+                'order_id' => $unique_orderID,
                 'username' => $username,
                 'user_id' => $user_id,
                 'address' => $request->address,

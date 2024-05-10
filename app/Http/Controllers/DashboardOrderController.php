@@ -10,29 +10,52 @@ class DashboardOrderController extends Controller
     //order section
     public function Orders()
     {
-        $orders = Order::latest()->get();
-        return view('admin.AllOrders', compact('orders'));
+        $title = "All orders";
+        $orders = Order::latest()->paginate(25);
+        return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 
     public function OrderUnpaid(){
         $title = "Unpaid Order List";
-        $orders = Order::where('payment_status', 0)->get();
+        $orders = Order::where('payment_status', 0)->paginate(25);
         return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 
     public function OrderPending(){
         $title = "Pending Order List";
-        $orders = Order::where('delivery_status', 0);
+        $orders = Order::where('delivery_status', 0)->paginate(25);
         return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 
     public function OrderComplete(){
         $title = "Completed Delivery List";
-        $orders = Order::where('delivery_status', 1);
+        $orders = Order::where('delivery_status', 1)->paginate(25);
+        return view('admin.orders.orderListing', compact('orders', 'title'));
+    }
+
+    public function OrderReturned(){
+        $title = "Returned order List";
+        $orders = Order::where('Isreturned', 1)->paginate(25);
         return view('admin.orders.orderListing', compact('orders', 'title'));
     }
 
     public function CompleteDelivery($id){
-        dd($id);
+        Order::findOrFail($id)->update([
+            'delivery_status' => 1,
+        ]);
+
+        return redirect()->back();
     }
+
+    public function ReturnProduct($id){
+        Order::findOrFail($id)->update([
+            'Isreturned' => 1,
+            'delivery_status' => 0,
+            'payment_status' => 0,
+        ]);
+
+        return redirect()->back();
+    }
+
+
 }

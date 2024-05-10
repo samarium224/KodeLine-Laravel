@@ -67,7 +67,7 @@ class HomepageController extends Controller
                 ];
             });
 
-        $products = Products::all();
+        $products = Products::where('product_type', 0)->get();
 
         $collectionItemList = $products
             ->reject(function ($product) {
@@ -135,7 +135,7 @@ class HomepageController extends Controller
 
         // preorderitem
         $preOrderContent = Content::where('content_name', 'preordercontent')->first();
-        $preOrderItems = PreOrderItem::all()->map(function ($item) {
+        $preOrderItems = Products::where('product_type', 1)->get()->map(function ($item) {
             $ageRangeArray = explode('|', $item->ageRange);
             return [
                 'itemID' => $item->id,
