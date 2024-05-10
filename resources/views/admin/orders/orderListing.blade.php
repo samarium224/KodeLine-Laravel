@@ -15,44 +15,66 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="border-0"><a class="text-dark" href="{{ route('product.sort', 'id') }}">
-                            ID </a>
+                    <th scope="col" class="border-0">
+                            ID
                     </th>
-                    <th scope="col" class="border-0"><a class="text-dark"
-                            href="{{ route('product.sort', 'product_name') }}">
-                            Order ID </a>
+                    <th scope="col" class="border-0">
+                            Order ID
                     </th>
-                    <th scope="col" class="border-0"><a class="text-dark"
-                            href="{{ route('product.sort', 'product_category_id') }}">
-                            Product Name</a>
+                    <th scope="col" class="border-0">Product Img</th>
+                    <th scope="col" class="border-0">
+                            Product
                     </th>
-                    <th scope="col" class="border-0">Username</th>
+                    <th scope="col" class="border-0">User</th>
+                    <th scope="col" class="border-0">Phone Number</th>
+                    <th scope="col" class="border-0">Address</th>
                     <th scope="col" class="border-0">Quantity</th>
                     <th scope="col" class="border-0">Total Price</th>
                     <th scope="col" class="border-0">Payment Status</th>
                     <th scope="col" class="border-0">Delivery Status</th>
-                    <th scope="col" class="border-0">Action</th>
+                    <th scope="col" class="border-0">Return Status</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($orders as $order)
                     <tr>
                         <th scope="row">{{ $order->id }}</th>
-                        <td><a href="">{{ $order->order_id }}</a></td>
+                        <td>{{ $order->order_id }}</td>
+                        <td> <img src="{{ asset($order->imgUrl) }}" width="60px" alt="product-img"> </td>
                         <td>{{ $order->product_name }}</td>
                         <td>{{ $order->username }}</td>
+                        <td>{{ $order->phonenumber }}</td>
+                        <td>{{ $order->address }}</td>
                         <td>{{ $order->product_quantity }}</td>
                         <td>{{ $order->total_price }}</td>
-                        <td><span class="badge badge-warning p-2">
-                            {{ $order->payment_status }}</span></td>
-                        </td>
-                        <td>{{ $order->delivery_status }}</td>
                         <td>
-                            <a href="" class="btn btn-secondary btn-sm">mark as</a>
+                            @if ($order->payment_status != 1)
+                                <span class="badge badge-danger px-2 py-1">unpaid</span>
+                            @else
+                                <span class="badge badge-success px-2 py-1">paid</span>
+                            @endif
+                        </td>
+                        </td>
+                        <td>
+                            @if ($order->delivery_status != 1)
+                                <span class="badge badge-danger px-2 py-1">pending</span>
+                                <br>
+                                <a href="{{ route('order.deliverycomplete', $order->id) }}"
+                                    class="btn btn-light btn-sm">mark as complete</a>
+                            @else
+                                <span class="badge badge-success px-2 py-1">completed</span>
+                            @endif
+
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-secondary btn-sm">requested</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <div class="my-3 d-flex justify-content-center">
+            {{ $orders->onEachSide(1)->links() }}
+        </div>
     </div>
 @endsection
