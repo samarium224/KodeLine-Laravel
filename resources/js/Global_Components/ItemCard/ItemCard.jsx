@@ -18,7 +18,7 @@ const ItemCard = ({
     const sale = Math.round(((oldPrice - currentPrice) / oldPrice) * 100);
 
     const fadeFromBottom = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 15 },
         visible: { opacity: 1, y: 0 },
     };
     const ref = useRef(null);
@@ -36,7 +36,7 @@ const ItemCard = ({
             variants={fadeFromBottom}
             initial="hidden"
             animate={mainControls}
-            transition={{ duration: 0.66, delay: animationDelay }}
+            transition={{ duration: 0.33, delay: animationDelay }}
             display="flex"
             flexDirection="column"
             alignItems="center"

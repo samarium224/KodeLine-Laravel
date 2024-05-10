@@ -15,7 +15,7 @@ const CustomButton = ({ text, sx = {}, onClick }) => {
                     color: theme.palette.text.grey[500],
                     backgroundColor: theme.palette.text.white[100],
                     fontWeight: "500",
-                    width: { sm: "100%" },
+                    width: { md: "100%" },
                     py: { xs: 0.9, md: 1.25 },
                     "&:hover": {
                         color: theme.palette.text.grey[300],

@@ -18,6 +18,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import { Collections } from "@/Global_data/Collections";
 import DrawerCollectionContent from "./CollectionDrawer";
+import { scrollTo } from "@/Util/scrollTo";
 
 const FeaturedCollection = ({ label }) => (
     <Box
@@ -113,7 +114,11 @@ const DrawerContent = ({ toggleDrawer, auth, collections }) => {
                         collections={collections}
                     />
                 </Drawer>
-                <ListItemLink primary="About Us" />
+                <Box onClick={() => scrollTo("about-us")}>
+                    <ListItem onClick={toggleDrawer(false)}>
+                        <ListItemText primary="About us" />
+                    </ListItem>
+                </Box>
                 <Divider />
 
                 <ListItemLink
@@ -122,7 +127,11 @@ const DrawerContent = ({ toggleDrawer, auth, collections }) => {
                 />
                 <Divider />
 
-                <ListItemLink primary="Contact us" />
+                <Box onClick={() => scrollTo("footer")}>
+                    <ListItem onClick={toggleDrawer(false)}>
+                        <ListItemText primary="Contact us" />
+                    </ListItem>
+                </Box>
                 <Divider />
             </List>
 

@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
 import { Link } from "@inertiajs/react";
-import {
-    Box,
-    Button,
-    Container,
-    Grid,
-    Typography,
-    useTheme,
-} from "@mui/material";
+import { Box, Button, Container, Typography, useTheme } from "@mui/material";
 
 const ShopByCategorySection = ({ id, category, reverse = false }) => {
     const theme = useTheme();
@@ -154,32 +147,6 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                         </Box>
                     ))}
                 </Box>
-                {/* <Link
-                    href={route("collection", {
-                        id: category.categoryID,
-                    })}
-                >
-                    <Button
-                        sx={{
-                            backgroundColor: "transparent",
-                            color: theme.palette.text.grey[500],
-                            border: `2px solid ${theme.palette.text.grey[500]}`,
-                            // fontWeight: "500",
-                            fontSize: "0.9rem",
-                            fontWeight: "400",
-                            px: 4,
-                            py: 1,
-                            mt: 3.5,
-                            display: { xs: "block", md: "none" },
-                            "&:hover": {
-                                backgroundColor: theme.palette.text.grey[500],
-                                color: theme.palette.text.white[500],
-                            },
-                        }}
-                    >
-                        EXPLORE MORE
-                    </Button>
-                </Link> */}
             </Box>
         </Container>
     );

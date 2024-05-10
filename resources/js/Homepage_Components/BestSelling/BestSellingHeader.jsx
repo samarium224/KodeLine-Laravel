@@ -8,14 +8,9 @@ const BestSellingHeader = ({
     currentCollectionID,
     setCurrentCollectionID,
 }) => {
-    const filteredCollections = [...collections];
-
-    if (
-        filteredCollections.length > 0 &&
-        filteredCollections[filteredCollections.length - 1].collection_name ===
-            "none"
-    )
-        filteredCollections.pop();
+    const filteredCollections = collections.filter(
+        (collection) => collection.collection_name !== "none"
+    );
     filteredCollections.unshift({ collection_name: "All", collection_id: -1 });
 
     return (

@@ -64,7 +64,10 @@ const theme_mobile = createTheme({
         },
     },
     breakpoints: {
-        values: breakpoint_values,
+        values: {
+            ...breakpoint_values,
+            desktopMaxWidth: 900,
+        },
     },
     components: {
         MuiButton: {

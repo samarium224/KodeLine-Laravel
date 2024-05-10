@@ -9,7 +9,7 @@ const ItemDescription = ({ product }) => {
             maxWidth="desktopMaxWidth"
             sx={{
                 display: "flex",
-                mt: { xs: 12, md: 20 },
+                mt: { xs: 15, md: 20 },
                 justifyContent: "space-between",
                 flexDirection: { xs: "column", md: "row" },
             }}

@@ -84,6 +84,7 @@ export const NavigationCheckout = ({
                 sx={{
                     color: navButtonStyle.color,
                     ml: { xs: 0, lg: 1 },
+                    position: "relative",
                     "&:hover": { backgroundColor: "transparent" },
                 }}
                 onClick={toggleCart(true)}
@@ -93,6 +94,21 @@ export const NavigationCheckout = ({
                     src={bucketImgUrl}
                     sx={{ height: { xs: "15px", lg: "20px" } }}
                 />
+                {totalQuantity > 0 && (
+                    <Box
+                        position="absolute"
+                        top="0"
+                        right="0"
+                        backgroundColor="red"
+                        height="15px"
+                        width="15px"
+                        fontSize="10px"
+                        borderRadius="50%"
+                        color="white"
+                    >
+                        {totalQuantity}
+                    </Box>
+                )}
             </IconButton>
             <Drawer
                 anchor="right"

@@ -21,7 +21,7 @@ const ShopButtonsAndQuantity = ({
     }, [sizeIndex]);
 
     const stockText =
-        stock <= 50 &&
+        stock <= 10 &&
         (stock == 0 ? "Out of Stock" : `Only ${stock} Left in Stock`);
 
     return (

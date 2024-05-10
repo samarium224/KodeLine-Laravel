@@ -9,7 +9,6 @@ const Banner = ({ text, variant, sx = {} }) => {
 
     return (
         <>
-            {/* <Box width="100%" height="20px" backgroundColor={"#CD864A"}></Box> */}
             <Box
                 width="100%"
                 backgroundColor="#dadada"
@@ -18,6 +17,7 @@ const Banner = ({ text, variant, sx = {} }) => {
                 justifyContent="center"
                 alignItems="center"
                 mx="auto"
+                id="about-us"
                 sx={{
                     height: { xs: "14vh", maxAllowableWidth: "150px" },
                     width: { xs: "100vw", maxAllowableWidth: "1960px" },

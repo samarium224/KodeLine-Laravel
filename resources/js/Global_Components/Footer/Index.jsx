@@ -30,48 +30,11 @@ const Footer = ({ collections }) => {
     const isInView = useInView(ref, { once: true });
     const mainControls = useAnimation();
 
-    const socialMediaLinks = [
-        { icon: <FacebookIcon />, label: "Facebook" },
-        { icon: <InstagramIcon />, label: "Instagram" },
-        { icon: <TwitterIcon />, label: "Twitter" },
-        { icon: <LinkedInIcon />, label: "LinkedIn" },
-        { icon: <YouTubeIcon />, label: "Youtube" },
-    ];
-
     useEffect(() => {
         if (isInView) mainControls.start("visible");
     }, [isInView]);
     return (
-        <Box mt={2.5} ref={ref}>
-            {/* <Container maxWidth="desktopMaxWidth" sx={{ px: 0 }}>
-                <Box
-                    display="flex"
-                    sx={{
-                        justifyContent: { xs: "space-around", sm: "flex-end" },
-                    }}
-                    mb={8}
-                >
-                    {socialMediaLinks.map((link, index) => (
-                        <Box
-                            key={index}
-                            component={Link}
-                            color={theme.palette.text.grey[500]}
-                            textAlign="center"
-                            display="flex"
-                            alignItems="center"
-                            sx={{
-                                flexDirection: { xs: "column", sm: "row" },
-                                ml: { xs: 0, sm: 4 },
-                            }}
-                        >
-                            {link.icon}
-                            <Typography variant="subtitle" ml={0.5}>
-                                {link.label}
-                            </Typography>
-                        </Box>
-                    ))}
-                </Box>
-            </Container> */}
+        <Box mt={2.5} ref={ref} id="footer">
             <Box
                 ref={ref}
                 textAlign="center"
@@ -80,23 +43,6 @@ const Footer = ({ collections }) => {
                 alignItems="center"
                 sx={{ my: { xs: 7.5, md: 6 } }}
             >
-                {/* <Typography
-                    textTransform="uppercase"
-                    fontWeight="500"
-                    color={theme.palette.text.grey[500]}
-                    component={motion.div}
-                    variants={fadeFromBottom}
-                    initial="hidden"
-                    animate={mainControls}
-                    transition={{ duration: 0.5, delay: 0.15 }}
-                    mb={1}
-                    sx={{
-                        fontSize: { xs: "1.5rem", md: "2.75rem" },
-                        letterSpacing: { xs: 8, md: 12 },
-                    }}
-                >
-                    Subscribe
-                </Typography> */}
                 <Header title="Subscribe" />
                 <Typography
                     variant="itemdescSubtitle"

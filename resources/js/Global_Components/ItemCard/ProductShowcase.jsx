@@ -100,16 +100,20 @@ const ProductShowcase = ({
             <CustomButton
                 text={
                     isMobileScreen ? (
-                        <AddShoppingCartIcon fontSize="small" />
+                        <Box
+                            component="img"
+                            src="../assets/Bucket_Black.svg"
+                            sx={{ height: "18px" }}
+                        />
                     ) : (
                         buttonText
                     )
                 }
-                // onClick={handleClick}
                 sx={{
                     opacity: { xs: "100", md: "0" },
                     transition: ".33s",
                     mb: { xs: "0", md: "-10px" },
+                    minWidth: "48px",
                     // boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.15)",
                 }}
             />
