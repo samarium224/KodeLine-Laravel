@@ -406,4 +406,10 @@ class ProductController extends Controller
         $product = Products::with('attributes')->where('id', $product_id)->first();
         return view('admin.variant.Variations', compact('product'));
     }
+
+    public function DeleteVariant($id){
+        ProductAttributes::findOrFail($id)->delete();
+
+        return redirect()->back();
+    }
 }

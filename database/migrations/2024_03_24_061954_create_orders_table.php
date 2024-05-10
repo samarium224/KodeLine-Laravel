@@ -20,12 +20,15 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('postal')->nullable();
+            $table->string('userNote')->nullable();
             $table->string('phonenumber');
             $table->string('session_id');
-            $table->string('product_id');
+            $table->integer('product_id');
+            $table->integer('attribute_id')->default(0);
+            $table->integer('variantIndex')->nullable();
             $table->string('product_name');
             $table->string('imgUrl');
-            $table->string('product_quantity');
+            $table->integer('product_quantity');
             $table->double('total_price');
             $table->boolean('payment_status')->default(0);
             $table->boolean('delivery_status')->default(0);
