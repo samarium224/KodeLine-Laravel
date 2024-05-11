@@ -23,6 +23,10 @@ const SliderComp = ({
     const isMobileScreen = useMediaQuery(theme.breakpoints.down("sm"));
     const [backgroundImage, setBackgroundImage] = useState("");
 
+    const mobileText = isMobileScreen
+        ? subtitle.replace(/<br\/?>/g, " ")
+        : subtitle;
+
     useEffect(() => {
         const imageUrl = isMobileScreen ? mobileImgURL : imgURL;
         setBackgroundImage(imageUrl);
@@ -122,8 +126,12 @@ const SliderComp = ({
                             width: { xs: "95%", md: "100%" },
                             textShadow: "0px 0px 10px rgba(0,0,0,0.15)",
                         }}
-                        dangerouslySetInnerHTML={{ __html: subtitle }}
-                    />
+                        dangerouslySetInnerHTML={
+                            !isMobileScreen ? { __html: subtitle } : undefined
+                        }
+                    >
+                        {isMobileScreen ? mobileText : null}
+                    </Typography>
 
                     <Box
                         component={motion.div}
