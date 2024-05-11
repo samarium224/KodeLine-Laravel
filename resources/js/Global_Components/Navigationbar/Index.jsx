@@ -80,6 +80,26 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
             >
                 <MenuIcon />
             </IconButton>
+            <Box
+                sx={{
+                    flexGrow: 1,
+                    display: "flex",
+                    justifyContent: "center",
+                    "&:hover": { backgroundColor: "transparent" },
+                }}
+            >
+                <Link href={route("home")}>
+                    <img
+                        src={
+                            alternativeColor
+                                ? "../assets/Kodeline kids_Black Logo.svg"
+                                : "../assets/Logo.svg"
+                        }
+                        alt="Logo"
+                        style={{ height: "72px" }}
+                    />
+                </Link>
+            </Box>
         </>
     );
 
@@ -138,30 +158,6 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
                         collections={collections}
                         collectionOpen={collectionOpen}
                     />
-                    {isMobile && (
-                        <Box
-                            sx={{
-                                flexGrow: 1,
-                                display: "flex",
-                                justifyContent: "center",
-                                "&:hover": { backgroundColor: "transparent" },
-                                marginTop: "-16px",
-                                mt: -1,
-                            }}
-                        >
-                            <Link href={route("home")}>
-                                <img
-                                    src={
-                                        alternativeColor
-                                            ? "../assets/Kodeline kids_Black Logo.svg"
-                                            : "../assets/Logo.svg"
-                                    }
-                                    alt="Logo"
-                                    style={{ height: "72px" }}
-                                />
-                            </Link>
-                        </Box>
-                    )}
                 </AppBar>
                 <Drawer
                     anchor="left"
