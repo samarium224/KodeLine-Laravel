@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\ProductAttributes;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -77,6 +78,8 @@ class OrderController extends Controller
                 'phonenumber' => $request->phone,
                 'session_id' => $checkout_session->id,
                 'product_id' => $product->product_id,
+                'attribute_id' => $product->attribute_id,
+                'variantIndex' => $product->variantIndex,
                 'product_name' => $product->product_name,
                 'product_quantity' => $product->product_quantity,
                 'total_price' => $totalPrice,
@@ -116,12 +119,31 @@ class OrderController extends Controller
                     $usercart = $order->user_id;
                     // reduce product count
                     $product_id = $order->product_id;
+                    $attributeID = $order->attribute_id;
+                    $variantID = $order->variantIndex;
                     $order_count = $order->product_quantity;
+
+                    $variantStock = ProductAttributes::where('id', $attributeID)->value('stock');
+                    if($variantStock != null){
+                        $VariantStockIndex = explode(',', $variantStock);
+                        $variantStock = (int)$VariantStockIndex[$variantID];
+                        $newStock = $variantStock - $order_count;
+
+                        $VariantStockIndex[$variantID] = $newStock;
+                        $newStock = implode(',', $VariantStockIndex);
+
+                        ProductAttributes::where('id', $attributeID)->update([
+                            'stock' => $newStock,
+                        ]);
+                        
+                    }else{
+                        Products::where('id', $product_id)->decrement('quantity',$order_count);
+                    }
+
                 }
             }
 
             Cart::where('user_id', $usercart)->delete();
-            Products::where('id', $product_id)->decrement('quantity',$order_count);
 
             return Inertia::render('ThankYou', [
                 'customer'=> $customer,

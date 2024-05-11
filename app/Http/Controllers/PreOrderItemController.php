@@ -248,4 +248,10 @@ class PreOrderItemController extends Controller
         $product = products::with('attributes')->where('id', $product_id)->first();
         return view('admin.PreOrder.variant.Variations', compact('product'));
     }
+
+    public function DeleteVariant($id){
+        ProductAttributes::findOrFail($id)->delete();
+
+        return redirect()->back();
+    }
 }

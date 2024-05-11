@@ -19,8 +19,8 @@ export default function Authenticated({ user, header, children }) {
                                 <Link href="/">
                                     {/* <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" /> */}
                                     <img
-                                        className="w-40 px-2"
-                                        src="./assets/Logo_Black.png"
+                                        className="w-60"
+                                        src="./assets/Kodeline kids_Black Logo.svg"
                                         alt="Kodeline.kids"
                                     />
                                 </Link>
