@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\analysis;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\ProductAttributes;
 use App\Models\Products;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -74,7 +76,7 @@ class OrderController extends Controller
                 'address' => $request->address,
                 'city' => $request->city,
                 'state' => $request->state,
-                'postal' =>$request->postal_code,
+                'postal' => $request->postal_code,
                 'phonenumber' => $request->phone,
                 'session_id' => $checkout_session->id,
                 'product_id' => $product->product_id,
@@ -104,14 +106,23 @@ class OrderController extends Controller
             }
 
             $customer = $session->customer_details;
+            $total_order = 0;
+            $total_price = 0;
+            $unit_sold = 0;
+            $Revenue = 0;
+            $usercart = null;
 
             $orders = Order::where('session_id', $session->id)->get();
             if (!$orders) {
                 throw new NotFoundHttpException();
             }
 
-            foreach($orders as $order){
+            foreach ($orders as $order) {
                 if ($order->payment_status === 0) {
+
+                    $total_order++;
+                    $total_price += $order->total_price;
+
                     $order->payment_status = 1;
                     $order->save();
 
@@ -123,10 +134,12 @@ class OrderController extends Controller
                     $variantID = $order->variantIndex;
                     $order_count = $order->product_quantity;
 
+                    $unit_sold += $order_count;
+                    $Revenue += $unit_sold * $total_price;
                     $variantStock = ProductAttributes::where('id', $attributeID)->value('stock');
-                    if($variantStock != null){
+                    if ($variantStock != null) {
                         $VariantStockIndex = explode(',', $variantStock);
-                        $variantStock = (int)$VariantStockIndex[$variantID];
+                        $variantStock = (int) $VariantStockIndex[$variantID];
                         $newStock = $variantStock - $order_count;
 
                         $VariantStockIndex[$variantID] = $newStock;
@@ -135,9 +148,9 @@ class OrderController extends Controller
                         ProductAttributes::where('id', $attributeID)->update([
                             'stock' => $newStock,
                         ]);
-                        
-                    }else{
-                        Products::where('id', $product_id)->decrement('quantity',$order_count);
+
+                    } else {
+                        Products::where('id', $product_id)->decrement('quantity', $order_count);
                     }
 
                 }
@@ -145,8 +158,32 @@ class OrderController extends Controller
 
             Cart::where('user_id', $usercart)->delete();
 
+            // Get the current month and year
+            $currentMonthYear = Carbon::now()->format('M-Y');
+
+            // Check if analysis record exists for the current month and year
+            $analysis = analysis::where('M_Y', $currentMonthYear)->first();
+
+            if ($analysis) {
+                // Update existing record
+                $analysis->increment('revenue', $Revenue);
+                $analysis->increment('unit_sold', $unit_sold);
+                $analysis->increment('total_sales_price', $total_price);
+                $analysis->increment('total_orders', $total_order);
+                $analysis->increment('customer_count', 1);
+            } else {
+                // Create new record
+                $analysis = new Analysis;
+                $analysis->M_Y = $currentMonthYear;
+                $analysis->unit_sold = $unit_sold;
+                $analysis->total_sales_price = $total_price;
+                $analysis->total_orders = $total_order;
+                $analysis->customer_count = 1;
+                $analysis->save();
+            }
+
             return Inertia::render('ThankYou', [
-                'customer'=> $customer,
+                'customer' => $customer,
             ]);
         } catch (\Throwable $th) {
             throw new NotFoundHttpException;

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\analysis;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\ProductAttributes;
 use App\Models\Products;
 use App\Models\SubCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,11 +19,16 @@ class DashboardController extends Controller
         $next_month = date("Y-m-d", strtotime("+1 month", strtotime($date_today)));
         $prev_month = date("Y-m-d", strtotime("-1 month", strtotime($date_today)));
 
-
         $orders = Order::whereBetween('created_at', [$prev_month, $next_month])
             ->paginate(5);
-            // dd($orders);
-        return view('admin.dashboard', compact('orders'));
+
+        // Get the current month and year
+        $currentMonthYear = Carbon::now()->format('M-Y');
+
+        // Check if analysis record exists for the current month and year
+        $analytics = analysis::where('M_Y', $currentMonthYear)->first();
+
+        return view('admin.dashboard', compact('orders', 'analytics'));
     }
 
     public function analytics()
