@@ -171,6 +171,8 @@
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{route('content.all')}}">Contents</a></li>
                             <li><a href="{{route('content.preorder')}}">Pre Order Section</a></li>
+                            <li><a href="{{route('content.slider')}}">Slider Section</a></li>
+                            <li><a href="{{route('content.preorder')}}">Services Section</a></li>
                         </ul>
                     </li>
                     <hr class="side-hr">

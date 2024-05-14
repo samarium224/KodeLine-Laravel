@@ -12,9 +12,62 @@ class DashboardContentController extends Controller
         return view("admin.content.PreOrder");
     }
 
-    public function ContentView(){
+    public function ContentView()
+    {
         $contents = Content::latest()->get();
         return view("admin.content.view", compact("contents"));
+    }
+
+    public function SliderItemsView()
+    {
+        $contents = Content::where('content_name', 'SliderItems')->get();
+        return view("admin.content.sliderItems", compact("contents"));
+    }
+
+    public function SliderItemsCreate()
+    {
+        return view('admin.content.sliderItemsAdd');
+    }
+
+    public function SliderItemStore(Request $request)
+    {
+        $request->validate([
+            'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'title' => 'nullable',
+            'subtitle' => 'nullable',
+        ]);
+
+        if ($file = $request->file('category_img')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/content'), $image_name);
+            $img_url = 'uploads/content/' . $image_name;
+        }
+
+        if ($file = $request->file('cat_headerImg_PC')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/content'), $image_name);
+            $header_url = 'uploads/content/' . $image_name;
+        }
+
+        Content::create([
+            'content_name' => 'SliderItems',
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'HomePageImg' => $img_url,
+            'MobileImg' => $header_url,
+            'viewPageImg' => 'N/A',
+        ]);
+
+
+        return redirect()->route('content.slider')->with(
+            'message',
+            'Slider Content Updated Successfully'
+        );
     }
 
     public function UpdatePreOrderContent(Request $request)
@@ -23,8 +76,8 @@ class DashboardContentController extends Controller
             'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            'title'=> 'nullable',
-            'subtitle'=> 'nullable',
+            'title' => 'nullable',
+            'subtitle' => 'nullable',
         ]);
 
         if ($file = $request->file('category_img')) {
@@ -77,7 +130,8 @@ class DashboardContentController extends Controller
         );
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         Content::findOrFail($id)->delete();
 
         return redirect()->route('content.all')->with(

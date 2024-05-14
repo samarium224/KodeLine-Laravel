@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderProcessed;
 use App\Models\analysis;
 use App\Models\Category;
 use App\Models\Order;

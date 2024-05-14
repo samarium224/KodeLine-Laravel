@@ -30,6 +30,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, 'Index'])->name('home');
+Route::get('/mail', function(){
+    return view('mail.orderSubmit');
+});
 
 //user dashboard
 Route::get('/dashboard', [UserDashboardController::class, 'Index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -142,6 +145,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/ContentpreOrder/edit', 'UpdatePreOrderContent')->name('content.preorder.store');
         Route::get('/admin/contentview', 'ContentView')->name('content.all');
         Route::get('/admin/content/delete/{id}', 'destroy')->name('content.delete');
+        //sliders
+        Route::get('/admin/Content/slider', 'SliderItemsView')->name('content.slider');
+        Route::get('/admin/Content/slider/add', 'SliderItemsCreate')->name('content.slider.add');
+        Route::post('/admin/Content/slider/store', 'SliderItemStore')->name('content.slider.store');
     });
 
     // product utilities

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrderProcessed;
 use App\Models\analysis;
 use App\Models\Cart;
 use App\Models\Order;
@@ -94,10 +95,11 @@ class OrderController extends Controller
 
     public function payment_success(Request $request)
     {
+        //process the purchase
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
         $session_id = $request->get('session_id');
 
-        try {
+        // try {
             //code...
             $session = $stripe->checkout->sessions->retrieve($session_id);
 
@@ -118,46 +120,21 @@ class OrderController extends Controller
             }
 
             foreach ($orders as $order) {
-                if ($order->payment_status === 0) {
+                //remove the cart items
+                $usercart = $order->user_id;
 
-                    $total_order++;
-                    $total_price += $order->total_price;
+                $total_order++;
+                $total_price += $order->total_price;
 
-                    $order->payment_status = 1;
-                    $order->save();
+                $order_count = $order->product_quantity;
 
-                    //remove the cart items
-                    $usercart = $order->user_id;
-                    // reduce product count
-                    $product_id = $order->product_id;
-                    $attributeID = $order->attribute_id;
-                    $variantID = $order->variantIndex;
-                    $order_count = $order->product_quantity;
-
-                    $unit_sold += $order_count;
-                    $Revenue += $unit_sold * $total_price;
-                    $variantStock = ProductAttributes::where('id', $attributeID)->value('stock');
-                    if ($variantStock != null) {
-                        $VariantStockIndex = explode(',', $variantStock);
-                        $variantStock = (int) $VariantStockIndex[$variantID];
-                        $newStock = $variantStock - $order_count;
-
-                        $VariantStockIndex[$variantID] = $newStock;
-                        $newStock = implode(',', $VariantStockIndex);
-
-                        ProductAttributes::where('id', $attributeID)->update([
-                            'stock' => $newStock,
-                        ]);
-
-                    } else {
-                        Products::where('id', $product_id)->decrement('quantity', $order_count);
-                    }
-
-                }
+                $unit_sold += $order_count;
+                $Revenue += $unit_sold * $total_price;
+                OrderProcessed::dispatch($order);
             }
 
             Cart::where('user_id', $usercart)->delete();
-
+            
             // Get the current month and year
             $currentMonthYear = Carbon::now()->format('M-Y');
 
@@ -185,9 +162,10 @@ class OrderController extends Controller
             return Inertia::render('ThankYou', [
                 'customer' => $customer,
             ]);
-        } catch (\Throwable $th) {
-            throw new NotFoundHttpException;
-        }
+
+        // } catch (\Throwable $th) {
+        //     throw new NotFoundHttpException;
+        // }
     }
 
     public function cancel()
