@@ -13,7 +13,7 @@ const Itemdesc = ({
     return (
         <Box
             sx={{
-                width: { xs: "175px", md: "252px", lg: "300px" },
+                width: { xs: "200px", md: "252px", lg: "300px" },
                 scale: alternativeCard && "0.9",
             }}
             textAlign="center"
@@ -22,6 +22,7 @@ const Itemdesc = ({
                 display="block"
                 variant="itemdescTitle"
                 color={theme.palette.secondary.main}
+                whiteSpace={"nowrap"}
             >
                 {mainText}
             </Typography>

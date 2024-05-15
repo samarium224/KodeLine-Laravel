@@ -2,7 +2,6 @@ import { Button, Typography, Box, useTheme } from "@mui/material";
 
 const SizeVariants = ({ sizes, selectedIndex, onChangeSize }) => {
     const theme = useTheme();
-    console.log(sizes);
 
     if (sizes.length > 0)
         return (

@@ -15,11 +15,8 @@ const useWindowSize = () => {
         };
 
         window.addEventListener("resize", handleResize);
-
-        // Call the handleResize function once to set the initial window size
         handleResize();
 
-        // Clean up the event listener on component unmount
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/Theme/theme_desktop";
 import { Box } from "@mui/material";
@@ -14,8 +15,36 @@ import { usePage } from "@inertiajs/react";
 import BestSellingItems from "@/Homepage_Components/BestSelling/Index";
 
 export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
-    const { collections, product, preOrderContent, preOrderItems, bestsellingItems, bestsellingCollection } =
-        usePage().props;
+    const {
+        collections,
+        product,
+        preOrderContent,
+        preOrderItems,
+        bestsellingItems,
+        bestsellingCollection,
+    } = usePage().props;
+
+    const [filteredBestsellingItems, setFilteredBestsellingItems] =
+        useState(bestsellingItems);
+
+    useEffect(() => {
+        const fixBestSellingItems = async () => {
+            try {
+                const response = await axios.get(route("cartItems"));
+                const responseItemIds = new Set(
+                    response.data.map((item) => item.itemID)
+                );
+                const filtered = bestsellingItems.filter(
+                    (item) => !responseItemIds.has(item.itemID)
+                );
+                setFilteredBestsellingItems(filtered);
+            } catch (error) {
+                console.error("Error fetching cart items:", error);
+            }
+        };
+
+        fixBestSellingItems();
+    }, []);
 
     return (
         <div style={{ overflow: "hidden" }}>
@@ -29,7 +58,7 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
                 <ItemDescription product={product} />
                 {/* <Header title="You may also like" /> */}
                 <BestSellingItems
-                    bestSellingItemsList={bestsellingItems}
+                    bestSellingItemsList={filteredBestsellingItems}
                     collections={bestsellingCollection}
                     title="You May Also Like"
                 />
