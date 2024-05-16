@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import {
     AppBar,
@@ -23,7 +23,7 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
-    const [cartData, setcartData] = useState([]);
+    const [cartData, setCartData] = useState([]);
     const [collectionOpen, setCollectionOpen] = useState(false);
     if (collectionOpen) alternativeColor = true;
 
@@ -53,18 +53,21 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
             (event.key === "Tab" || event.key === "Shift")
         )
             return;
-
-        if (open) {
-            try {
-                const response = await axios.get(route("cartItems"));
-                setcartData(response.data);
-            } catch (error) {
-                console.error("Error adding item to cart:", error);
-            }
-        }
-
         setCartOpen(open);
     };
+
+    useEffect(() => {
+        const fetchCartItems = async () => {
+            try {
+                const response = await axios.get(route("cartItems"));
+                setCartData(response.data);
+            } catch (error) {
+                console.error("Error fetching cart items:", error);
+            }
+        };
+
+        fetchCartItems();
+    }, []);
 
     const MobileToolbar = () => (
         <>
@@ -144,7 +147,7 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
                             navButtonStyle={navButtonStyle}
                             theme={theme}
                             cartData={cartData}
-                            setcartData={setcartData}
+                            setcartData={setCartData}
                             bucketImgUrl={
                                 alternativeColor
                                     ? "../assets/Bucket_Black.svg"

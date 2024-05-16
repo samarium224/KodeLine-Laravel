@@ -54,7 +54,7 @@ const theme_mobile = createTheme({
             lineHeight: "18px",
         },
         itemdescTitle: {
-            fontSize: "0.875rem",
+            fontSize: "0.8rem",
             fontWeight: "600",
             lineHeight: "1.33rem",
         },

@@ -52,7 +52,7 @@ const Footer = ({ collections }) => {
                     animate={mainControls}
                     transition={{ duration: 0.5, delay: 0.3 }}
                     color={theme.palette.text.grey[500]}
-                    width="400px"
+                    sx={{ width: { xs: "90%", sm: "400px" } }}
                     mb={4}
                 >
                     Get the latest updates and special offers by signing up for

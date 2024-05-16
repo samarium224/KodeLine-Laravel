@@ -55,8 +55,7 @@ const theme_laptop = createTheme({
         },
         itemdescTitle: {
             fontSize: "1rem",
-            fontWeight: "500",
-            textTransform: "uppercase",
+            fontWeight: "600",
             lineHeight: "1.5rem",
         },
         itemdescSubtitle: {
