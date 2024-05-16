@@ -12,7 +12,6 @@ const ItemDescriptionTexts = ({ itemData }) => {
     const onChangeSize = (sizeIndex) => {
         setSelectedIndex({ ...selectedIndex, size: sizeIndex });
     };
-    console.log(selectedIndex.size);
     return (
         <Box sx={{ width: { xs: "100%", md: "35%" } }}>
             <ItemNameAndPrice
