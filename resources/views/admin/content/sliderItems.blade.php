@@ -39,7 +39,7 @@
                         Home Page Image
                     </th>
                     <th scope="col" class="border-0">Mobile View Image</th>
-                    <th scope="col" class="border-0">Delete Section</th>
+                    <th scope="col" class="border-0">Modify Section</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +62,9 @@
                                 width="60px">
                         </td>
 
-                        <td class="w-10">
+                        <td class="w-20">
+                            <a href="{{ route('content.edit', $content->id) }}"
+                                class="btn btn-dark btn-sm">edit</a>
                             <a href="{{ route('content.delete', $content->id) }}"
                                 class="btn btn-secondary btn-sm">delete</a>
                         </td>
