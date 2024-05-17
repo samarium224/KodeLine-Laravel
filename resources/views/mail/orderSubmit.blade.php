@@ -9,12 +9,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
         body,
         table,
         td,
         a {
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
+            font-family: Philosopher;
         }
 
         table,
@@ -81,13 +84,16 @@
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
                     style="max-width:600px;">
                     <tr>
-                        <td align="center" valign="top" style="font-size:0; padding: 35px;" bgcolor="#F44336">
+                        <td align="center" valign="top" style="padding: 10px;">
                             <div>
                                 <table>
                                     <tr>
                                         <td>
-                                            <h1 style="font-size: 24px; font-weight: 800; margin: 0; color: #ffffff;">
-                                                KodelineKids</h1>
+                                            {{-- <img src=" {{ $message->embed(public_path() . '/assets/Kodeline Kids Logo.png') }} "
+                                                width="240" style="display: block; border: 0px;" alt="Kodeline Kids"> --}}
+                                            <h2
+                                                class="font-size: 28px; font-weight: 800; line-height: 36px; color: #000;">
+                                                Kodeline Kids</h2>
                                         </td>
                                     </tr>
                                 </table>
@@ -95,17 +101,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="padding: 35px 35px 20px 35px; background-color: #ffffff;"
-                            bgcolor="#ffffff">
+                        <td align="center" style="padding: 10px; background-color: #ffffff;" bgcolor="#ffffff">
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
                                 style="max-width:600px;">
                                 <tr>
                                     <td align="center"
                                         style="font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
-                                        <img src="https://img.icons8.com/carbon-copy/100/000000/checked-checkbox.png"
-                                            width="125" height="120" style="display: block; border: 0px;" /><br>
                                         <h2
-                                            style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0;">
+                                            style="font-size: 24px; font-weight: 800; line-height: 36px; color: #333333; margin: 0;">
                                             Thank You For Your Order!
                                         </h2>
                                     </td>
@@ -125,25 +128,38 @@
                                         <table cellspacing="0" cellpadding="0" border="0" width="100%">
                                             <tr>
                                                 <td width="75%" align="left" bgcolor="#eeeeee"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                                    style="font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
                                                     Order Confirmation #
                                                 </td>
                                                 <td width="25%" align="left" bgcolor="#eeeeee"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                                    2345678
+                                                    style="font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                                    {{ $order->order_id }}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td width="75%" align="left"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                    Purchased Item (1)
-                                                </td>
-                                                <td width="25%" align="left"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                    $100.00
-                                                </td>
-                                            </tr>
-                                            
+                                            @php
+                                                // Convert the exploded arrays to integers
+                                                $productID = array_map('intval', explode('|', $order->product_id));
+                                                $attribute_id = array_map('intval', explode('|', $order->attribute_id));
+                                                $variantIndex = array_map('intval', explode('|', $order->variantIndex));
+                                                $product_quantity = array_map(
+                                                    'intval',
+                                                    explode('|', $order->product_quantity),
+                                                );
+                                                $product_name = explode('|', $order->product_name);
+                                            @endphp
+
+                                            @foreach ($product_quantity as $i => $PurchaseItem)
+                                                <tr>
+                                                    <td width="75%" align="left"
+                                                        style="font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                                        {{ $product_name[$i] }}
+                                                    </td>
+                                                    <td width="25%" align="left"
+                                                        style="font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                                        Qty: {{ $PurchaseItem }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </table>
                                     </td>
                                 </tr>
@@ -152,12 +168,12 @@
                                         <table cellspacing="0" cellpadding="0" border="0" width="100%">
                                             <tr>
                                                 <td width="75%" align="left"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                                                    style="font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
                                                     TOTAL
                                                 </td>
                                                 <td width="25%" align="left"
-                                                    style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
-                                                    $115.00
+                                                    style="font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                                                    ${{ $order->total_price }}
                                                 </td>
                                             </tr>
                                         </table>
@@ -181,57 +197,32 @@
                                                 width="100%" style="max-width:300px;">
                                                 <tr>
                                                     <td align="left" valign="top"
-                                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
+                                                        style="font-size: 16px; font-weight: 400; line-height: 24px;">
                                                         <p style="font-weight: 800;">Delivery Address</p>
-                                                        <p>675 Massachusetts Avenue<br>11th Floor<br>Cambridge, MA 02139
+                                                        <p>{{ $order->address }}
+                                                            <br>
+                                                            {{ $order->city }}
+                                                            <br>
+                                                            {{ $order->phonenumber }}
                                                         </p>
 
                                                     </td>
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div
+                                        {{-- <div
                                             style="display:inline-block; max-width:50%; min-width:240px; vertical-align:top; width:100%;">
                                             <table align="left" border="0" cellpadding="0" cellspacing="0"
                                                 width="100%" style="max-width:300px;">
                                                 <tr>
                                                     <td align="left" valign="top"
-                                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
+                                                        style="font-size: 16px; font-weight: 400; line-height: 24px;">
                                                         <p style="font-weight: 800;">Estimated Delivery Date</p>
                                                         <p>January 1st, 2016</p>
                                                     </td>
                                                 </tr>
                                             </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="center" style=" padding: 35px; background-color: #ff7361;" bgcolor="#1b9ba3">
-                            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
-                                style="max-width:600px;">
-                                <tr>
-                                    <td align="center"
-                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
-                                        <h2
-                                            style="font-size: 24px; font-weight: 800; line-height: 30px; color: #ffffff; margin: 0;">
-                                            Get 30% off your next order.
-                                        </h2>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center" style="padding: 25px 0 15px 0;">
-                                        <table border="0" cellspacing="0" cellpadding="0">
-                                            <tr>
-                                                <td align="center" style="border-radius: 5px;" bgcolor="#66b3b7">
-                                                    <a href="#" target="_blank"
-                                                        style="font-size: 18px; font-family: Open Sans, Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 5px; background-color: #F44336; padding: 15px 30px; border: 1px solid #F44336; display: block;">Shop
-                                                        Again</a>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        </div> --}}
                                     </td>
                                 </tr>
                             </table>
@@ -242,29 +233,11 @@
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
                                 style="max-width:600px;">
                                 <tr>
-                                    <td align="center">
-                                        <img src="logo-footer.png" width="37" height="37"
-                                            style="display: block; border: 0px;" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center"
-                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px; padding: 5px 0 10px 0;">
-                                        <p
-                                            style="font-size: 14px; font-weight: 800; line-height: 18px; color: #333333;">
-                                            675 Parko Avenue<br>
-                                            LA, CA 02232
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left"
-                                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 24px;">
+                                    <td align="center" style="font-size: 14px; font-weight: 400; line-height: 24px;">
                                         <p
                                             style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;">
-                                            If you didn't create an account using this email address, please ignore this
-                                            email or <a href="#" target="_blank"
-                                                style="color: #777777;">unsusbscribe</a>.
+                                            Copyrights © 2024 Kodeline Cothing and Footwear Inc. An initiative of
+                                            MapleKode Creatives Inc.
                                         </p>
                                     </td>
                                 </tr>

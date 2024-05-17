@@ -45,7 +45,7 @@ class OrderController extends Controller
         $lineItems = [];
         $totalPrice = 0;
         foreach ($Cartproducts as $product) {
-            $totalPrice += $product->product_price;
+            $totalPrice += $product->product_price * $product->product_quantity;
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'usd',
@@ -69,26 +69,47 @@ class OrderController extends Controller
 
         $unique_orderID = 'KL' . bin2hex(random_bytes(3));
 
+        $productID = [];
+        $attribute_id = [];
+        $variantIndex = [];
+        $product_name = [];
+        $product_quantity = [];
+        $imgUrl = [];
+
         foreach ($Cartproducts as $product) {
-            $order = Order::create([
-                'order_id' => $unique_orderID,
-                'username' => $username,
-                'user_id' => $user_id,
-                'address' => $request->address,
-                'city' => $request->city,
-                'state' => $request->state,
-                'postal' => $request->postal_code,
-                'phonenumber' => $request->phone,
-                'session_id' => $checkout_session->id,
-                'product_id' => $product->product_id,
-                'attribute_id' => $product->attribute_id,
-                'variantIndex' => $product->variantIndex,
-                'product_name' => $product->product_name,
-                'product_quantity' => $product->product_quantity,
-                'total_price' => $totalPrice,
-                'imgUrl' => $product->imgUrl,
-            ]);
+            $productID[] = $product->product_id;
+            $attribute_id[] = $product->attribute_id;
+            $variantIndex[] = $product->variantIndex;
+            $product_name[] = $product->product_name;
+            $product_quantity[] = $product->product_quantity;
+            $imgUrl[] = $product->imgUrl;
         }
+
+        $productID = implode('|', $productID);
+        $attribute_id = implode('|', $attribute_id);
+        $variantIndex = implode('|', $variantIndex);
+        $product_name = implode('|', $product_name);
+        $product_quantity = implode('|', $product_quantity);
+        $imgUrl = implode('|', $imgUrl);
+
+        $order = Order::create([
+            'order_id' => $unique_orderID,
+            'username' => $username,
+            'user_id' => $user_id,
+            'address' => $request->address,
+            'city' => $request->city,
+            'state' => $request->state,
+            'postal' => $request->postal_code,
+            'phonenumber' => $request->phone,
+            'session_id' => $checkout_session->id,
+            'product_id' => $productID,
+            'attribute_id' => $attribute_id,
+            'variantIndex' => $variantIndex,
+            'product_name' => $product_name,
+            'product_quantity' => $product_quantity,
+            'total_price' => $totalPrice,
+            'imgUrl' => $imgUrl,
+        ]);
 
         return Inertia::location($checkout_session->url);
     }
@@ -100,68 +121,33 @@ class OrderController extends Controller
         $session_id = $request->get('session_id');
 
         // try {
-            //code...
-            $session = $stripe->checkout->sessions->retrieve($session_id);
+        //code...
+        $session = $stripe->checkout->sessions->retrieve($session_id);
 
-            if (!$session_id) {
-                throw new NotFoundHttpException;
-            }
+        if (!$session_id) {
+            throw new NotFoundHttpException;
+        }
 
-            $customer = $session->customer_details;
-            $total_order = 0;
-            $total_price = 0;
-            $unit_sold = 0;
-            $Revenue = 0;
-            $usercart = null;
+        $customer = $session->customer_details;
 
-            $orders = Order::where('session_id', $session->id)->get();
-            if (!$orders) {
-                throw new NotFoundHttpException();
-            }
+        $usercart = null;
 
-            foreach ($orders as $order) {
-                //remove the cart items
-                $usercart = $order->user_id;
+        $order = Order::where('session_id', $session->id)->first();
+        $order->email = $customer->email;
+        $order->save();
+        if (!$order) {
+            throw new NotFoundHttpException();
+        }
 
-                $total_order++;
-                $total_price += $order->total_price;
+        OrderProcessed::dispatch($order);
 
-                $order_count = $order->product_quantity;
+        //remove the cart items
+        $usercart = $order->user_id;
+        Cart::where('user_id', $usercart)->delete();
 
-                $unit_sold += $order_count;
-                $Revenue += $unit_sold * $total_price;
-                OrderProcessed::dispatch($order);
-            }
-
-            Cart::where('user_id', $usercart)->delete();
-            
-            // Get the current month and year
-            $currentMonthYear = Carbon::now()->format('M-Y');
-
-            // Check if analysis record exists for the current month and year
-            $analysis = analysis::where('M_Y', $currentMonthYear)->first();
-
-            if ($analysis) {
-                // Update existing record
-                $analysis->increment('revenue', $Revenue);
-                $analysis->increment('unit_sold', $unit_sold);
-                $analysis->increment('total_sales_price', $total_price);
-                $analysis->increment('total_orders', $total_order);
-                $analysis->increment('customer_count', 1);
-            } else {
-                // Create new record
-                $analysis = new Analysis;
-                $analysis->M_Y = $currentMonthYear;
-                $analysis->unit_sold = $unit_sold;
-                $analysis->total_sales_price = $total_price;
-                $analysis->total_orders = $total_order;
-                $analysis->customer_count = 1;
-                $analysis->save();
-            }
-
-            return Inertia::render('ThankYou', [
-                'customer' => $customer,
-            ]);
+        return Inertia::render('ThankYou', [
+            'customer' => $customer,
+        ]);
 
         // } catch (\Throwable $th) {
         //     throw new NotFoundHttpException;

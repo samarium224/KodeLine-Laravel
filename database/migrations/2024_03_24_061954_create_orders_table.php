@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('order_id');
             $table->string('username');
             $table->string('user_id');
+            $table->string('email')->nullable();
             $table->string('address');
             $table->string('city')->nullable();
             $table->string('state')->nullable();
@@ -23,12 +24,12 @@ return new class extends Migration
             $table->string('userNote')->nullable();
             $table->string('phonenumber');
             $table->string('session_id');
-            $table->integer('product_id');
-            $table->integer('attribute_id')->default(0);
-            $table->integer('variantIndex')->nullable();
+            $table->string('product_id');
+            $table->string('attribute_id')->default(0);
+            $table->string('variantIndex')->nullable();
             $table->string('product_name');
             $table->string('imgUrl');
-            $table->integer('product_quantity');
+            $table->string('product_quantity');
             $table->double('total_price');
             $table->boolean('payment_status')->default(0);
             $table->boolean('delivery_status')->default(0);
