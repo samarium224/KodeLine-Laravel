@@ -96,6 +96,7 @@ const SignatureItemsSlider = ({ children }) => {
             {
                 breakpoint: 500,
                 settings: {
+                    infinite: true,
                     slidesToShow: 1,
                     centerMode: true,
                     centerPadding: "100px",

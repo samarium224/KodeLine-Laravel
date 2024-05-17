@@ -26,7 +26,7 @@ const ItemDescriptionImages = ({ itemData }) => {
             sx={{
                 flexDirection: { lg: "row", xs: "column-reverse" },
                 width: { md: "60%", xs: "100%" },
-                mb: { xs: 5, md: 15 },
+                mb: { xs: 2, md: 15 },
             }}
             justifyContent="space-between"
         >

@@ -135,10 +135,10 @@ const DrawerContent = ({ toggleDrawer, auth, collections }) => {
                 <Divider />
             </List>
 
-            <Box display="flex" width="100%" justifyContent="center">
+            {/* <Box display="flex" width="100%" justifyContent="center">
                 <FeaturedCollection label="Signature Items" />
                 <FeaturedCollection label="BestSelling" />
-            </Box>
+            </Box> */}
         </Box>
     );
 };
