@@ -13,13 +13,22 @@
     outline: none;
     box-shadow: none;
     border-color: inherit;
-  }
+}
 
 html,
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-x: hidden;
+    /* Disable horizontal scrolling */
+}
+
+input::placeholder {
+    opacity: 0.8;
+}
+
+input::-ms-input-placeholder {
+    opacity: 0.8;
 }
 
 /* body {

@@ -16,6 +16,18 @@ class HomepageController extends Controller
     //load product in homepage
     public function index()
     {
+        $sliderItems = Content::where('content_name', 'SliderItems')->get()->map(function ($item) {
+            return [
+                'collectionID' => $item->id,
+                'imgURL' => $item->HomePageImg,
+                'mobileImgURL' => $item->MobileImg,
+                'title' => $item->title,
+                'subtitle' => $item->subtitle,
+                'reverseAlign' => false,
+                'backgroundPosition' => 'center',
+            ];
+        });
+
         $signatureItemsList = Products::where('featured', 'true')->take(10)->get()->map(function ($item) {
             // Assuming 'ageRange' is a string like "3|6", we split it into an array.
             $ageRangeArray = explode('|', $item->ageRange);
@@ -77,8 +89,8 @@ class HomepageController extends Controller
             ->map(function ($group, $categoryName) {
                 return [
                     'categoryID' => Products::where('product_category_name', $categoryName)->value('product_category_id'),
-                    'categoryTitle' => $categoryName,
-                    'categorySubtitle' => Category::where('category_name', $categoryName)->value('category_title'),
+                    'categoryTitle' => Category::where('category_name', $categoryName)->value('category_title'),
+                    'categorySubtitle' => Category::where('category_name', $categoryName)->value('category_subtitle'),
                     'categoryImage' => Category::where('category_name', $categoryName)->value('category_img'),
                     'categoryItemList' => $group->take(4)->map(function ($product) {
                         $ageRangeArray = explode('|', $product->ageRange);
@@ -149,6 +161,7 @@ class HomepageController extends Controller
         });
         // dd($collections);
         return Inertia::render('Welcome', [
+            'sliderItems' => $sliderItems,
             'signatureItemsList' => $signatureItemsList,
             'collectionItemList' => $collectionItemList,
             'collections' => $collections,

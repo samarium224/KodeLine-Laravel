@@ -25,6 +25,7 @@ import { usePage } from "@inertiajs/react";
 
 export default function Welcome({ auth }) {
     const {
+        sliderItems,
         signatureItemsList,
         collections,
         collectionItemList,
@@ -48,7 +49,7 @@ export default function Welcome({ auth }) {
             <ThemeProvider theme={getTheme()}>
                 <Slogan />
                 <Navigation collections={collections} auth={auth} />
-                <SliderComponent></SliderComponent>
+                <SliderComponent sliderItems={sliderItems}></SliderComponent>
                 <Banner
                     text="Step into a world where online shopping feels effortless and full of love! <br/> With top-notch products and pocket-friendly prices, let's navigate parenthood together, hassle-free."
                     variant="subtitle"
