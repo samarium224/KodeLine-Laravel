@@ -43,7 +43,7 @@ class OrderSuccessMail extends Mailable
         return new Content(
             view: 'mail.orderSubmit',
             with: [
-                'orderData' => $this->data,
+                'order' => $this->data,
             ],
         );
     }

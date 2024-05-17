@@ -23,6 +23,6 @@ class SendOrderNotification
      */
     public function handle(OrderProcessed $event): void
     {
-        Mail::to('samir.fazal225@gmail.com')->send(new OrderSuccessMail($event->order));
+        Mail::to($event->order->email)->send(new OrderSuccessMail($event->order));
     }
 }

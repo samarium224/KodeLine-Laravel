@@ -29,6 +29,11 @@ class DashboardContentController extends Controller
         return view('admin.content.sliderItemsAdd');
     }
 
+    public function edit($id){
+        $content = Content::where('id', $id)->first();
+        return view('admin.content.sliderItemsEdit', compact('content'));
+    }
+
     public function SliderItemStore(Request $request)
     {
         $request->validate([
@@ -61,6 +66,54 @@ class DashboardContentController extends Controller
             'HomePageImg' => $img_url,
             'MobileImg' => $header_url,
             'viewPageImg' => 'N/A',
+        ]);
+
+
+        return redirect()->route('content.slider')->with(
+            'message',
+            'Slider Content Added Successfully'
+        );
+    }
+
+
+    public function SliderItemUpdate(Request $request)
+    {
+        $request->validate([
+            'content_id' => 'required',
+            'category_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_PC' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'title' => 'nullable',
+            'subtitle' => 'nullable',
+        ]);
+
+        $id = $request->content_id;
+
+        if ($file = $request->file('category_img')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/content'), $image_name);
+            $img_url = 'uploads/content/' . $image_name;
+        }else{
+            $img_url = Content::where('id', $id)->value('HomePageImg');
+        }
+
+        if ($file = $request->file('cat_headerImg_PC')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/content'), $image_name);
+            $header_url = 'uploads/content/' . $image_name;
+        }else{
+            $header_url = Content::where('id', $id)->value('MobileImg');
+        }
+
+        Content::findOrFail($id)->update([
+            'content_name' => 'SliderItems',
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'HomePageImg' => $img_url,
+            'MobileImg' => $header_url,
         ]);
 
 
