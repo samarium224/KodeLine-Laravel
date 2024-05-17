@@ -57,5 +57,14 @@ class DashboardOrderController extends Controller
         return redirect()->back();
     }
 
+    public function OrderDelete($id){
+        Order::findOrFail($id)->delete();
+
+        return redirect()->back()->with(
+            'message',
+            'Order Entry Deleted Successfully'
+        );
+    }
+
 
 }

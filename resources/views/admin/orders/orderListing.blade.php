@@ -33,6 +33,7 @@
                     <th scope="col" class="border-0">Payment Status</th>
                     <th scope="col" class="border-0">Delivery Status</th>
                     <th scope="col" class="border-0">Return Status</th>
+                    <th scope="col" class="border-0">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,6 +73,12 @@
                             @else
                                 this product has been returned
                             @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('order.delete', $order->id) }}">
+                                <i class="fa fa-trash-o delete-variation mt-2"
+                                    style="font-size: 20px; color: #4d4d4d; cursor: pointer;"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
