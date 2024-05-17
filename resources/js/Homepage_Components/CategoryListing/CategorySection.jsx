@@ -64,7 +64,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                                     fontWeight: 600,
                                 }}
                             >
-                                {category.categoryTitle} Collection
+                                {category.categoryTitle}
                             </Typography>
                             <Typography
                                 display="block"

@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 const Header = ({ CollectionHeaderData }) => {
     const theme = useTheme();
     const isMobileScreen = useMediaQuery(theme.breakpoints.down("md"));
+    console.log(CollectionHeaderData);
 
     const fadeFromBottom = {
         hidden: { opacity: 0, y: 20 },
@@ -47,7 +48,7 @@ const Header = ({ CollectionHeaderData }) => {
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
                     height: {
                         xl: `calc(60vh - 56px)`,
-                        md: `calc(67.5vh - 49px)`,
+                        md: `calc(60vh - 49px)`,
                         xs: `calc(60vh - 30px + 1px)`,
                         maxAllowableWidth: "700px",
                     },
@@ -79,18 +80,6 @@ const Header = ({ CollectionHeaderData }) => {
                     }}
                 >
                     <Typography
-                        variant="headline"
-                        component={motion.div}
-                        variants={animationVariant}
-                        initial="hidden"
-                        animate={"visible"}
-                        color={theme.palette.text.white[500]}
-                        transition={{ duration: 0.4, delay: 0 }}
-                        sx={{ mb: 2, width: "95%" }}
-                    >
-                        {CollectionHeaderData.title}
-                    </Typography>
-                    <Typography
                         variant="subtitle"
                         component={motion.div}
                         variants={animationVariant}
@@ -99,42 +88,27 @@ const Header = ({ CollectionHeaderData }) => {
                         transition={{ duration: 0.4, delay: 0.25 }}
                         color={theme.palette.text.white[500]}
                         sx={{
-                            mb: { xl: 5, md: 3, xs: 5 },
+                            mb: 2,
                             width: { xs: "80%", md: "33%" },
                         }}
                     >
-                        {CollectionHeaderData.subtitle}
+                        {CollectionHeaderData.title}
                     </Typography>
-                    <Box
+                    <Typography
+                        variant="headline"
                         component={motion.div}
                         variants={animationVariant}
                         initial="hidden"
                         animate={"visible"}
-                        transition={{ duration: 0.4, delay: 0.66 }}
+                        color={theme.palette.text.white[500]}
+                        transition={{ duration: 0.4, delay: 0 }}
+                        sx={{
+                            mb: { xl: 5, md: 3, xs: 5 },
+                            width: { xs: "80%", md: "40%" },
+                        }}
                     >
-                        <Button
-                            sx={{
-                                color: theme.palette.text.white[500],
-                                backgroundColor: "transparent",
-                                border: `2px solid ${theme.palette.text.white[500]}`,
-                                fontWeight: "500",
-                                fontSize: {
-                                    xl: "1.1rem",
-                                    lg: "1rem",
-                                    xs: "0.75rem",
-                                },
-                                px: { xl: 5, md: 5, xs: 4 },
-                                py: { xl: 1.5, md: 1.2, xs: 1 },
-                                "&:hover": {
-                                    backgroundColor:
-                                        theme.palette.text.white[500],
-                                    color: theme.palette.text.grey[500],
-                                },
-                            }}
-                        >
-                            Shop now
-                        </Button>
-                    </Box>
+                        {CollectionHeaderData.subtitle}
+                    </Typography>
                 </Box>
             </Box>
         </Box>

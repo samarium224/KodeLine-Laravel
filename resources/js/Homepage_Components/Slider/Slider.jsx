@@ -6,11 +6,8 @@ import { Box, useTheme } from "@mui/material";
 
 import SliderComp from "./SliderComp";
 
-import { HomeSliderData } from "./data";
-
-const SliderComponent = () => {
+const SliderComponent = ({ sliderItems }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const theme = useTheme();
 
     const settings = {
         dots: true,
@@ -69,7 +66,7 @@ const SliderComponent = () => {
     return (
         <div style={{ width: "100vw" }}>
             <Slider {...settings}>
-                {HomeSliderData.map((sliderData, i) => (
+                {sliderItems.map((sliderData, i) => (
                     <SliderComp
                         key={i}
                         collectionID={sliderData.collectionID}

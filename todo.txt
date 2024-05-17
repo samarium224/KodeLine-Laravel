@@ -3,6 +3,9 @@
 ========== Query ==========
 banner text line break fix
 
+remove shop now btn collection page
+collection page name top
+collection page description bottom smaller width
 successfully added message
 
 ========== Completed Query ==========
