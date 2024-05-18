@@ -78,7 +78,7 @@ const ShopButtonsAndQuantity = ({
             >
                 {itemType === "PreordereItem" ? "Pre Order Now" : "Buy Now"}
             </Button> */}
-            <Box mb={2}>
+            {/* <Box mb={2}>
                 <Box display="flex" alignItems="center">
                     <img
                         src="./assets/Curated.png"
@@ -158,7 +158,7 @@ const ShopButtonsAndQuantity = ({
                     Registered Saskatchewan business, we guarantee secure
                     payments for your peace of mind. Shop Our Must-Have Picks!
                 </Typography>
-            </Box>
+            </Box> */}
         </Box>
     );
 };

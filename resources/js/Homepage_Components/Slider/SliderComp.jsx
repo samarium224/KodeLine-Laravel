@@ -62,14 +62,14 @@ const SliderComp = ({
                     backgroundRepeat: "no-repeat",
                     width: { xs: "100%", maxAllowableWidth: "1960px" },
                     height: {
-                        xl: `calc(86vh - 56px)`,
-                        md: `calc(86vh - 49px)`,
-                        xs: `calc(86vh - 30px + 1px)`,
+                        xl: `calc(86vh)`,
+                        md: `calc(86vh)`,
+                        xs: `calc(86vh + 1px)`,
                         maxAllowableWidth: "700px",
                     },
                     maxHeight: {
-                        xl: "760px",
-                        lg: "680px",
+                        xl: "810px",
+                        lg: "730px",
                         md: "600px",
                         sm: "450px",
                     },
@@ -191,3 +191,17 @@ const SliderComp = ({
 };
 
 export default SliderComp;
+
+// height: {
+//     xl: `calc(86vh - 56px)`,
+//     md: `calc(86vh - 49px)`,
+//     xs: `calc(86vh - 30px + 1px)`,
+//     maxAllowableWidth: "700px",
+// },
+
+// maxHeight: {
+//     xl: "760px",
+//     lg: "680px",
+//     md: "600px",
+//     sm: "450px",
+// },

@@ -64,7 +64,7 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
     return (
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
-                <Slogan />
+                {/* <Slogan /> */}
                 <Navigation
                     collections={collections}
                     auth={auth}
