@@ -79,9 +79,9 @@ export default function Login({ status }) {
                 )}
                 {renderInput(
                     "postal_code",
+                    "Postal Code*",
+                    "text",
                     "Postal Code",
-                    "number",
-                    "Postal Code (Optional)",
                     "postal_code"
                 )}
             </div>

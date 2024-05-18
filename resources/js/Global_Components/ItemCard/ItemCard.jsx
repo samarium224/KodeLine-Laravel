@@ -13,6 +13,7 @@ const ItemCard = ({
     currentPrice,
     oldPrice,
     buttonText,
+    customWidth,
     animationDelay = 0.25,
 }) => {
     const sale = Math.round(((oldPrice - currentPrice) / oldPrice) * 100);
@@ -45,6 +46,7 @@ const ItemCard = ({
                 itemID={itemID}
                 itemImage={itemImage}
                 sale={sale > 0 && sale}
+                customWidth={customWidth}
                 buttonText={buttonText}
             />
             <Itemdesc
@@ -53,6 +55,7 @@ const ItemCard = ({
                 currentPrice={currentPrice}
                 oldPrice={currentPrice != oldPrice && oldPrice}
                 alternativeCard={buttonText == "PRE ORDER"}
+                customWidth={customWidth}
             ></Itemdesc>
         </Box>
     );

@@ -13,6 +13,7 @@ const ProductShowcase = ({
     itemImage,
     sale,
     buttonText = "ADD TO CART",
+    customWidth,
 }) => {
     const theme = useTheme();
     const [backgroundImage, setBackgroundImage] = useState("");
@@ -44,8 +45,13 @@ const ProductShowcase = ({
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "Center",
-                height: { xs: "232px", md: "320px", lg: "360px", xl: "400px" },
-                width: { xs: "174px", md: "240px", lg: "270px", xl: "300px" },
+                height: { xs: "216px", md: "320px", lg: "360px", xl: "400px" },
+                width: {
+                    xs: customWidth ? customWidth : "162px",
+                    md: "240px",
+                    lg: "270px",
+                    xl: "300px",
+                },
                 maxWidth: { sm: "22.5vw", xs: "45vw" },
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: "cover",

@@ -6,6 +6,11 @@ banner text line break fix
 remove shop now btn collection page
 collection page name top
 collection page description bottom smaller width
+Remove buy now from item page
+fix rest categories alignment
+Add user to testimonial
+fix lines overlapping
+reduce itemTitle font size in items page
 successfully added message
 
 ========== Completed Query ==========

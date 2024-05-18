@@ -6,6 +6,7 @@ const Itemdesc = ({
     currentPrice,
     oldPrice,
     alternativeCard,
+    customWidth,
 }) => {
     const theme = useTheme();
     oldPrice = oldPrice > currentPrice ? oldPrice : false;
@@ -13,7 +14,12 @@ const Itemdesc = ({
     return (
         <Box
             sx={{
-                width: { xs: "174px", md: "240px", lg: "270px" },
+                width: {
+                    xs: customWidth ? customWidth : "162px",
+                    md: "240px",
+                    lg: "270px",
+                },
+                maxWidth: { sm: "22.5vw", xs: "45vw" },
                 scale: alternativeCard && "0.9",
             }}
             textAlign="center"
