@@ -70,6 +70,7 @@ const ShopByCategorySection = ({ id, category, reverse = false }) => {
                                 display="block"
                                 variant="headline"
                                 color={theme.palette.text.white[500]}
+                                px={2}
                                 sx={{
                                     textShadow: "0px 0px 10px rgba(0,0,0,0.25)",
                                 }}

@@ -79,7 +79,7 @@ const SocialLinks = ({ collection }) => {
             />
             <LinkList
                 title="Collections"
-                items={collections.map((collection_item) => (
+                items={collections.slice(0, 4).map((collection_item) => (
                     <Link
                         key={collection_item.collection_id}
                         href={route("collection", {

@@ -54,10 +54,12 @@ const ShopButtonsAndQuantity = ({
                     }}
                     onClick={() => post(route("addtocart"))}
                 >
-                    Add to cart
+                    {itemType === "PreordereItem"
+                        ? "Pre Order Now"
+                        : "Add to cart"}
                 </Button>
             )}
-            <Button
+            {/* <Button
                 sx={{
                     mb: 3,
                     my: 1,
@@ -75,7 +77,7 @@ const ShopButtonsAndQuantity = ({
                 }}
             >
                 {itemType === "PreordereItem" ? "Pre Order Now" : "Buy Now"}
-            </Button>
+            </Button> */}
             <Box mb={2}>
                 <Box display="flex" alignItems="center">
                     <img

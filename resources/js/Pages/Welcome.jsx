@@ -3,8 +3,8 @@ import theme_desktop from "@/Theme/theme_desktop";
 import theme_laptop from "@/Theme/theme_laptop";
 import theme_laptop_sm from "@/Theme/theme_laptop_sm";
 import theme_mobile from "@/Theme/theme_mobile";
-import { breakpoint_values } from "@/Theme/breakpoints";
 
+import { breakpoint_values } from "@/Theme/breakpoints";
 import useWindowSize from "@/Util/useWindowSize";
 
 import SliderComponent from "@/Homepage_Components/Slider/Slider";

@@ -2,7 +2,6 @@ import { Link } from "@inertiajs/react";
 import { Container, Box, useTheme, Button } from "@mui/material";
 
 const TopCategories = ({ RestCategories }) => {
-    // const topCategories = ["Girl's", "Boy's", "Winter", "Summer"];
     const theme = useTheme();
 
     return (
@@ -10,8 +9,9 @@ const TopCategories = ({ RestCategories }) => {
             <Box
                 mx={theme.containerMarginWidth}
                 display="flex"
-                justifyContent="space-between"
+                justifyContent="center"
                 flexWrap="wrap"
+                mb={4}
             >
                 {RestCategories.slice(3).map((category, i) => {
                     const ImageURL = category.ImgUrl;
@@ -19,13 +19,18 @@ const TopCategories = ({ RestCategories }) => {
                     return (
                         <Box
                             key={i}
-                            mb={10}
+                            mb={4}
+                            mx={2}
                             sx={{
                                 display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
-                                width: "47.5%",
-                                height: "350px",
+                                width: { xs: "95%", sm: "75%", md: "46%" },
+                                height: {
+                                    xs: "300px",
+                                    sm: "250px",
+                                    lg: "350px",
+                                },
                                 backgroundImage: `url(${ImageURL})`,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
