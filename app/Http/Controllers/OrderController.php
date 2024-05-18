@@ -22,7 +22,7 @@ class OrderController extends Controller
             'address' => 'required',
             'city' => 'nullable',
             'state' => 'nullable',
-            'postal_code' => 'nullable',
+            'postal_code' => 'required',
             'phone' => 'required',
             'special_note' => 'nullable',
 
@@ -49,7 +49,7 @@ class OrderController extends Controller
             $totalPrice += $product->product_price * $product->product_quantity;
             $lineItems[] = [
                 'price_data' => [
-                    'currency' => 'usd',
+                    'currency' => 'cad',
                     'unit_amount' => $product->product_price * 100,
                     'product_data' => [
                         'name' => $product->product_name,
