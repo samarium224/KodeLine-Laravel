@@ -77,6 +77,18 @@ const Testimonial = ({ userRating, userCommentTitle, userCommentDesc }) => {
                 >
                     {userCommentDesc}
                 </Typography>
+                <Box display="flex" justifyContent="flex-end" mt={4}>
+                    <Typography
+                        fontFamily="'Poppins', sans-serif"
+                        fontWeight="500"
+                        lineHeight="1.4rem"
+                        color={theme.palette.text.grey[500]}
+                        sx={{ fontSize: { xs: "0.9rem", md: "1.1rem" } }}
+                    >
+                        {/* <Box sx={{ backgroundImage: "url('./assets')" }}></Box>{" "} */}
+                        -Harry Potter
+                    </Typography>
+                </Box>
             </Box>
         </Box>
     );

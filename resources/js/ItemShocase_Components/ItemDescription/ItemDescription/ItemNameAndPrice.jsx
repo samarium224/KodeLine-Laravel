@@ -11,7 +11,9 @@ const ItemNameAndPrice = ({ itemName, price }) => {
                 fontWeight="700"
                 display="block"
                 color={theme.palette.text.grey[500]}
-                fontSize="1.75rem"
+                sx={{
+                    fontSize: { xs: "1.25rem", md: "1.5rem", lg: "1.75rem" },
+                }}
             >
                 {itemName}
             </Typography>

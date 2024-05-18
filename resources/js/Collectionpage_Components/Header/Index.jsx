@@ -104,7 +104,7 @@ const Header = ({ CollectionHeaderData }) => {
                         transition={{ duration: 0.4, delay: 0 }}
                         sx={{
                             mb: { xl: 5, md: 3, xs: 5 },
-                            width: { xs: "80%", md: "40%" },
+                            width: { xs: "80%", md: "50%" },
                         }}
                     >
                         {CollectionHeaderData.subtitle}

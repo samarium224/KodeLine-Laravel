@@ -48,10 +48,7 @@ const CategoryMenu = ({
                     animate={mainControls}
                     transition={{ duration: 0.3, delay: 0.1 + i * 0.1 }}
                     key={i}
-                    sx={{
-                        width: `calc(${100 / collections.length}% - 32px)`,
-                        maxWidth: "calc(25% - 32px)",
-                    }}
+                    sx={{ width: "calc(20% - 32px)" }}
                 >
                     <Link
                         href={route("collection", {
