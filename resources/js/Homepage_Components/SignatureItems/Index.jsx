@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-import { Box, Container, Button, useTheme } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Container, Button, useTheme, useMediaQuery } from "@mui/material";
 import SignatureItemsHeader from "./SignatureItemsHeader";
 import ItemCard from "../../Global_Components/ItemCard/ItemCard";
 import SignatureItemsSlider from "./SignatureItemsSlider";
 import { Link } from "@inertiajs/react";
 
-// import { collections, signatureItemsList } from "./data";
-
 const SignatureItems = ({ signatureItemsList, collections }) => {
     const theme = useTheme();
     const [currentCollectionID, setCurrentCollectionID] = useState(-1);
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("xs2"));
 
     const filteredItemsList =
         currentCollectionID === -1
             ? signatureItemsList
             : signatureItemsList.filter(
-                (item) => item.collection_id === currentCollectionID
-            );
+                  (item) => item.collection_id === currentCollectionID
+              );
 
     if (signatureItemsList.length > 0)
         return (
@@ -28,11 +27,7 @@ const SignatureItems = ({ signatureItemsList, collections }) => {
                         currentCollectionID={currentCollectionID}
                         setCurrentCollectionID={setCurrentCollectionID}
                     />
-                    <Box
-                        sx={{
-                            mx: { sm: 6, xl: 3 },
-                        }}
-                    >
+                    <Box sx={{ mx: { sm: 6, xl: 3 } }}>
                         <SignatureItemsSlider>
                             {filteredItemsList.map((signatureItem, i) => (
                                 <ItemCard
@@ -43,14 +38,13 @@ const SignatureItems = ({ signatureItemsList, collections }) => {
                                     ageRange={signatureItem.ageRange}
                                     currentPrice={signatureItem.currentPrice}
                                     oldPrice={signatureItem.oldPrice}
+                                    customWidth={isSmallScreen && "150px"}
                                 />
                             ))}
                         </SignatureItemsSlider>
                     </Box>
                     <Box display="flex" justifyContent="center">
-                        <Link
-                            href={route("featuredItem")}
-                        >
+                        <Link href={route("featuredItem")}>
                             <Button
                                 sx={{
                                     color: theme.palette.text.grey[500],
