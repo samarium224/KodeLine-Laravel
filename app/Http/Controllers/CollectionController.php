@@ -109,8 +109,6 @@ class CollectionController extends Controller
 
     }
 
-
-
     public function FeaturedItemLoad(Request $request){
 
         $id = 1;
@@ -140,10 +138,9 @@ class CollectionController extends Controller
             ];
         });
 
-        // try {
+        try {
             //code...
-            $collection_info = Category::where("id", $id)->get()->map(function ($item) {
-                return [
+            $collection_info = [
                     'category_name' => "",
                     'title' => "",
                     'subtitle' => "Shop our must-have picks!",
@@ -153,7 +150,6 @@ class CollectionController extends Controller
                     'reverseAlign' => false,
                     'backgroundPosition' => "right top",
                 ];
-            });
 
             $CollectionItemList = Products::where('featured', 'true')->get()->map(function ($item) {
                 // Assuming 'ageRange' is a string like "3|6", we split it into an array.
@@ -188,17 +184,17 @@ class CollectionController extends Controller
 
             return Inertia::render('Collection',[
                 'collections' => $collections,
-                'collection_info' => $collection_info[0],
+                'collection_info' => $collection_info,
                 'selectedCategoryID' => $selected_category_id,
                 'selectedCategories' => $SelectedCategories,
                 'collectionItemList'=> $CollectionItemList,
                 'preOrderContent' => $preOrderContent,
                 'preOrderItems' => $preOrderItems,
             ]);
-        // } catch (\Throwable $th) {
-            //throw $th;
-        //     return redirect()->back()->with('error', $th->getMessage());
-        // }
+        } catch (\Throwable $th) {
+            // throw $th;
+            return redirect()->back()->with('error', $th->getMessage());
+        }
 
 
     }

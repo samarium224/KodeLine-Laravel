@@ -19,14 +19,14 @@ export default function Dashboard({ auth, Userproducts }) {
                 </div>
             </div>
 
-            <div className="py-6">
+            {/* <div className="py-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white light:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900 light:text-gray-100">Your purchased products will appear here</div>
                         <OrderTable Orderdata={Userproducts}></OrderTable>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
         </AuthenticatedLayout>
     );
