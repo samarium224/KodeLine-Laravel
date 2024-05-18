@@ -61,7 +61,7 @@
                             <a href="{{ route('editproductimg', $product->id) }}"
                                 class="btn btn-outline-dark btn-sm mt-2">Change Image</a>
                         </td>
-                        <td><a href="{{ route('productdetails', $product->id) }}">{{ $product->product_name }}</a></td>
+                        <td>{{ $product->product_name }}</td>
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->price }}</td>
                         @php

@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <input type="text" id="category_title" name="category_title" class="form-control"
-                        placeholder="e.g. Sun-kissed style for every little princess!" required>
+                        placeholder="e.g. Sun-kissed style for every little princess!">
                 </div>
                 <div class="card-title text-secondary mb-3">
                     <b>Collection Description</b>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="form-group">
                     <input type="text" id="category_description" name="category_subtitle" class="form-control"
-                        placeholder="e.g. Simplify parenting decisions with our thoughtfully curated kid's fashion" required>
+                        placeholder="e.g. Simplify parenting decisions with our thoughtfully curated kid's fashion">
                 </div>
                 <div>
                     <div class="card-title text-secondary"><b>Collection Image</b></div>

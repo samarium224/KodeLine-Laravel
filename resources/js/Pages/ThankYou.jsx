@@ -8,8 +8,7 @@ export default function Thanks({ auth, customer }) {
         >
             <Head title="Dashboard" />
 
-            <div className="p-6 text-center text-gray-500 light:text-gray-100">Thanks for shoping {customer.name}</div>
-            <div className="p-6 text-center text-gray-500 light:text-gray-100">you email is {customer.email}</div>
+            <div className="text-2xl p-6 text-center text-gray-500 light:text-gray-100">Thanks for shoping {customer.name}</div>
         </DefaultPageLayout>
     );
 }

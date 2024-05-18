@@ -203,6 +203,12 @@ class PreOrderItemController extends Controller
                 'stock' => $request->stocks[$i],
                 'price' => $request->price[$i],
             ]);
+
+            if($i == 0){
+                Products::findOrFail($request->product_id)->update([
+                    'price' => explode(',', $request->price[$i])[0],
+                ]);
+            }
         }
 
         $product = Products::with('attributes')->where('id', $request->product_id)->first();

@@ -76,7 +76,6 @@
 
 <body style="margin: 0 !important; padding: 0 !important; background-color: #eeeeee;" bgcolor="#eeeeee">
 
-
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
             <td align="center" style="background-color: #eeeeee;" bgcolor="#eeeeee">
@@ -180,16 +179,15 @@
                                     </td>
                                 </tr>
                             </table>
-
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" height="100%" valign="top" width="100%"
-                            style="padding: 0 35px 35px 35px; background-color: #ffffff;" bgcolor="#ffffff">
-                            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
+                        <td align="left" height="100%" valign="top" width="100%"
+                            style="padding: 20px; background-color: #ffffff;" bgcolor="#ffffff">
+                            <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%"
                                 style="max-width:660px;">
                                 <tr>
-                                    <td align="center" valign="top" style="font-size:0;">
+                                    <td align="left" valign="top" style="font-size:0;">
                                         <div
                                             style="display:inline-block; max-width:50%; min-width:240px; vertical-align:top; width:100%;">
 
@@ -201,8 +199,7 @@
                                                         <p style="font-weight: 800;">Delivery Address</p>
                                                         <p>{{ $order->address }}
                                                             <br>
-                                                            {{ $order->city }}
-                                                            <br>
+                                                            phone:
                                                             {{ $order->phonenumber }}
                                                         </p>
 
@@ -223,6 +220,21 @@
                                                 </tr>
                                             </table>
                                         </div> --}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="background-color: #ffffff;" bgcolor="#ffffff">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
+                                style="max-width:600px;">
+                                <tr>
+                                    <td align="center" style="font-size: 14px; font-weight: 400; line-height: 24px;">
+                                        <p
+                                            style="font-size: 14px; font-weight: 400; line-height: 20px; color: #777777;">
+                                            For any queries, please contact us at 306-541-9905.
+                                        </p>
                                     </td>
                                 </tr>
                             </table>

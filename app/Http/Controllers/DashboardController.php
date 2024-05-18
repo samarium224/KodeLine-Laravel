@@ -56,8 +56,8 @@ class DashboardController extends Controller
             'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            'category_title' => 'required',
-            'category_subtitle' => 'required',
+            'category_title' => 'nullable',
+            'category_subtitle' => 'nullable',
         ]);
 
         if ($file = $request->file('category_img')) {
@@ -116,8 +116,8 @@ class DashboardController extends Controller
             'category_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_PC' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'cat_headerImg_mobile' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            'category_title' => 'required',
-            'category_subtitle' => 'required',
+            'category_title' => 'nullable',
+            'category_subtitle' => 'nullable',
         ]);
 
         if ($file = $request->file('category_img')) {

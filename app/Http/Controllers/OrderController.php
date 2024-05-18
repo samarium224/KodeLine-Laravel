@@ -24,6 +24,7 @@ class OrderController extends Controller
             'state' => 'nullable',
             'postal_code' => 'nullable',
             'phone' => 'required',
+            'special_note' => 'nullable',
 
         ]);
 
@@ -100,6 +101,7 @@ class OrderController extends Controller
             'city' => $request->city,
             'state' => $request->state,
             'postal' => $request->postal_code,
+            'userNote' => $request->special_note,
             'phonenumber' => $request->phone,
             'session_id' => $checkout_session->id,
             'product_id' => $productID,

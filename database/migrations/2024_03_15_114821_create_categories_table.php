@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('category_name');
-            $table->string('category_title');
-            $table->string('category_subtitle');
+            $table->string('category_title')->nullable();
+            $table->string('category_subtitle')->nullable();
             $table->string('category_img');
             $table->string('cat_headerImg_PC');
             $table->string('cat_headerImg_mobile');
-            $table->boolean('reverseAlign')->default(true);
+            $table->boolean('reverseAlign')->default(false);
             $table->string('slug');
             $table->integer('subcategory_count')->default(0);
             $table->integer('product_count')->default(0);

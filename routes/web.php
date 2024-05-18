@@ -30,9 +30,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, 'Index'])->name('home');
-Route::get('/mail', function(){
-    return view('mail.orderSubmit');
-});
+// Route::get('/mail', function(){
+//     $order = Order::where('id', 1)->first();
+//     return view('mail.orderSubmit', compact('order'));
+// });
 
 //user dashboard
 Route::get('/dashboard', [UserDashboardController::class, 'Index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -44,6 +45,7 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
+Route::get('/featuredItem', [CollectionController::class, 'FeaturedItemLoad'])->name('featuredItem');
 Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
 Route::get('/preordershowcase', [ShowcaseProduct::class, 'ShowPreorderItem'])->name('preordershowcase');
 //shipping address
@@ -110,6 +112,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/orders/pending', 'OrderPending')->name('order.pending');
         Route::get('/admin/orders/complete', 'OrderComplete')->name('order.complete');
         Route::get('/admin/orders/returned', 'OrderReturned')->name('order.returned');
+        Route::get('/admin/orders/delete/{id}', 'OrderDelete')->name('order.delete');
 
         //delivery
         Route::get('/admin/order/completedelivery/{id}', 'CompleteDelivery')->name('order.deliverycomplete');
@@ -146,6 +149,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/contentview', 'ContentView')->name('content.all');
         Route::get('/admin/content/delete/{id}', 'destroy')->name('content.delete');
         Route::get('/admin/content/edit/{id}', 'edit')->name('content.edit');
+        //featured items
+        Route::get('/admin/featured/store', 'FeaturedItem')->name('content.featured');
         //sliders
         Route::get('/admin/Content/slider', 'SliderItemsView')->name('content.slider');
         Route::get('/admin/Content/slider/add', 'SliderItemsCreate')->name('content.slider.add');

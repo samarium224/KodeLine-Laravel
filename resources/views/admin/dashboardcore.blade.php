@@ -111,17 +111,16 @@
                         </ul> --}}
                     </li>
                     <hr class="side-hr">
-                    <li>
+                    {{-- <li>
                         <a class="has-arrow" href="#performance" aria-expanded="false">
                             <i class="fa fa-bar-chart"></i>
                             <span class="hide-menu text-white">Performance
-                                {{-- <span class="label label-rouded label-primary pull-right">2</span></span> --}}
                         </a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{ route('admin.performance')}}">Analytics</a></li>
                         </ul>
                     </li>
-                    <hr class="side-hr">
+                    <hr class="side-hr"> --}}
                     <li><a class="has-arrow" href="#collection" aria-expanded="false">
                             <i class="fa fa-shopping-bag"></i>
                             <span class="hide-menu">Orders</span></a>
@@ -171,8 +170,9 @@
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{route('content.all')}}">Contents</a></li>
                             <li><a href="{{route('content.preorder')}}">Pre Order Section</a></li>
+                            {{-- <li><a href="{{route('content.featured')}}">Featured Section</a></li> --}}
                             <li><a href="{{route('content.slider')}}">Slider Section</a></li>
-                            <li><a href="{{route('content.preorder')}}">Services Section</a></li>
+                            {{-- <li><a href="{{route('content.preorder')}}">Services Section</a></li> --}}
                         </ul>
                     </li>
                     <hr class="side-hr">

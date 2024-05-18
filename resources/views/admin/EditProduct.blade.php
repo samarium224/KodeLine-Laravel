@@ -151,23 +151,26 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-subtitle text-dark"><b>Age range for product</b> <span class="text-danger">*</span></div>
+                            <div class="card-subtitle text-dark"><b>Age range for product</b> <span
+                                    class="text-danger">*</span></div>
                             <div class="row">
                                 @php
                                     $ageRange = explode('|', $productinfo->ageRange);
                                 @endphp
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Age range (min) <span class="text-danger">*</span></div>
-                                        <input type="number" id="quantity"  value="{{ $ageRange[0] }}" name="ageRange[]" placeholder="2"
-                                            class="form-control" required>
+                                        <div class="card-subtitle mt-3">Age range (min) <span class="text-danger">*</span>
+                                        </div>
+                                        <input type="number" id="quantity" value="{{ $ageRange[0] }}" name="ageRange[]"
+                                            placeholder="2" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <div class="card-subtitle mt-3">Age range (max) <span class="text-danger">*</span></div>
-                                        <input type="number" id="quantity"  value="{{ $ageRange[1] }}" name="ageRange[]" placeholder="6"
-                                            class="form-control" required>
+                                        <div class="card-subtitle mt-3">Age range (max) <span class="text-danger">*</span>
+                                        </div>
+                                        <input type="number" id="quantity" value="{{ $ageRange[1] }}" name="ageRange[]"
+                                            placeholder="6" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
@@ -181,8 +184,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
                                         <div class="card-subtitle mt-3">In Stock</div>
-                                        <input type="number" id="quantity" value="{{ $productinfo->quantity }}" name="quantity" placeholder="1000"
-                                            class="form-control">
+                                        <input type="number" id="quantity" value="{{ $productinfo->quantity }}"
+                                            name="quantity" placeholder="1000" class="form-control">
                                     </div>
                                 </div>
 
@@ -220,4 +223,35 @@
         </form>
     </div>
     <script src="{{ asset('js/dropimage.js') }}"></script>
+    <script>
+        document.getElementById('product_category_id').addEventListener('change', function() {
+            var categoryId = this.value;
+            var subcategorySelect = document.getElementById('product_subcategory_id');
+
+            // Clear previous options
+            subcategorySelect.innerHTML = '<option selected value="0">Select Category</option>';
+
+            if (categoryId != 0) {
+                // Send AJAX request to fetch subcategories
+                fetch('/getSubcategories/' + categoryId)
+                    .then(function(response) {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(function(subcategories) {
+                        subcategories.forEach(function(subcategory) {
+                            var option = document.createElement('option');
+                            option.value = subcategory.id;
+                            option.textContent = subcategory.subcategory_name;
+                            subcategorySelect.appendChild(option);
+                        });
+                    })
+                    .catch(function(error) {
+                        console.error('Error fetching subcategories:', error);
+                    });
+            }
+        });
+    </script>
 @endsection
