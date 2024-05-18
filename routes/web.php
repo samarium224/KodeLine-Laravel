@@ -45,6 +45,7 @@ Route::get('/checkout/failed', [OrderController::class, 'cancel'])->name('checko
 
 // front-end-routes
 Route::get('/collection', [CollectionController::class, 'Index'])->name('collection');
+Route::get('/featuredItem', [CollectionController::class, 'FeaturedItemLoad'])->name('featuredItem');
 Route::get('/itemshowcase', [ShowcaseProduct::class, 'ShowItem'])->name('itemshowcase');
 Route::get('/preordershowcase', [ShowcaseProduct::class, 'ShowPreorderItem'])->name('preordershowcase');
 //shipping address
@@ -148,6 +149,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/contentview', 'ContentView')->name('content.all');
         Route::get('/admin/content/delete/{id}', 'destroy')->name('content.delete');
         Route::get('/admin/content/edit/{id}', 'edit')->name('content.edit');
+        //featured items
+        Route::get('/admin/featured/store', 'FeaturedItem')->name('content.featured');
         //sliders
         Route::get('/admin/Content/slider', 'SliderItemsView')->name('content.slider');
         Route::get('/admin/Content/slider/add', 'SliderItemsCreate')->name('content.slider.add');
