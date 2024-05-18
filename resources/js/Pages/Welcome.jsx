@@ -47,7 +47,7 @@ export default function Welcome({ auth }) {
     return (
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
-                <Slogan />
+                {/* <Slogan /> */}
                 <Navigation collections={collections} auth={auth} />
                 <SliderComponent sliderItems={sliderItems}></SliderComponent>
                 <Banner
@@ -71,7 +71,7 @@ export default function Welcome({ auth }) {
                     <PreOrder items={preOrderItems} content={preOrderContent} />
                 )}
                 <Testimonials />
-                <FooterTop />
+                {/* <FooterTop /> */}
                 <Footer collections={collections} />
             </ThemeProvider>
         </div>

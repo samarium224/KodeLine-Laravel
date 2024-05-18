@@ -34,8 +34,8 @@ const Footer = ({ collections }) => {
         if (isInView) mainControls.start("visible");
     }, [isInView]);
     return (
-        <Box mt={2.5} ref={ref} id="footer">
-            <Box
+        <Box mt={0} ref={ref} id="footer">
+            {/* <Box
                 ref={ref}
                 textAlign="center"
                 display="flex"
@@ -96,7 +96,7 @@ const Footer = ({ collections }) => {
                         Subscribe
                     </Button>
                 </Box>
-            </Box>
+            </Box> */}
             <Box
                 sx={{
                     width: { xs: "100%", maxAllowableWidth: "1960px" },

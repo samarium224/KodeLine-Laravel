@@ -95,6 +95,7 @@ class ChangeInventoryAfterPurchase
             // Create new record
             $analysis = new Analysis;
             $analysis->M_Y = $currentMonthYear;
+            $analysis->revenue = $Revenue;
             $analysis->unit_sold = $unit_sold;
             $analysis->total_sales_price = $total_price;
             $analysis->total_orders = $total_order;
