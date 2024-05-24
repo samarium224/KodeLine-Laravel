@@ -47,7 +47,7 @@ export default function Welcome({ auth }) {
     return (
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
-                {/* <Slogan /> */}
+                <Slogan />
                 <Navigation collections={collections} auth={auth} />
                 <SliderComponent sliderItems={sliderItems}></SliderComponent>
                 <Banner

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('category_title')->nullable();
             $table->string('category_subtitle')->nullable();
             $table->string('category_img');
-            $table->string('cat_headerImg_PC');
-            $table->string('cat_headerImg_mobile');
+            $table->string('cat_headerImg_PC')->nullable();
+            $table->string('cat_headerImg_mobile')->nullable();
             $table->boolean('reverseAlign')->default(false);
             $table->string('slug');
             $table->integer('subcategory_count')->default(0);

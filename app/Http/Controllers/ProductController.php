@@ -13,14 +13,14 @@ class ProductController extends Controller
     public function All_Products()
     {
         $products = Products::where('product_type', 0)->orderBy('id', 'desc')->paginate(10);
-        return view('admin.AllProducts', compact('products'));
+        return view('admin.products.AllProducts', compact('products'));
     }
 
     public function Add_Products()
     {
         $categories = Category::latest()->get();
         $subcategories = Subcategory::latest()->get();
-        return view('admin.AddProduct', compact('categories', 'subcategories'));
+        return view('admin.products.AddProduct', compact('categories', 'subcategories'));
     }
 
     public function Store_Products(Request $request)
@@ -122,7 +122,7 @@ class ProductController extends Controller
     public function EditProductImage($id)
     {
         $productinfo = Products::findOrFail($id);
-        return view('admin.EditProductImg', compact('productinfo'));
+        return view('admin.products.EditProductImg', compact('productinfo'));
     }
 
     public function UpdateProductImage(Request $request)
@@ -165,7 +165,7 @@ class ProductController extends Controller
         $subcategories = Subcategory::latest()->get();
         $productinfo = Products::with('attributes')->where('id', $id)->first();
         // dd($productinfo);
-        return view('admin.EditProduct', compact('productinfo', 'categories', 'subcategories'));
+        return view('admin.products.EditProduct', compact('productinfo', 'categories', 'subcategories'));
     }
 
     public function productDetails($id)
@@ -180,7 +180,7 @@ class ProductController extends Controller
         $product->colorGroup = explode('|', $product->colorGroup);
         $product->quantityGroup = explode('|', $product->quantityGroup);
 
-        return view('admin.productdetails', compact('product'));
+        return view('admin.products.productdetails', compact('product'));
     }
 
     public function UpdateProduct(Request $request)

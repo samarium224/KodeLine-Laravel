@@ -160,7 +160,7 @@
                             <span class="hide-menu">Customers</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{route('admin.viewusers')}}">Users</a></li>
-                            <li><a href="{{route('admin.viewguests')}}">Guests</a></li>
+                            {{-- <li><a href="{{route('admin.viewguests')}}">Guests</a></li> --}}
                         </ul>
                     </li>
                     <hr class="side-hr">

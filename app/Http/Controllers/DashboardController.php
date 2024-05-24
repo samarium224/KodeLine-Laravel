@@ -40,13 +40,13 @@ class DashboardController extends Controller
     public function All_Category()
     {
         $categories = Category::latest()->get();
-        return view('admin.AllCetegory', compact('categories'));
+        return view('admin.collections.AllCetegory', compact('categories'));
     }
 
     public function All_Category_Add()
     {
-        $categories = Category::latest()->get();
-        return view('admin.AddNewCategory', compact('categories'));
+
+        return view('admin.collections.AddNewCategory');
     }
 
     public function All_Category_Store(Request $request)
@@ -54,11 +54,14 @@ class DashboardController extends Controller
         $request->validate([
             'category_name' => 'required|unique:categories',
             'category_img' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            'cat_headerImg_PC' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
-            'cat_headerImg_mobile' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_PC' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
+            'cat_headerImg_mobile' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5048',
             'category_title' => 'nullable',
             'category_subtitle' => 'nullable',
         ]);
+
+        $header_url = null;
+        $mobileHeader_url = null;
 
         if ($file = $request->file('category_img')) {
             $timestamp = microtime(true) * 10000; // High resolution timestamp
@@ -96,7 +99,7 @@ class DashboardController extends Controller
 
         return redirect()->route('allcategory')->with(
             'message',
-            'Category Added Successfully'
+            'Collection Added Successfully'
         );
     }
 
@@ -104,7 +107,7 @@ class DashboardController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        return view('admin.EditCategory', compact('category'));
+        return view('admin.collections.EditCategory', compact('category'));
     }
 
     public function All_Category_Update(Request $request)
@@ -172,13 +175,14 @@ class DashboardController extends Controller
 
         return redirect()->route('allcategory')->with(
             'message',
-            'Category Updated Successfully'
+            'Collection Updated Successfully'
         );
     }
 
     public function Delete_Category($id)
     {
         $category = Category::findOrFail($id);
+
 
         // Delete all associated image files
         $imagePaths = [
@@ -189,7 +193,7 @@ class DashboardController extends Controller
         ];
 
         foreach ($imagePaths as $imagePath) {
-            if (file_exists($imagePath)) {
+            if (file_exists($imagePath) && $imagePath != public_path()) {
                 unlink($imagePath);
             }
         }
@@ -204,7 +208,7 @@ class DashboardController extends Controller
 
         return redirect()->route('allcategory')->with(
             'message',
-            'Category Deleted Successfully'
+            'Collection Deleted Successfully'
         );
     }
 
@@ -212,7 +216,7 @@ class DashboardController extends Controller
     {
         $subcategories = SubCategory::latest()->get();
 
-        return view('admin.AllSubCategory', compact('subcategories'));
+        return view('admin.category.AllSubCategory', compact('subcategories'));
     }
 
     public function Sub_Category_Add()
@@ -221,7 +225,7 @@ class DashboardController extends Controller
         $subcategories = SubCategory::latest()->get();
         $GroupedByCategory = $subcategories->groupBy('category_name');
 
-        return view('admin.AddSubCategory', compact('categories', 'subcategories', 'GroupedByCategory'));
+        return view('admin.category.AddSubCategory', compact('categories', 'subcategories', 'GroupedByCategory'));
     }
 
     public function Store_Subcategory(Request $request)
@@ -254,7 +258,7 @@ class DashboardController extends Controller
         $subcategory_info = SubCategory::findOrFail($id);
         $categories = Category::latest()->get();
 
-        return view('admin.EditSubCategory', compact('subcategory_info'));
+        return view('admin.category.EditSubCategory', compact('subcategory_info'));
     }
 
     public function SubCategory_Update(Request $request)

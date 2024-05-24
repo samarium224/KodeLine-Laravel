@@ -22,7 +22,7 @@ class HelpersController extends Controller
         $direction = 'asc';
         $products = Products::orderBy($columnName, $direction)->paginate(10);
 
-        return view('admin.AllProducts', compact('products'));
+        return view('admin.products.AllProducts', compact('products'));
     }
 
 }

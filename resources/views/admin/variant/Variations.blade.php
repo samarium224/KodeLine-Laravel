@@ -69,7 +69,7 @@
                                 <tr>
                                     <input type="hidden" value="{{ $attribute->id }}" name="attribute_id[]">
                                     <th scope="row">
-                                        <a href="{{ route('setVarientImage', $attribute->id) }}">
+                                        <a href="{{ route('setVarientImage', $attribute->id) }}" class="text-dark">
                                             @php
                                                 $variant_img = explode('|', $attribute->imageUrls);
                                             @endphp
@@ -100,7 +100,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <button type="submit" class="btn btn-sm btn-dark my-3">save</button>
+                    <button type="submit" class="btn btn-sm btn-dark my-3 py-1 px-4">save</button>
                 </form>
             </div>
         @else

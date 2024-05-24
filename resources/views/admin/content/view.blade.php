@@ -32,7 +32,7 @@
                     </th>
                     <th scope="col" class="border-0">Mobile View Image</th>
                     <th scope="col" class="border-0">View Page Image</th>
-                    <th scope="col" class="border-0">Delete Section</th>
+                    <th scope="col" class="border-0">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,7 +61,9 @@
                                 alt="{{ $content->viewPageImg }}" width="60px">
                         </td>
                         <td class="w-10">
-                            <a href="{{ route('content.delete', $content->id) }}" class="btn btn-secondary btn-sm">delete</a>
+                            <a href="{{ route('content.delete', $content->id) }}" class="text-dark text-lg">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

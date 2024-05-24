@@ -11,8 +11,9 @@
             <b>Add a new collection</b>
             <hr>
             <a href="{{ route('addcategory') }}">
-                <button class="btn btn-sm btn-dark px-2">
-                    Add new collection
+                <button class="btn btn-sm btn-dark px-4 py-1">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    new collection
                 </button>
             </a>
         </div>
@@ -29,23 +30,31 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">Index</th>
                     <th scope="col">Collection Name</th>
                     <th scope="col">Category</th>
                     <th scope="col">Product Count</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
+                @foreach ($categories as $key => $category)
                     <tr>
-                        <th scope="row">{{ $category->id }}</th>
-                        <td>{{ $category->category_name }}</td>
+                        <th scope="row">{{ $key + 1}} </th>
+                        <td>
+                            <a href="{{ route('editcategory', $category->id) }}" class="text-dark">
+                                <u>
+                                    {{ $category->category_name }}
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </u>
+                            </a>
+                        </td>
                         <td>{{ $category->subcategory_count }}</td>
                         <td>{{ $category->product_count }}</td>
                         <td>
-                            <a href="{{ route('editcategory', $category->id) }}" class="btn btn-secondary btn-sm">edit</a>
-                            <a href="{{ route('deletecategory', $category->id) }}" class="btn btn-dark btn-sm">delete</a>
+                            <a href="{{ route('deletecategory', $category->id) }}" class="text-dark text-lg">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

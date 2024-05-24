@@ -11,8 +11,9 @@
             <b>Add a new slider content</b>
             <hr>
             <a href="{{ route('content.slider.add') }}">
-                <button class="btn btn-sm btn-dark px-2">
-                    Add new slider item
+                <button class="btn btn-sm btn-dark px-3">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    new slider item
                 </button>
             </a>
         </div>
@@ -39,7 +40,7 @@
                         Home Page Image
                     </th>
                     <th scope="col" class="border-0">Mobile View Image</th>
-                    <th scope="col" class="border-0">Modify Section</th>
+                    <th scope="col" class="border-0">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,7 +49,12 @@
                         <th scope="row">{{ $content->id }}</th>
 
                         <td>
-                            {{ $content->title }}
+                            <a href="{{ route('content.edit', $content->id) }}" class="text-dark">
+                                <u>
+                                    {{ $content->title }}
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </u>
+                            </a>
                         </td>
                         <td>
                             {{ $content->subtitle }}
@@ -63,10 +69,10 @@
                         </td>
 
                         <td class="w-20">
-                            <a href="{{ route('content.edit', $content->id) }}"
-                                class="btn btn-dark btn-sm">edit</a>
                             <a href="{{ route('content.delete', $content->id) }}"
-                                class="btn btn-secondary btn-sm">delete</a>
+                                class="text-dark text-lg">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

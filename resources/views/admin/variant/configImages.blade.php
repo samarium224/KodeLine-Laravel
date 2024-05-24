@@ -74,7 +74,7 @@
                             <div id="image-preview" class="image-preview"></div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-3">Save</button>
+                        <button type="submit" class="btn btn-primary mt-3 px-4 py-1">Save</button>
                     </div>
                 </div>
                 <div class="col-md-4">

@@ -154,7 +154,10 @@
                                         <span class="badge badge-danger px-2 py-1">pending</span>
                                         <br>
                                         <a href="{{ route('order.deliverycomplete', $order->id) }}"
-                                            class="btn btn-light btn-sm">mark as complete</a>
+                                            class="btn text-dark">
+                                            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                            mark complete
+                                        </a>
                                     @else
                                         <span class="badge badge-success px-2 py-1">completed</span>
                                     @endif
