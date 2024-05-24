@@ -33,7 +33,11 @@
                     <th scope="col">Index</th>
                     <th scope="col">Collection Name</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Product Count</th>
+                    <th scope="col">Product Count
+                        <a href="{{route('product.update.count')}}" class="text-dark">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                        </a>
+                    </th>
                     <th scope="col">Delete</th>
                 </tr>
             </thead>

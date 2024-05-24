@@ -68,7 +68,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/admin/dashboard', 'Index')->name('admin.dashboard');
         Route::get('/admin/performance', 'analytics')->name('admin.performance');
-        // all category
+        // category
+        Route::get('/updateproductcount','UpdateProductCount')->name('product.update.count');
         Route::get('/admin/all-category', 'All_Category')->name('allcategory');
         Route::get('/admin/add-category', 'All_Category_Add')->name('addcategory');
         Route::post('/admin/add-category-store', 'All_Category_Store')->name('storecategory');

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Category;
 use App\Models\ProductAttributes;
 use App\Models\Products;
@@ -76,13 +77,13 @@ class ProductController extends Controller
         $best_selling = $request->best_selling;
 
         //handle product price and stock
-        if($request->discount_price == null){
+        if ($request->discount_price == null) {
             $compare_price = $request->price;
-        }else{
+        } else {
             $compare_price = $request->discount_price;
         }
 
-        if($request->quantity == null){
+        if ($request->quantity == null) {
             $request->quantity = 0;
         }
 
@@ -249,13 +250,13 @@ class ProductController extends Controller
         }
 
         //handle product price and stock
-        if($request->discount_price == null){
+        if ($request->discount_price == null) {
             $compare_price = $request->price;
-        }else{
+        } else {
             $compare_price = $request->discount_price;
         }
 
-        if($request->quantity == null){
+        if ($request->quantity == null) {
             $request->quantity = 0;
         }
 
@@ -344,7 +345,8 @@ class ProductController extends Controller
         return view('admin.variant.Variations', compact('product'));
     }
 
-    public function StoreVariantItems(Request $request){
+    public function StoreVariantItems(Request $request)
+    {
         $validatedata = $request->validate([
             'product_id' => 'required',
             'attribute_id.*' => 'required|integer',
@@ -354,7 +356,7 @@ class ProductController extends Controller
         ]);
 
 
-        foreach($request->sizes as $i => $size){
+        foreach ($request->sizes as $i => $size) {
             $id = $request->attribute_id[$i];
             ProductAttributes::findOrFail($id)->update([
                 'sizes' => $size,
@@ -362,7 +364,7 @@ class ProductController extends Controller
                 'price' => $request->price[$i],
             ]);
 
-            if($i == 0){
+            if ($i == 0) {
                 Products::findOrFail($request->product_id)->update([
                     'price' => explode(',', $request->price[$i])[0],
                 ]);
@@ -373,13 +375,15 @@ class ProductController extends Controller
         return view('admin.variant.Variations', compact('product'));
     }
 
-    public function SetVariantImages($id){
+    public function SetVariantImages($id)
+    {
         $variant = ProductAttributes::findOrFail($id);
 
         return view('admin.variant.configImages', compact('variant'));
     }
 
-    public function VariantImageStore(Request $request){
+    public function VariantImageStore(Request $request)
+    {
         $validateData = $request->validate([
             'attribute_id' => 'required|integer',
             'variant_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048'
@@ -413,9 +417,12 @@ class ProductController extends Controller
         return view('admin.variant.Variations', compact('product'));
     }
 
-    public function DeleteVariant($id){
+    public function DeleteVariant($id)
+    {
         ProductAttributes::findOrFail($id)->delete();
 
         return redirect()->back();
     }
+
+ 
 }

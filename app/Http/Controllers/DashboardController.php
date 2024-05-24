@@ -293,6 +293,24 @@ class DashboardController extends Controller
         );
     }
 
+    public function UpdateProductCount()
+    {
+        // Fetch all products and group them by their category ID
+        $products = Products::select('id', 'product_category_id')->get()->groupBy('product_category_id');
+
+        // Iterate through each group and update the category product count
+        foreach ($products as $categoryId => $productGroup) {
+            $productCount = $productGroup->count();
+
+            // Update the product count in the respective category
+            if($categoryId != 0){
+                Category::where('id', $categoryId)->update(['product_count' => $productCount]);
+            }
+        }
+
+        return redirect()->back()->with('message', 'product count updated');
+    }
+
 
 
 }
