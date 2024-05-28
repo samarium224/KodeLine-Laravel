@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardCustomerController;
 use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\HelpersController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PreOrderItemController;
 use App\Http\Controllers\ProductController;
@@ -83,6 +84,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/edit-subcategory/{id}', 'Edit_SubCategory')->name('editsubcategory');
         Route::post('/admin/update-subcategory', 'SubCategory_Update')->name('updatesubcategory');
         Route::get('/admin/delete-subcategory/{id}', 'Delete_SubCategory')->name('deletesubcategory');
+    });
+
+    Route::controller(ImageController::class)->group(function(){
+        Route::post('/MutImgUpload', 'MultiUpload');
+        Route::delete('/revertImgUpload','RevertImgUpload');
+        Route::get('/revertOnload','RemoveImages');
+        Route::get('/MultImgload/{folder}/{filename}','loadImage');
     });
 
     Route::controller(ProductController::class)->group(function () {

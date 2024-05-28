@@ -69,17 +69,21 @@
                                 <tr>
                                     <input type="hidden" value="{{ $attribute->id }}" name="attribute_id[]">
                                     <th scope="row">
-                                        <a href="{{ route('setVarientImage', $attribute->id) }}" class="text-dark">
                                             @php
                                                 $variant_img = explode('|', $attribute->imageUrls);
                                             @endphp
                                             @if ($variant_img[0] != null)
-                                                <img src="{{ asset($variant_img[0]) }}" alt="" width="60px">
+                                                <img src="{{ asset($variant_img[0]) }}" class="img-thumbnail" alt="" width="60px" style="min-height: 60px">
                                             @else
                                                 <i class="fa fa-picture-o mt-2" style="font-size: 24px"
                                                     aria-hidden="true"></i>
                                             @endif
-                                        </a>
+                                        <div>
+                                            <a href="{{ route('setVarientImage', $attribute->id) }}" class="text-secondary text-sm mt-2">
+                                                <u>change image</u>
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
                                     </th>
                                     <th scope="row">{{ $attribute->value }}</th>
                                     <td>

@@ -6,41 +6,14 @@
 @section('page-active-heading', 'Products')
 
 @section('dashboard-content')
-    <style>
-        .dropzone {
-            border: 2px dashed #ebebeb;
-            border-radius: 5px;
-            padding: 60px;
-            text-align: center;
-            color: #3d3d3d;
-            cursor: pointer;
-        }
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
 
-        .dropzone.over {
-            background-color: #f8f9fa;
-        }
+    <!-- add before </body> -->
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
-        .image-preview {
-            margin-top: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .image-preview img {
-            max-width: 100px;
-            max-height: 100px;
-            border-radius: 5px;
-        }
-
-        .upload-img-icon {
-            border: 2px dashed #ccc;
-            height: 100px;
-            background-color: #f9f9f9;
-            position: relative;
-            cursor: pointer;
-        }
-    </style>
     <div class="container-fluid">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -51,7 +24,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('updateproductimg') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('updateproductimg') }}" method="POST" id="ImageSubmitForm" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-8">
@@ -66,10 +39,7 @@
 
                         <div>
                             <div class="card-title my-3"><b>New Product Images</b></div>
-                            <div id="dropzone" class="dropzone">Drag and drop up to 5 images here or click to select</div>
-                            <input type="file" id="product_img" name="product_img[]" accept="image/*" multiple
-                                style="opacity: 0;" required>
-                            <div id="image-preview" class="image-preview"></div>
+                            <input type="file" class="filepond" name="product_img" multiple credits="false">
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-3">Save</button>
@@ -95,5 +65,46 @@
             </div>
         </form>
     </div>
-    <script src="{{ asset('js/dropimage.js') }}"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script>
+        // Register the plugin
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        FilePond.registerPlugin(FilePondPluginFileValidateType);
+        // Get a reference to the file input element
+        const inputElement = document.querySelector('input[type="file"]');
+
+        // Create a FilePond instance
+        const pond = FilePond.create(inputElement, {
+            acceptedFileTypes: ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp'],
+            fileValidateTypeLabelExpectedTypesMap: {
+                'image/jpeg': '.jpeg',
+                'image/png': '.png',
+                'image/jpg': '.jpg',
+                'image/gif': '.gif',
+                'image/webp': '.webp'
+            },
+            fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+                // Do custom type detection here and resolve with the type
+                resolve(type);
+            })
+        });
+
+        // remove previously uploaded images
+        fetch('/revertOnload', {
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        });
+
+        FilePond.setOptions({
+            server: {
+                process: '/MutImgUpload',
+                revert: '/revertImgUpload',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            },
+        });
+    </script>
+    {{-- <script src="{{ asset('js/dropimage.js') }}"></script> --}}
 @endsection

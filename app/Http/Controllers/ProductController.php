@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\ProductAttributes;
 use App\Models\Products;
 use App\Models\SubCategory;
+use App\Models\TempFiles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -129,27 +131,32 @@ class ProductController extends Controller
     public function UpdateProductImage(Request $request)
     {
         $validatedData = $request->validate([
-            'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Adjust the image size limit as needed
+            // 'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'product_id' => 'required|integer'
         ]);
 
         $product_id = $request->product_id;
+        $img = [];
+        $temporaryImages = TempFiles::all();
 
-        if ($request->file('product_img') != null) {
-            $img = array();
-            if ($files = $request->file('product_img')) {
-                foreach ($files as $file) {
-                    $timestamp = microtime(true) * 10000; // High resolution timestamp
-                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                    $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('uploads'), $image_name);
-                    $img_url = 'uploads/' . $image_name;
-                    $img[] = $img_url;
-                }
+        if (count($temporaryImages) != 0) {
+            foreach ($temporaryImages as $temporaryImage) {
+
+                $newUrl = 'uploads/' . $temporaryImage->file;
+                $oldUrl = 'uploads/temp/' . $temporaryImage->folder . '/' . $temporaryImage->file;
+                File::copy($oldUrl, $newUrl);
+                $img[] = $newUrl;
+
+                //delete temp images
+                $temporaryImage->delete();
             }
-            // implode here for the condition safety
+
+            //delete old temp files
+            $FilePath = 'uploads/temp';
+            File::deleteDirectory($FilePath);
             $productImages = implode('|', $img);
-        } else {
+
+        }else{
             $productImages = Products::where('id', $product_id)->value('product_img');
         }
 
@@ -157,7 +164,7 @@ class ProductController extends Controller
             'product_img' => $productImages,
         ]);
 
-        return redirect()->route('allproducts')->with('success', 'Product Images Updated successfully!');
+        return redirect()->back()->with('success', 'Product Images Updated successfully!');
     }
 
     public function EditProduct($id)
@@ -384,28 +391,35 @@ class ProductController extends Controller
 
     public function VariantImageStore(Request $request)
     {
-        $validateData = $request->validate([
-            'attribute_id' => 'required|integer',
-            'variant_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048'
+
+        $validatedData = $request->validate([
+            'product_img' => 'required',
+            'attribute_id' => 'required|integer'
         ]);
 
         $attribute_id = $request->attribute_id;
-        $productImages = '';
+        $img = [];
+        $temporaryImages = TempFiles::all();
 
-        if ($request->file('variant_img') != null) {
-            $img = array();
-            if ($files = $request->file('variant_img')) {
-                foreach ($files as $file) {
-                    $timestamp = microtime(true) * 10000; // High resolution timestamp
-                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                    $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('uploads/variants'), $image_name);
-                    $img_url = 'uploads/variants/' . $image_name;
-                    $img[] = $img_url;
-                }
+        if (count($temporaryImages) != 0) {
+            foreach ($temporaryImages as $temporaryImage) {
+
+                $newUrl = 'uploads/' . $temporaryImage->file;
+                $oldUrl = 'uploads/temp/' . $temporaryImage->folder . '/' . $temporaryImage->file;
+                File::copy($oldUrl, $newUrl);
+                $img[] = $newUrl;
+
+                //delete temp images
+                $temporaryImage->delete();
             }
-            // implode here for the condition safety
+
+            //delete old temp files
+            $FilePath = 'uploads/temp';
+            File::deleteDirectory($FilePath);
             $productImages = implode('|', $img);
+
+        }else{
+            return redirect()->back()->withErrors($validatedData)->withInput();
         }
 
         ProductAttributes::findOrFail($attribute_id)->update([
@@ -424,5 +438,5 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
- 
+
 }

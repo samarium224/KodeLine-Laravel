@@ -246,8 +246,8 @@
     <script src="{{ asset('js/custom.min.js') }} "></script>
 
     {{-- charts --}}
-    <script src="{{ asset('js/lib/chart-js/Chart.bundle.js') }}"></script>
-    <script src="{{ asset('js/lib/chart-js/chartjs-init.js') }}"></script>
+    {{-- <script src="{{ asset('js/lib/chart-js/Chart.bundle.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/lib/chart-js/chartjs-init.js') }}"></script> --}}
 </body>
 
 </html>
