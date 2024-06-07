@@ -165,6 +165,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/Content/slider/add', 'SliderItemsCreate')->name('content.slider.add');
         Route::post('/admin/Content/slider/store', 'SliderItemStore')->name('content.slider.store');
         Route::post('/admin/Content/slider/update', 'SliderItemUpdate')->name('content.slider.update');
+        //header
+        Route::get('/admin/Content/header', 'HeaderItemsView')->name('content.header');
+        Route::post('/admin/Content/applogoL/update', 'LlogoUpdate')->name('content.lightlogo.update');
+        Route::post('/admin/Content/applogoD/update', 'DlogoUpdate')->name('content.darklogo.update');
     });
 
     // product utilities

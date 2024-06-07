@@ -46,7 +46,12 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{route('home')}}">
                         <!-- Logo icon -->
-                        <b><img src="{{ asset('assets/Logo.svg') }}" width="150px" alt="homepage"
+                        @php
+                            use App\Models\Content;
+
+                            $applogo = Content::where('content_name', 'logoItems')->value('HomePageImg');
+                        @endphp
+                        <b><img src="{{ asset($applogo) }}" width="150px" alt="homepage"
                                 class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -172,6 +177,7 @@
                             <li><a href="{{route('content.preorder')}}">Pre Order Section</a></li>
                             {{-- <li><a href="{{route('content.featured')}}">Featured Section</a></li> --}}
                             <li><a href="{{route('content.slider')}}">Slider Section</a></li>
+                            <li><a href="{{route('content.header')}}">Logo Section</a></li>
                             {{-- <li><a href="{{route('content.preorder')}}">Services Section</a></li> --}}
                         </ul>
                     </li>

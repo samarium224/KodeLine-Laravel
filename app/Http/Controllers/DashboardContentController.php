@@ -24,6 +24,12 @@ class DashboardContentController extends Controller
         return view("admin.content.sliderItems", compact("contents"));
     }
 
+    public function HeaderItemsView()
+    {
+        $contents = Content::where('content_name', 'logoItems')->first();
+        return view("admin.content.headerItems", compact("contents"));
+    }
+
     public function SliderItemsCreate()
     {
         return view('admin.content.sliderItemsAdd');
@@ -180,6 +186,70 @@ class DashboardContentController extends Controller
         return redirect()->route('content.all')->with(
             'message',
             'Pre Order Content Updated Successfully'
+        );
+    }
+
+    //applogo
+    public function LlogoUpdate(Request $request){
+        $validator = $request->validate([
+            'light_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5048'
+        ]);
+
+        if ($file = $request->file('light_logo')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/content/logo'), $image_name);
+            $img_url = 'uploads/content/logo/' . $image_name;
+        }
+
+        $content = Content::where('content_name', 'logoItems')->first();
+        if ($content == null) {
+            Content::create([
+                'content_name' => 'logoItems',
+                'HomePageImg' => $img_url,
+            ]);
+        } else {
+            Content::where('content_name', 'logoItems')->update([
+                'HomePageImg' => $img_url,
+            ]);
+        }
+
+        return redirect()->route('content.header')->with(
+            'message',
+            'Logo Updated Successfully'
+        );
+    }
+
+
+    public function DlogoUpdate(Request $request){
+        $validator = $request->validate([
+            'dark_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5048'
+        ]);
+
+        if ($file = $request->file('dark_logo')) {
+            $timestamp = microtime(true) * 10000; // High resolution timestamp
+            $randomString = bin2hex(random_bytes(5)); // Generates a random string
+            $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/content/logo'), $image_name);
+            $img_url = 'uploads/content/logo/' . $image_name;
+        }
+
+        $content = Content::where('content_name', 'logoItems')->first();
+        if ($content == null) {
+            Content::create([
+                'content_name' => 'logoItems',
+                'MobileImg' => $img_url,
+            ]);
+        } else {
+            Content::where('content_name', 'logoItems')->update([
+                'MobileImg' => $img_url,
+            ]);
+        }
+
+        return redirect()->route('content.header')->with(
+            'message',
+            'Dark Logo Updated Successfully'
         );
     }
 

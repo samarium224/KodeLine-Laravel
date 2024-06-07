@@ -159,7 +159,12 @@ class HomepageController extends Controller
                 'buttonText' => "PRE ORDER",
             ];
         });
-        // dd($collections);
+
+        $appLogo = [
+            'LogoLight' => Content::where('content_name', 'logoItems')->value('HomePageImg'),
+            'LogoDark' => Content::where('content_name', 'logoItems')->value('MobileImg'),
+        ];
+        // dd($appLogo);
         return Inertia::render('Welcome', [
             'sliderItems' => $sliderItems,
             'signatureItemsList' => $signatureItemsList,
@@ -170,6 +175,7 @@ class HomepageController extends Controller
             'bestsellingCollection' => $bestsellingCategories,
             'preOrderContent' => $preOrderContent,
             'preOrderItems' => $preOrderItems,
+            'AppLogo' => $appLogo,
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);
