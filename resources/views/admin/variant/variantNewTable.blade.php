@@ -47,12 +47,12 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-light btn-sm mx-3" id="addOptions">
+                        <button type="button" class="btn btn-light text-dark btn-sm mx-3 py-2" id="addOptions">
                             <i class="fa fa-plus"></i> Add another option</button>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-sm btn-dark mt-3" type="submit">Save</button>
+            <button class="btn btn-sm btn-dark mt-4 px-4 py-2" type="submit">Save</button>
         </div>
     </div>
 </form>

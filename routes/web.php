@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardCustomerController;
 use App\Http\Controllers\DashboardOrderController;
 use App\Http\Controllers\HelpersController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PreOrderItemController;
 use App\Http\Controllers\ProductController;
@@ -68,7 +69,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/admin/dashboard', 'Index')->name('admin.dashboard');
         Route::get('/admin/performance', 'analytics')->name('admin.performance');
-        // all category
+        // category
+        Route::get('/updateproductcount','UpdateProductCount')->name('product.update.count');
         Route::get('/admin/all-category', 'All_Category')->name('allcategory');
         Route::get('/admin/add-category', 'All_Category_Add')->name('addcategory');
         Route::post('/admin/add-category-store', 'All_Category_Store')->name('storecategory');
@@ -82,6 +84,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/edit-subcategory/{id}', 'Edit_SubCategory')->name('editsubcategory');
         Route::post('/admin/update-subcategory', 'SubCategory_Update')->name('updatesubcategory');
         Route::get('/admin/delete-subcategory/{id}', 'Delete_SubCategory')->name('deletesubcategory');
+    });
+
+    Route::controller(ImageController::class)->group(function(){
+        Route::post('/MutImgUpload', 'MultiUpload');
+        Route::delete('/revertImgUpload','RevertImgUpload');
+        Route::get('/revertOnload','RemoveImages');
+        Route::get('/MultImgload/{folder}/{filename}','loadImage');
     });
 
     Route::controller(ProductController::class)->group(function () {
@@ -156,6 +165,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/Content/slider/add', 'SliderItemsCreate')->name('content.slider.add');
         Route::post('/admin/Content/slider/store', 'SliderItemStore')->name('content.slider.store');
         Route::post('/admin/Content/slider/update', 'SliderItemUpdate')->name('content.slider.update');
+        //header
+        Route::get('/admin/Content/header', 'HeaderItemsView')->name('content.header');
+        Route::post('/admin/Content/applogoL/update', 'LlogoUpdate')->name('content.lightlogo.update');
+        Route::post('/admin/Content/applogoD/update', 'DlogoUpdate')->name('content.darklogo.update');
     });
 
     // product utilities

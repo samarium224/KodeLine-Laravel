@@ -11,8 +11,8 @@
             <b>Add a new product</b>
             <hr>
             <a href="{{ route('addproducts') }}">
-                <button class="btn btn-sm btn-dark px-2">
-                    Add new product
+                <button class="btn btn-sm btn-dark px-3">
+                    <i class="fa fa-plus" aria-hidden="true"></i> new product
                 </button>
             </a>
         </div>
@@ -54,7 +54,8 @@
                             <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
                         </a>
                     </th>
-                    <th scope="col" class="border-0 text-dark">Action</th>
+                    <th scope="col" class="border-0 text-dark">Variants</th>
+                    <th scope="col" class="border-0 text-dark">Delete Item</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,11 +71,19 @@
                                     $product_img = $product->product_img;
                                 }
                             @endphp
-                            <img src="{{ asset($product_img) }}" alt="" width="100px"><br>
-                            <a href="{{ route('editproductimg', $product->id) }}" class="text-secondary btn-sm mt-2">
-                                <u>change image</u></a>
+                            <img src="{{ asset($product_img) }}" alt="" width="60px"><br>
+                            <a href="{{ route('editproductimg', $product->id) }}" class="text-secondary text-sm mt-2">
+                                <u>change image</u>
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
                         </td>
-                        <td>{{ $product->product_name }}</td>
+                        <td>
+                            <a href="{{ route('editproduct', $product->id) }}" class="text-dark">
+                                <u>{{ $product->product_name }}
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </u>
+                            </a>
+                        </td>
                         <td>{{ $product->product_category_name }}</td>
                         <td>{{ $product->product_subcategory_name }}</td>
                         <td>{{ $product->quantity }}</td>
@@ -88,10 +97,15 @@
                         @endphp
                         <td>{{ $outstock_sell }}</td>
                         <td>
-                            <a href="{{ route('editproduct', $product->id) }}" class="btn btn-secondary btn-sm">edit</a>
-                            <a href="{{ route('deleteproduct', $product->id) }}" class="btn btn-dark btn-sm">delete</a>
                             <a href="{{ route('config.variant', $product->id) }}"
-                                class="btn btn-outline-dark btn-sm">configure variant</a>
+                                class="btn btn-dark btn-sm px-3">configure
+                                <i class="fa fa-cog" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('deleteproduct', $product->id) }}" class="text-dark text-lg">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach

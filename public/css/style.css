@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=arial:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=arial:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
 @import url(../icons/font-awesome/css/font-awesome.min.css);
 @import url(../icons/simple-line-icons/css/simple-line-icons.css);
 @import url(../icons/weather-icons/css/weather-icons.min.css);
@@ -76,6 +76,14 @@
 42. responsive
 
 */
+.text-sm{
+    font-size: 12px;
+}
+
+.text-lg{
+    font-size: 22px;
+}
+
 .preloader {
     width: 100%;
     height: 100%;
@@ -825,7 +833,7 @@ a:focus,
 button:focus,
 a:hover,
 button:hover {
-    color: #252525;
+    color: #fff;
     outline: none !important;
     text-decoration: none !important;
 }
@@ -2770,12 +2778,12 @@ textarea {
 }
 
 .card {
-    background: #ffffff none repeat scroll 0 0;
-    margin: 15px 0;
-    padding: 20px;
-    border: 1px solid #bfbfbf;
-    border-radius: 5px;
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.05);
+	background: #ffffff none repeat scroll 0 0;
+	margin: 15px 0;
+	padding: 40px;
+	border: 1px solid #fff;
+	border-radius: 20px;
+	box-shadow: 0 15px 20px rgba(11, 11, 11, 0.05);
 }
 
 .card-subtitle {
@@ -3285,6 +3293,7 @@ table.dataTable thead .sorting::after {
 .btn {
     padding: 7px 12px;
     cursor: pointer;
+    border-radius: 30px;
 }
 
 .btn-group label {
@@ -3338,6 +3347,8 @@ table.dataTable thead .sorting::after {
 .btn-sm {
     padding: 0.25rem 0.5rem;
     font-size: 12px;
+    border-radius: 30px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .btn-xs {

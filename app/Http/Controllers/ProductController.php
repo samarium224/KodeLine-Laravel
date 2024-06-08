@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Category;
 use App\Models\ProductAttributes;
 use App\Models\Products;
 use App\Models\SubCategory;
+use App\Models\TempFiles;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -13,14 +16,14 @@ class ProductController extends Controller
     public function All_Products()
     {
         $products = Products::where('product_type', 0)->orderBy('id', 'desc')->paginate(10);
-        return view('admin.AllProducts', compact('products'));
+        return view('admin.products.AllProducts', compact('products'));
     }
 
     public function Add_Products()
     {
         $categories = Category::latest()->get();
         $subcategories = Subcategory::latest()->get();
-        return view('admin.AddProduct', compact('categories', 'subcategories'));
+        return view('admin.products.AddProduct', compact('categories', 'subcategories'));
     }
 
     public function Store_Products(Request $request)
@@ -76,13 +79,13 @@ class ProductController extends Controller
         $best_selling = $request->best_selling;
 
         //handle product price and stock
-        if($request->discount_price == null){
+        if ($request->discount_price == null) {
             $compare_price = $request->price;
-        }else{
+        } else {
             $compare_price = $request->discount_price;
         }
 
-        if($request->quantity == null){
+        if ($request->quantity == null) {
             $request->quantity = 0;
         }
 
@@ -122,33 +125,38 @@ class ProductController extends Controller
     public function EditProductImage($id)
     {
         $productinfo = Products::findOrFail($id);
-        return view('admin.EditProductImg', compact('productinfo'));
+        return view('admin.products.EditProductImg', compact('productinfo'));
     }
 
     public function UpdateProductImage(Request $request)
     {
         $validatedData = $request->validate([
-            'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Adjust the image size limit as needed
+            // 'product_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'product_id' => 'required|integer'
         ]);
 
         $product_id = $request->product_id;
+        $img = [];
+        $temporaryImages = TempFiles::all();
 
-        if ($request->file('product_img') != null) {
-            $img = array();
-            if ($files = $request->file('product_img')) {
-                foreach ($files as $file) {
-                    $timestamp = microtime(true) * 10000; // High resolution timestamp
-                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                    $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('uploads'), $image_name);
-                    $img_url = 'uploads/' . $image_name;
-                    $img[] = $img_url;
-                }
+        if (count($temporaryImages) != 0) {
+            foreach ($temporaryImages as $temporaryImage) {
+
+                $newUrl = 'uploads/' . $temporaryImage->file;
+                $oldUrl = 'uploads/temp/' . $temporaryImage->folder . '/' . $temporaryImage->file;
+                File::copy($oldUrl, $newUrl);
+                $img[] = $newUrl;
+
+                //delete temp images
+                $temporaryImage->delete();
             }
-            // implode here for the condition safety
+
+            //delete old temp files
+            $FilePath = 'uploads/temp';
+            File::deleteDirectory($FilePath);
             $productImages = implode('|', $img);
-        } else {
+
+        }else{
             $productImages = Products::where('id', $product_id)->value('product_img');
         }
 
@@ -156,7 +164,7 @@ class ProductController extends Controller
             'product_img' => $productImages,
         ]);
 
-        return redirect()->route('allproducts')->with('success', 'Product Images Updated successfully!');
+        return redirect()->back()->with('success', 'Product Images Updated successfully!');
     }
 
     public function EditProduct($id)
@@ -165,7 +173,7 @@ class ProductController extends Controller
         $subcategories = Subcategory::latest()->get();
         $productinfo = Products::with('attributes')->where('id', $id)->first();
         // dd($productinfo);
-        return view('admin.EditProduct', compact('productinfo', 'categories', 'subcategories'));
+        return view('admin.products.EditProduct', compact('productinfo', 'categories', 'subcategories'));
     }
 
     public function productDetails($id)
@@ -180,7 +188,7 @@ class ProductController extends Controller
         $product->colorGroup = explode('|', $product->colorGroup);
         $product->quantityGroup = explode('|', $product->quantityGroup);
 
-        return view('admin.productdetails', compact('product'));
+        return view('admin.products.productdetails', compact('product'));
     }
 
     public function UpdateProduct(Request $request)
@@ -249,13 +257,13 @@ class ProductController extends Controller
         }
 
         //handle product price and stock
-        if($request->discount_price == null){
+        if ($request->discount_price == null) {
             $compare_price = $request->price;
-        }else{
+        } else {
             $compare_price = $request->discount_price;
         }
 
-        if($request->quantity == null){
+        if ($request->quantity == null) {
             $request->quantity = 0;
         }
 
@@ -344,7 +352,8 @@ class ProductController extends Controller
         return view('admin.variant.Variations', compact('product'));
     }
 
-    public function StoreVariantItems(Request $request){
+    public function StoreVariantItems(Request $request)
+    {
         $validatedata = $request->validate([
             'product_id' => 'required',
             'attribute_id.*' => 'required|integer',
@@ -354,7 +363,7 @@ class ProductController extends Controller
         ]);
 
 
-        foreach($request->sizes as $i => $size){
+        foreach ($request->sizes as $i => $size) {
             $id = $request->attribute_id[$i];
             ProductAttributes::findOrFail($id)->update([
                 'sizes' => $size,
@@ -362,7 +371,7 @@ class ProductController extends Controller
                 'price' => $request->price[$i],
             ]);
 
-            if($i == 0){
+            if ($i == 0) {
                 Products::findOrFail($request->product_id)->update([
                     'price' => explode(',', $request->price[$i])[0],
                 ]);
@@ -373,35 +382,44 @@ class ProductController extends Controller
         return view('admin.variant.Variations', compact('product'));
     }
 
-    public function SetVariantImages($id){
+    public function SetVariantImages($id)
+    {
         $variant = ProductAttributes::findOrFail($id);
 
         return view('admin.variant.configImages', compact('variant'));
     }
 
-    public function VariantImageStore(Request $request){
-        $validateData = $request->validate([
-            'attribute_id' => 'required|integer',
-            'variant_img.*' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5048'
+    public function VariantImageStore(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'product_img' => 'required',
+            'attribute_id' => 'required|integer'
         ]);
 
         $attribute_id = $request->attribute_id;
-        $productImages = '';
+        $img = [];
+        $temporaryImages = TempFiles::all();
 
-        if ($request->file('variant_img') != null) {
-            $img = array();
-            if ($files = $request->file('variant_img')) {
-                foreach ($files as $file) {
-                    $timestamp = microtime(true) * 10000; // High resolution timestamp
-                    $randomString = bin2hex(random_bytes(5)); // Generates a random string
-                    $image_name = $timestamp . '_' . $randomString . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('uploads/variants'), $image_name);
-                    $img_url = 'uploads/variants/' . $image_name;
-                    $img[] = $img_url;
-                }
+        if (count($temporaryImages) != 0) {
+            foreach ($temporaryImages as $temporaryImage) {
+
+                $newUrl = 'uploads/' . $temporaryImage->file;
+                $oldUrl = 'uploads/temp/' . $temporaryImage->folder . '/' . $temporaryImage->file;
+                File::copy($oldUrl, $newUrl);
+                $img[] = $newUrl;
+
+                //delete temp images
+                $temporaryImage->delete();
             }
-            // implode here for the condition safety
+
+            //delete old temp files
+            $FilePath = 'uploads/temp';
+            File::deleteDirectory($FilePath);
             $productImages = implode('|', $img);
+
+        }else{
+            return redirect()->back()->withErrors($validatedData)->withInput();
         }
 
         ProductAttributes::findOrFail($attribute_id)->update([
@@ -413,9 +431,12 @@ class ProductController extends Controller
         return view('admin.variant.Variations', compact('product'));
     }
 
-    public function DeleteVariant($id){
+    public function DeleteVariant($id)
+    {
         ProductAttributes::findOrFail($id)->delete();
 
         return redirect()->back();
     }
+
+
 }

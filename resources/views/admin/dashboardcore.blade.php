@@ -46,7 +46,12 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{route('home')}}">
                         <!-- Logo icon -->
-                        <b><img src="{{ asset('assets/Logo.svg') }}" width="150px" alt="homepage"
+                        @php
+                            use App\Models\Content;
+
+                            $applogo = Content::where('content_name', 'logoItems')->value('HomePageImg');
+                        @endphp
+                        <b><img src="{{ asset($applogo) }}" width="150px" alt="homepage"
                                 class="dark-logo" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -160,7 +165,7 @@
                             <span class="hide-menu">Customers</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{route('admin.viewusers')}}">Users</a></li>
-                            <li><a href="{{route('admin.viewguests')}}">Guests</a></li>
+                            {{-- <li><a href="{{route('admin.viewguests')}}">Guests</a></li> --}}
                         </ul>
                     </li>
                     <hr class="side-hr">
@@ -172,6 +177,7 @@
                             <li><a href="{{route('content.preorder')}}">Pre Order Section</a></li>
                             {{-- <li><a href="{{route('content.featured')}}">Featured Section</a></li> --}}
                             <li><a href="{{route('content.slider')}}">Slider Section</a></li>
+                            <li><a href="{{route('content.header')}}">Logo Section</a></li>
                             {{-- <li><a href="{{route('content.preorder')}}">Services Section</a></li> --}}
                         </ul>
                     </li>
@@ -246,8 +252,8 @@
     <script src="{{ asset('js/custom.min.js') }} "></script>
 
     {{-- charts --}}
-    <script src="{{ asset('js/lib/chart-js/Chart.bundle.js') }}"></script>
-    <script src="{{ asset('js/lib/chart-js/chartjs-init.js') }}"></script>
+    {{-- <script src="{{ asset('js/lib/chart-js/Chart.bundle.js') }}"></script> --}}
+    {{-- <script src="{{ asset('js/lib/chart-js/chartjs-init.js') }}"></script> --}}
 </body>
 
 </html>

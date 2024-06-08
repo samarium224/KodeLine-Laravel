@@ -161,7 +161,7 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn btn-dark btn-sm mt-3">Save Product</button>
+            <button type="submit" class="btn btn-dark btn-sm mt-3 px-4 py-1">Save Product</button>
         </form>
     </div>
     <script src="{{ asset('js/dropimage.js') }}"></script>

@@ -2,7 +2,7 @@
 
 @section('page-title', 'Dashboard | Collection')
 
-@section('page-heading', 'Edit Collection')
+@section('page-heading', 'Add New Collection')
 @section('page-active-heading', 'Collection')
 
 @section('dashboard-content')
@@ -59,23 +59,22 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('updatecategory') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('storecategory') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-title text-secondary mb-3">
                     <b>Collection Name</b>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="category_id" value="{{ $category->id }}">
                     <input type="text" id="category_name" name="category_name" class="form-control"
-                        placeholder="e.g. Summer collection" value="{{ $category->category_name }}" required>
+                        placeholder="e.g. Summer collection" required>
                 </div>
                 <div class="card-title text-secondary mb-3">
                     <b>Collection Short Title</b>
                     <p class="my-2 card-subtitle">Short title will appear in the home page in front of the collection image</p>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="category_title" value="{{ $category->category_title }}" name="category_title" class="form-control"
+                    <input type="text" id="category_title" name="category_title" class="form-control"
                         placeholder="e.g. Sun-kissed style for every little princess!">
                 </div>
                 <div class="card-title text-secondary mb-3">
@@ -83,7 +82,7 @@
                     <p class="my-2 card-subtitle">Description will appear in the collection page above the collection Header image</p>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="category_description" value="{{ $category->category_subtitle }}" name="category_subtitle" class="form-control"
+                    <input type="text" id="category_description" name="category_subtitle" class="form-control"
                         placeholder="e.g. Simplify parenting decisions with our thoughtfully curated kid's fashion">
                 </div>
                 <div>
@@ -93,36 +92,34 @@
                             <div id="dropzone1" class="dropzone">
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
-                            <input type="file" id="product_img1" name="category_img" accept="image/*"
-                                style="opacity: 0;">
+                            <input type="file" id="product_img1" name="category_img" accept="image/*" style="opacity: 0;"
+                                required>
                         </div>
                         <div class="col-md-4">
-                            <!-- Display existing image -->
                             <div id="image-preview1" class="image-preview">
-                                <img src="{{ asset($category->category_img) }}" alt="Category Image">
+                                <img src="{{ asset('assets/admin_select_an_image.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-title text-secondary mb-3">
                     <b>Collection Header Image</b>
                 </div>
                 <div>
                     <div class="row">
+                        <div class="col-md-4">
+                            <div id="image-preview2" class="image-preview">
+                                <img src="{{ asset('assets/admin-col-pc.jpg') }}" alt="">
+                            </div>
+                        </div>
                         <div class="col-md-8">
                             <div id="dropzone2" class="dropzone">
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
                             <input type="file" id="product_img2" name="cat_headerImg_PC" accept="image/*"
-                                style="opacity: 0;">
-                        </div>
-                        <div class="col-md-4">
-                            <!-- Display existing image -->
-                            <div id="image-preview2" class="image-preview">
-                                <img src="{{ asset($category->cat_headerImg_PC) }}" alt="Category Header Image">
-                            </div>
+                                style="opacity: 0;" required>
                         </div>
                     </div>
                 </div>
@@ -138,19 +135,20 @@
                                 <div class="dropzone-text">Drag and drop image or click to select</div>
                             </div>
                             <input type="file" id="product_img3" name="cat_headerImg_mobile" accept="image/*"
-                                style="opacity: 0;">
+                                style="opacity: 0;" required>
                         </div>
                         <div class="col-md-4">
-                            <!-- Display existing image -->
                             <div id="image-preview3" class="image-preview">
-                                <img src="{{ asset($category->cat_headerImg_mobile) }}" alt="Category Header Mobile Image">
+                                <img src="{{ asset('assets/admin_col_mobile.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <button type="submit" class="btn btn-dark px-5">Save</button>
+
         </form>
     </div>
     <script src="{{ asset('js/singledropimage.js') }}"></script>
+
 @endsection

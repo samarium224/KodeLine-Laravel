@@ -27,7 +27,10 @@
                     <div class="card-subtitle">
                         <b>Order Info</b>
                         <div class="mt-2">
-                            Order UID: {{ $order->order_id }}<br>
+                            Order UID:
+                            <div class="text-lg text-info">
+                                {{ $order->order_id }}<br>
+                            </div>
                             Purchased Item: {{ $Count }}<br>
                             Total Price: {{ $order->total_price }}
                         </div>
@@ -74,8 +77,10 @@
                             <span class="badge badge-danger px-2 py-1">pending</span>
                         </div>
                         <div>
-                            <a href="{{ route('order.deliverycomplete', $order->id) }}" class="btn btn-light btn-sm">
-                                mark as complete</a>
+                            <a href="{{ route('order.deliverycomplete', $order->id) }}"
+                                class="btn btn-light btn-sm text-dark my-3">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                mark complete</a>
                         </div>
                     @else
                         <div class="badge badge-success px-2 py-1">completed</div>
@@ -90,7 +95,9 @@
                     <div>
                         @if ($order->Isreturned != 1)
                             <a href="{{ route('order.returnProduct', $order->id) }}"
-                                class="btn btn-secondary btn-sm">requested</a>
+                                class="btn btn-light text-dark btn-sm">
+                                <i class="fa fa-reply" aria-hidden="true"></i>
+                                requested</a>
                         @else
                             this product has been returned
                         @endif

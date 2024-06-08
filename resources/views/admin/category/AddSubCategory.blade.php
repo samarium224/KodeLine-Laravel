@@ -33,7 +33,7 @@
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                         @endforeach
                     </select>
-                    <button type="submit" class="btn btn-dark mt-3 btn-sm">Save Category</button>
+                    <button type="submit" class="btn btn-dark mt-3 btn-sm px-4 py-1">Save Category</button>
                 </div>
             </div>
         </form>
@@ -56,20 +56,28 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Collection</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($subcategories as $subcategory)
                                 <tr>
                                     <th scope="row">{{ $subcategory->id }}</th>
-                                    <td>{{ $subcategory->subcategory_name }}</td>
+                                    <td>
+                                        <a href="{{ route('editsubcategory', $subcategory->id) }}" class="text-dark">
+                                            <u>
+                                                {{ $subcategory->subcategory_name }}
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </u>
+                                        </a>
+
+                                    </td>
                                     <td>{{ $subcategory->category_name }}</td>
                                     <td>
-                                        <a href="{{ route('editsubcategory', $subcategory->id) }}"
-                                            class="btn btn-secondary btn-sm">edit</a>
                                         <a href="{{ route('deletesubcategory', $subcategory->id) }}"
-                                            class="btn btn-dark btn-sm">delete</a>
+                                            class="text-dark text-lg">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
