@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import ItemCard from "@/Global_Components/ItemCard/ItemCard";
 import { Box, Container, Typography, useTheme } from "@mui/material";
-import { PrevArrow, NextArrow } from "./SliderArrows";
+import { PrevArrow, NextArrow } from "../SliderArrows";
 
 const PreOrder = ({ items }) => {
     const theme = useTheme();

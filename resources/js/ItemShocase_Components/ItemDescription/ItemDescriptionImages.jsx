@@ -1,23 +1,51 @@
-import { Box, Modal, IconButton } from "@mui/material";
 import React, { useState } from "react";
+import { Box, Modal, IconButton } from "@mui/material";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import CloseIcon from "@mui/icons-material/Close";
+
+import { PrevArrow, NextArrow } from "@/Global_Components/SliderArrows";
 
 const ItemDescriptionImages = ({ itemData }) => {
     const [open, setOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState("");
+    const [selectedImage, setSelectedImage] = useState(0);
+
+    const settings = {
+        arrows: true,
+        infinite: true,
+        fade: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
+        initialSlide: selectedImage,
+        responsive: [
+            {
+                breakpoint: 600,
+                settings: {
+                    arrows: false,
+                },
+            },
+        ],
+    };
 
     itemData.imgURL.secondary = itemData.imgURL.secondary.filter(
         (url) => url !== null
     );
 
-    const handleOpen = (image) => {
-        setSelectedImage(image);
+    const handleOpen = (imageID) => {
+        setSelectedImage(imageID);
         setOpen(true);
     };
 
     const handleClose = () => {
         setOpen(false);
-        setSelectedImage("");
+        setSelectedImage(0);
     };
 
     return (
@@ -25,7 +53,8 @@ const ItemDescriptionImages = ({ itemData }) => {
             display="flex"
             sx={{
                 flexDirection: { lg: "row", xs: "column-reverse" },
-                width: { md: "60%", xs: "100%" },
+                width: { lg: "60%", md: "50%", sm: "75%", xs: "100%" },
+                mx: "auto",
                 mb: { xs: 2, md: 15 },
             }}
             justifyContent="space-between"
@@ -46,7 +75,7 @@ const ItemDescriptionImages = ({ itemData }) => {
                                     image ? image : "./assets/blank.jpg"
                                 })`,
                                 backgroundPosition: "center",
-                                backgroundSize: "cover",
+                                backgroundSize: "contain",
                                 backgroundRepeat: "no-repeat",
                                 cursor: "pointer",
                                 height: {
@@ -58,7 +87,7 @@ const ItemDescriptionImages = ({ itemData }) => {
                                 mx: { lg: 0, xs: "4px" },
                                 mt: { lg: 0, xs: 1 },
                             }}
-                            onClick={() => handleOpen(image)}
+                            onClick={() => handleOpen(i + 1)}
                         />
                     ))}
                 </Box>
@@ -68,19 +97,19 @@ const ItemDescriptionImages = ({ itemData }) => {
                 maxWidth="750px"
                 sx={{
                     width: "100%",
-                    height: { xs: "60vw", md: "800px" },
+                    height: { xs: "80vw", md: "600px", lg: "800px" },
                     backgroundImage: `url("${
                         itemData.imgURL.primary
                             ? itemData.imgURL.primary
                             : "./assets/blank.jpg"
                     }")`,
                     backgroundPosition: "center",
-                    backgroundSize: "cover",
+                    backgroundSize: "contain",
                     backgroundRepeat: "no-repeat",
                     cursor: "pointer",
                     mx: { lg: "10px" },
                 }}
-                onClick={() => handleOpen(itemData.imgURL.primary)}
+                onClick={() => handleOpen(0)}
             />
 
             <Modal
@@ -110,16 +139,38 @@ const ItemDescriptionImages = ({ itemData }) => {
                             position: "absolute",
                             top: "50%",
                             left: "50%",
+                            maxWidth: { xs: "90vw", sm: "calc(100vw - 200px)" },
                             transform: "translate(-50%, -50%)",
                             backgroundColor: "#fff",
                             borderRadius: "5px",
                             "&:focus": { outline: "none" },
                         }}
                     >
-                        <img
-                            src={selectedImage}
-                            // style={{ height: "80vh"}}
-                        />
+                        <Slider {...settings}>
+                            <Box
+                                display="flex !important"
+                                justifyContent="center"
+                            >
+                                <Box
+                                    component="img"
+                                    sx={{ height: "75vh" }}
+                                    src={itemData.imgURL.primary}
+                                />
+                            </Box>
+                            {itemData.imgURL.secondary.map((secimgURL, i) => (
+                                <Box
+                                    key={i}
+                                    display="flex !important"
+                                    justifyContent="center"
+                                >
+                                    <Box
+                                        component="img"
+                                        sx={{ height: "75vh" }}
+                                        src={secimgURL}
+                                    />
+                                </Box>
+                            ))}
+                        </Slider>
                     </Box>
                 </>
             </Modal>

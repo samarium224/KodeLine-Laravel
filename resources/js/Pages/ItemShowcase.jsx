@@ -75,7 +75,7 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
                 <BestSellingItems
                     bestSellingItemsList={filteredBestsellingItems}
                     collections={bestsellingCollection}
-                    title="You May Also Like"
+                    title="Best Selling Items"
                 />
                 <Box my={5}></Box>
                 {preOrderContent && (

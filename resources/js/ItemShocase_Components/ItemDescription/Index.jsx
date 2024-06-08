@@ -1,9 +1,9 @@
-import { Container, useTheme } from "@mui/material";
+import { Container } from "@mui/material";
 import ItemDescriptionImages from "./ItemDescriptionImages";
 import ItemDescriptionTexts from "./ItemDescription/Index";
 
 const ItemDescription = ({ product }) => {
-    const theme = useTheme();
+    console.log(product);
     return (
         <Container
             maxWidth="desktopMaxWidth"
