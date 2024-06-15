@@ -18,7 +18,7 @@
                         <h2>
                             @php
                                 $revenue = 0;
-                                if($analytics !=null){
+                                if ($analytics != null) {
                                     $revenue = $analytics->revenue;
                                 }
                             @endphp
@@ -39,7 +39,7 @@
                         <h2>
                             @php
                                 $order = 0;
-                                if($analytics !=null){
+                                if ($analytics != null) {
                                     $order = $analytics->total_orders;
                                 }
                             @endphp
@@ -60,7 +60,7 @@
                         <h2>
                             @php
                                 $customer = 0;
-                                if($analytics !=null){
+                                if ($analytics != null) {
                                     $customer = $analytics->customer_count;
                                 }
                             @endphp
@@ -81,13 +81,13 @@
                         <h2>
                             @php
                                 $avg_order = 0;
-                                if($analytics !=null){
+                                if ($analytics != null) {
                                     $totalSales = $analytics->total_sales_price;
                                     $totalOrders = $analytics->total_orders;
 
-                                    if($totalOrders != 0){
-                                        $avg_order = $totalSales/$totalOrders;
-                                    }else{
+                                    if ($totalOrders != 0) {
+                                        $avg_order = $totalSales / $totalOrders;
+                                    } else {
                                         $avg_order = 0;
                                     }
                                 }
@@ -110,14 +110,14 @@
                     <thead>
                         <tr>
                             <th scope="col" class="border-0">
-                                    ID
+                                ID
                             </th>
                             <th scope="col" class="border-0">
-                                    Order ID
+                                Order ID
                             </th>
                             <th scope="col" class="border-0">Product Img</th>
                             <th scope="col" class="border-0">
-                                    Product
+                                Product
                             </th>
                             <th scope="col" class="border-0">User</th>
                             <th scope="col" class="border-0">Phone Number</th>
@@ -134,7 +134,18 @@
                             <tr>
                                 <th scope="row">{{ $order->id }}</th>
                                 <td>{{ $order->order_id }}</td>
-                                <td> <img src="{{ asset($order->imgUrl) }}" width="100px" alt=""> </td>
+                                <td>
+                                    @php
+                                        $product_img = explode('|', $order->imgUrl);
+                                    @endphp
+                                    @if (count($product_img) != 1)
+                                        @foreach ($product_img as $img)
+                                            <img src="{{ asset($img) }}" width="30px" alt="">
+                                        @endforeach
+                                    @else
+                                        <img src="{{ asset($order->imgUrl) }}" width="60px" alt="">
+                                    @endif
+                                </td>
                                 <td>{{ $order->product_name }}</td>
                                 <td>{{ $order->username }}</td>
                                 <td>{{ $order->phonenumber }}</td>
@@ -153,8 +164,7 @@
                                     @if ($order->delivery_status != 1)
                                         <span class="badge badge-danger px-2 py-1">pending</span>
                                         <br>
-                                        <a href="{{ route('order.deliverycomplete', $order->id) }}"
-                                            class="btn text-dark">
+                                        <a href="{{ route('order.deliverycomplete', $order->id) }}" class="btn text-dark">
                                             <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                             mark complete
                                         </a>
@@ -165,7 +175,8 @@
                                 </td>
                                 <td>
                                     @if ($order->Isreturned != 1)
-                                        <a href="{{ route('order.returnProduct', $order->id) }}" class="btn btn-secondary btn-sm">requested</a>
+                                        <a href="{{ route('order.returnProduct', $order->id) }}"
+                                            class="btn btn-secondary btn-sm">requested</a>
                                     @else
                                         this product has been returned
                                     @endif
