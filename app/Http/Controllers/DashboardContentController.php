@@ -9,6 +9,11 @@ class DashboardContentController extends Controller
 {
     public function PreOrderContent()
     {
+        $contents = Content::where('content_name', 'preordercontent')->get();
+        return view("admin.content.preOrderList", compact('contents'));
+    }
+
+    public function addPreOrderContent(){
         return view("admin.content.PreOrder");
     }
 
@@ -183,7 +188,7 @@ class DashboardContentController extends Controller
             ]);
         }
 
-        return redirect()->route('content.all')->with(
+        return redirect()->route('content.preorder')->with(
             'message',
             'Pre Order Content Updated Successfully'
         );

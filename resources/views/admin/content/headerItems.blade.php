@@ -69,7 +69,7 @@
                     </div>
                     <div class="col-md-4 bg-dark">
                         <div id="image-preview1" class="image-preview">
-                            @if ($contents->HomePageImg != 'null')
+                            @if ($contents != null)
                                 <img src="{{ asset($contents->HomePageImg) }}" alt="">
                             @else
                                 <img src="{{ asset('assets/logo.svg') }}" alt="App Logo">
@@ -102,7 +102,7 @@
                     </div>
                     <div class="col-md-4 bg-secondary">
                         <div id="image-preview2" class="image-preview">
-                            @if ($contents->MobileImg != 'null')
+                            @if ($contents != null)
                                 <img src="{{ asset($contents->MobileImg) }}" alt="">
                             @else
                                 <img src="{{ asset('assets/Kodeline kids_Black Logo.svg') }}" alt="App Logo">

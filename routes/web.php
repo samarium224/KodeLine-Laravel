@@ -154,6 +154,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(DashboardContentController::class)->group(function () {
         //content
         Route::get('/admin/ContentpreOrder', 'PreOrderContent')->name('content.preorder');
+        Route::get('/admin/ContentpreOrder/add', 'addPreOrderContent')->name('content.add.preorder');
         Route::post('/admin/ContentpreOrder/edit', 'UpdatePreOrderContent')->name('content.preorder.store');
         Route::get('/admin/contentview', 'ContentView')->name('content.all');
         Route::get('/admin/content/delete/{id}', 'destroy')->name('content.delete');
