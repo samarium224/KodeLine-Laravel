@@ -26,7 +26,8 @@ export default function Collection({ auth }) {
         preOrderContent,
         preOrderItems,
         selectedCategories,
-        selectedCategoryID
+        selectedCategoryID,
+        AppLogo,
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -40,9 +41,14 @@ export default function Collection({ auth }) {
     return (
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
-                <Slogan />
-                <Navigation collections={collections} auth={auth} />
-                <Header CollectionHeaderData={collection_info} />
+                {/* <Slogan /> */}
+                <Navigation
+                    collections={collections}
+                    auth={auth}
+                    alternativeColor={true}
+                    logo={AppLogo}
+                />
+                {/* <Header CollectionHeaderData={collection_info} /> */}
                 {/* <Banner
                     text={`EXPLORE ${collection_info['category_name'].toUpperCase()} COLLECTION`}
                     variant="title"
@@ -52,7 +58,11 @@ export default function Collection({ auth }) {
                         wordSpacing: { xs: "12px", md: "15px;" },
                     }}
                 /> */}
-                <Products CollectionItemsList={collectionItemList} selectedCategories={selectedCategories} selectedCategoryID={selectedCategoryID} />
+                <Products
+                    CollectionItemsList={collectionItemList}
+                    selectedCategories={selectedCategories}
+                    selectedCategoryID={selectedCategoryID}
+                />
                 {preOrderContent && (
                     <PreOrder items={preOrderItems} content={preOrderContent} />
                 )}

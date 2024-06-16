@@ -127,7 +127,7 @@ const Products = ({
     // };
 
     return (
-        <Container maxWidth="desktopMaxWidth" sx={{ mt: 6, mb: 7, px: 1 }}>
+        <Container maxWidth="desktopMaxWidth" sx={{ mt: 12, mb: 7, px: 1 }}>
             <Box
                 display="flex"
                 alignItems={"center"}

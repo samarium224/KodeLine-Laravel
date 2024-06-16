@@ -91,7 +91,10 @@ class CollectionController extends Controller
             });
 
             // dd($collection_info[0]);
-
+            $appLogo = [
+                'LogoLight' => Content::where('content_name', 'logoItems')->value('HomePageImg'),
+                'LogoDark' => Content::where('content_name', 'logoItems')->value('MobileImg'),
+            ];
             return Inertia::render('Collection',[
                 'collections' => $collections,
                 'collection_info' => $collection_info[0],
@@ -100,6 +103,7 @@ class CollectionController extends Controller
                 'collectionItemList'=> $CollectionItemList,
                 'preOrderContent' => $preOrderContent,
                 'preOrderItems' => $preOrderItems,
+                'AppLogo' => $appLogo,
             ]);
         } catch (\Throwable $th) {
             //throw $th;
@@ -181,7 +185,10 @@ class CollectionController extends Controller
             });
 
             // dd($collection_info[0]);
-
+            $appLogo = [
+                'LogoLight' => Content::where('content_name', 'logoItems')->value('HomePageImg'),
+                'LogoDark' => Content::where('content_name', 'logoItems')->value('MobileImg'),
+            ];
             return Inertia::render('Collection',[
                 'collections' => $collections,
                 'collection_info' => $collection_info,
@@ -190,6 +197,7 @@ class CollectionController extends Controller
                 'collectionItemList'=> $CollectionItemList,
                 'preOrderContent' => $preOrderContent,
                 'preOrderItems' => $preOrderItems,
+                'AppLogo' => $appLogo,
             ]);
         } catch (\Throwable $th) {
             // throw $th;

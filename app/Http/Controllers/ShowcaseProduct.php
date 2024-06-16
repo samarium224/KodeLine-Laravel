@@ -145,7 +145,10 @@ class ShowcaseProduct extends Controller
                         'collection_id' => $item->product_category_id,
                     ];
                 });
-
+            $appLogo = [
+                'LogoLight' => Content::where('content_name', 'logoItems')->value('HomePageImg'),
+                'LogoDark' => Content::where('content_name', 'logoItems')->value('MobileImg'),
+            ];
             return Inertia::render('ItemShowcase', [
                 'collections' => $collections,
                 'product' => $ProductItem[0], //don't touch it works
@@ -153,6 +156,7 @@ class ShowcaseProduct extends Controller
                 'preOrderItems' => $preOrderItems,
                 'bestsellingItems' => $bestsellingItems,
                 'bestsellingCollection' => $bestsellingCategories,
+                'AppLogo' => $appLogo,
             ]);
         } catch (\Throwable $th) {
             // throw $th;

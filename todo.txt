@@ -13,6 +13,9 @@ fix lines overlapping
 reduce itemTitle font size in items page
 successfully added message
 
+Sliding itemshowcase items
+You might also like filter
+
 ========== Completed Query ==========
 # Services Fontsize #
 # BestSelling, SignatureItems filter button #

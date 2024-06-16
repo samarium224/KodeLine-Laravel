@@ -28,6 +28,7 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
         preOrderItems,
         bestsellingItems,
         bestsellingCollection,
+        AppLogo,
     } = usePage().props;
 
     const { width } = useWindowSize();
@@ -64,18 +65,19 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
     return (
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
-                <Slogan />
+                {/* <Slogan /> */}
                 <Navigation
                     collections={collections}
                     auth={auth}
                     alternativeColor={true}
+                    logo={AppLogo}
                 />
                 <ItemDescription product={product} />
                 {/* <Header title="You may also like" /> */}
                 <BestSellingItems
                     bestSellingItemsList={filteredBestsellingItems}
                     collections={bestsellingCollection}
-                    title="You May Also Like"
+                    title="Best Selling Items"
                 />
                 <Box my={5}></Box>
                 {preOrderContent && (
