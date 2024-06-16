@@ -27,6 +27,7 @@ export default function Collection({ auth }) {
         preOrderItems,
         selectedCategories,
         selectedCategoryID,
+        AppLogo,
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -45,6 +46,7 @@ export default function Collection({ auth }) {
                     collections={collections}
                     auth={auth}
                     alternativeColor={true}
+                    logo={AppLogo}
                 />
                 {/* <Header CollectionHeaderData={collection_info} /> */}
                 {/* <Banner

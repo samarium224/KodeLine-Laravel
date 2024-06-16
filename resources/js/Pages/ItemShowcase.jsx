@@ -28,6 +28,7 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
         preOrderItems,
         bestsellingItems,
         bestsellingCollection,
+        AppLogo,
     } = usePage().props;
 
     const { width } = useWindowSize();
@@ -69,6 +70,7 @@ export default function ItemShowcase({ auth, laravelVersion, phpVersion }) {
                     collections={collections}
                     auth={auth}
                     alternativeColor={true}
+                    logo={AppLogo}
                 />
                 <ItemDescription product={product} />
                 {/* <Header title="You may also like" /> */}

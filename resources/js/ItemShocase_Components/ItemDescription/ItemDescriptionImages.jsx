@@ -48,6 +48,8 @@ const ItemDescriptionImages = ({ itemData }) => {
         setSelectedImage(0);
     };
 
+    const secondary_images = Math.min(itemData.imgURL.secondary.length, 4);
+
     return (
         <Box
             display="flex"
@@ -59,14 +61,14 @@ const ItemDescriptionImages = ({ itemData }) => {
             }}
             justifyContent="space-between"
         >
-            {itemData.imgURL.secondary.length > 0 && (
+            {secondary_images > 0 && (
                 <Box
                     className="inactive-item-images"
                     display="flex"
                     sx={{ flexDirection: { lg: "column", xs: "row" } }}
-                    justifyContent="flex-start"
+                    justifyContent="center"
                 >
-                    {itemData.imgURL.secondary.map((image, i) => (
+                    {itemData.imgURL.secondary.slice(0, 4).map((image, i) => (
                         <Box
                             key={i}
                             className="active-item-image"
@@ -75,12 +77,12 @@ const ItemDescriptionImages = ({ itemData }) => {
                                     image ? image : "./assets/blank.jpg"
                                 })`,
                                 backgroundPosition: "center",
-                                backgroundSize: "contain",
+                                backgroundSize: "cover",
                                 backgroundRepeat: "no-repeat",
                                 cursor: "pointer",
                                 height: {
                                     xs: "120px",
-                                    lg: "calc(100% / 4)",
+                                    lg: `calc(100% / ${secondary_images})`,
                                 },
                                 width: { xs: "calc(100% / 4)", lg: "180px" },
                                 mb: { lg: 1, xs: 0 },
@@ -97,7 +99,13 @@ const ItemDescriptionImages = ({ itemData }) => {
                 maxWidth="750px"
                 sx={{
                     width: "100%",
-                    height: { xs: "80vw", md: "600px", lg: "800px" },
+                    height: {
+                        xs: "80vw",
+                        md: "47.5vw",
+                        lg: `${
+                            secondary_images ? secondary_images * 200 : 800
+                        }px`,
+                    },
                     backgroundImage: `url("${
                         itemData.imgURL.primary
                             ? itemData.imgURL.primary

@@ -88,7 +88,8 @@
                                     <th scope="row">{{ $attribute->value }}</th>
                                     <td>
                                         <input type="text" name="sizes[]" value="{{ $attribute->sizes }}"
-                                            class="form-control" placeholder="e.g. 3 years, 4 years, 5 years" required>
+                                            class="form-control" placeholder="e.g. 3 years, 4 years, 5 years" required> 
+                                            <!-- KTTTAAAAAAAAAAAAAAAA -->
                                     </td>
                                     <td><input type="text" name="price[]" value="{{ $attribute->price }}"
                                             class="form-control" required></td>

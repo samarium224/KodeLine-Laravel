@@ -18,7 +18,7 @@ import DrawerContent from "./ResponsiveDrawer/ResponsiveDrawer";
 import { NavigationCheckout } from "./Cart/Index";
 import DesktopToolbar from "./DesktopToolbar";
 
-const Navigation = ({ auth, collections, alternativeColor = false }) => {
+const Navigation = ({ auth, collections, alternativeColor = false, logo }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -93,11 +93,7 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
             >
                 <Link href={route("home")}>
                     <img
-                        src={
-                            alternativeColor
-                                ? "../assets/Kodeline kids_Black Logo.svg"
-                                : "../assets/Logo.svg"
-                        }
+                        src={alternativeColor ? logo.LogoDark : logo.LogoLight}
                         alt="Logo"
                         style={{ height: "72px" }}
                     />
@@ -139,6 +135,7 @@ const Navigation = ({ auth, collections, alternativeColor = false }) => {
                                 setCollectionOpen={setCollectionOpen}
                                 navButtonStyle={navButtonStyle}
                                 alternativeColor={alternativeColor}
+                                logo={logo}
                             />
                         )}
                         <NavigationCheckout

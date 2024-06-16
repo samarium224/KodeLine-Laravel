@@ -34,6 +34,7 @@ export default function Welcome({ auth }) {
         bestsellingCollection,
         preOrderContent,
         preOrderItems,
+        AppLogo,
     } = usePage().props;
     const { width } = useWindowSize();
 
@@ -47,8 +48,12 @@ export default function Welcome({ auth }) {
     return (
         <div style={{ overflow: "hidden" }}>
             <ThemeProvider theme={getTheme()}>
-                <Slogan />
-                <Navigation collections={collections} auth={auth} />
+                {/* <Slogan /> */}
+                <Navigation
+                    collections={collections}
+                    auth={auth}
+                    logo={AppLogo}
+                />
                 <SliderComponent sliderItems={sliderItems}></SliderComponent>
                 <Banner
                     text="Step into a world where online shopping feels effortless and full of love! <br/> With top-notch products and pocket-friendly prices, let's navigate parenthood together, hassle-free."
