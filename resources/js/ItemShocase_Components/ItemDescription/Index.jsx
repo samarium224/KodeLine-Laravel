@@ -3,7 +3,6 @@ import ItemDescriptionImages from "./ItemDescriptionImages";
 import ItemDescriptionTexts from "./ItemDescription/Index";
 
 const ItemDescription = ({ product }) => {
-    console.log(product);
     return (
         <Container
             maxWidth="desktopMaxWidth"

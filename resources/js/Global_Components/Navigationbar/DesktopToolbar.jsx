@@ -9,7 +9,6 @@ const DesktopToolbar = ({
     alternativeColor,
     logo,
 }) => {
-    console.log(logo);
     return (
         <>
             <IconButton
