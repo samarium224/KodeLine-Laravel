@@ -5,7 +5,6 @@ import {
     ListItem,
     ListItemText,
     Divider,
-    Collapse,
     Typography,
     IconButton,
     Drawer,

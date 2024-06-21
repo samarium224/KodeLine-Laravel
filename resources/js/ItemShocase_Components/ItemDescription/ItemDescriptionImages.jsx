@@ -48,7 +48,7 @@ const ItemDescriptionImages = ({ itemData }) => {
         setSelectedImage(0);
     };
 
-    const secondary_images = Math.min(itemData.imgURL.secondary.length, 4);
+    const secondary_images = Math.min(itemData.imgURL.secondary.length, 3);
 
     return (
         <Box
@@ -56,8 +56,8 @@ const ItemDescriptionImages = ({ itemData }) => {
             sx={{
                 flexDirection: { lg: "row", xs: "column-reverse" },
                 width: { lg: "60%", md: "50%", sm: "75%", xs: "100%" },
-                mx: "auto",
                 mb: { xs: 2, md: 15 },
+                mx: "auto",
             }}
             justifyContent="space-between"
         >
@@ -65,7 +65,10 @@ const ItemDescriptionImages = ({ itemData }) => {
                 <Box
                     className="inactive-item-images"
                     display="flex"
-                    sx={{ flexDirection: { lg: "column", xs: "row" } }}
+                    sx={{
+                        flexDirection: { lg: "column", xs: "row" },
+                        minWidth: { md: "480px", lg: "initial" },
+                    }}
                     justifyContent="center"
                 >
                     {itemData.imgURL.secondary.slice(0, 4).map((image, i) => (
@@ -81,11 +84,12 @@ const ItemDescriptionImages = ({ itemData }) => {
                                 backgroundRepeat: "no-repeat",
                                 cursor: "pointer",
                                 height: {
-                                    xs: "120px",
+                                    xs: "100px",
+                                    sm: "120px",
                                     lg: `calc(100% / ${secondary_images})`,
                                 },
                                 width: { xs: "calc(100% / 4)", lg: "180px" },
-                                mb: { lg: 1, xs: 0 },
+                                my: { lg: "8px", xs: 0 },
                                 mx: { lg: 0, xs: "4px" },
                                 mt: { lg: 0, xs: 1 },
                             }}
@@ -100,12 +104,13 @@ const ItemDescriptionImages = ({ itemData }) => {
                 sx={{
                     width: "100%",
                     height: {
-                        xs: "80vw",
-                        md: "47.5vw",
+                        xs: "300px",
+                        sm: "500px",
                         lg: `${
                             secondary_images ? secondary_images * 200 : 800
                         }px`,
                     },
+                    minWidth: { md: "480px", lg: "initial" },
                     backgroundImage: `url("${
                         itemData.imgURL.primary
                             ? itemData.imgURL.primary
